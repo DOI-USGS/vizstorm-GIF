@@ -24,13 +24,13 @@ targets:
 
   2_process/out/storm_line.rds.ind:
     command: extract_storm_line(
-      ind_file=target_name, storm_shp_ind='1_fetch/out/storm_track.zip.ind', cfg=view_metadata)
+      ind_file=target_name, storm_shp_ind='1_fetch/out/storm_track.zip.ind', cfg=view_config)
   2_process/out/storm_line.rds:
     command: gd_get('2_process/out/storm_line.rds.ind')
 
   2_process/out/storm_points_coarse.rds.ind:
     command: extract_storm_points(
-      ind_file=target_name, storm_shp_ind='1_fetch/out/storm_track.zip.ind', cfg=view_metadata)
+      ind_file=target_name, storm_shp_ind='1_fetch/out/storm_track.zip.ind', cfg=view_config)
   2_process/out/storm_points_coarse.rds:
     command: gd_get('2_process/out/storm_points_coarse.rds.ind')
 
