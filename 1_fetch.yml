@@ -4,6 +4,8 @@ include:
   - lib.yml
 
 packages:
+  - dataRetrieval
+  - yaml
   - httr
   - sf
   - mapdata
@@ -13,6 +15,7 @@ file_extensions:
   - ind
 
 sources:
+  - 1_fetch/src/fetch_streamflow.R
   - 1_fetch/src/fetch_storm_track.R
   - 1_fetch/src/map_utils.R
 
@@ -20,7 +23,8 @@ targets:
 
   1_fetch:
     depends:
-      - 1_fetch/out/storm_track.zip
+      - 1_fetch/out/streamflow.rds.ind
+      - 1_fetch/out/storm_track.zip.ind
       - view_polygon
 
   storm_track_cfg:
@@ -29,6 +33,21 @@ targets:
     command: fetch_storm_track(ind_file=target_name, cfg=storm_track_cfg)
   1_fetch/out/storm_track.zip:
     command: gd_get('1_fetch/out/storm_track.zip.ind')
+
+  dates:
+    command: viz_config[I('dates')]
+  stream_params:
+    command: yaml.load_file('1_fetch/cfg/stream_params.yml')
+  site_ids:
+    command: yaml.load_file('1_fetch/out/subset_sites.yml')
+
+  1_fetch/out/streamflow.rds.ind:
+    command: fetch_streamflow(
+      ind_file = target_name,
+      sites = site_ids,
+      dates = dates,
+      stream_params = stream_params,
+      gd_config = 'lib/cfg/gd_config.yml')
 
   view_config:
     command: viz_config[I(c('bbox', 'projection','aspect'))]
