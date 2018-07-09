@@ -4,37 +4,21 @@ include:
   - lib.yml
 
 packages:
-<<<<<<< HEAD
   - dataRetrieval
-=======
   - httr
->>>>>>> 72e3b9689a261df08a6c52523c0f6aafda78e36c
 
 file_extensions:
   - ind
 
 sources:
-<<<<<<< HEAD
-  - '1_fetch/src/fetch_streamflow.R'
-=======
+  - 1_fetch/src/fetch_streamflow.R
   - 1_fetch/src/fetch_storm_track.R
->>>>>>> 72e3b9689a261df08a6c52523c0f6aafda78e36c
 
 targets:
 
   1_fetch:
     depends:
-<<<<<<< HEAD
-      - '1_fetch/out/streamflow.rds.ind'
-
-  1_fetch/out/streamflow.rds.ind:
-    command: fetch_streamflow(
-      ind_file = target_name,
-      sites_yml = '1_fetch/out/subset_sites.yml',
-      dates_yml = '1_fetch/cfg/dates.yml',
-      stream_params_yml = '1_fetch/cfg/stream_params.yml',
-      gd_config = 'lib/cfg/gd_config.yml')
-=======
+      - 1_fetch/out/streamflow.rds.ind
       - 1_fetch/out/storm_track.zip
 
   storm_track_cfg:
@@ -43,4 +27,12 @@ targets:
     command: fetch_storm_track(ind_file=target_name, cfg=storm_track_cfg)
   1_fetch/out/storm_track.zip:
     command: gd_get('1_fetch/out/storm_track.zip.ind')
->>>>>>> 72e3b9689a261df08a6c52523c0f6aafda78e36c
+
+  1_fetch/out/streamflow.rds.ind:
+    command: fetch_streamflow(
+      ind_file = target_name,
+      sites_yml = '1_fetch/out/subset_sites.yml',
+      dates_yml = '1_fetch/cfg/dates.yml',
+      stream_params_yml = '1_fetch/cfg/stream_params.yml',
+      gd_config = 'lib/cfg/gd_config.yml')
+
