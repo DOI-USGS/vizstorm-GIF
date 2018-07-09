@@ -5,6 +5,7 @@ include:
 
 packages:
   - dataRetrieval
+  - yaml
   - httr
 
 file_extensions:
@@ -19,7 +20,15 @@ targets:
   1_fetch:
     depends:
       - 1_fetch/out/streamflow.rds.ind
-      - 1_fetch/out/storm_track.zip
+      - 1_fetch/out/storm_track.zip.ind
+
+  dates:
+    command: yaml.load_file('1_fetch/cfg/dates.yml') # these dates are user input right now but will come from storm_cfg
+  stream_params:
+    command: yaml.load_file('1_fetch/cfg/stream_params.yml')
+  site_ids:
+    command: yaml.load_file('1_fetch/out/subset_sites.yml')
+
 
   storm_track_cfg:
     command: viz_config[I('storm_code')]
@@ -31,8 +40,8 @@ targets:
   1_fetch/out/streamflow.rds.ind:
     command: fetch_streamflow(
       ind_file = target_name,
-      sites_yml = '1_fetch/out/subset_sites.yml',
-      dates_yml = '1_fetch/cfg/dates.yml',
-      stream_params_yml = '1_fetch/cfg/stream_params.yml',
+      sites = site_ids,
+      dates = dates,
+      stream_params = stream_params,
       gd_config = 'lib/cfg/gd_config.yml')
 
