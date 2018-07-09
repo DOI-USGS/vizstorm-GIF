@@ -1,24 +1,3 @@
-fetch.map_data <- function(viz) {
-  deps <- readDepends(viz)
-  checkRequired(deps, "viewbox_limits")
-  viewbox <- deps[["viewbox_limits"]]
-  viewbox_args <- list(crs = sf::st_crs(viewbox), within = viewbox)
-  map_args <- append(viz$fetch_args, viewbox_args)
-  map_data <- do.call(get_map_data, args = map_args)
-  saveRDS(map_data, viz[["location"]])
-}
-get_map_data <- function(..., crs = NULL, within = NULL) {
-  map_data <- sf::st_as_sf(maps::map(..., fill = TRUE, plot = FALSE))
-  if (!is.null(crs)) {
-    map_data <- sf::st_transform(map_data, crs)
-  }
-
-  if (!is.null(within)) {
-    map_data <- map_data[sf::st_intersects(map_data, within,
-                                           sparse = F), ]
-  }
-  return(map_data)
-}
 
 bbox_to_polygon <- function(bbox, bbox_crs = "+init=epsg:4326", return_crs = NULL) {
   bbox_poly <- sf::st_sfc(sf::st_polygon(list(
