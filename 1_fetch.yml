@@ -10,6 +10,7 @@ packages:
   - sf
   - mapdata
   - maps
+  - ncdf4
 
 file_extensions:
   - ind
@@ -18,6 +19,7 @@ sources:
   - 1_fetch/src/fetch_streamflow.R
   - 1_fetch/src/fetch_storm_track.R
   - 1_fetch/src/map_utils.R
+  - 1_fetch/src/fetch_precip_spatial.R
 
 targets:
 
@@ -67,3 +69,8 @@ targets:
   focus_geoms:
     command: fetch_geoms(focus_geoms_config, within = view_polygon)
 
+  1_fetch/out/precip_spatial.rds.ind:
+    command: fetch_precip_spatial(ind_file=target_name,
+                                view_config = view_config)
+  1_fetch/out/precip_spatial.rds:
+    command: gd_get('1_fetch/out/precip_spatial.rds.ind')
