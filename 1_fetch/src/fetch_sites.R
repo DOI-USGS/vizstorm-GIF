@@ -1,28 +1,21 @@
 #' Download all NWIS stage sites within the bounding box of a supplied spatial object
 #'
 #' @param ind_file character file name where the output should be saved
-#' @param sf_object spatial object of region used for storm, sf
+#' @param sf_object spatial object with IDs indicating the state name
 #' @param dates object from viz_config.yaml that specifies dates as string
 fetch_sites_from_sf <- function(ind_file, sf_object, dates) {
 
-  # Extract bounding box and reproject
-  bbox_projected <- sf::st_transform(sf_object, crs = "+proj=longlat +datum=NAD27 +no_defs")
-  object_bbox <- sf::st_bbox(bbox_projected)
-
-  # temp fix so this can get into the workflow
-  # how we get a bounding box (or maybe we use state fips) will change
-  object_bbox[3] <- object_bbox[1] + 10
-  object_bbox[2] <- object_bbox[4] - 1.2
-
-  object_bbox <- round(as.vector(object_bbox), 7)
+  state_names <- sf_object$ID[!grepl(",", sf_object$ID)]
+  state_cds <- unique(dataRetrieval::stateCdLookup(state_names))
 
   # Cast wide net for all NWIS sites with stage data that fall within that bbox
-  sites_df <- dataRetrieval::whatNWISdata(bBox = object_bbox,
-                                       parameterCd = "00065",
-                                       service = "uv")
-  sites_df <- dplyr::filter(sites_df,
-                            site_tp_cd == "ST",
-                            end_date >= as.Date(dates$dates$end))
+  sites_df <- data.frame()
+  for(cd in state_cds) {
+    sites_df_cd <- dataRetrieval::whatNWISdata(stateCd = cd, parameterCd = "00065", service = "uv")
+    sites_df <- rbind(sites_df, sites_df_cd)
+  }
+  sites_df <- dplyr::filter(sites_df, site_tp_cd == "ST")
+  sites_df <- dplyr::filter(sites_df, end_date >= as.Date(dates$dates$end))
   sites <- sites_df$site_no
 
   # write the data file and the indicator file
@@ -43,11 +36,16 @@ subset_sites <- function(ind_file, all_sites) {
 
   # subset the sites from the wide net cast to ones relevant to the storm
   # subset criteria TBD
-  sites <- dataRetrieval::readNWISsite(siteNumbers = all_sites)
+  sites_info <- dataRetrieval::readNWISsite(siteNumbers = all_sites)
+
+  #############********* temporarily grab only a few sites *********#############
+  set.seed(10)
+  sites_info <- dplyr::sample_n(sites_info, 50)
+  #############*********
 
   # write the data file and the indicator file
   data_file <- as_data_file(ind_file)
-  feather::write_feather(sites, data_file)
+  feather::write_feather(sites_info, data_file)
   gd_put(ind_file, data_file)
 
 }
