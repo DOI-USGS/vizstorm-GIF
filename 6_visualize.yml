@@ -1,0 +1,17 @@
+target_default: 6_visualize
+
+include:
+  - lib.yml
+
+packages:
+
+file_extensions:
+  - feather
+  - ind
+
+sources:
+
+targets:
+
+  6_visualize:
+    depends:

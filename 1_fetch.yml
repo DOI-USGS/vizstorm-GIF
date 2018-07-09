@@ -1,0 +1,17 @@
+target_default: 1_fetch
+
+include:
+  - lib.yml
+
+packages:
+
+file_extensions:
+  - feather
+  - ind
+
+sources:
+
+targets:
+
+  1_fetch:
+    depends:
