@@ -18,7 +18,7 @@ targets:
 
   1_fetch:
     depends:
-      - 1_fetch/out/storm_track.zip
+      - 1_fetch/out/storm_track.zip.ind
       - view_polygon
 
   storm_track_cfg:
