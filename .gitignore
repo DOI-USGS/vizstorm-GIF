@@ -2,3 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+.httr-oauth
+*/out/*
+!*/out/*.ind
+lib/cfg/gd_config.yml
+.remake

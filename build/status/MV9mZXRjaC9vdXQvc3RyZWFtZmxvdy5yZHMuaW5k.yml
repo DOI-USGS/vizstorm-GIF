@@ -1,0 +1,15 @@
+version: 0.3.0
+name: 1_fetch/out/streamflow.rds.ind
+type: file
+hash: 8e7875d61df55ddf069975fef740e1fc
+time: 2018-07-09 17:14:47 UTC
+depends:
+  1_fetch/out/subset_sites.yml: 3745b1e0d519f8a0e3af4472d9b821f9
+  1_fetch/cfg/dates.yml: 54e0473e42b12b5f62d9d7ed683ba08f
+  1_fetch/cfg/stream_params.yml: 796e9632109bd6f9d8b3e84f2fc9ec4d
+  lib/cfg/gd_config.yml: 8022d0274137821a4b66cf534320163a
+fixed: 61f80ff6dfa4d0e4d9da8ce4847d6f56
+code:
+  functions:
+    fetch_streamflow: b89e57b7223e4d6e3e70e217edde91db
+

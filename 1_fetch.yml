@@ -4,14 +4,25 @@ include:
   - lib.yml
 
 packages:
+  - dataRetrieval
 
 file_extensions:
   - feather
   - ind
 
 sources:
+  - '1_fetch/src/fetch_streamflow.R'
 
 targets:
 
   1_fetch:
     depends:
+      - '1_fetch/out/streamflow.rds.ind'
+
+  1_fetch/out/streamflow.rds.ind:
+    command: fetch_streamflow(
+      ind_file = target_name,
+      sites_yml = '1_fetch/out/subset_sites.yml',
+      dates_yml = '1_fetch/cfg/dates.yml',
+      stream_params_yml = '1_fetch/cfg/stream_params.yml',
+      gd_config = 'lib/cfg/gd_config.yml')
