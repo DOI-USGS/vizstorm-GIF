@@ -7,6 +7,7 @@ packages:
   - dataRetrieval
   - yaml
   - httr
+  - sf
 
 file_extensions:
   - ind
@@ -14,6 +15,7 @@ file_extensions:
 sources:
   - 1_fetch/src/fetch_streamflow.R
   - 1_fetch/src/fetch_storm_track.R
+  - 1_fetch/src/map_utils.R
 
 targets:
 
@@ -21,14 +23,8 @@ targets:
     depends:
       - 1_fetch/out/streamflow.rds.ind
       - 1_fetch/out/storm_track.zip.ind
-
-  dates:
-    command: yaml.load_file('1_fetch/cfg/dates.yml') # these dates are user input right now but will come from storm_cfg
-  stream_params:
-    command: yaml.load_file('1_fetch/cfg/stream_params.yml')
-  site_ids:
-    command: yaml.load_file('1_fetch/out/subset_sites.yml')
-
+      - 1_fetch/out/storm_track.zip
+      - view_polygon
 
   storm_track_cfg:
     command: viz_config[I('storm_code')]
@@ -36,6 +32,13 @@ targets:
     command: fetch_storm_track(ind_file=target_name, cfg=storm_track_cfg)
   1_fetch/out/storm_track.zip:
     command: gd_get('1_fetch/out/storm_track.zip.ind')
+
+  dates:
+    command: viz_config[I('dates')]
+  stream_params:
+    command: yaml.load_file('1_fetch/cfg/stream_params.yml')
+  site_ids:
+    command: yaml.load_file('1_fetch/out/subset_sites.yml')
 
   1_fetch/out/streamflow.rds.ind:
     command: fetch_streamflow(
@@ -45,3 +48,11 @@ targets:
       stream_params = stream_params,
       gd_config = 'lib/cfg/gd_config.yml')
 
+  view_metadata:
+    command: viz_config[I(c('bbox', 'projection','aspect'))]
+
+  view_polygon:
+    command: as_view_polygon(object = view_metadata)
+
+ # state_map:
+#    command: database: state
