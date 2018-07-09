@@ -3,7 +3,8 @@
 #' @param ind_file character file name where the output should be saved
 #' @param sf_object spatial object with IDs indicating the state name
 #' @param dates object from viz_config.yaml that specifies dates as string
-fetch_sites_from_sf <- function(ind_file, sf_object, dates) {
+#' @param stream_params pcodes to use from NWIS
+fetch_sites_from_sf <- function(ind_file, sf_object, dates, stream_params) {
 
   state_names <- sf_object$ID[!grepl(",", sf_object$ID)]
   state_cds <- unique(dataRetrieval::stateCdLookup(state_names))
@@ -11,7 +12,7 @@ fetch_sites_from_sf <- function(ind_file, sf_object, dates) {
   # Cast wide net for all NWIS sites with stage data that fall within that bbox
   sites_df <- data.frame()
   for(cd in state_cds) {
-    sites_df_cd <- dataRetrieval::whatNWISdata(stateCd = cd, parameterCd = "00065", service = "uv")
+    sites_df_cd <- dataRetrieval::whatNWISdata(stateCd = cd, parameterCd = stream_params$stage, service = "uv")
     sites_df <- rbind(sites_df, sites_df_cd)
   }
   sites_df <- dplyr::filter(sites_df, site_tp_cd == "ST")
