@@ -3,7 +3,13 @@
 .RData
 .Ruserdata
 .httr-oauth
+<<<<<<< HEAD
 */out/*
 !*/out/*.ind
 lib/cfg/gd_config.yml
 .remake
+=======
+.remake
+*.zip
+*.rds
+>>>>>>> 72e3b9689a261df08a6c52523c0f6aafda78e36c

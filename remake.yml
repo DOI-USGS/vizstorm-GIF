@@ -1,8 +1,7 @@
-target_default: visualize
+target_default: 6_visualize
 
 include:
-  - 1_fetch.yml
-  - 2_process.yml
+  - 6_visualize.yml
 
 targets:
 

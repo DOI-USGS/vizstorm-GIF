@@ -17,6 +17,9 @@ targets:
     depends:
       - lib/cfg/gd_config.yml
 
+  viz_config:
+    command: yaml.load_file('viz_config.yml')
+
   lib/cfg:
     command: dir.create(target_name, recursive=I(TRUE), showWarnings=I(FALSE))
 
