@@ -5,13 +5,14 @@ include:
 
 packages:
   - sf
+  - dplyr
 
 file_extensions:
   - feather
   - ind
 
 sources:
-  - 2_process/src/process_storm_line.R
+  - 2_process/src/extract_storm_line.R
   - 2_process/src/extract_storm_points.R
   - 2_process/src/interpolate_storm_points.R
 
@@ -22,7 +23,7 @@ targets:
       - 2_process/out/storm_line.rds.ind
 
   2_process/out/storm_line.rds.ind:
-    command: process_storm_line(
+    command: extract_storm_line(
       ind_file=target_name, storm_shp_ind='1_fetch/out/storm_track.zip.ind', cfg=view_metadata)
   2_process/out/storm_line.rds:
     command: gd_get('2_process/out/storm_line.rds.ind')
