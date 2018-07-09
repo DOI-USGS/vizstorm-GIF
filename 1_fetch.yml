@@ -4,14 +4,23 @@ include:
   - lib.yml
 
 packages:
+  - httr
 
 file_extensions:
-  - feather
   - ind
 
 sources:
+  - 1_fetch/src/fetch_storm_track.R
 
 targets:
 
   1_fetch:
     depends:
+      - 1_fetch/out/storm_track.zip
+
+  storm_track_cfg:
+    command: viz_config[I('storm_code')]
+  1_fetch/out/storm_track.zip.ind:
+    command: fetch_storm_track(ind_file=target_name, cfg=storm_track_cfg)
+  1_fetch/out/storm_track.zip:
+    command: gd_get('1_fetch/out/storm_track.zip.ind')
