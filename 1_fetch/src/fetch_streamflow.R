@@ -6,7 +6,7 @@ fetch_streamdata <- function(ind_file, sites, dates, stream_params, gd_config) {
   message('  starting download of NWIS data at ', Sys.time())
   data <- readNWISuv(
     siteNumbers=sites$site_no, parameterCd=stream_params$stage,
-    startDate=dates$dates$start, endDate=dates$dates$end)
+    startDate=dates$start, endDate=dates$end)
 
   data_file <- as_data_file(ind_file)
   saveRDS(data, data_file)

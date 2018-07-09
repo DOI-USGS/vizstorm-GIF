@@ -4,14 +4,30 @@ include:
   - 1_fetch.yml
 
 packages:
+  - sf
+  - dplyr
 
 file_extensions:
   - feather
   - ind
 
 sources:
+  - 2_process/src/choose_timesteps.R
+  - 2_process/src/extract_storm_line.R
 
 targets:
 
   2_process:
     depends:
+      - 2_process/out/storm_line.rds.ind
+
+  2_process/out/timesteps.rds.ind:
+    command: choose_timesteps(target_name, dates)
+  2_process/out/timesteps.rds:
+    command: gd_get('2_process/out/timesteps.rds.ind')
+
+  2_process/out/storm_line.rds.ind:
+    command: extract_storm_line(
+      ind_file=target_name, storm_shp_ind='1_fetch/out/storm_track.zip.ind', cfg=view_metadata)
+  2_process/out/storm_line.rds:
+    command: gd_get('2_process/out/storm_line.rds.ind')

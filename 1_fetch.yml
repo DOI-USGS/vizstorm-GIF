@@ -31,7 +31,7 @@ targets:
 
   # -- config --
   dates:
-    command: viz_config[I('dates')]
+    command: viz_config[[I('dates')]]
   stream_params:
     command: yaml.load_file('1_fetch/cfg/stream_params.yml')
 
@@ -44,6 +44,7 @@ targets:
     command: gd_get('1_fetch/out/storm_track.zip.ind')
 
   # -- get spatial extent and data --
+
   view_config:
     command: viz_config[I(c('bbox', 'projection','aspect'))]
 
