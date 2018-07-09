@@ -11,6 +11,7 @@ file_extensions:
   - ind
 
 sources:
+  - 2_process/src/choose_timesteps.R
   - 2_process/src/process_storm_line.R
 
 targets:
@@ -18,6 +19,11 @@ targets:
   2_process:
     depends:
       - 2_process/out/storm_line.rds.ind
+
+  2_process/out/timesteps.rds.ind:
+    command: choose_timesteps(target_name, dates)
+  2_process/out/timesteps.rds:
+    command: gd_get('2_process/out/timesteps.rds.ind')
 
   2_process/out/storm_line.rds.ind:
     command: process_storm_line(
