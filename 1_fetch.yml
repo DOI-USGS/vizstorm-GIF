@@ -23,7 +23,6 @@ targets:
     depends:
       - 1_fetch/out/streamflow.rds.ind
       - 1_fetch/out/storm_track.zip.ind
-      - 1_fetch/out/storm_track.zip
       - view_polygon
 
   storm_track_cfg:
