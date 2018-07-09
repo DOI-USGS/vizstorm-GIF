@@ -16,7 +16,7 @@ fetch_sites_from_sf <- function(ind_file, sf_object, dates, stream_params) {
     sites_df <- rbind(sites_df, sites_df_cd)
   }
   sites_df <- dplyr::filter(sites_df, site_tp_cd == "ST")
-  sites_df <- dplyr::filter(sites_df, end_date >= as.Date(dates$dates$end))
+  sites_df <- dplyr::filter(sites_df, end_date >= as.Date(dates$end))
   sites <- sites_df$site_no
 
   # write the data file and the indicator file
