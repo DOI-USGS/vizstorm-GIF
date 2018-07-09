@@ -5,18 +5,21 @@ include:
 
 packages:
   - httr
+  - sf
 
 file_extensions:
   - ind
 
 sources:
   - 1_fetch/src/fetch_storm_track.R
+  - 1_fetch/src/map_utils.R
 
 targets:
 
   1_fetch:
     depends:
       - 1_fetch/out/storm_track.zip
+      - view_polygon
 
   storm_track_cfg:
     command: viz_config[I('storm_code')]
@@ -24,3 +27,12 @@ targets:
     command: fetch_storm_track(ind_file=target_name, cfg=storm_track_cfg)
   1_fetch/out/storm_track.zip:
     command: gd_get('1_fetch/out/storm_track.zip.ind')
+
+  view_metadata:
+    command: viz_config[I(c('bbox', 'projection','aspect'))]
+
+  view_polygon:
+    command: as_view_polygon(object = view_metadata)
+
+ # state_map:
+#    command: database: state

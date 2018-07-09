@@ -1,1 +1,4 @@
 storm_code: al152017 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
+bbox: [-87, 22, -70, 34]
+projection: "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"
+aspect: 1.8
