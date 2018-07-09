@@ -15,7 +15,7 @@ file_extensions:
   - ind
 
 sources:
-  - 1_fetch/src/fetch_streamflow.R
+  - 1_fetch/src/fetch_streamdata.R
   - 1_fetch/src/fetch_storm_track.R
   - 1_fetch/src/map_utils.R
   - 1_fetch/src/fetch_sites.R
