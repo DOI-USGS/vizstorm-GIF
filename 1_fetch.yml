@@ -6,6 +6,8 @@ include:
 packages:
   - httr
   - sf
+  - mapdata
+  - maps
 
 file_extensions:
   - ind
@@ -28,11 +30,21 @@ targets:
   1_fetch/out/storm_track.zip:
     command: gd_get('1_fetch/out/storm_track.zip.ind')
 
-  view_metadata:
+  view_config:
     command: viz_config[I(c('bbox', 'projection','aspect'))]
 
-  view_polygon:
-    command: as_view_polygon(object = view_metadata)
+  secondary_geoms_config:
+    command: viz_config[I('secondary_geoms')]
 
- # state_map:
-#    command: database: state
+  focus_geoms_config:
+    command: viz_config[I('focus_geoms')]
+
+  view_polygon:
+    command: as_view_polygon(view_config)
+
+  secondary_geoms:
+    command: fetch_geoms(secondary_geoms_config, within = view_polygon)
+
+  focus_geoms:
+    command: fetch_geoms(focus_geoms_config, within = view_polygon)
+
