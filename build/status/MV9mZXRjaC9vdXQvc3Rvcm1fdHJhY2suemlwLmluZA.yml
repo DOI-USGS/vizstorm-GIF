@@ -2,11 +2,11 @@ version: 0.3.0
 name: 1_fetch/out/storm_track.zip.ind
 type: file
 hash: 2ea3ad86b9910f5d05fe1a669846f10d
-time: 2018-07-09 16:55:23 UTC
+time: 2018-07-09 19:32:18 UTC
 depends:
-  storm_code: 25cb0c696ae9e1aa5b609a02c6d97c71
+  storm_track_cfg: 6f623e7d5a7b1b47a9f1905309063617
 fixed: 2f4367832f61e7160a3b28bde436e206
 code:
   functions:
-    fetch_storm_track: 263cc2c171a4daebcfe06c00438ae916
+    fetch_storm_track: 822e572e2560cb942820238c743ccfec
 
