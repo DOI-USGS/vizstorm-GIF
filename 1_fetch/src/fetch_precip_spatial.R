@@ -9,13 +9,13 @@ fetch_precip_spatial <- function(ind_file, view_config) {
   lon <- ncdf4::ncvar_get(nc, "lon")
   lat <- ncdf4::ncvar_get(nc, "lat")
 
-  x <- matrix(rep(c(1:nrow(lon)), ncol(lon)),
-              nrow = nrow(lon), ncol = ncol(lon),
-              byrow = FALSE)
-
-  y <- matrix(rep(c(1:ncol(lon)), nrow(lon)),
+  x <- matrix(rep(c(1:ncol(lon)), nrow(lon)),
               nrow = nrow(lon), ncol = ncol(lon),
               byrow = TRUE)
+
+  y <- matrix(rep(c(1:nrow(lon)), ncol(lon)),
+              nrow = nrow(lon), ncol = ncol(lon),
+              byrow = FALSE)
 
   sf_points <- data.frame(x = matrix(x, ncol = 1),
                           y = matrix(y, ncol = 1),
