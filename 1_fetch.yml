@@ -35,7 +35,7 @@ targets:
     command: gd_get('1_fetch/out/storm_track.zip.ind')
 
   dates:
-    command: viz_config[I('dates')]
+    command: viz_config[[I('dates')]]
   stream_params:
     command: yaml.load_file('1_fetch/cfg/stream_params.yml')
   site_ids:
