@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+.httr-oauth
+.remake
+*.zip
+*.rds
