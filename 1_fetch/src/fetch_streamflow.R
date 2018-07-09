@@ -7,9 +7,7 @@ fetch_streamflow <- function(ind_file, sites_yml, dates_yml, stream_params_yml, 
   message('  starting download of NWIS flow data at ', Sys.time())
   flow <- readNWISuv(
     siteNumbers=site_ids, parameterCd=pcodes$flow,
-    startDate=dates$start, endDate=dates$end) %>%
-    mutate(parm_cd = '00060') %>%
-    rename(result_va=X_00060_00000, remark_cd=X_00060_00000_cd)
+    startDate=dates$start, endDate=dates$end)
 
   data_file <- as_data_file(ind_file)
   saveRDS(flow, data_file)
