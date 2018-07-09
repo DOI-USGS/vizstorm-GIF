@@ -18,6 +18,7 @@ sources:
   - 1_fetch/src/fetch_streamflow.R
   - 1_fetch/src/fetch_storm_track.R
   - 1_fetch/src/map_utils.R
+  - 1_fetch/src/fetch_sites.R
 
 targets:
 
@@ -26,6 +27,7 @@ targets:
       - 1_fetch/out/streamflow.rds.ind
       - 1_fetch/out/storm_track.zip.ind
       - view_polygon
+      - 1_fetch/out/storm_sites.feather.ind
 
   storm_track_cfg:
     command: viz_config[I('storm_code')]
@@ -67,3 +69,18 @@ targets:
   focus_geoms:
     command: fetch_geoms(focus_geoms_config, within = view_polygon)
 
+  # -- capture site info --
+
+  1_fetch/out/all_sites.rds.ind:
+    command: fetch_sites_from_sf(
+      ind_file = target_name,
+      sf_object = view_polygon,
+      dates = dates)
+  1_fetch/out/all_sites.rds:
+    command: gd_get('1_fetch/out/all_sites.rds.ind')
+  1_fetch/out/storm_sites.feather.ind:
+    command: subset_sites(
+      ind_file = target_name,
+      all_sites = '1_fetch/out/all_sites.rds.ind')
+  1_fetch/out/storm_sites.feather:
+    command: gd_get('1_fetch/out/storm_sites.feather.ind')
