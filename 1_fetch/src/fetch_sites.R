@@ -15,8 +15,15 @@ fetch_sites_from_sf <- function(ind_file, sf_object, dates, stream_params) {
     sites_df_cd <- dataRetrieval::whatNWISdata(stateCd = cd, parameterCd = stream_params$stage, service = "uv")
     sites_df <- rbind(sites_df, sites_df_cd)
   }
+
+  # we only need stream sites
   sites_df <- dplyr::filter(sites_df, site_tp_cd == "ST")
-  sites_df <- dplyr::filter(sites_df, end_date >= as.Date(dates$end))
+
+  # keeps only sites that have data since the start of the storm
+  # if a gage goes out during the storm, this filter would still capture that gage
+  sites_df <- dplyr::filter(sites_df, end_date >= as.Date(dates$start))
+
+  # return only the site numbers
   sites <- sites_df$site_no
 
   # write the data file and the indicator file
