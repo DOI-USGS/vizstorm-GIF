@@ -10,8 +10,16 @@ file_extensions:
   - ind
 
 sources:
+  - 6_visualize/src/create_gif_tasks.R
 
 targets:
 
   6_visualize:
     depends:
+      - 6_visualize/out/gif_tasks
+
+  6_visualize/out/gif_tasks:
+    command: create_gif_tasks(
+      timestep_ind = '2_process/out/timesteps.rds.ind',
+
+      )
