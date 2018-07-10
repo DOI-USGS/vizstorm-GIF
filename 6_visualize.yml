@@ -24,8 +24,6 @@ targets:
   6_visualize/out/example_storm_frame.png:
     command: create_storm_frame(
       png_file=target_name, timestep=I('2017-09-26 11:00:00'), config=storm_frame_config,
-      view_polygon, focus_geoms, secondary_geoms,
-      storm_line_ind='2_process/out/storm_line.rds.ind',
-      storm_points_ind='2_process/out/storm_points_interp.rds.ind',
-      precip_rasters_ind='2_process/out/precip_rasters.rds.ind',
-      stream_data_ind='1_fetch/out/streamdata.rds.ind')
+      view_polygon, '5_style/out/focus_geoms.rds.ind', '5_style/out/secondary_geoms.rds.ind',
+      '5_style/out/storm_line.rds.ind', '5_style/out/storm_point_20170926_11.rds.ind',
+      '5_style/out/precip_raster_20170926_11.rds.ind', '5_style/out/streamdata_20170926_11.rds.ind')

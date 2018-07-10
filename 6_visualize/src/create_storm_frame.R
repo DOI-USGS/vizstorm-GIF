@@ -1,10 +1,4 @@
-create_storm_frame <- function(
-  png_file, timestep, config,
-  view_polygon, focus_geoms, secondary_geoms,
-  storm_line_ind='2_process/out/storm_line.rds.ind', storm_points_ind='2_process/out/storm_points_interp.rds.ind',
-  precip_rasters_ind='2_process/out/precip_rasters.rds.ind',
-  stream_data_ind='1_fetch/out/streamdata.rds.ind'
-) {
+create_storm_frame <- function(png_file, timestep, config, view_polygon, ...) {
 
   # open the plotting device. this should eventually be a gif function, but i don't know how that looks yet
   png(filename=png_file, width=config$width, height=config$height, units='px')
@@ -22,13 +16,13 @@ create_storm_frame <- function(
 
   # plot the pieces in order, passing through data files or R objects from the
   # scipiper pipeline
-  plot_basemap(timestep, config, view_polygon, focus_geoms, secondary_geoms)
-  add2plot_storm(timestep, config, storm_line_ind, storm_points_ind)
-  add2plot_precip(timestep, config, precip_rasters_ind)
-  add2plot_sparklines(timestep, config, stream_data_ind)
-  add2plot_datetime(timestep, config)
-  add2plot_legend(timestep, config)
-  add2plot_USGS_logo(timestep, config)
+  plot_basemap(timestep, config, view_polygon)
+
+  files_to_map <- c(...)
+  for (ind_file in files_to_map){
+    map_data <- readRDS(gd_get(ind_file))
+    do.call(plot, map_data)
+  }
 
   # close off the plotting device
   dev.off()
