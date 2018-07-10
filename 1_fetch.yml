@@ -22,6 +22,7 @@ sources:
   - 1_fetch/src/fetch_storm_track.R
   - 1_fetch/src/map_utils.R
   - 1_fetch/src/fetch_sites.R
+  - 1_fetch/src/fetch_sites_custom.R
   - 1_fetch/src/fetch_precip_spatial.R
   - 1_fetch/src/fetch_precip_values.R
 
@@ -79,7 +80,7 @@ targets:
   1_fetch/out/all_sites.rds:
     command: gd_get('1_fetch/out/all_sites.rds.ind')
   1_fetch/out/storm_sites.feather.ind:
-    command: subset_sites(
+    command: custom_subset(
       ind_file = target_name,
       all_sites = '1_fetch/out/all_sites.rds.ind')
   1_fetch/out/storm_sites.feather:
