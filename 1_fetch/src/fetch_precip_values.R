@@ -30,8 +30,12 @@ fetch_precip_values <- function(ind_file, precip_spatial_ind, dates) {
                        count <- c(length(x_inds),
                                   length(y_inds),
                                   1)[dimid_order])
+
+    if (t_counter %% 10 == 0){
+      message(paste(t_counter, 'of', length(t_inds)))
+    }
+
     t_counter <- t_counter + 1
-    message(paste(t_counter, length(t_inds)))
   }
 
   precip <- arrayhelpers::array2df(precip)
@@ -67,11 +71,13 @@ get_time_nc <- function(t_dim) {
     stop("only hour time steps supported so far")
   }
 
+  origin <- as.POSIXct(strptime(date_origin,
+                                format = "%Y-%m-%dT%H:%M:%SZ",
+                                tz = "UTC"),
+                       tz = "UTC")
+
   as.POSIXct(t_dim$vals * multiplier,
-             origin = as.POSIXct(strptime(date_origin,
-                                          format = "%Y-%m-%dT%H:%M:%SZ",
-                                          tz = "UTC"),
-                                 tz = "UTC"),
+             origin = origin,
              tz = "UTC")
 }
 
