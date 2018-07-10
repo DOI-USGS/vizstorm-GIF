@@ -2,7 +2,7 @@
 
 
 
-create_gif_tasks <- function(timestep_ind, folders, storm_line_ind, storm_points_ind, precip_rasters_ind, stream_data_ind, cfg){
+create_gif_tasks <- function(timestep_ind, folders, cfg){
 
   timestep <- readRDS(sc_retrieve(timestep_ind))
 
@@ -35,7 +35,7 @@ create_gif_tasks <- function(timestep_ind, folders, storm_line_ind, storm_points
       psprintf(
         "create_storm_frame(",
         "png_file=target_name",
-        "config=storm_frame_config",
+        "config='%s',"=cfg,
         "6_visualize/out/style/basemap.rds.ind",
         "6_visualize/out/style/focus_geoms.rds.ind",
         "6_visualize/out/style/secondary_geoms.rds.ind",
