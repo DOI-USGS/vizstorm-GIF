@@ -1,0 +1,12 @@
+version: 0.3.0
+name: 1_fetch/out/storm_sites.feather.ind
+type: file
+hash: 2f11ed432167014285739a3ef557246d
+time: 2018-07-10 14:17:37 UTC
+depends:
+  1_fetch/out/all_sites.rds.ind: dc43039fd23c907364930a981eed0c05
+fixed: de584b25067f5fb9b6012a2d3c6fb824
+code:
+  functions:
+    subset_sites: c65f024209a06055766574401d1de567
+
