@@ -4,7 +4,7 @@ type: file
 hash: 67c7bd730fb0aefe6d17c21f6d249d4d
 time: 2018-07-09 19:37:17 UTC
 depends:
-  storm_track_cfg: 6f623e7d5a7b1b47a9f1905309063617
+  storm_track_cfg: 00ae4e6869cfbd6101fcd7b0e0717d1d
 fixed: 2f4367832f61e7160a3b28bde436e206
 code:
   functions:
