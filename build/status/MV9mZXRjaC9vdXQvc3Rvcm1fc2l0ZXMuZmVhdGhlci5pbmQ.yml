@@ -1,10 +1,10 @@
 version: 0.3.0
 name: 1_fetch/out/storm_sites.feather.ind
 type: file
-hash: 0909babe046911d86f7ae02ed55b7ff0
-time: 2018-07-10 16:42:23 UTC
+hash: 425f2a0eb9ddf0ebe82286951135ed1b
+time: 2018-07-10 19:25:42 UTC
 depends:
-  1_fetch/out/all_sites.rds.ind: 7df3ea1b56eb3487ca85bb92721d021d
+  1_fetch/out/all_sites.rds.ind: abfb9cfeecb4b0573607c2ff82094988
 fixed: de584b25067f5fb9b6012a2d3c6fb824
 code:
   functions:
