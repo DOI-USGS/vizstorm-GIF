@@ -15,3 +15,16 @@ targets:
 
   6_visualize:
     depends:
+
+  # create_storm_frame will soon be called for all frames from within
+  # a task table. just calling it once here to illustrate
+  storm_frame_config:
+    command: viz_config[I(c('bbox','projection','width','height','focus_geoms','secondary_geoms'))]
+  6_visualize/out/example_storm_frame.png:
+    command: create_storm_frame(
+      png_file=target_name, timestep=I('2017-09-26 11:00:00'), config=storm_frame_config,
+      view_polygon, focus_geoms, secondary_geoms,
+      storm_line_ind='2_process/out/storm_line.rds.ind',
+      storm_points_ind='2_process/out/storm_points_interp.rds.ind',
+      precip_rasters_ind='2_process/out/precip_rasters.rds.ind',
+      stream_data_ind='1_fetch/out/streamdata.rds.ind')
