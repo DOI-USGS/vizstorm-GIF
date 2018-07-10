@@ -70,10 +70,12 @@ targets:
 
   # -- get sites and site info --
 
+  state_cds:
+    command: fetch_states_from_sf(sf_object = focus_geoms)
   1_fetch/out/all_sites.rds.ind:
-    command: fetch_sites_from_sf(
+    command: fetch_sites_from_states(
       ind_file = target_name,
-      sf_object = focus_geoms,
+      state_cds = state_cds,
       dates = dates,
       stream_params = stream_params)
   1_fetch/out/all_sites.rds:

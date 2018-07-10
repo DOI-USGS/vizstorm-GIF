@@ -1,13 +1,21 @@
-#' Download all NWIS stage sites within the bounding box of a supplied spatial object
+#' Get vector of state codes from the sf_object
 #'
-#' @param ind_file character file name where the output should be saved
 #' @param sf_object spatial object with IDs indicating the state name
-#' @param dates object from viz_config.yaml that specifies dates as string
-#' @param stream_params pcodes to use from NWIS
-fetch_sites_from_sf <- function(ind_file, sf_object, dates, stream_params) {
+fetch_states_from_sf <- function(sf_object) {
 
   state_names <- sf_object$ID[!grepl(",", sf_object$ID)]
   state_cds <- unique(dataRetrieval::stateCdLookup(state_names))
+
+  return(state_cds)
+}
+
+#' Download all NWIS stage sites within the bounding box of a supplied spatial object
+#'
+#' @param ind_file character file name where the output should be saved
+#' @param state_cds spatial object with IDs indicating the state name
+#' @param dates object from viz_config.yaml that specifies dates as string
+#' @param stream_params pcodes to use from NWIS
+fetch_sites_from_states <- function(ind_file, state_cds, dates, stream_params) {
 
   # Cast wide net for all NWIS sites with stage data that fall within that bbox
   sites_df <- data.frame()
