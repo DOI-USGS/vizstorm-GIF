@@ -2,14 +2,14 @@
 #' Subset the site list to ones relevant for the storm
 #'
 #' @param ind_file character file name where the output should be saved
-#' @param all_sites data.frame of sites pulled for the bbox
-custom_subset <- function(ind_file, all_sites) {
+#' @param sites data.frame of sites with automatic filtering applied already
+filter_sites_custom <- function(ind_file, sites) {
 
-  all_sites <- readRDS(scipiper::sc_retrieve(all_sites))
+  sites <- readRDS(scipiper::sc_retrieve(sites))
 
   # subset the sites from the wide net cast to ones relevant to the storm
   # subset criteria TBD
-  sites_info <- dataRetrieval::readNWISsite(siteNumbers = all_sites)
+  sites_info <- dataRetrieval::readNWISsite(siteNumbers = sites)
 
   #############********* temporarily grab only a few sites *********#############
   set.seed(10)

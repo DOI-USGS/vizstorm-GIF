@@ -14,12 +14,14 @@ file_extensions:
 sources:
   - 2_process/src/choose_timesteps.R
   - 2_process/src/extract_storm_line.R
+  - 2_process/src/filter_sites_custom.R
 
 targets:
 
   2_process:
     depends:
       - 2_process/out/storm_line.rds.ind
+      - 2_process/out/storm_sites.feather.ind
 
   2_process/out/timesteps.rds.ind:
     command: choose_timesteps(target_name, dates)
@@ -31,3 +33,10 @@ targets:
       ind_file=target_name, storm_shp_ind='1_fetch/out/storm_track.zip.ind', cfg=view_config)
   2_process/out/storm_line.rds:
     command: gd_get('2_process/out/storm_line.rds.ind')
+
+  2_process/out/storm_sites.feather.ind:
+    command: filter_sites_custom(
+      ind_file = target_name,
+      sites = '1_fetch/out/all_sites.rds.ind')
+  2_process/out/storm_sites.feather:
+    command: gd_get('2_process/out/storm_sites.feather.ind')
