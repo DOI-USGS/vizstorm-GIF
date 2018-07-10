@@ -1,8 +1,8 @@
 version: 0.3.0
 name: 1_fetch/out/streamdata.rds.ind
 type: file
-hash: 7c97eeb87719a3f724cddc2bb0850b00
-time: 2018-07-10 20:10:41 UTC
+hash: 3210649c196940983d26885c93dc93d6
+time: 2018-07-10 20:35:47 UTC
 depends:
   2_process/out/storm_sites.feather.ind: 225430fa8c62dd98ce2d3a4c3d5a5a79
   dates: 5a6317d91a1fb110e6a154ea8c391fec

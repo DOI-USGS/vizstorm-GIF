@@ -2,7 +2,7 @@ version: 0.3.0
 name: 1_fetch/out/all_sites.rds.ind
 type: file
 hash: c4eaeb94ab78363270a4f16f6589f513
-time: 2018-07-10 19:28:07 UTC
+time: 2018-07-10 20:22:45 UTC
 depends:
   focus_geoms: c34c33c143353f1a882886091315aa38
   dates: 5a6317d91a1fb110e6a154ea8c391fec
@@ -10,5 +10,5 @@ depends:
 fixed: 7a8a5e2410f97f8c9bc1ebe4fbc32d84
 code:
   functions:
-    fetch_sites_from_sf: d8c0c7d3ef919697ee1ee1124f550f6a
+    fetch_sites_from_sf: dbbbd0f381b1a0e9cfd0aaaede26b62b
 
