@@ -2,7 +2,7 @@
 #' Subset the site list to ones relevant for the storm
 #'
 #' @param ind_file character file name where the output should be saved
-#' @param sites data.frame of sites with automatic filtering applied already
+#' @param sites_file path for data.frame of sites with automatic filtering applied already
 filter_sites_custom <- function(ind_file, sites_file) {
 
   sites <- readRDS(scipiper::sc_retrieve(sites_file))
