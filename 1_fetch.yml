@@ -51,7 +51,7 @@ targets:
   # -- get spatial extent and data --
 
   view_config:
-    command: viz_config[I(c('bbox', 'projection','aspect', 'width'))]
+    command: viz_config[I(c('bbox', 'projection', 'width', 'height'))]
 
   secondary_geoms_config:
     command: viz_config[I('secondary_geoms')]

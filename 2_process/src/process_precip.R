@@ -23,15 +23,12 @@ process_precip_rasters <- function(ind_file, precip_spatial_ind,
     ungroup()
 
   ncol <- view_config$width
+  nrow <- view_config$height
 
   bbox <- sf::st_bbox(view_polygon)
 
   y_range <- as.numeric(bbox$ymax - bbox$ymin)
   x_range <- as.numeric(bbox$xmax - bbox$xmin)
-
-  aspect_ratio <- x_range / y_range
-
-  nrow <- round(ncol / aspect_ratio)
 
   raster_template <- raster::raster(ncols = ncol, nrows = nrow,
                                     xmn =  bbox$xmin, xmx =  bbox$xmax,

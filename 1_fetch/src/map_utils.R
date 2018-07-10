@@ -21,7 +21,7 @@ bbox_to_polygon <- function(bbox, bbox_crs = "+init=epsg:4326", return_crs = NUL
 #' Create a polygon for the plotting view
 #'
 #'
-#' @param view_config a list that contains the numeric vector `bbox`, `aspect` and `projection` (optional)
+#' @param view_config a list that contains the numeric vector `bbox`, `height`, `width` and `projection` (optional)
 #'
 #' @details if `projection` is missing, it is assumed to be "+init=epsg:4326"
 #' @return an sf polygon that contains the `bbox` specfied at the aspect ratio specified
@@ -30,7 +30,7 @@ as_view_polygon <- function(view_config) {
   # the projected polygon specified by the user
   bbox_projected <- bbox_to_polygon(bbox = view_config$bbox, return_crs = view_config$projection)
   poly_bbox <- sf::st_bbox(bbox_projected)
-  aspect <- view_config$aspect
+  aspect <- view_config$width / view_config$height
   bbox_aspect <- diff(poly_bbox[c(1,3)]) / diff(poly_bbox[c(2,4)])
   if (bbox_aspect > aspect){ # flatter than it should be
     new_y_diff <- diff(poly_bbox[c(1,3)]) / aspect

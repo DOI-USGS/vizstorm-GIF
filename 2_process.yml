@@ -27,9 +27,10 @@ targets:
     depends:
       - 2_process/out/storm_line.rds.ind
       - 2_process/out/storm_points_interp.rds.ind
+      - 2_process/out/precip_rasters.rds.ind
 
   2_process/out/timesteps.rds.ind:
-    command: choose_timesteps(target_name, dates)
+    command: choose_timesteps(target_name, precip_rasters_ind = '2_process/out/precip_rasters.rds.ind')
   2_process/out/timesteps.rds:
     command: gd_get('2_process/out/timesteps.rds.ind')
 
