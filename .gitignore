@@ -9,3 +9,4 @@ lib/cfg/gd_config.yml
 *.zip
 *.rds
 .DS_Store
+*.feather
