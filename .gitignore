@@ -8,4 +8,5 @@ lib/cfg/gd_config.yml
 .remake
 *.zip
 *.rds
+*.feather
 .DS_Store
