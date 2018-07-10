@@ -1,6 +1,3 @@
-library(sf)
-library(dplyr)
-library(fasterize)
 
 process_precip_rasters <- function(ind_file, precip_spatial_ind,
                                    precip_values_ind,
@@ -21,7 +18,6 @@ process_precip_rasters <- function(ind_file, precip_spatial_ind,
   precip <- left_join(precip, time, by = "time") %>%
     dplyr::select(-time)
 
-  # Should get from some config?
   ncol <- view_config$width
 
   bbox <- sf::st_bbox(view_polygon)
