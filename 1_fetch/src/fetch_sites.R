@@ -32,8 +32,7 @@ fetch_sites_from_sf <- function(ind_file, sf_object, dates, stream_params) {
 #' @param all_sites data.frame of sites pulled for the bbox
 subset_sites <- function(ind_file, all_sites) {
 
-  scipiper::sc_retrieve(all_sites)
-  all_sites <- readRDS(scipiper::as_data_file(all_sites))
+  all_sites <- readRDS(scipiper::sc_retrieve(all_sites))
 
   # subset the sites from the wide net cast to ones relevant to the storm
   # subset criteria TBD
