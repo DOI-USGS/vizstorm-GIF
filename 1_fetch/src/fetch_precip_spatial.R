@@ -1,8 +1,8 @@
 
 #' @param ind_file scipiper indicator file
-#' @param view_config with `projection`, a valid input to sf::st_crs
+#' @param view_polygon from the view_polygon target
 #' and `bbox` e.g. [-83, 25, -80, 28]
-fetch_precip_spatial <- function(ind_file, view_config) {
+fetch_precip_spatial <- function(ind_file, view_polygon) {
 
   nc <- ncdf4::nc_open("https://cida.usgs.gov/thredds/dodsC/stageiv_combined")
 
@@ -27,22 +27,21 @@ fetch_precip_spatial <- function(ind_file, view_config) {
                             crs = "+init=epsg:4326",
                             agr = "constant")
 
-  bbox <- bbox_to_polygon(bbox = view_config$bbox,
-                          return_crs = view_config$projection)
-
   sf_points_sub <- sf::st_intersection(
     sf::st_transform(sf_points,
-                     view_config$projection),
-    bbox)
+                     sf::st_crs(view_polygon)),
+    view_polygon)
 
   sf_polygons <- sf::st_sf(
     sf::st_intersection(
     sf::st_cast(
       sf::st_voronoi(
         sf::st_union(
-          sf_points_sub$geometry))), bbox))
+          sf_points_sub$geometry))), view_polygon))
 
   sf_polygons <- sf::st_join(sf_polygons, sf_points_sub, join = sf::st_contains)
+
+  sf_polygons <- mutate(sf_polygons, id = 1:nrow(sf_polygons))
 
   data_file <- as_data_file(ind_file)
   saveRDS(sf_polygons, data_file)

@@ -11,6 +11,8 @@ packages:
   - mapdata
   - maps
   - ncdf4
+  - arrayhelpers
+  - dplyr
 
 file_extensions:
   - ind
@@ -20,6 +22,7 @@ sources:
   - 1_fetch/src/fetch_storm_track.R
   - 1_fetch/src/map_utils.R
   - 1_fetch/src/fetch_precip_spatial.R
+  - 1_fetch/src/fetch_precip_values.R
 
 targets:
 
@@ -71,6 +74,14 @@ targets:
 
   1_fetch/out/precip_spatial.rds.ind:
     command: fetch_precip_spatial(ind_file=target_name,
-                                view_config = view_config)
+                                view_polygon = view_polygon)
   1_fetch/out/precip_spatial.rds:
     command: gd_get('1_fetch/out/precip_spatial.rds.ind')
+
+  1_fetch/out/precip_values.rds.ind:
+    command: fetch_precip_values(target_name,
+                                 precip_spatial_ind='1_fetch/out/precip_spatial.rds.ind',
+                                 dates)
+
+  1_fetch/out/precip_values.rds:
+    command: gd_get('1_fetch/out/precip_values.rds.ind')
