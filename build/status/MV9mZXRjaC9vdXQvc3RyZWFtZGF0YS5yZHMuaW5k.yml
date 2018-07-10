@@ -1,15 +1,15 @@
 version: 0.3.0
 name: 1_fetch/out/streamdata.rds.ind
 type: file
-hash: ccb525f670c1078a017b3badef1b292d
-time: 2018-07-09 21:50:05 UTC
+hash: 00e6e3938ab82a7cd978529450609c8b
+time: 2018-07-10 14:15:09 UTC
 depends:
-  1_fetch/out/storm_sites.feather.ind: caf002c58f18140a075872062b0fbb6a
-  dates: 09eac3a50b2da6d5997e4787a3200ca7
+  1_fetch/out/storm_sites.feather.ind: 2f11ed432167014285739a3ef557246d
+  dates: 5a6317d91a1fb110e6a154ea8c391fec
   stream_params: 089aebea962cdd0eb862e4ccd23302bd
   lib/cfg/gd_config.yml: 48b9a0e46bf23a8fdbf6ed9ee984a5f9
 fixed: 730fe0a4966514866300139c5ad8f739
 code:
   functions:
-    fetch_streamdata: 1fb28e71bd70a9e5b5d86d12f391b859
+    fetch_streamdata: 0c4209a3bdf2468e87fc343bfbf66fb3
 
