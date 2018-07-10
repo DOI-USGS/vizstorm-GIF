@@ -1,0 +1,14 @@
+version: 0.3.0
+name: 1_fetch/out/precip_values.rds.ind
+type: file
+hash: 4f55924152b436b38f1c2b58511b6c2b
+time: 2018-07-10 14:46:56 UTC
+depends:
+  1_fetch/out/precip_spatial.rds.ind: 6dc1e5b231300ed51ca36eeb292766a5
+  dates: 5a6317d91a1fb110e6a154ea8c391fec
+fixed: f099dd90565729b72b43b3427469f4cc
+code:
+  functions:
+    fetch_precip_values: 75f80a3ef32a565bf561cd852be48666
+    get_time_nc: 6864db2f8952c6ce587661e9915cbb3a
+
