@@ -32,7 +32,7 @@ targets:
       - 1_fetch/out/streamdata.rds.ind
       - 1_fetch/out/storm_track.zip.ind
       - view_polygon
-      - 1_fetch/out/storm_sites.feather.ind
+      - 1_fetch/out/all_sites.rds.ind
 
   # -- config --
   dates:
