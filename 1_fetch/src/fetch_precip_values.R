@@ -53,7 +53,7 @@ fetch_precip_values <- function(ind_file, precip_spatial_ind, dates) {
     left_join(data.frame(time = t_vals,
                          t = seq_len(length(t_vals))),
               by = "t") %>%
-    select(precip, time, id)
+    dplyr::select(precip, time, id)
 
   data_file <- as_data_file(ind_file)
   saveRDS(precip, data_file)

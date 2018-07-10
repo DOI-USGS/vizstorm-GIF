@@ -19,7 +19,7 @@ extract_storm_line <- function(ind_file, storm_shp_ind, cfg){
   unlink(tmp_path, recursive = TRUE)
 
   # convert to the vizzy projection
-  track_proj <- sf::st_transform(track, crs=cfg$projection)
+  track_proj <- sf::st_transform(track, crs=sf::st_crs(cfg$projection))
 
   # write the data and return an indicator file
   data_file <- as_data_file(ind_file)
