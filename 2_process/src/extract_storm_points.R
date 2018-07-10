@@ -28,20 +28,48 @@ extract_storm_points <- function(ind_file, storm_shp_ind, cfg){
   stormname <- names(which.max(table(points$STORMNAME)))
   points_mainstorm <- points %>% filter(STORMNAME==stormname)
 
-  # parse the times
-  as.time <- function(YEAR, MONTH, DAY, HHMM){
-    as.POSIXct(sprintf('%s-%s-%s %s', YEAR, MONTH, DAY, HHMM), format='%Y-%m-%d %H%M', tz="America/Puerto_Rico")
-  }
+  # parse the times - assume UTC based on the definition of the DTG column in
+  # al092017_pts.shp.xml, which is "the valid date and time of the data in UTC",
+  # and which matches HHMM in its last 2 digits
   points_parsed <- points_mainstorm %>%
-    mutate(DateTime = as.time(YEAR, MONTH, DAY, HHMM))
+    mutate(
+      DateTimeString = sprintf('%s-%s-%s %s', YEAR, MONTH, DAY, HHMM),
+      DateTime = as.POSIXct(DateTimeString, format='%Y-%b-%d %H%M', tz='UTC'))
+  if(any(is.na(points_parsed$DateTime))) {
+    bad_dts <- points_parsed %>%
+      filter(is.na(points_parsed$DateTime)) %>%
+      pull(DateTimeString)
+    stop(paste(
+      "Unable to parse datetime for these DateTimeStrings:",
+      paste(bad_dts, collapse=', ')
+    ))
+  }
 
   # select just the columns we need
-  points_simpler <- points_parsed %>%
-    select(LAT, LON, DateTime, TAU, MSLP, STORMTYPE, INTENSITY, SS)
+  points_simpler <- points_parsed %>% select(
+    DateTime,
+    MSLP,
+    # MSLP: the estimated sea level pressure at the center of a tropical cyclone
+    # (the lowest pressure in the system in Millibars)
+    STORMTYPE,
+    # STORMTYPE: category of the tropical cyclone according to the initial
+    # intensity
+    INTENSITY,
+    # INTENSITY: the highest 1-minute average wind (at an elevation of 10 meters
+    # without an unobstructed exposure) associated with a tropical cyclone at a
+    # particular point in time (knots)
+    SS
+    # SS: The Saffir Simpson Hurricane Scale. The Saffir-Simpson Hurricane Scale
+    # is a 1-5 rating based on the hurricane's present intensity. This is used
+    # to give an estimate of the potential property damage and flooding expected
+    # along the coast from a hurricane landfall. Wind speed is the determining
+    # factor in the scale, as storm surge values are highly dependent on the
+    # slope of the continental shelf and the shape of the coastline, in the
+    # landfall region. Note that all winds are using the U.S. 1-minute average.
+  )
 
   # transform to the shared proj.string
-  track_proj <- sf::st_transform(track, crs=cfg$projection)
-  points_proj <- sf::st_transform(points_simpler, cfg$projection)
+  points_proj <- sf::st_transform(points_simpler, crs=sf::st_crs(cfg$projection))
 
   # write the sf POINTS object to file
   data_file <- as_data_file(ind_file)
