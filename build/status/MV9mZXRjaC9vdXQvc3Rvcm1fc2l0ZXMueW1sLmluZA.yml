@@ -1,0 +1,12 @@
+version: 0.3.0
+name: 1_fetch/out/storm_sites.yml.ind
+type: file
+hash: 178423ef3100c676f4d3ed6d7415b8a4
+time: 2018-07-09 19:07:27 UTC
+depends:
+  1_fetch/out/all_sites.rds.ind: d26b17c969e5685b02e97a83d99555b3
+fixed: 2fee969d6213ccbcd309f5c11f77c21f
+code:
+  functions:
+    subset_sites: 69e2c53ae6d59cfb35b17ead88f244f5
+

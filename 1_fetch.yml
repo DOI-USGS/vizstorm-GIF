@@ -18,9 +18,10 @@ file_extensions:
   - ind
 
 sources:
-  - 1_fetch/src/fetch_streamflow.R
+  - 1_fetch/src/fetch_streamdata.R
   - 1_fetch/src/fetch_storm_track.R
   - 1_fetch/src/map_utils.R
+  - 1_fetch/src/fetch_sites.R
   - 1_fetch/src/fetch_precip_spatial.R
   - 1_fetch/src/fetch_precip_values.R
 
@@ -28,10 +29,18 @@ targets:
 
   1_fetch:
     depends:
-      - 1_fetch/out/streamflow.rds.ind
+      - 1_fetch/out/streamdata.rds.ind
       - 1_fetch/out/storm_track.zip.ind
       - view_polygon
+      - 1_fetch/out/storm_sites.feather.ind
 
+  # -- config --
+  dates:
+    command: viz_config[[I('dates')]]
+  stream_params:
+    command: yaml.load_file('1_fetch/cfg/stream_params.yml')
+
+  # -- download stormtrack --
   storm_track_cfg:
     command: viz_config[I('storm_code')]
   1_fetch/out/storm_track.zip.ind:
@@ -39,20 +48,7 @@ targets:
   1_fetch/out/storm_track.zip:
     command: gd_get('1_fetch/out/storm_track.zip.ind')
 
-  dates:
-    command: viz_config[[I('dates')]]
-  stream_params:
-    command: yaml.load_file('1_fetch/cfg/stream_params.yml')
-  site_ids:
-    command: yaml.load_file('1_fetch/out/subset_sites.yml')
-
-  1_fetch/out/streamflow.rds.ind:
-    command: fetch_streamflow(
-      ind_file = target_name,
-      sites = site_ids,
-      dates = dates,
-      stream_params = stream_params,
-      gd_config = 'lib/cfg/gd_config.yml')
+  # -- get spatial extent and data --
 
   view_config:
     command: viz_config[I(c('bbox', 'projection','aspect', 'width'))]
@@ -72,6 +68,33 @@ targets:
   focus_geoms:
     command: fetch_geoms(focus_geoms_config, within = view_polygon)
 
+  # -- get sites and site info --
+
+  1_fetch/out/all_sites.rds.ind:
+    command: fetch_sites_from_sf(
+      ind_file = target_name,
+      sf_object = focus_geoms,
+      dates = dates,
+      stream_params = stream_params)
+  1_fetch/out/all_sites.rds:
+    command: gd_get('1_fetch/out/all_sites.rds.ind')
+  1_fetch/out/storm_sites.feather.ind:
+    command: subset_sites(
+      ind_file = target_name,
+      all_sites = '1_fetch/out/all_sites.rds.ind')
+  1_fetch/out/storm_sites.feather:
+    command: gd_get('1_fetch/out/storm_sites.feather.ind')
+
+  # -- get streamdata --
+  1_fetch/out/streamdata.rds.ind:
+    command: fetch_streamdata(
+      ind_file = target_name,
+      sites = '1_fetch/out/storm_sites.feather.ind',
+      dates = dates,
+      stream_params = stream_params,
+      gd_config = 'lib/cfg/gd_config.yml')
+
+  # -- get precip --
   1_fetch/out/precip_spatial.rds.ind:
     command: fetch_precip_spatial(ind_file=target_name,
                                 view_polygon = view_polygon)
