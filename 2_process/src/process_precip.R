@@ -16,7 +16,11 @@ process_precip_rasters <- function(ind_file, precip_spatial_ind,
     mutate(time_id = 1:n())
 
   precip <- left_join(precip, time, by = "time") %>%
-    dplyr::select(-time)
+    dplyr::select(-time) %>%
+    group_by(id) %>%
+    arrange(time_id, .by_group = TRUE) %>%
+    mutate(precip = cumsum(precip)) %>%
+    ungroup()
 
   ncol <- view_config$width
 
