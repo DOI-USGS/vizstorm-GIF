@@ -10,6 +10,7 @@ file_extensions:
   - ind
 
 sources:
+  - 6_visualize/src/create_storm_frame.R
 
 targets:
 
