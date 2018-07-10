@@ -55,7 +55,7 @@ targets:
       gd_config = 'lib/cfg/gd_config.yml')
 
   view_config:
-    command: viz_config[I(c('bbox', 'projection','aspect'))]
+    command: viz_config[I(c('bbox', 'projection','aspect', 'width'))]
 
   secondary_geoms_config:
     command: viz_config[I('secondary_geoms')]

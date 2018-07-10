@@ -6,6 +6,8 @@ include:
 packages:
   - sf
   - dplyr
+  - fasterize
+  - snow
 
 file_extensions:
   - feather
@@ -14,6 +16,7 @@ file_extensions:
 sources:
   - 2_process/src/choose_timesteps.R
   - 2_process/src/extract_storm_line.R
+  - 2_process/src/process_precip.R
 
 targets:
 
@@ -31,3 +34,12 @@ targets:
       ind_file=target_name, storm_shp_ind='1_fetch/out/storm_track.zip.ind', cfg=view_config)
   2_process/out/storm_line.rds:
     command: gd_get('2_process/out/storm_line.rds.ind')
+
+  2_process/out/precip_rasters.rds.ind:
+    command: process_precip_rasters(ind_file = target_name,
+      precip_spatial_ind='1_fetch/out/precip_spatial.rds.ind',
+      precip_values_ind='1_fetch/out/precip_values.rds.ind',
+      view_polygon = view_polygon,
+      view_config = view_config)
+  2_process/out/precip_rasters.rds:
+    command: gd_get('2_process/out/precip_rasters.rds.ind')
