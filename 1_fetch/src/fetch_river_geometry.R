@@ -3,6 +3,7 @@ fetch_river_geoms <- function(ind_file, view_polygon, sites, streamorder) {
   sites <- readRDS(sc_retrieve(sites))
 
   if(nrow(sites) > 30) {
+    set.seed(42)
     sites <- sites[sample(seq_len(nrow(sites)), 30),]
   }
 
@@ -60,7 +61,7 @@ sf_converter <- function(x)
          USE.NAMES = TRUE, simplify = FALSE)
 
 navigate_nldi <- function(f_id, f_source, mode = "UM",
-                          d_source = NULL, distance = NULL, tier = "prod") {
+                          d_source = NULL, distance = NULL) {
 
   url <- paste("https://cida.usgs.gov/nldi", f_source, f_id, "navigate", mode, d_source,
                sep = "/")
@@ -70,14 +71,4 @@ navigate_nldi <- function(f_id, f_source, mode = "UM",
   }
 
   return(rawToChar(httr::GET(url)$content))
-}
-
-get_nldi_url <- function(tier = "prod") {
-  if(tier=="prod") {
-    "https://cida.usgs.gov/nldi"
-  } else if(tier=="test") {
-    "https://cida-test.er.usgs.gov/nldi"
-  } else if(tier=="local") {
-    "http://localhost:8080/nldi"
-  }
 }
