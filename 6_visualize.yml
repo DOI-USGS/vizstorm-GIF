@@ -10,12 +10,15 @@ file_extensions:
   - ind
 
 sources:
+  - 6_visualize/src/create_gif_tasks.R
+  - 6_visualize/src/create_gif_makefile.R
   - 6_visualize/src/create_storm_frame.R
 
 targets:
 
   6_visualize:
     depends:
+      - 6_gif_tasks.yml
 
   storm_frame_config:
     command: viz_config[I(c('width','height'))]
@@ -36,3 +39,30 @@ targets:
       #'6_vizprep/out/storm_point_[20170826-11]_fun.rds.ind',
       #'6_vizprep/out/precip_raster_[20170826-11]_fun.rds.ind',
       #'6_vizprep/out/streamdata_[20170826-11]_fun.rds.ind')
+
+  # tmp=temporary folder for holding files to only be created on 1 computer.
+  # out=folder to hold .ind and data files corresponding to shared cache or everybody's local build.
+  # log=folder for the few indicator files that don't correspond to a data file.
+  6_visualize/tmp:
+    command: dir.create(target_name, recursive=I(TRUE), showWarnings=I(FALSE))
+  6_visualize/log:
+    command: dir.create(target_name, recursive=I(TRUE), showWarnings=I(FALSE))
+  visualize_folders:
+    command: list(
+      tmp='6_visualize/tmp',
+      log='6_visualize/log')
+
+  gif_tasks:
+    command: create_gif_tasks(
+      timestep_ind = '2_process/out/timesteps.rds.ind',
+      folders = visualize_folders,
+      view_ind = '5_vizprep/out/view_fun.rds.ind',
+      basemap_ind = '5_vizprep/out/basemap_fun.rds.ind',
+      storm_line_ind = '5_vizprep/out/storm_line_fun.rds.ind',
+      cfg = storm_frame_config)
+
+  6_gif_tasks.yml:
+    command: create_gif_makefile(
+      makefile = target_name,
+      task_plan = gif_tasks,
+      remake_file = I('6_visualize.yml'))

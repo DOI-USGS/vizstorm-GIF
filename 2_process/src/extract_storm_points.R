@@ -26,7 +26,7 @@ extract_storm_points <- function(ind_file, storm_shp_ind, cfg){
   # filter to only those obs where the storm was identified as the modal storm
   # name (sometimes they change names early on). Or should we keep all points?
   stormname <- names(which.max(table(points$STORMNAME)))
-  points_mainstorm <- points %>% filter(STORMNAME==stormname)
+  points_mainstorm <- points %>% dplyr::filter(STORMNAME==stormname)
 
   # parse the times - assume UTC based on the definition of the DTG column in
   # al092017_pts.shp.xml, which is "the valid date and time of the data in UTC",
