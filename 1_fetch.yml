@@ -29,16 +29,44 @@ targets:
 
   1_fetch:
     depends:
-      - 1_fetch/out/streamdata.rds.ind
-      - 1_fetch/out/storm_track.zip.ind
       - view_polygon
-      - 1_fetch/out/storm_sites.feather.ind
+      - 1_fetch/out/storm_track.zip.ind
+      - 1_fetch/out/all_sites.rds.ind
+      - 1_fetch/out/streamdata.rds.ind
+      - 1_fetch/out/precip_spatial.rds.ind
+      - 1_fetch/out/precip_values.rds.ind
 
   # -- config --
   dates:
     command: viz_config[[I('dates')]]
   stream_params:
     command: yaml.load_file('1_fetch/cfg/stream_params.yml')
+
+  # -- get spatial extent and data --
+
+  view_config:
+    command: viz_config[I(c('bbox', 'projection', 'width', 'height'))]
+
+  1_fetch/out/view_polygon.rds.ind:
+    command: post_view_polygon(target_name, view_config)
+  1_fetch/out/view_polygon.rds:
+    command: gd_get('1_fetch/out/view_polygon.rds.ind')
+  view_polygon:
+    command: get_view_polygon('1_fetch/out/view_polygon.rds.ind')
+
+  secondary_geoms_config:
+    command: viz_config[I('secondary_geoms')]
+  1_fetch/out/secondary_geoms.rds.ind:
+    command: fetch_geoms(target_name, secondary_geoms_config, within = view_polygon)
+  1_fetch/out/secondary_geoms.rds:
+    command: gd_get('1_fetch/out/secondary_geoms.rds.ind')
+
+  focus_geoms_config:
+    command: viz_config[I('focus_geoms')]
+  1_fetch/out/focus_geoms.rds.ind:
+    command: fetch_geoms(target_name, focus_geoms_config, within = view_polygon)
+  1_fetch/out/focus_geoms.rds:
+    command: gd_get('1_fetch/out/focus_geoms.rds.ind')
 
   # -- download stormtrack --
   storm_track_cfg:
@@ -48,48 +76,21 @@ targets:
   1_fetch/out/storm_track.zip:
     command: gd_get('1_fetch/out/storm_track.zip.ind')
 
-  # -- get spatial extent and data --
-
-  view_config:
-    command: viz_config[I(c('bbox', 'projection', 'width', 'height'))]
-
-  secondary_geoms_config:
-    command: viz_config[I('secondary_geoms')]
-
-  focus_geoms_config:
-    command: viz_config[I('focus_geoms')]
-
-  view_polygon:
-    command: as_view_polygon(view_config)
-
-  secondary_geoms:
-    command: fetch_geoms(secondary_geoms_config, within = view_polygon)
-
-  focus_geoms:
-    command: fetch_geoms(focus_geoms_config, within = view_polygon)
-
   # -- get sites and site info --
-
   1_fetch/out/all_sites.rds.ind:
     command: fetch_sites_from_sf(
       ind_file = target_name,
-      sf_object = focus_geoms,
+      sf_ind = '1_fetch/out/focus_geoms.rds.ind',
       dates = dates,
       stream_params = stream_params)
   1_fetch/out/all_sites.rds:
     command: gd_get('1_fetch/out/all_sites.rds.ind')
-  1_fetch/out/storm_sites.feather.ind:
-    command: subset_sites(
-      ind_file = target_name,
-      all_sites = '1_fetch/out/all_sites.rds.ind')
-  1_fetch/out/storm_sites.feather:
-    command: gd_get('1_fetch/out/storm_sites.feather.ind')
 
   # -- get streamdata --
   1_fetch/out/streamdata.rds.ind:
     command: fetch_streamdata(
       ind_file = target_name,
-      sites = '1_fetch/out/storm_sites.feather.ind',
+      sites = '2_process/out/storm_sites.feather.ind',
       dates = dates,
       stream_params = stream_params,
       gd_config = 'lib/cfg/gd_config.yml')
