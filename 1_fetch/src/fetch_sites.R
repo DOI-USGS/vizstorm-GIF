@@ -110,7 +110,7 @@ fetch_nws_data <- function(ind_file, nwis_sites, nws_nwis_crosswalk) {
 
   # write the data file and the indicator file
   data_file <- as_data_file(ind_file)
-  feather::write_feather(sites_info, data_file)
+  feather::write_feather(sites_w_flood_stage, data_file)
   gd_put(ind_file, data_file)
 
   return(sites_w_flood_stage)
