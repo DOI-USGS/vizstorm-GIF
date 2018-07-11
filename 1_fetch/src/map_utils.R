@@ -49,6 +49,21 @@ as_view_polygon <- function(view_config) {
   return(view_poly)
 }
 
+#' create a view polygon from the configuration info and then write it to a file
+#' and push it to Drive so that we can use a shared version of the polygon
+#' across OSes / GDAL versions
+post_view_polygon <- function(ind_file, view_config) {
+  data_file <- as_data_file(ind_file)
+  view_polygon <- as_view_polygon(view_config)
+  saveRDS(view_polygon, file=data_file)
+  gd_put(ind_file, data_file)
+}
+
+#' download and read in the view polygon
+get_view_polygon <- function(view_poly_ind) {
+  readRDS(sc_retrieve(view_poly_ind))
+}
+
 
 #' fetch and merge geometries from maps and mapdata packages
 #'
@@ -57,7 +72,7 @@ as_view_polygon <- function(view_config) {
 #' @param within a `sf` polygon to check for intersections (outside are excluded)
 #'
 #' @return an sf object with geometries filtered according to input arguments
-fetch_geoms <- function(geoms_config, crs = sf::st_crs(within), within = NULL){
+fetch_geoms <- function(ind_file, geoms_config, crs = sf::st_crs(within), within = NULL){
 
   fetch_sf_geoms <- function(...){
     # get data from maps package
@@ -85,5 +100,7 @@ fetch_geoms <- function(geoms_config, crs = sf::st_crs(within), within = NULL){
     }
   }
 
-  return(geoms_out)
+  # save and post data, write indicator file
+  saveRDS(geoms_out, as_data_file(ind_file))
+  gd_put(ind_file, ind_file)
 }

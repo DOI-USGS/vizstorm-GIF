@@ -1,10 +1,15 @@
-#' Download all NWIS stage sites within the bounding box of a supplied spatial object
+#' Download all NWIS stage sites within the bounding box of a supplied spatial
+#' object
 #'
 #' @param ind_file character file name where the output should be saved
-#' @param sf_object spatial object with IDs indicating the state name
+#' @param sf_ind indicator file for a spatial object with IDs indicating the
+#'   state name
 #' @param dates object from viz_config.yaml that specifies dates as string
 #' @param stream_params pcodes to use from NWIS
-fetch_sites_from_sf <- function(ind_file, sf_object, dates, stream_params) {
+fetch_sites_from_sf <- function(ind_file, sf_ind, dates, stream_params) {
+
+  # read the sf object from the shared cache
+  sf_object <- readRDS(sc_retrieve(sf_ind))
 
   state_names <- sf_object$ID[!grepl(",", sf_object$ID)]
   state_cds <- unique(dataRetrieval::stateCdLookup(state_names))
