@@ -35,14 +35,8 @@ fetch_sites_from_states <- function(state_cds, dates, stream_params) {
     # if a gage goes out during the storm, this filter would still capture that gage
     filter(end_date >= as.Date(dates$start))
 
-  # return only the site numbers
-  sites <- sites_df$site_no
-
-  # write the data file and the indicator file
-  data_file <- as_data_file(ind_file)
-  saveRDS(sites, data_file)
-  gd_put(ind_file, data_file)
-
+  sites <- dplyr::select(sites_df, site_no, station_nm, dec_lat_va, dec_long_va)
+  return(sites)
 }
 
 #' Get list of corresponding NWS site numbers from NWIS site numbers
