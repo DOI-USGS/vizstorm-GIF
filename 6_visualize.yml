@@ -1,7 +1,7 @@
 target_default: 6_visualize
 
 include:
-  - 2_process.yml
+  - 6_vizprep.yml
 
 packages:
 
@@ -29,23 +29,16 @@ targets:
   # to run. the closure should accept 0 arguments. the closure should be saved
   # into an RDS file with a corresponding .rds.ind indicator file.
 
-  # right here we will create and run a task table that will be responsible for generating
-  # the components, e.g., '6_visualize/out/style/storm_point_20170926_11.rds.ind' through
-  # '6_visualize/out/style/streamdata_20170926_11.rds.ind', one per column=step. and then the final
-  # column=step of that task table will be to run create_storm_frame on the output of all the other
-  # steps in that row=task=timestep.
-
   # here's an example of the a single task-step for that last column=step of the task table:
-  6_visualize/out/storm_frame .png:
+  6_visualize/out/storm_frame.png:
     command: create_storm_frame(
       png_file=target_name, config=storm_frame_config,
-      '6_visualize/out/style/basemap.rds.ind',
-      '6_visualize/out/style/focus_geoms.rds.ind',
-      '6_visualize/out/style/secondary_geoms.rds.ind',
-      '6_visualize/out/style/storm_line.rds.ind',
-      '6_visualize/out/style/storm_point_20170926_11.rds.ind',
-      '6_visualize/out/style/precip_raster_20170926_11.rds.ind',
-      '6_visualize/out/style/streamdata_20170926_11.rds.ind')
+      '6_vizprep/out/view_fun.rds.ind',
+      '6_vizprep/out/basemap_fun.rds.ind',
+      '6_vizprep/out/storm_line_fun.rds.ind')
+      #'6_vizprep/out/storm_point_[20170826-11]_fun.rds.ind',
+      #'6_vizprep/out/precip_raster_[20170826-11]_fun.rds.ind',
+      #'6_vizprep/out/streamdata_[20170826-11]_fun.rds.ind')
 
   # tmp=temporary folder for holding files to only be created on 1 computer.
   # out=folder to hold .ind and data files corresponding to shared cache or everybody's local build.
