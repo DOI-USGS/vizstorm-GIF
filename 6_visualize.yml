@@ -36,10 +36,9 @@ targets:
   6_visualize/out/storm_frame.png:
     command: create_storm_frame(
       png_file=target_name, config=storm_frame_config,
+      '5_vizprep/out/view_fun.rds.ind',
       '5_vizprep/out/basemap_fun.rds.ind',
-      '5_vizprep/out/focus_geoms.rds.ind',
-      '5_vizprep/out/secondary_geoms.rds.ind',
-      '5_vizprep/out/storm_line.rds.ind',
-      '5_vizprep/out/storm_point_20170926_11.rds.ind',
-      '5_vizprep/out/precip_raster_20170926_11.rds.ind',
-      '5_vizprep/out/streamdata_20170926_11.rds.ind')
+      '5_vizprep/out/storm_line_fun.rds.ind',
+      '5_vizprep/out/storm_point_-20170826_11-_fun.rds.ind')
+      #'5_vizprep/out/precip_raster_20170926_11.rds.ind',
+      #'5_vizprep/out/streamdata_20170926_11.rds.ind')

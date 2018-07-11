@@ -1,0 +1,12 @@
+version: 0.3.0
+name: 5_vizprep/out/view_fun.rds.ind
+type: file
+hash: e87aa3e0bda59ea1872d5d01615c5744
+time: 2018-07-11 12:18:12 UTC
+depends:
+  view_polygon: 7ac3d28632d1dfbad8fd1b6044d4485a
+fixed: 51c671a516bfef7a01f21cef221d86c8
+code:
+  functions:
+    prep_view_fun: 3c63a51cdf4c05859f512ce3861e2c28
+
