@@ -10,8 +10,36 @@ file_extensions:
   - ind
 
 sources:
+  - 6_visualize/src/create_storm_frame.R
 
 targets:
 
   6_visualize:
     depends:
+
+  storm_frame_config:
+    command: viz_config[I(c('width','height'))]
+
+  # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
+  # adn storm_line. each of these components doesn't change over time. each
+  # component is a closure, i.e., a function that contains all the data it needs
+  # to run. the closure should accept 0 arguments. the closure should be saved
+  # into an RDS file with a corresponding .rds.ind indicator file.
+
+  # right here we will create and run a task table that will be responsible for generating
+  # the components, e.g., '6_visualize/out/style/storm_point_20170926_11.rds.ind' through
+  # '6_visualize/out/style/streamdata_20170926_11.rds.ind', one per column=step. and then the final
+  # column=step of that task table will be to run create_storm_frame on the output of all the other
+  # steps in that row=task=timestep.
+
+  # here's an example of the a single task-step for that last column=step of the task table:
+  6_visualize/out/storm_frame .png:
+    command: create_storm_frame(
+      png_file=target_name, config=storm_frame_config,
+      '6_visualize/out/style/basemap.rds.ind',
+      '6_visualize/out/style/focus_geoms.rds.ind',
+      '6_visualize/out/style/secondary_geoms.rds.ind',
+      '6_visualize/out/style/storm_line.rds.ind',
+      '6_visualize/out/style/storm_point_20170926_11.rds.ind',
+      '6_visualize/out/style/precip_raster_20170926_11.rds.ind',
+      '6_visualize/out/style/streamdata_20170926_11.rds.ind')

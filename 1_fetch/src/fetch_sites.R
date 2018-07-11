@@ -1,7 +1,11 @@
 #' Get vector of state codes from the sf_object
 #'
-#' @param sf_object spatial object with IDs indicating the state name
-fetch_states_from_sf <- function(sf_object) {
+#' @param sf_ind indicator file for a spatial object with IDs indicating the
+#'   state name
+fetch_states_from_sf <- function(sf_ind) {
+
+  # read the sf object from the shared cache
+  sf_object <- readRDS(sc_retrieve(sf_ind))
 
   state_names <- sf_object$ID[!grepl(",", sf_object$ID)]
   state_cds <- unique(dataRetrieval::stateCdLookup(state_names))
@@ -23,31 +27,20 @@ fetch_sites_from_states <- function(state_cds, dates, stream_params) {
     sites_df <- rbind(sites_df, sites_df_cd)
   }
 
-  sites_df <- dplyr::filter(sites_df, site_tp_cd == "ST")
-  sites_df <- dplyr::filter(sites_df, end_date >= as.Date(dates$end))
-  sites <- dplyr::select(sites_df, site_no)
+  # Filtering applied to every storm
+  sites_df <- sites_df %>%
+    # we only need stream sites
+    filter(site_tp_cd == "ST") %>%
+    # keeps only sites that have data since the start of the storm
+    # if a gage goes out during the storm, this filter would still capture that gage
+    filter(end_date >= as.Date(dates$start))
 
-  return(sites)
-}
-
-#' Subset the site list to ones relevant for the storm
-#'
-#' @param ind_file character file name where the output should be saved
-#' @param all_sites data.frame of sites pulled for the bbox
-subset_sites <- function(ind_file, all_sites) {
-
-  # subset the sites from the wide net cast to ones relevant to the storm
-  # subset criteria TBD
-  sites_info <- dataRetrieval::readNWISsite(siteNumbers = all_sites$site_no)
-
-  #############********* temporarily grab only a few sites *********#############
-  set.seed(10)
-  sites_info <- dplyr::sample_n(sites_info, 50)
-  #############*********
+  # return only the site numbers
+  sites <- sites_df$site_no
 
   # write the data file and the indicator file
   data_file <- as_data_file(ind_file)
-  feather::write_feather(sites_info, data_file)
+  saveRDS(sites, data_file)
   gd_put(ind_file, data_file)
 
 }
