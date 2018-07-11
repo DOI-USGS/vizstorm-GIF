@@ -17,6 +17,8 @@ sources:
   - 2_process/src/choose_timesteps.R
   - 2_process/src/extract_storm_line.R
   - 2_process/src/filter_sites_custom.R
+  - 2_process/src/filter_sites_geom.R
+  - 2_process/src/filter_using_custom.R
   - 2_process/src/process_precip.R
   - 2_process/src/extract_storm_points.R
   - 2_process/src/interpolate_storm_points.R
@@ -26,9 +28,13 @@ targets:
   2_process:
     depends:
       - 2_process/out/storm_line.rds.ind
-      - 2_process/out/storm_sites.feather.ind
+      - 2_process/out/storm_sites.rds.ind
       - 2_process/out/storm_points_interp.rds.ind
       - 2_process/out/precip_rasters.rds.ind
+
+  # -- config --
+  proj_str:
+    command: viz_config[[I('projection')]]
 
   2_process/out/timesteps.rds.ind:
     command: choose_timesteps(target_name, precip_rasters_ind = '2_process/out/precip_rasters.rds.ind')
@@ -41,12 +47,28 @@ targets:
   2_process/out/storm_line.rds:
     command: gd_get('2_process/out/storm_line.rds.ind')
 
-  2_process/out/storm_sites.feather.ind:
+  2_process/out/storm_sites_geom.rds.ind:
+    command: filter_sites_geom(
+      ind_file = target_name,
+      sites_ind = '1_fetch/out/all_sites.rds.ind',
+      view_polygon = view_polygon,
+      focus_geoms_ind = '1_fetch/out/focus_geoms.rds.ind',
+      proj_str = proj_str)
+  2_process/out/storm_sites_geom.rds:
+    command: gd_get('2_process/out/storm_sites_geom.rds.ind')
+  2_process/out/storm_sites_custom.rds.ind:
     command: filter_sites_custom(
       ind_file = target_name,
-      sites_file = '1_fetch/out/all_sites.rds.ind')
-  2_process/out/storm_sites.feather:
-    command: gd_get('2_process/out/storm_sites.feather.ind')
+      sites_ind = '1_fetch/out/nws_stage_sites.rds.ind')
+  2_process/out/storm_sites_custom.rds:
+    command: gd_get('2_process/out/storm_sites_custom.rds.ind')
+  2_process/out/storm_sites.rds.ind:
+    command: filter_using_custom(
+      ind_file = target_name,
+      sites_ind = '1_fetch/out/nws_stage_sites.rds.ind',
+      sites_custom_ind = '2_process/out/storm_sites_custom.rds.ind')
+  2_process/out/storm_sites.rds:
+    command: gd_get('2_process/out/storm_sites.rds.ind')
 
   2_process/out/precip_rasters.rds.ind:
     command: process_precip_rasters(ind_file = target_name,

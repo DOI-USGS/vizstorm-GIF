@@ -1,0 +1,13 @@
+version: 0.3.0
+name: 1_fetch/out/nws_stage_sites.rds.ind
+type: file
+hash: 12ce9e493f7b1840ee8045fa5dce4d7e
+time: 2018-07-11 20:22:17 UTC
+depends:
+  2_process/out/storm_sites_geom.rds.ind: 1991b0b6438a51a1e307b965a6f456db
+  nws_nwis_crosswalk: f27636c23584f29d85c9d2f1b4cf3387
+fixed: 99edf8541870859b9a4af52c7058084f
+code:
+  functions:
+    fetch_nws_data: 6e81a13ee83adac503af99111d477738
+
