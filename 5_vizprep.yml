@@ -1,0 +1,25 @@
+target_default: 5_vizprep
+
+include:
+  - 2_process.yml
+
+packages:
+
+file_extensions:
+  - feather
+  - ind
+
+sources:
+  - 5_vizprep/src/prep_basemap.R
+
+targets:
+
+  5_vizprep:
+    depends:
+      - 5_vizprep/out/basemap.rds.ind
+
+  5_vizprep/out/basemap_fun.rds.ind:
+    command: prep_basemap_fun("5_vizprep/out/basemap_fun.rds.ind", focus_geoms, secondary_geoms)
+
+  5_vizprep/out/basemap.rds:
+    command: gd_get('5_vizprep/out/basemap.rds.ind')
