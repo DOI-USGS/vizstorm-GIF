@@ -14,6 +14,7 @@ packages:
   - arrayhelpers
   - dplyr
   - xml2
+  - jsonlite
 
 file_extensions:
   - ind
@@ -32,7 +33,7 @@ targets:
     depends:
       - view_polygon
       - 1_fetch/out/storm_track.zip.ind
-      - 1_fetch/out/nws_stage_sites.rds.ind
+      - 1_fetch/out/all_sites.rds.ind
       - 1_fetch/out/streamdata.rds.ind
       - 1_fetch/out/precip_spatial.rds.ind
       - 1_fetch/out/precip_values.rds.ind
@@ -88,15 +89,6 @@ targets:
       stream_params = stream_params)
   1_fetch/out/all_sites.rds:
     command: gd_get('1_fetch/out/all_sites.rds.ind')
-  nws_nwis_crosswalk:
-    command: fetch_nws_to_nwis_crosswalk(state_cds = state_cds)
-  1_fetch/out/nws_stage_sites.rds.ind:
-    command: fetch_nws_data(
-      ind_file = target_name,
-      nwis_sites_ind = '2_process/out/storm_sites_geom.rds.ind',
-      nws_nwis_crosswalk = nws_nwis_crosswalk)
-  1_fetch/out/nws_stage_sites.rds:
-    command: gd_get('1_fetch/out/nws_stage_sites.rds.ind')
 
   # -- get streamdata --
   1_fetch/out/streamdata.rds.ind:

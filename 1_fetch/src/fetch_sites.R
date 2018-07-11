@@ -28,90 +28,25 @@ fetch_sites_from_states <- function(ind_file, state_cds, dates, stream_params) {
     sites_df <- rbind(sites_df, sites_df_cd)
   }
 
+  # Get NWS flood stage table
+  nws_flood_stage_list <- jsonlite::fromJSON("https://waterwatch.usgs.gov/webservices/floodstage?format=json")
+  nws_flood_stage_table <- nws_flood_stage_list[["sites"]]
+
   # Filtering applied to every storm
   sites_df <- sites_df %>%
+    # Filter out any sites that don't have flood stage data from NWS
+    left_join(nws_flood_stage_table) %>%
+    filter(!is.na(flood_stage)) %>%
     # we only need stream sites
     filter(site_tp_cd == "ST") %>%
     # keeps only sites that have data since the start of the storm
     # if a gage goes out during the storm, this filter would still capture that gage
     filter(end_date >= as.Date(dates$start))
 
-  sites <- dplyr::select(sites_df, site_no, station_nm, dec_lat_va, dec_long_va)
+  sites <- dplyr::select(sites_df, site_no, station_nm, dec_lat_va, dec_long_va, flood_stage)
 
   # write the data file and the indicator file
   data_file <- as_data_file(ind_file)
   saveRDS(sites, data_file)
-  gd_put(ind_file, data_file)
-}
-
-#' Get list of corresponding NWS site numbers from NWIS site numbers
-#'
-#' @param state_cds vector of states for this storm
-fetch_nws_to_nwis_crosswalk <- function(state_cds){
-
-  conversion_table <- data.frame()
-  for(s in state_cds) {
-    conversion_url <- sprintf("http://www.nws.noaa.gov/oh/hads/USGS/%s_USGS-HADS_SITES.txt", s)
-    conversion_table_state <- readr::read_delim(conversion_url,
-                                                delim = "|",skip = 4,col_names = FALSE,
-                                                col_types = readr::cols())
-    conversion_table <- dplyr::bind_rows(conversion_table, conversion_table_state)
-  }
-
-
-  names(conversion_table) <- c("NWS","USGS","GOES","NWS HSA","lat","lon","name")
-  conversion_table$USGS <- gsub(" ","", conversion_table$USGS)
-  nws_nwis_crosswalk <- dplyr::select(conversion_table, site_no_nws = NWS, site_no=USGS)
-
-  return(nws_nwis_crosswalk)
-}
-
-#' Download National Weather Service data for sites and filter any without stage data
-#'
-#' @param ind_file character file name where the output should be saved
-#' @param nwis_sites_ind indicator file for data.frame with col `site_no` to consider for this storm
-#' @param nws_nwis_crosswalk data.frame with NWS site numbers and their corresponding USGS site number
-fetch_nws_data <- function(ind_file, nwis_sites_ind, nws_nwis_crosswalk) {
-
-  nwis_sites <- readRDS(sc_retrieve(nwis_sites_ind))
-  sites_df <- left_join(nwis_sites, nws_nwis_crosswalk, by="site_no")
-
-  # Start by setting stage info as NA
-  sites_df$flood_stage <- NA
-  sites_df$flood_stage_units <- NA
-
-  # Download NWS info for each gage
-  site_nums_to_query <- unique(sites_df$site_no_nws)
-
-  i_count <- 0
-  for(i in site_nums_to_query){
-
-    if(is.na(i)) {
-      i_count <- i_count + 1
-      print(paste(i_count, "/", length(site_nums_to_query)))
-      next
-    }
-
-    url_site <- paste0("https://water.weather.gov/ahps2/hydrograph_to_xml.php?gage=",i,"&output=xml")
-    return_list <- GET(url_site)
-    returnedDoc <- content(return_list,encoding = "UTF-8")
-    nws_site <- xml_root(returnedDoc)
-    sigstages <- xml_find_all(nws_site, "sigstages")
-
-    if(length(sigstages) > 0){
-      sites_df$flood_stage[which(sites_df$site_no_nws %in% i)] <- as.numeric(xml_text(xml_find_all(sigstages, "flood")))
-      sites_df$flood_stage_units[which(sites_df$site_no_nws %in% i)] <- xml_attr(xml_find_all(sigstages, "flood"),"units")
-    }
-
-    i_count <- i_count + 1
-    print(paste(i_count, "/", length(site_nums_to_query)))
-  }
-
-  # Filter out any sites that don't have flood stage data from NWS
-  sites_w_flood_stage <- dplyr::filter(sites_df, !is.na(flood_stage))
-
-  # write the data file and the indicator file
-  data_file <- as_data_file(ind_file)
-  saveRDS(sites_w_flood_stage, data_file)
   gd_put(ind_file, data_file)
 }
