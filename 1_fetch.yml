@@ -79,7 +79,7 @@ targets:
 
   # -- get sites and site info --
   state_cds:
-    command: fetch_states_from_sf(sf_ind = '1_fetch/out/focus_geoms.rds')
+    command: fetch_states_from_sf(sf_ind = '1_fetch/out/focus_geoms.rds.ind')
   all_sites:
     command: fetch_sites_from_states(
       state_cds = state_cds,
