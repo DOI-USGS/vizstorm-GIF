@@ -5,7 +5,7 @@
 #' @param sites_ind ind file for data.frame of sites with automatic filtering applied already
 filter_sites_custom <- function(ind_file, sites_ind) {
 
-  sites_df <- readRDS(scipiper::sc_retrieve(sites_ind))
+  sites_df <- feather::read_feather(scipiper::sc_retrieve(sites_ind))
 
   # subset the sites from the wide net cast to ones relevant to the storm
   # subset criteria TBD for each storm
