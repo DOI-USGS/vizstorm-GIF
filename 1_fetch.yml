@@ -53,27 +53,33 @@ targets:
   view_config:
     command: viz_config[I(c('bbox', 'projection', 'width', 'height'))]
 
+  1_fetch/out/view_polygon.rds.ind:
+    command: post_view_polygon(target_name, view_config)
+  1_fetch/out/view_polygon.rds:
+    command: gd_get('1_fetch/out/view_polygon.rds.ind')
+  view_polygon:
+    command: get_view_polygon('1_fetch/out/view_polygon.rds.ind')
+
   secondary_geoms_config:
     command: viz_config[I('secondary_geoms')]
+  1_fetch/out/secondary_geoms.rds.ind:
+    command: fetch_geoms(target_name, secondary_geoms_config, within = view_polygon)
+  1_fetch/out/secondary_geoms.rds:
+    command: gd_get('1_fetch/out/secondary_geoms.rds.ind')
 
   focus_geoms_config:
     command: viz_config[I('focus_geoms')]
-
-  view_polygon:
-    command: as_view_polygon(view_config)
-
-  secondary_geoms:
-    command: fetch_geoms(secondary_geoms_config, within = view_polygon)
-
-  focus_geoms:
-    command: fetch_geoms(focus_geoms_config, within = view_polygon)
+  1_fetch/out/focus_geoms.rds.ind:
+    command: fetch_geoms(target_name, focus_geoms_config, within = view_polygon)
+  1_fetch/out/focus_geoms.rds:
+    command: gd_get('1_fetch/out/focus_geoms.rds.ind')
 
   # -- get sites and site info --
 
   1_fetch/out/all_sites.rds.ind:
     command: fetch_sites_from_sf(
       ind_file = target_name,
-      sf_object = focus_geoms,
+      sf_ind = '1_fetch/out/focus_geoms.rds.ind',
       dates = dates,
       stream_params = stream_params)
   1_fetch/out/all_sites.rds:
