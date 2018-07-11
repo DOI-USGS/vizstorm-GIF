@@ -72,18 +72,15 @@ targets:
 
   state_cds:
     command: fetch_states_from_sf(sf_object = focus_geoms)
-  1_fetch/out/all_sites.rds.ind:
+  all_sites:
     command: fetch_sites_from_states(
-      ind_file = target_name,
       state_cds = state_cds,
       dates = dates,
       stream_params = stream_params)
-  1_fetch/out/all_sites.rds:
-    command: gd_get('1_fetch/out/all_sites.rds.ind')
   1_fetch/out/storm_sites.feather.ind:
     command: subset_sites(
       ind_file = target_name,
-      all_sites = '1_fetch/out/all_sites.rds.ind')
+      all_sites = all_sites)
   1_fetch/out/storm_sites.feather:
     command: gd_get('1_fetch/out/storm_sites.feather.ind')
 
