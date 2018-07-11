@@ -3,9 +3,9 @@
 #'
 #' @param ind_file character file name where the output should be saved
 #' @param sites_ind ind file for data.frame of sites with automatic filtering applied already
-filter_sites_custom <- function(ind_file, sites_file) {
+filter_sites_custom <- function(ind_file, sites_ind) {
 
-  sites_df <- readRDS(scipiper::sc_retrieve(sites_file))
+  sites_df <- readRDS(scipiper::sc_retrieve(sites_ind))
 
   # subset the sites from the wide net cast to ones relevant to the storm
   # subset criteria TBD for each storm
@@ -19,7 +19,7 @@ filter_sites_custom <- function(ind_file, sites_file) {
 
   # write the data file and the indicator file
   data_file <- as_data_file(ind_file)
-  feather::write_feather(final_sites_df, data_file)
+  saveRDS(final_sites_df, data_file)
   gd_put(ind_file, data_file)
 
 }

@@ -41,12 +41,12 @@ targets:
   2_process/out/storm_line.rds:
     command: gd_get('2_process/out/storm_line.rds.ind')
 
-  2_process/out/storm_sites.feather.ind:
+  2_process/out/storm_sites.rds.ind:
     command: filter_sites_custom(
       ind_file = target_name,
-      sites_file = '1_fetch/out/nws_stage_sites.feather.ind')
-  2_process/out/storm_sites.feather:
-    command: gd_get('2_process/out/storm_sites.feather.ind')
+      sites_ind = '1_fetch/out/nws_stage_sites.rds.ind')
+  2_process/out/storm_sites.rds:
+    command: gd_get('2_process/out/storm_sites.rds.ind')
 
   2_process/out/precip_rasters.rds.ind:
     command: process_precip_rasters(ind_file = target_name,
