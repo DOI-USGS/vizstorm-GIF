@@ -99,7 +99,7 @@ targets:
   1_fetch/out/streamdata.rds.ind:
     command: fetch_streamdata(
       ind_file = target_name,
-      sites = '2_process/out/storm_sites.feather.ind',
+      sites_ind = '2_process/out/storm_sites_sf.rds.ind',
       dates = dates,
       stream_params = stream_params,
       gd_config = 'lib/cfg/gd_config.yml')

@@ -47,6 +47,12 @@ targets:
       sites_ind = '1_fetch/out/nws_stage_sites.rds.ind')
   2_process/out/storm_sites.rds:
     command: gd_get('2_process/out/storm_sites.rds.ind')
+  2_process/out/storm_sites_sf.rds.ind:
+    command: convert_sites_to_sf(
+      ind_file = target_name,
+      sites_ind = '2_process/out/storm_sites.rds.ind')
+  2_process/out/storm_sites_sf.rds:
+    command: gd_get('2_process/out/storm_sites_sf.rds.ind')
 
   2_process/out/precip_rasters.rds.ind:
     command: process_precip_rasters(ind_file = target_name,

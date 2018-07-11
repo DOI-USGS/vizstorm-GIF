@@ -1,7 +1,6 @@
-fetch_streamdata <- function(ind_file, sites, dates, stream_params, gd_config) {
+fetch_streamdata <- function(ind_file, sites_ind, dates, stream_params, gd_config) {
 
-  scipiper::sc_retrieve(sites)
-  sites <- feather::read_feather(scipiper::as_data_file(sites))
+  sites <- readRDS(scipiper::sc_retrieve(sites_ind))
 
   message('  starting download of NWIS data at ', Sys.time())
   data <- readNWISuv(
