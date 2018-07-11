@@ -32,7 +32,7 @@ targets:
       - 1_fetch/out/streamdata.rds.ind
       - 1_fetch/out/storm_track.zip.ind
       - view_polygon
-      - 1_fetch/out/storm_sites.feather.ind
+      - 1_fetch/out/all_sites.rds.ind
 
   # -- config --
   dates:
@@ -78,18 +78,12 @@ targets:
       stream_params = stream_params)
   1_fetch/out/all_sites.rds:
     command: gd_get('1_fetch/out/all_sites.rds.ind')
-  1_fetch/out/storm_sites.feather.ind:
-    command: subset_sites(
-      ind_file = target_name,
-      all_sites = '1_fetch/out/all_sites.rds.ind')
-  1_fetch/out/storm_sites.feather:
-    command: gd_get('1_fetch/out/storm_sites.feather.ind')
 
   # -- get streamdata --
   1_fetch/out/streamdata.rds.ind:
     command: fetch_streamdata(
       ind_file = target_name,
-      sites = '1_fetch/out/storm_sites.feather.ind',
+      sites = '2_process/out/storm_sites.feather.ind',
       dates = dates,
       stream_params = stream_params,
       gd_config = 'lib/cfg/gd_config.yml')
