@@ -29,24 +29,18 @@ targets:
 
   1_fetch:
     depends:
-      - 1_fetch/out/streamdata.rds.ind
-      - 1_fetch/out/storm_track.zip.ind
       - view_polygon
+      - 1_fetch/out/storm_track.zip.ind
       - 1_fetch/out/all_sites.rds.ind
+      - 1_fetch/out/streamdata.rds.ind
+      - 1_fetch/out/precip_spatial.rds.ind
+      - 1_fetch/out/precip_values.rds.ind
 
   # -- config --
   dates:
     command: viz_config[[I('dates')]]
   stream_params:
     command: yaml.load_file('1_fetch/cfg/stream_params.yml')
-
-  # -- download stormtrack --
-  storm_track_cfg:
-    command: viz_config[I('storm_code')]
-  1_fetch/out/storm_track.zip.ind:
-    command: fetch_storm_track(ind_file=target_name, cfg=storm_track_cfg)
-  1_fetch/out/storm_track.zip:
-    command: gd_get('1_fetch/out/storm_track.zip.ind')
 
   # -- get spatial extent and data --
 
@@ -74,8 +68,15 @@ targets:
   1_fetch/out/focus_geoms.rds:
     command: gd_get('1_fetch/out/focus_geoms.rds.ind')
 
-  # -- get sites and site info --
+  # -- download stormtrack --
+  storm_track_cfg:
+    command: viz_config[I('storm_code')]
+  1_fetch/out/storm_track.zip.ind:
+    command: fetch_storm_track(ind_file=target_name, cfg=storm_track_cfg)
+  1_fetch/out/storm_track.zip:
+    command: gd_get('1_fetch/out/storm_track.zip.ind')
 
+  # -- get sites and site info --
   1_fetch/out/all_sites.rds.ind:
     command: fetch_sites_from_sf(
       ind_file = target_name,
