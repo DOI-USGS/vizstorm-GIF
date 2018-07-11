@@ -13,6 +13,7 @@ packages:
   - ncdf4
   - arrayhelpers
   - dplyr
+  - xml2
 
 file_extensions:
   - ind
@@ -31,7 +32,7 @@ targets:
     depends:
       - view_polygon
       - 1_fetch/out/storm_track.zip.ind
-      - 1_fetch/out/all_sites.rds.ind
+      - 1_fetch/out/nws_stage_sites.rds.ind
       - 1_fetch/out/streamdata.rds.ind
       - 1_fetch/out/precip_spatial.rds.ind
       - 1_fetch/out/precip_values.rds.ind
@@ -77,20 +78,31 @@ targets:
     command: gd_get('1_fetch/out/storm_track.zip.ind')
 
   # -- get sites and site info --
+  state_cds:
+    command: fetch_states_from_sf(sf_ind = '1_fetch/out/focus_geoms.rds.ind')
   1_fetch/out/all_sites.rds.ind:
-    command: fetch_sites_from_sf(
+    command: fetch_sites_from_states(
       ind_file = target_name,
-      sf_ind = '1_fetch/out/focus_geoms.rds.ind',
+      state_cds = state_cds,
       dates = dates,
       stream_params = stream_params)
   1_fetch/out/all_sites.rds:
     command: gd_get('1_fetch/out/all_sites.rds.ind')
+  nws_nwis_crosswalk:
+    command: fetch_nws_to_nwis_crosswalk(state_cds = state_cds)
+  1_fetch/out/nws_stage_sites.rds.ind:
+    command: fetch_nws_data(
+      ind_file = target_name,
+      nwis_sites_ind = '2_process/out/storm_sites_geom.rds.ind',
+      nws_nwis_crosswalk = nws_nwis_crosswalk)
+  1_fetch/out/nws_stage_sites.rds:
+    command: gd_get('1_fetch/out/nws_stage_sites.rds.ind')
 
   # -- get streamdata --
   1_fetch/out/streamdata.rds.ind:
     command: fetch_streamdata(
       ind_file = target_name,
-      sites = '2_process/out/storm_sites.feather.ind',
+      sites_ind = '2_process/out/storm_sites.rds.ind',
       dates = dates,
       stream_params = stream_params,
       gd_config = 'lib/cfg/gd_config.yml')
