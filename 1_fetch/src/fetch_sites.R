@@ -15,10 +15,11 @@ fetch_states_from_sf <- function(sf_ind) {
 
 #' Download all NWIS stage sites within the bounding box of a supplied spatial object
 #'
+#' @param ind_file character file name where the output should be saved
 #' @param state_cds spatial object with IDs indicating the state name
 #' @param dates object from viz_config.yaml that specifies dates as string
 #' @param stream_params pcodes to use from NWIS
-fetch_sites_from_states <- function(state_cds, dates, stream_params) {
+fetch_sites_from_states <- function(ind_file, state_cds, dates, stream_params) {
 
   # Cast wide net for all NWIS sites with stage data that fall within that bbox
   sites_df <- data.frame()
@@ -36,7 +37,11 @@ fetch_sites_from_states <- function(state_cds, dates, stream_params) {
     filter(end_date >= as.Date(dates$start))
 
   sites <- dplyr::select(sites_df, site_no, station_nm, dec_lat_va, dec_long_va)
-  return(sites)
+
+  # write the data file and the indicator file
+  data_file <- as_data_file(ind_file)
+  saveRDS(sites, data_file)
+  gd_put(ind_file, data_file)
 }
 
 #' Get list of corresponding NWS site numbers from NWIS site numbers
@@ -64,10 +69,11 @@ fetch_nws_to_nwis_crosswalk <- function(state_cds){
 #' Download National Weather Service data for sites and filter any without stage data
 #'
 #' @param ind_file character file name where the output should be saved
-#' @param nwis_sites vector of site numbers to consider for this storm
+#' @param nwis_sites_ind indicator file for data.frame with col `site_no` to consider for this storm
 #' @param nws_nwis_crosswalk data.frame with NWS site numbers and their corresponding USGS site number
-fetch_nws_data <- function(ind_file, nwis_sites, nws_nwis_crosswalk) {
+fetch_nws_data <- function(ind_file, nwis_sites_ind, nws_nwis_crosswalk) {
 
+  nwis_sites <- readRDS(sc_retrieve(nwis_sites_ind))
   sites_df <- left_join(nwis_sites, nws_nwis_crosswalk, by="site_no")
 
   # Start by setting stage info as NA
@@ -107,6 +113,4 @@ fetch_nws_data <- function(ind_file, nwis_sites, nws_nwis_crosswalk) {
   data_file <- as_data_file(ind_file)
   feather::write_feather(sites_w_flood_stage, data_file)
   gd_put(ind_file, data_file)
-
-  return(sites_w_flood_stage)
 }

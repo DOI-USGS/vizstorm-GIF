@@ -80,17 +80,20 @@ targets:
   # -- get sites and site info --
   state_cds:
     command: fetch_states_from_sf(sf_ind = '1_fetch/out/focus_geoms.rds.ind')
-  all_sites:
+  1_fetch/out/all_sites.rds.ind:
     command: fetch_sites_from_states(
+      ind_file = target_name,
       state_cds = state_cds,
       dates = dates,
       stream_params = stream_params)
+  1_fetch/out/all_sites.rds:
+    command: gd_get('1_fetch/out/all_sites.rds.ind')
   nws_nwis_crosswalk:
     command: fetch_nws_to_nwis_crosswalk(state_cds = state_cds)
   1_fetch/out/nws_stage_sites.feather.ind:
     command: fetch_nws_data(
       ind_file = target_name,
-      nwis_sites = all_sites,
+      nwis_sites_ind = '1_fetch/out/all_sites.rds.ind',
       nws_nwis_crosswalk = nws_nwis_crosswalk)
   1_fetch/out/nws_stage_sites.feather:
     command: gd_get('1_fetch/out/nws_stage_sites.feather.ind')
