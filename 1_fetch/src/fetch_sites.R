@@ -82,6 +82,7 @@ fetch_nws_data <- function(ind_file, nwis_sites_ind, nws_nwis_crosswalk) {
 
   # Download NWS info for each gage
   site_nums_to_query <- unique(sites_df$site_no_nws)
+
   i_count <- 0
   for(i in site_nums_to_query){
 
@@ -111,6 +112,6 @@ fetch_nws_data <- function(ind_file, nwis_sites_ind, nws_nwis_crosswalk) {
 
   # write the data file and the indicator file
   data_file <- as_data_file(ind_file)
-  feather::write_feather(sites_w_flood_stage, data_file)
+  saveRDS(sites_w_flood_stage, data_file)
   gd_put(ind_file, data_file)
 }

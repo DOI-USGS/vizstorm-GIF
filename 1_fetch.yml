@@ -90,19 +90,19 @@ targets:
     command: gd_get('1_fetch/out/all_sites.rds.ind')
   nws_nwis_crosswalk:
     command: fetch_nws_to_nwis_crosswalk(state_cds = state_cds)
-  1_fetch/out/nws_stage_sites.feather.ind:
+  1_fetch/out/nws_stage_sites.rds.ind:
     command: fetch_nws_data(
       ind_file = target_name,
-      nwis_sites_ind = '1_fetch/out/all_sites.rds.ind',
+      nwis_sites_ind = '2_process/out/storm_sites_geom.rds.ind',
       nws_nwis_crosswalk = nws_nwis_crosswalk)
-  1_fetch/out/nws_stage_sites.feather:
-    command: gd_get('1_fetch/out/nws_stage_sites.feather.ind')
+  1_fetch/out/nws_stage_sites.rds:
+    command: gd_get('1_fetch/out/nws_stage_sites.rds.ind')
 
   # -- get streamdata --
   1_fetch/out/streamdata.rds.ind:
     command: fetch_streamdata(
       ind_file = target_name,
-      sites_ind = '2_process/out/storm_sites_sf.rds.ind',
+      sites_ind = '2_process/out/storm_sites.rds.ind',
       dates = dates,
       stream_params = stream_params,
       gd_config = 'lib/cfg/gd_config.yml')

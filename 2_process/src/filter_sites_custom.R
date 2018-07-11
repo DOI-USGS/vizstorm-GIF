@@ -2,10 +2,11 @@
 #' Subset the site list to ones relevant for the storm
 #'
 #' @param ind_file character file name where the output should be saved
-#' @param sites_ind ind file for data.frame of sites with automatic filtering applied already
+#' @param sites_ind indicator file for an sf data.frame of sites with automatic filtering applied already
 filter_sites_custom <- function(ind_file, sites_ind) {
 
-  sites_df <- feather::read_feather(scipiper::sc_retrieve(sites_ind))
+  # get sites data frame with NWS data
+  sites_df <- readRDS(sc_retrieve(sites_ind))
 
   # subset the sites from the wide net cast to ones relevant to the storm
   # subset criteria TBD for each storm
