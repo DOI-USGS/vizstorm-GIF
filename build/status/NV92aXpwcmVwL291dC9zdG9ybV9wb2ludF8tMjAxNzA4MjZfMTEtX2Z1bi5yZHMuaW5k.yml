@@ -1,0 +1,14 @@
+version: 0.3.0
+name: 5_vizprep/out/storm_point_-20170826_11-_fun.rds.ind
+type: file
+hash: 1d824f7459850c71b0387465b3918fe9
+time: 2018-07-11 13:22:20 UTC
+depends:
+  2_process/out/storm_points_interp.rds.ind: 84b04b2a433322d9c02ff944ca9f2071
+fixed: d1009e4bf0ae0b98519289b2758f282b
+code:
+  functions:
+    POSIX_from_filename: af401ce8e557a894b2738d171fb00106
+    prep_storm_point_fun: a471b0fb408a691bbf11aa4d1ffb7716
+    write_put_fun: a1f9c3688ca2f519a05753c52f90957e
+

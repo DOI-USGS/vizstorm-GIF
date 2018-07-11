@@ -1,0 +1,14 @@
+version: 0.3.0
+name: 6_vizprep/out/basemap_fun.rds.ind
+type: file
+hash: 705ec7afb62d15061de1ceaa334f1b36
+time: 2018-07-11 17:19:38 UTC
+depends:
+  1_fetch/out/focus_geoms.rds.ind: fde86e68fea8ed3728ace9e866d4020c
+  1_fetch/out/secondary_geoms.rds.ind: 25d272a6f7b857ecc0d1821fbf398ae9
+fixed: 69830b55326f55a5859d0c6e8eefa069
+code:
+  functions:
+    prep_basemap_fun: 2e2a6228b09e96a66d1fcc848d7e72d8
+    write_put_fun: a1f9c3688ca2f519a05753c52f90957e
+

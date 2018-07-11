@@ -1,0 +1,37 @@
+target_default: 6_vizprep
+
+include:
+  - 2_process.yml
+
+packages:
+
+file_extensions:
+  - feather
+  - ind
+
+sources:
+  - 6_vizprep/src/prep_plot_funs.R
+
+targets:
+
+  6_vizprep:
+    depends:
+      - 6_vizprep/out/basemap.rds.ind
+      - 6_vizprep/out/view_fun.rds.ind
+      - 6_vizprep/out/storm_line_fun.rds.ind
+
+
+  6_vizprep/out/view_fun.rds.ind:
+    command: prep_view_fun(target_name, view_polygon)
+  6_vizprep/out/view_fun.rds:
+    command: gd_get('6_vizprep/out/view_fun.rds.ind')
+
+  6_vizprep/out/basemap_fun.rds.ind:
+    command: prep_basemap_fun(target_name, '1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind')
+  6_vizprep/out/basemap_fun.rds:
+    command: gd_get('6_vizprep/out/basemap_fun.rds.ind')
+
+  6_vizprep/out/storm_line_fun.rds.ind:
+    command: prep_storm_line_fun(target_name, "2_process/out/storm_line.rds.ind")
+  6_vizprep/out/storm_line_fun.rds:
+    command: gd_get('6_vizprep/out/storm_line_fun.rds.ind')
