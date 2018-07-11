@@ -43,23 +43,19 @@ targets:
   # tmp=temporary folder for holding files to only be created on 1 computer.
   # out=folder to hold .ind and data files corresponding to shared cache or everybody's local build.
   # log=folder for the few indicator files that don't correspond to a data file.
-  6_visualize/tmp:
-    command: dir.create(target_name, recursive=I(TRUE), showWarnings=I(FALSE))
-  6_visualize/log:
-    command: dir.create(target_name, recursive=I(TRUE), showWarnings=I(FALSE))
   visualize_folders:
     command: list(
-      tmp='6_visualize/tmp',
-      log='6_visualize/log')
+      tmp=I('6_visualize/tmp'),
+      log=I('6_visualize/log'))
 
   gif_tasks:
     command: create_gif_tasks(
       timestep_ind = '2_process/out/timesteps.rds.ind',
       folders = visualize_folders,
-      view_ind = '5_vizprep/out/view_fun.rds.ind',
-      basemap_ind = '5_vizprep/out/basemap_fun.rds.ind',
-      storm_line_ind = '5_vizprep/out/storm_line_fun.rds.ind',
-      cfg = storm_frame_config)
+      view_ind = '6_vizprep/out/view_fun.rds.ind',
+      basemap_ind = '6_vizprep/out/basemap_fun.rds.ind',
+      storm_line_ind = '6_vizprep/out/storm_line_fun.rds.ind',
+      storm_cfg = storm_frame_config)
 
   6_gif_tasks.yml:
     command: create_gif_makefile(

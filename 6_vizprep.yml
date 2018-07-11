@@ -11,6 +11,10 @@ file_extensions:
 
 sources:
   - 6_vizprep/src/prep_plot_funs.R
+  - 6_vizprep/src/prep_basemap_fun.R
+  - 6_vizprep/src/prep_view_fun.R
+  - 6_vizprep/src/prep_storm_point_fun.R
+  - 6_vizprep/src/prep_storm_line_fun.R
 
 targets:
 
