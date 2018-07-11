@@ -39,6 +39,6 @@ targets:
       '5_vizprep/out/view_fun.rds.ind',
       '5_vizprep/out/basemap_fun.rds.ind',
       '5_vizprep/out/storm_line_fun.rds.ind',
-      '5_vizprep/out/storm_point_-20170826_11-_fun.rds.ind')
+      '5_vizprep/out/storm_point_[20170826-11]_fun.rds.ind')
       #'5_vizprep/out/precip_raster_20170926_11.rds.ind',
       #'5_vizprep/out/streamdata_20170926_11.rds.ind')

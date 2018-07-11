@@ -18,11 +18,11 @@ targets:
     depends:
       - 5_vizprep/out/basemap.rds.ind
       - 5_vizprep/out/view_fun.rds.ind
-      - 5_vizprep/out/storm_point_-20170826_11-_fun.rds.ind # this (as w/ other dynamic parts of the frames) would be a task table generated output from a separate yaml
+      - 5_vizprep/out/storm_point_[20170826-11]_fun.rds.ind # this (as w/ other dynamic parts of the frames) would be a task table generated output from a separate yaml
       - 5_vizprep/out/storm_line_fun.rds.ind
 
   5_vizprep/out/basemap_fun.rds.ind:
-    command: prep_basemap_fun(target_name, focus_geoms, secondary_geoms)
+    command: prep_basemap_fun(target_name, '1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind')
   5_vizprep/out/basemap_fun.rds:
     command: gd_get('5_vizprep/out/basemap_fun.rds.ind')
 
@@ -31,10 +31,10 @@ targets:
   5_vizprep/out/view_fun.rds:
     command: gd_get('5_vizprep/out/view_fun.rds.ind')
 
-  5_vizprep/out/storm_point_-20170826_11-_fun.rds.ind:
+  5_vizprep/out/storm_point_[20170826-11]_fun.rds.ind:
     command: prep_storm_point_fun(target_name, "2_process/out/storm_points_interp.rds.ind")
-  5_vizprep/out/storm_point_-20170826_11-_fun.rds:
-    command: gd_get('5_vizprep/out/storm_point_-20170826_11-_fun.rds.ind') # want this to be 5_vizprep/out/storm_point_[20170826-11]_fun.rds.ind
+  5_vizprep/out/storm_point_[20170826-11]_fun.rds:
+    command: gd_get('5_vizprep/out/storm_point_[20170826-11]_fun.rds.ind')
 
   5_vizprep/out/storm_line_fun.rds.ind:
     command: prep_storm_line_fun(target_name, "2_process/out/storm_line.rds.ind")

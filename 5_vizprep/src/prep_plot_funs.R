@@ -1,13 +1,18 @@
 
-prep_basemap_fun <- function(ind_file, focus_geoms, secondary_geoms = NULL, detail_geoms = NULL){
+prep_basemap_fun <- function(ind_file, focus_geoms_ind, secondary_geoms_ind = NULL, detail_geoms_ind = NULL){
 
   plot_fun <- function(){
-    if (!is.null(secondary_geoms))
+    if (!is.null(secondary_geoms_ind)){
+      secondary_geoms <- readRDS(sc_retrieve(secondary_geoms_ind))
       plot(secondary_geoms, add = TRUE, lwd = 0.3, col = 'grey80') # should style args be in a config?
+    }
 
-    if (!is.null(detail_geoms))
+    if (!is.null(detail_geoms_ind)){
+      detail_geoms <- readRDS(sc_retrieve(detail_geoms_ind))
       plot(detail_geoms, add = TRUE, lwd = 0.3, col = NA, border = 'grey95') # should style args be in a config?
+    }
 
+    focus_geoms <- readRDS(sc_retrieve(focus_geoms_ind))
     plot(focus_geoms, add = TRUE, col = NA, border = 'grey40')
   }
   write_put_fun(plot_fun, ind_file)
@@ -22,9 +27,12 @@ prep_view_fun <- function(ind_file, view_polygon){
 }
 
 POSIX_from_filename <- function(filename){
-  # date_char <- gsub("\\[|\\]", "", regmatches(filename, gregexpr("\\[.*?\\]", filename))[[1]][1]) for other format...
-  date_char <- gsub("\\-|\\-", "", regmatches(filename, gregexpr("\\-.*?\\-", filename))[[1]][1])
-  as.POSIXct(date_char, format = '%Y%m%d_%H', tz = "UTC")
+  date_char <- gsub("\\[|\\]", "", regmatches(filename, gregexpr("\\[.*?\\]", filename))[[1]][1])
+  posix_out <- as.POSIXct(date_char, format = '%Y%m%d-%H', tz = "UTC")
+  if (is.na(posix_out)){
+    stop('Parsing error with', filename, call. = FALSE)
+  }
+  return(posix_out)
 }
 
 prep_storm_point_fun <- function(ind_file, storm_points_ind_file){
