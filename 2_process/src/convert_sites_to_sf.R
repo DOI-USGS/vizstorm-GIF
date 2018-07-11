@@ -3,13 +3,17 @@
 #' @param ind_file
 #' @param sites_ind indicator file for a data.frame with at least
 #'    the following columns: site_no, dec_lat_va, dec_long_va, flood_stage
-convert_sites_to_sf <- function(ind_file, sites_ind) {
+#' @param sites_custom_ind indicator file for a data.frame that has been put
+#'    through a custom filtering function with at least the site_no column
+convert_sites_to_sf <- function(ind_file, sites_ind, sites_custom_ind) {
 
   # read the sites data frame from the shared cache
   sites_df <- readRDS(sc_retrieve(sites_ind))
+  sites_custom_df <- readRDS(sc_retrieve(sites_ind))
+  sites_final_df <- dplyr::left_join(sites_custom_df, sites_df, by = "site_no")
 
   # convert to sf
-  sites_sf <- sf::st_as_sf(sites_df, coords = c("dec_long_va", "dec_lat_va"), crs = 4326)
+  sites_sf <- sf::st_as_sf(sites_final_df, coords = c("dec_long_va", "dec_lat_va"), crs = 4326)
 
   # write the data file and the indicator file
   data_file <- as_data_file(ind_file)

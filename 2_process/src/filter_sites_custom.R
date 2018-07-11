@@ -15,11 +15,9 @@ filter_sites_custom <- function(ind_file, sites_ind) {
     # only include sites with large drainage areas
     filter(drain_area_va > quantile(drain_area_va, 0.75, na.rm=TRUE))
 
-  final_sites_df <- left_join(sites_info_subset, sites_df, by = "site_no")
-
   # write the data file and the indicator file
   data_file <- as_data_file(ind_file)
-  saveRDS(final_sites_df, data_file)
+  saveRDS(sites_info_subset, data_file)
   gd_put(ind_file, data_file)
 
 }
