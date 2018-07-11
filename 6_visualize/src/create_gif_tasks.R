@@ -2,7 +2,7 @@
 
 
 
-create_gif_tasks <- function(timestep_ind, folders, view_ind, basemap_ind, storm_line_ind, cfg){
+create_gif_tasks <- function(timestep_ind, folders, view_ind, basemap_ind, storm_line_ind, storm_cfg){
 
   timestep <- readRDS(sc_retrieve(timestep_ind))
 
@@ -11,7 +11,7 @@ create_gif_tasks <- function(timestep_ind, folders, view_ind, basemap_ind, storm
   tasks <- tidyr::crossing(timestep, cfgs) %>%
     unite(task_name, cfgs, timestep, sep = '_', remove = F) %>%
     mutate(task_name = gsub(' ', '_', task_name),
-           date_hour = strftime(timestep, format = '%Y%m%d_%H', tz = 'UTC'))
+           date_hour = strftime(timestep, format = '%Y%m%d-%H', tz = 'UTC'))
 
   # function to sprintf a bunch of key-value (string-variableVector) pairs, then
   # paste them together with a good separator for constructing remake recipes
@@ -35,13 +35,13 @@ create_gif_tasks <- function(timestep_ind, folders, view_ind, basemap_ind, storm
       psprintf(
         "create_storm_frame(",
         "png_file=target_name",
-        "config='%s',"=cfg,
+        "config=storm_frame_config,",
         "'%s',"=view_ind,
         "'%s',"=basemap_ind,
         "'%s'"=storm_line_ind,
-        "5_vizprep/out/storm_point_%s.rds.ind,"=cur_task$date_hour,
-        "5_vizprep/out/precip_raster_%s.rds.ind,"=cur_task$date_hour,
-        "5_vizprep/out/streamdata_%s.rds.ind,"=cur_task$date_hour,
+        "'6_vizprep/out/storm_point_[%s].rds.ind',"=cur_task$date_hour,
+        "'6_vizprep/out/precip_raster_[%s].rds.ind',"=cur_task$date_hour,
+        "'6_vizprep/out/streamdata_[%s].rds.ind')"=cur_task$date_hour,
         sep="\n      ")
     }
   )
