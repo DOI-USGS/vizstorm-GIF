@@ -63,6 +63,9 @@ targets:
     command: create_gif_tasks(
       timestep_ind = '2_process/out/timesteps.rds.ind',
       folders = visualize_folders,
+      view_ind = '5_vizprep/out/view_fun.rds.ind',
+      basemap_ind = '5_vizprep/out/basemap_fun.rds.ind',
+      storm_line_ind = '5_vizprep/out/storm_line_fun.rds.ind',
       cfg = storm_frame_config)
 
   6_gif_tasks.yml:

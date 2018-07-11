@@ -2,7 +2,7 @@
 
 
 
-create_gif_tasks <- function(timestep_ind, folders, cfg){
+create_gif_tasks <- function(timestep_ind, folders, view_ind, basemap_ind, storm_line_ind, cfg){
 
   timestep <- readRDS(sc_retrieve(timestep_ind))
 
@@ -36,13 +36,12 @@ create_gif_tasks <- function(timestep_ind, folders, cfg){
         "create_storm_frame(",
         "png_file=target_name",
         "config='%s',"=cfg,
-        "6_visualize/out/style/basemap.rds.ind",
-        "6_visualize/out/style/focus_geoms.rds.ind",
-        "6_visualize/out/style/secondary_geoms.rds.ind",
-        "6_visualize/out/style/storm_line.rds.ind",
-        "6_visualize/out/style/storm_point_%s.rds.ind,"=cur_task$date_hour,
-        "6_visualize/out/style/precip_raster_%s.rds.ind,"=cur_task$date_hour,
-        "6_visualize/out/style/streamdata_%s.rds.ind,"=cur_task$date_hour,
+        "'%s',"=view_ind,
+        "'%s',"=basemap_ind,
+        "'%s'"=storm_line_ind,
+        "5_vizprep/out/storm_point_%s.rds.ind,"=cur_task$date_hour,
+        "5_vizprep/out/precip_raster_%s.rds.ind,"=cur_task$date_hour,
+        "5_vizprep/out/streamdata_%s.rds.ind,"=cur_task$date_hour,
         sep="\n      ")
     }
   )
