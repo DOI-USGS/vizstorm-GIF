@@ -32,7 +32,7 @@ targets:
     depends:
       - view_polygon
       - 1_fetch/out/storm_track.zip.ind
-      - 1_fetch/out/nws_stage_sites.feather.ind
+      - 1_fetch/out/nws_stage_sites.rds.ind
       - 1_fetch/out/streamdata.rds.ind
       - 1_fetch/out/precip_spatial.rds.ind
       - 1_fetch/out/precip_values.rds.ind
