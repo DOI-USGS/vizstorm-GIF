@@ -44,7 +44,7 @@ targets:
   2_process/out/storm_sites.feather.ind:
     command: filter_sites_custom(
       ind_file = target_name,
-      sites_file = '1_fetch/out/all_sites.rds.ind')
+      sites_file = '1_fetch/out/nws_stage_sites.feather.ind')
   2_process/out/storm_sites.feather:
     command: gd_get('2_process/out/storm_sites.feather.ind')
 

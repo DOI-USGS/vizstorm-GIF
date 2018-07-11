@@ -92,6 +92,8 @@ targets:
       ind_file = target_name,
       nwis_sites = all_sites,
       nws_nwis_crosswalk = nws_nwis_crosswalk)
+  1_fetch/out/nws_stage_sites.feather:
+    command: gd_get('1_fetch/out/nws_stage_sites.feather.ind')
 
   # -- get streamdata --
   1_fetch/out/streamdata.rds.ind:
