@@ -48,7 +48,8 @@ fetch_nws_to_nwis_crosswalk <- function(state_cds){
   for(s in state_cds) {
     conversion_url <- sprintf("http://www.nws.noaa.gov/oh/hads/USGS/%s_USGS-HADS_SITES.txt", s)
     conversion_table_state <- readr::read_delim(conversion_url,
-                                                delim = "|",skip = 4,col_names = FALSE)
+                                                delim = "|",skip = 4,col_names = FALSE,
+                                                col_types = readr::cols())
     conversion_table <- dplyr::bind_rows(conversion_table, conversion_table_state)
   }
 
