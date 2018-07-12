@@ -1,25 +1,22 @@
-fetch_river_geoms <- function(ind_file, view_polygon, sites, streamorder) {
+fetch_major_river_geoms <- function(ind_file, view_polygon, pre_simplify_m) {
 
-  sites <- readRDS(sc_retrieve(sites))
-
-  if(nrow(sites) > 30) {
-    set.seed(42)
-    sites <- sites[sample(seq_len(nrow(sites)), 30),]
-  }
-
-  bbox <- sf::st_bbox(sf::st_transform(view_polygon, 4326))
+  bbox <- st_bbox(st_transform(view_polygon, 4326))
 
   postURL <- "https://cida.usgs.gov/nwc/geoserver/nhdplus/ows"
 
+  # streamorder <- 4
+  # Leaving this here in case we want to add a property filter back
+  # '<ogc:And>',
+  # '<ogc:PropertyIsGreaterThan>',
+  # '<ogc:PropertyName>streamorde</ogc:PropertyName>',
+  # '<ogc:Literal>',streamorder,'</ogc:Literal>',
+  # '</ogc:PropertyIsGreaterThan>',
+  # ...
+  # '</ogc:And>',
   filterXML <- paste0('<?xml version="1.0"?>',
                       '<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" service="WFS" version="1.1.0" outputFormat="application/json" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">',
                       '<wfs:Query xmlns:feature="http://gov.usgs.cida/nhdplus" typeName="feature:nhdflowline_network" srsName="EPSG:4326">',
                       '<ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">',
-                      '<ogc:And>',
-                      '<ogc:PropertyIsGreaterThan>',
-                      '<ogc:PropertyName>streamorde</ogc:PropertyName>',
-                      '<ogc:Literal>',streamorder,'</ogc:Literal>',
-                      '</ogc:PropertyIsGreaterThan>',
                       '<ogc:BBOX>',
                       '<ogc:PropertyName>the_geom</ogc:PropertyName>',
                       '<gml:Envelope>',
@@ -27,37 +24,58 @@ fetch_river_geoms <- function(ind_file, view_polygon, sites, streamorder) {
                       '<gml:upperCorner>',bbox[4]," ",bbox[3],'</gml:upperCorner>',
                       '</gml:Envelope>',
                       '</ogc:BBOX>',
-                      '</ogc:And>',
                       '</ogc:Filter>',
                       '</wfs:Query>',
                       '</wfs:GetFeature>')
 
   out <- httr::POST(postURL, body = filterXML)
 
-  sf_major_rivers <- sf::read_sf(rawToChar(out$content)) %>%
-    sf::st_transform(sf::st_crs(view_polygon)) %>%
-    sf::st_simplify(5000)
+  sf_major_rivers <- read_sf(rawToChar(out$content)) %>%
+    st_transform(st_crs(view_polygon)) %>%
+    st_simplify(dTolerance = pre_simplify_m[[1]])
+
+  data_file <- as_data_file(ind_file)
+  saveRDS(sf_major_rivers, data_file)
+  gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
+}
+
+fetch_gage_river_geoms <- function(ind_file, view_polygon, sites_ind) {
+
+  sites <- readRDS(sc_retrieve(sites_ind))
+
+  if(nrow(sites) > 30) {
+    set.seed(42)
+    sites <- sites[sample(seq_len(nrow(sites)), 30),]
+  }
 
   site_list <- paste0("USGS-", sites$site_no)
 
   site_list_DM <- lapply(site_list, navigate_nldi, f_source = "nwissite", mode = "DM")
-  site_list_UP <- lapply(site_list, navigate_nldi, f_source = "nwissite", mode = "UM")
-  names(site_list_DM) <- names(site_list_UP) <- site_list
+  site_list_UM <- lapply(site_list, navigate_nldi, f_source = "nwissite", mode = "UM")
+  names(site_list_DM) <- names(site_list_UM) <- site_list
 
-  sf_DM <- sf_converter(site_list_DM)
-  sf_UM <- sf_converter(site_list_UP)
+  sf_DM <- sf_converter(site_list_DM) %>%
+    name_adder("down_main")
+  sf_UM <- sf_converter(site_list_UM) %>%
+    name_adder("up_main")
+
   sf_gage_rivers <- rbind(do.call(rbind, sf_UM), do.call(rbind, sf_DM)) %>%
-    sf::st_transform(sf::st_crs(view_polygon)) %>%
-    sf::st_simplify(5000)
+    st_transform(st_crs(view_polygon))
 
   data_file <- as_data_file(ind_file)
-  saveRDS(list(sf_gage_rivers = sf_gage_rivers, sf_major_rivers = sf_major_rivers), data_file)
+  saveRDS(sf_gage_rivers, data_file)
   gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
 }
 
+name_adder <- function(x, updn) {
+  lapply(seq_along(x), function(y, n, r, updn) {
+    mutate(y[[r]], site_id = n[[r]]) %>%
+    mutate(up_down = updn)},
+    n = names(x), y = x, updn = updn)
+}
 
 sf_converter <- function(x)
-  sapply(x, function(x) try(sf::read_sf(x), silent = TRUE),
+  sapply(x, function(x) try(read_sf(x), silent = TRUE),
          USE.NAMES = TRUE, simplify = FALSE)
 
 navigate_nldi <- function(f_id, f_source, mode = "UM",

@@ -22,6 +22,7 @@ sources:
   - 2_process/src/process_precip.R
   - 2_process/src/extract_storm_points.R
   - 2_process/src/interpolate_storm_points.R
+  - 2_process/src/process_river_geoms.R
   - 2_process/src/normalize_streamdata.R
 
 targets:
@@ -93,6 +94,20 @@ targets:
       coarse_points_ind='2_process/out/storm_points_coarse.rds.ind')
   2_process/out/storm_points_interp.rds:
     command: gd_get('2_process/out/storm_points_interp.rds.ind')
+
+  river_geom_config:
+    command: viz_config[I(c('coastal_threshold_sqkm',
+                          'inland_threshold_sqkm',
+                          'simplification_tolerance_m'))]
+
+  2_process/out/river_geoms.rds.ind:
+    command: process_river_geoms(
+      ind_file=target_name,
+      major_river_geoms_ind='1_fetch/out/major_river_geometry.rds.ind',
+      gage_river_geoms_ind='1_fetch/out/gage_river_geometry.rds.ind',
+      river_geom_config)
+  2_process/out/river_geoms.rds:
+    command: gd_get('2_process/out/river_geoms.rds.ind')
 
   2_process/out/normalized_streamdata.rds.ind:
     command: normalize_streamdata(
