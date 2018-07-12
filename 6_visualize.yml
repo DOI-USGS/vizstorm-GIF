@@ -21,6 +21,7 @@ sources:
   - 6_visualize/src/prep_storm_point_fun.R
   - 6_visualize/src/prep_storm_line_fun.R
   - 6_visualize/src/prep_rivers_fun.R
+  - 6_visualize/src/combine_storm_frames.R
 
 targets:
 
@@ -71,3 +72,28 @@ targets:
       makefile = target_name,
       task_plan = gif_tasks,
       remake_file = I('6_visualize.yml'))
+
+  # Build the timestep-specific functions and png files.
+  # When we like how this is looking, we can set task_names=NULL to build all frames.
+  # Call scmake('6_visualize/log/6_gif_tasks.ind', force=TRUE) to iterate.
+  trial_frames:
+    command: c(I(c(
+      'a_20170826_14',
+      'a_20170826_15',
+      'a_20170826_16')))
+  6_visualize/log/6_gif_tasks.ind:
+    command: loop_tasks(
+      task_plan=gif_tasks, task_makefile='6_gif_tasks.yml',
+      task_names=trial_frames,
+      num_tries=I(1), sleep_on_error=I(0))
+
+  # Combine the png files into a gif.
+  # For now, call scmake('6_visualize/out/gif_a.png', force=TRUE)
+  #   if any of the pngs have changed
+  # When we're close to done, we can add depends: 6_visualize/log/6_gif_tasks.ind
+  #   and set task_names=NULL to build all the frames.
+  6_visualize/out/gif_a.png:
+    command: combine_storm_frames(
+      gif_file=target_name,
+      task_names=trial_frames)
+
