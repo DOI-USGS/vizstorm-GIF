@@ -1,8 +1,8 @@
 version: 0.3.0
 name: 1_fetch/out/all_sites.rds.ind
 type: file
-hash: 859a381d3ee176a1c2f8eabdae6ed318
-time: 2018-07-11 21:56:27 UTC
+hash: c8dd7bc245b18b9ddf6a96f701677b06
+time: 2018-07-12 01:10:10 UTC
 depends:
   state_cds: 51daf5668781ff87d8656d10e5c8d621
   dates: 5a6317d91a1fb110e6a154ea8c391fec
