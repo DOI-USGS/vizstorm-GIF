@@ -1,4 +1,45 @@
-fetch_river_geoms <- function(ind_file, view_polygon, sites_ind) {
+fetch_major_river_geoms <- function(ind_file, view_polygon, pre_simplify_m) {
+
+  bbox <- st_bbox(st_transform(view_polygon, 4326))
+
+  postURL <- "https://cida.usgs.gov/nwc/geoserver/nhdplus/ows"
+
+  # streamorder <- 4
+  # Leaving this here in case we want to add a property filter back
+  # '<ogc:And>',
+  # '<ogc:PropertyIsGreaterThan>',
+  # '<ogc:PropertyName>streamorde</ogc:PropertyName>',
+  # '<ogc:Literal>',streamorder,'</ogc:Literal>',
+  # '</ogc:PropertyIsGreaterThan>',
+  # ...
+  # '</ogc:And>',
+  filterXML <- paste0('<?xml version="1.0"?>',
+                      '<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" service="WFS" version="1.1.0" outputFormat="application/json" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">',
+                      '<wfs:Query xmlns:feature="http://gov.usgs.cida/nhdplus" typeName="feature:nhdflowline_network" srsName="EPSG:4326">',
+                      '<ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">',
+                      '<ogc:BBOX>',
+                      '<ogc:PropertyName>the_geom</ogc:PropertyName>',
+                      '<gml:Envelope>',
+                      '<gml:lowerCorner>',bbox[2]," ",bbox[1],'</gml:lowerCorner>',
+                      '<gml:upperCorner>',bbox[4]," ",bbox[3],'</gml:upperCorner>',
+                      '</gml:Envelope>',
+                      '</ogc:BBOX>',
+                      '</ogc:Filter>',
+                      '</wfs:Query>',
+                      '</wfs:GetFeature>')
+
+  out <- httr::POST(postURL, body = filterXML)
+
+  sf_major_rivers <- read_sf(rawToChar(out$content)) %>%
+    st_transform(st_crs(view_polygon)) %>%
+    st_simplify(dTolerance = pre_simplify_m[[1]])
+
+  data_file <- as_data_file(ind_file)
+  saveRDS(sf_major_rivers, data_file)
+  gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
+}
+
+fetch_gage_river_geoms <- function(ind_file, view_polygon, sites_ind) {
 
   sites <- readRDS(sc_retrieve(sites_ind))
 
@@ -7,55 +48,22 @@ fetch_river_geoms <- function(ind_file, view_polygon, sites_ind) {
     sites <- sites[sample(seq_len(nrow(sites)), 30),]
   }
 
-  bbox <- st_bbox(st_transform(view_polygon, 4326))
-
-  postURL <- "https://cida.usgs.gov/nwc/geoserver/nhdplus/ows"
-
-  streamorder <- 4 # getting more than we need but not all!
-  filterXML <- paste0('<?xml version="1.0"?>',
-                      '<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" service="WFS" version="1.1.0" outputFormat="application/json" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">',
-                      '<wfs:Query xmlns:feature="http://gov.usgs.cida/nhdplus" typeName="feature:nhdflowline_network" srsName="EPSG:4326">',
-                      '<ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">',
-                      '<ogc:And>',
-                      '<ogc:PropertyIsGreaterThan>',
-                      '<ogc:PropertyName>streamorde</ogc:PropertyName>',
-                      '<ogc:Literal>',streamorder,'</ogc:Literal>',
-                      '</ogc:PropertyIsGreaterThan>',
-                      '<ogc:BBOX>',
-                      '<ogc:PropertyName>the_geom</ogc:PropertyName>',
-                      '<gml:Envelope>',
-                      '<gml:lowerCorner>',bbox[2]," ",bbox[1],'</gml:lowerCorner>',
-                      '<gml:upperCorner>',bbox[4]," ",bbox[3],'</gml:upperCorner>',
-                      '</gml:Envelope>',
-                      '</ogc:BBOX>',
-                      '</ogc:And>',
-                      '</ogc:Filter>',
-                      '</wfs:Query>',
-                      '</wfs:GetFeature>')
-
-  out <- httr::POST(postURL, body = filterXML)
-
-  sf_major_rivers <- read_sf(rawToChar(out$content)) %>%
-    st_transform(st_crs(view_polygon))
-
-  # Gage Rivers #
   site_list <- paste0("USGS-", sites$site_no)
 
   site_list_DM <- lapply(site_list, navigate_nldi, f_source = "nwissite", mode = "DM")
   site_list_UM <- lapply(site_list, navigate_nldi, f_source = "nwissite", mode = "UM")
   names(site_list_DM) <- names(site_list_UM) <- site_list
 
-  sf_DM <- sf_converter(site_list_DM)
-  sf_UM <- sf_converter(site_list_UM)
+  sf_DM <- sf_converter(site_list_DM) %>%
+    name_adder("down_main")
+  sf_UM <- sf_converter(site_list_UM) %>%
+    name_adder("up_main")
 
-  sf_DM <- name_adder(sf_DM, "down_main")
-  sf_UM <- name_adder(sf_UM, "up_main")
-
-  sf_gage_rivers_ <- rbind(do.call(rbind, sf_UM), do.call(rbind, sf_DM)) %>%
+  sf_gage_rivers <- rbind(do.call(rbind, sf_UM), do.call(rbind, sf_DM)) %>%
     st_transform(st_crs(view_polygon))
 
   data_file <- as_data_file(ind_file)
-  saveRDS(list(sf_gage_rivers = sf_gage_rivers, sf_major_rivers = sf_major_rivers), data_file)
+  saveRDS(sf_gage_rivers, data_file)
   gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
 }
 

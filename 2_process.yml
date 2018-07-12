@@ -93,13 +93,16 @@ targets:
   2_process/out/storm_points_interp.rds:
     command: gd_get('2_process/out/storm_points_interp.rds.ind')
 
+  river_geom_config:
+    command: viz_config[I(c('coastal_threshold_sqkm',
+                          'inland_threshold_sqkm',
+                          'simplification_tolerance_m'))]
+
   2_process/out/river_geoms.rds.ind:
     command: process_river_geoms(
       ind_file=target_name,
-      river_geoms_ind='1_fetch/out/river_geometry.rds.ind',
-      view_polygon=view_polygon,
-      coastal_threshold_sqkm=1000,
-      inland_threshold_sqkm=40000,
-      simplification_tolerance_m=5000)
+      major_river_geoms_ind='1_fetch/out/major_river_geometry.rds.ind',
+      gage_river_geoms_ind='1_fetch/out/gage_river_geometry.rds.ind',
+      river_geom_config)
   2_process/out/river_geoms.rds:
     command: gd_get('2_process/out/river_geoms.rds.ind')

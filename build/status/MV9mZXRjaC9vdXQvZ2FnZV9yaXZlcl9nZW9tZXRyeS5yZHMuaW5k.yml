@@ -1,15 +1,15 @@
 version: 0.3.0
-name: 1_fetch/out/river_geometry.rds.ind
+name: 1_fetch/out/gage_river_geometry.rds.ind
 type: file
-hash: 8fb31718c9f7d90cfe65d621d2b95054
-time: 2018-07-12 16:20:09 UTC
+hash: ac7bdb00abadb714f648961382d98fe9
+time: 2018-07-12 17:30:02 UTC
 depends:
   view_polygon: 7ac3d28632d1dfbad8fd1b6044d4485a
   2_process/out/storm_sites.rds.ind: f77655f61f398d78ecb5fb916e6a9f8c
-fixed: d7098f485e2fc35d4d1618902114ccf0
+fixed: 7243ce850b5547c0122bb147e1bd46ee
 code:
   functions:
-    fetch_river_geoms: 6b64a2f2600be100875f94973fdeb050
+    fetch_gage_river_geoms: c0c4e4405b4ae7aa7750e212c18e6f1c
     name_adder: e0647e7114e48aeda1f1be04e1175bae
     navigate_nldi: 39a2fe82d45eba5792f9880f7c0e81d6
     sf_converter: ab102942b8d4e6c8c3989857eb6fc24d

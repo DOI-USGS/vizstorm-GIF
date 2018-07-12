@@ -1,13 +1,14 @@
 process_river_geoms <- function(ind_file,
-                                view_polygon,
-                                river_geoms_ind,
-                                coastal_threshold_sqkm,
-                                inland_threshold_sqkm,
-                                simplification_tolerance_m) {
+                                major_river_geoms_ind,
+                                gage_river_geoms_ind,
+                                river_geom_config) {
 
-  sf_rivers <- readRDS(sc_retrieve(river_geoms_ind))
+  coastal_threshold_sqkm <- river_geom_config$coastal_threshold_sqkm
+  inland_threshold_sqkm <- river_geom_config$inland_threshold_sqkm
+  simplification_tolerance_m <- river_geom_config$simplification_tolerance_m
 
-  sf_major_rivers <- sf_rivers$sf_major_rivers
+  sf_major_rivers <- readRDS(sc_retrieve(major_river_geoms_ind))
+  sf_gage_rivers <- readRDS(sc_retrieve(gage_river_geoms_ind))
 
   outlets <- filter(sf_major_rivers,
                     (terminalfl == 1 &
@@ -27,7 +28,7 @@ process_river_geoms <- function(ind_file,
     st_cast("LINESTRING") %>%
     st_simplify(dTolerance = simplification_tolerance_m)
 
-  sf_gage_rivers <- sf_rivers$sf_gage_rivers %>%
+  sf_gage_rivers <- sf_gage_rivers %>%
     group_by(site_id, up_down) %>%
     summarise() %>%
     st_cast("MULTILINESTRING") %>%

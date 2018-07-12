@@ -19,5 +19,10 @@ secondary_geoms:
     xlim: [275, 300]
     ylim: [16, 30]
 
+# Change will cause refetch of entire nhdplus for view_polygon
+fetch_simplification_tolerance_m: 500
 
-
+# Change only affects river geom process step
+coastal_threshold_sqkm: 1000
+inland_threshold_sqkm: 40000
+simplification_tolerance_m: 5000

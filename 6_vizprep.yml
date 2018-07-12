@@ -42,6 +42,6 @@ targets:
     command: gd_get('6_vizprep/out/storm_line_fun.rds.ind')
 
   6_vizprep/out/rivers_fun.rds.ind:
-    command: prep_rivers_fun(target_name, '1_fetch/out/river_geometry.rds.ind')
+    command: prep_rivers_fun(target_name, '2_process/out/river_geoms.rds.ind')
   6_vizprep/out/rivers_fun.rds:
     command: gd_get('6_vizprep/out/rivers_fun.rds.ind')
