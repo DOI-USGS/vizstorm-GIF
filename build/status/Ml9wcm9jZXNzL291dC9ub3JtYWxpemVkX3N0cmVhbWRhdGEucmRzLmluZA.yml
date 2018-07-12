@@ -1,0 +1,12 @@
+version: 0.3.0
+name: 2_process/out/normalized_streamdata.rds.ind
+type: file
+hash: 507ebd90aca70434366d831ec343dafd
+time: 2018-07-12 17:31:32 UTC
+depends:
+  1_fetch/out/streamdata.rds.ind: 2ff39a172a1fb48f06f8db4a088c0f9b
+fixed: e8220ed7526ce5e94f7e6256176d60db
+code:
+  functions:
+    normalize_streamdata: b04878db75507c76d589b6da077eb012
+
