@@ -12,6 +12,7 @@ precip_bin: 4 # inches per bin
 gage_flood_col: "#175676"
 gage_norm_col: "#4BA3C3"
 hurricane_col: "orange"
+delay_between_frames_cs: 8 # delay between frames of the gif animation. cs = centiseconds = hundredths of a second
 
 focus_geoms:
   - # U.S. counties
