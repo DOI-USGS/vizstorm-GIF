@@ -35,7 +35,7 @@ create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_storm_point_fun('2_process/out/storm_points_interp.rds.ind', I('%s'))", cur_task$timestep) # pass in storm_points.ind as arg to create_gif_tasks??
+      sprintf("prep_storm_point_fun('2_process/out/storm_points_interp.rds.ind', I('%s'), hurricane_col)", cur_task$timestep) # pass in storm_points.ind as arg to create_gif_tasks??
     }
   )
 
