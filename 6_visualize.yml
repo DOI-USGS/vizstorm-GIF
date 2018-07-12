@@ -15,12 +15,13 @@ sources:
   - 6_visualize/src/create_gif_tasks.R
   - 6_visualize/src/create_gif_makefile.R
   - 6_visualize/src/create_storm_frame.R
-  - 6_visualize/src/prep_plot_funs.R
+  - 6_visualize/src/prep_watermark_fun.R
   - 6_visualize/src/prep_basemap_fun.R
   - 6_visualize/src/prep_view_fun.R
   - 6_visualize/src/prep_storm_point_fun.R
   - 6_visualize/src/prep_storm_line_fun.R
   - 6_visualize/src/prep_rivers_fun.R
+  - 6_visualize/src/prep_legend_fun.R
 
 targets:
 
@@ -56,6 +57,9 @@ targets:
 
   rivers_fun:
     command: prep_rivers_fun('1_fetch/out/river_geometry.rds.ind')
+
+  legend_fun:
+    command: prep_legend_fun(precip_bins = precip_bins)
 
   watermark_fun:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png')
