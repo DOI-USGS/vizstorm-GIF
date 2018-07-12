@@ -22,6 +22,7 @@ sources:
   - 2_process/src/process_precip.R
   - 2_process/src/extract_storm_points.R
   - 2_process/src/interpolate_storm_points.R
+  - 2_process/src/normalize_streamdata.R
 
 targets:
 
