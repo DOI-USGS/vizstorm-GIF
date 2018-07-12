@@ -6,6 +6,9 @@ bbox: [-100, 22, -80, 34]
 projection: "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"
 height: 512
 width: 1024
+precip_cols: ["#FAFBF3", "#F0F8E3", "#D4E9CA", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
+precip_bin: 4 # inches per bin
+
 focus_geoms:
   - # U.S. counties
     database: county
@@ -14,10 +17,13 @@ focus_geoms:
 
 secondary_geoms:
   - # non-U.S. islands
-    database: mapdata::world2Hires
+    database: "mapdata::world2Hires"
     regions: "(?!USA)"
     xlim: [275, 300]
     ylim: [16, 30]
+  - # Mexico
+    database: "mapdata::worldHires"
+    regions: "Mexico"
 
 # Change will cause refetch of entire nhdplus for view_polygon
 # This is input to sf::st_simplify on the NHDPlus flowlines that
