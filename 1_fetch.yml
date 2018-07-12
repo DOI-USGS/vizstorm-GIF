@@ -13,6 +13,8 @@ packages:
   - ncdf4
   - arrayhelpers
   - dplyr
+  - xml2
+  - jsonlite
 
 file_extensions:
   - ind
@@ -24,6 +26,7 @@ sources:
   - 1_fetch/src/fetch_sites.R
   - 1_fetch/src/fetch_precip_spatial.R
   - 1_fetch/src/fetch_precip_values.R
+  - 1_fetch/src/fetch_river_geometry.R
 
 targets:
 
@@ -77,10 +80,12 @@ targets:
     command: gd_get('1_fetch/out/storm_track.zip.ind')
 
   # -- get sites and site info --
+  state_cds:
+    command: fetch_states_from_sf(sf_ind = '1_fetch/out/focus_geoms.rds.ind')
   1_fetch/out/all_sites.rds.ind:
-    command: fetch_sites_from_sf(
+    command: fetch_sites_from_states(
       ind_file = target_name,
-      sf_ind = '1_fetch/out/focus_geoms.rds.ind',
+      state_cds = state_cds,
       dates = dates,
       stream_params = stream_params)
   1_fetch/out/all_sites.rds:
@@ -90,7 +95,7 @@ targets:
   1_fetch/out/streamdata.rds.ind:
     command: fetch_streamdata(
       ind_file = target_name,
-      sites = '2_process/out/storm_sites.feather.ind',
+      sites_ind = '2_process/out/storm_sites.rds.ind',
       dates = dates,
       stream_params = stream_params,
       gd_config = 'lib/cfg/gd_config.yml')
@@ -106,6 +111,13 @@ targets:
     command: fetch_precip_values(target_name,
                                  precip_spatial_ind='1_fetch/out/precip_spatial.rds.ind',
                                  dates)
-
   1_fetch/out/precip_values.rds:
     command: gd_get('1_fetch/out/precip_values.rds.ind')
+
+  1_fetch/out/river_geometry.rds.ind:
+    command: fetch_river_geoms(ind_fil=target_name,
+                               view_polygon=view_polygon,
+                               sites='2_process/out/storm_sites.rds.ind',
+                               streamorder=6)
+  1_fetch/out/river_geometry.rds:
+    command: gd_get('1_fetch/out/river_geometry.rds.ind')
