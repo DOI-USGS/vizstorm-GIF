@@ -20,9 +20,18 @@ secondary_geoms:
     ylim: [16, 30]
 
 # Change will cause refetch of entire nhdplus for view_polygon
+# This is input to sf::st_simplify on the NHDPlus flowlines that
+# are downloaded by the fetcher that uses it. Reduce it if you
+# are going to reduce simplification_tolerance_m below it.
+# a value of about 30m will have no affect on the data anything
+# greater will remove increasingly more curvature from lines.
 fetch_simplification_tolerance_m: 500
 
-# Change only affects river geom process step
+# Changes only affect river geom process step.
+# Coastal threshold controls the drainage area used to limit
+# flowlines that terminate at the ocean. Inland threshold
+# controls the drainage area used to limit tributary flowlines
+# that terminate into other flowlines.
 coastal_threshold_sqkm: 1000
 inland_threshold_sqkm: 40000
 simplification_tolerance_m: 5000
