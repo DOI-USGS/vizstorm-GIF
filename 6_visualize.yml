@@ -56,40 +56,25 @@ targets:
       tmp=I('6_visualize/tmp'),
       log=I('6_visualize/log'))
 
-  6_vizprep/out/view_fun.rds.ind:
-    command: prep_view_fun(target_name, view_polygon)
-  6_vizprep/out/view_fun.rds:
-    command: gd_get('6_vizprep/out/view_fun.rds.ind')
+  view_fun:
+    command: prep_view_fun(view_polygon)
 
-  6_vizprep/out/basemap_fun.rds.ind:
-    command: prep_basemap_fun(target_name, '1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind')
-  6_vizprep/out/basemap_fun.rds:
-    command: gd_get('6_vizprep/out/basemap_fun.rds.ind')
+  basemap_fun:
+    command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind')
 
-  6_vizprep/out/storm_line_fun.rds.ind:
-    command: prep_storm_line_fun(target_name, "2_process/out/storm_line.rds.ind")
-  6_vizprep/out/storm_line_fun.rds:
-    command: gd_get('6_vizprep/out/storm_line_fun.rds.ind')
+  storm_line_fun:
+    command: prep_storm_line_fun("2_process/out/storm_line.rds.ind")
 
-  6_vizprep/out/rivers_fun.rds.ind:
-    command: prep_rivers_fun(target_name, '1_fetch/out/river_geometry.rds.ind')
-  6_vizprep/out/rivers_fun.rds:
-    command: gd_get('6_vizprep/out/rivers_fun.rds.ind')
+  rivers_fun:
+    command: prep_rivers_fun('1_fetch/out/river_geometry.rds.ind')
 
-  6_vizprep/out/watermark_fun.rds.ind:
-    command: prep_watermark_fun(target_name, '6_visualize/in/usgs_logo_black.png')
-  6_vizprep/out/watermark_fun.rds:
-    command: gd_get('6_vizprep/out/watermark_fun.rds.ind')
+  watermark_fun:
+    command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png')
 
   gif_tasks:
     command: create_gif_tasks(
       timestep_ind = '2_process/out/timesteps.rds.ind',
       folders = visualize_folders,
-      view_ind = '6_vizprep/out/view_fun.rds.ind',
-      basemap_ind = '6_vizprep/out/basemap_fun.rds.ind',
-      storm_line_ind = '6_vizprep/out/storm_line_fun.rds.ind',
-      river_lines_ind = '6_vizprep/out/rivers_fun.rds.ind',
-      watermark_ind = '6_vizprep/out/watermark_fun.rds.ind',
       storm_cfg = storm_frame_config)
 
   6_gif_tasks.yml:

@@ -2,7 +2,8 @@
 
 
 
-create_gif_tasks <- function(timestep_ind, folders, view_ind, basemap_ind, storm_line_ind, river_lines_ind, watermark_ind, storm_cfg){
+create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
+
 
   message('subsetting times to simplify for now')
   timestep <- readRDS(sc_retrieve(timestep_ind))[1:10]
@@ -12,8 +13,9 @@ create_gif_tasks <- function(timestep_ind, folders, view_ind, basemap_ind, storm
 
   tasks <- tidyr::crossing(timestep, cfgs) %>%
     unite(task_name, cfgs, timestep, sep = '_', remove = F) %>%
-    mutate(date_hour = strftime(timestep, format = '%Y%m%d-%H', tz = 'UTC'),
-           task_name = gsub("-","_", sprintf("%s-%s", cfgs, date_hour)))
+    mutate(date_hour = strftime(timestep, format = '%Y%m%d_%H', tz = 'UTC'),
+           task_name = sprintf("%s_%s", cfgs, date_hour))
+
   # function to sprintf a bunch of key-value (string-variableVector) pairs, then
   # paste them together with a good separator for constructing remake recipes
   psprintf <- function(..., sep='\n      ') {
@@ -29,23 +31,11 @@ create_gif_tasks <- function(timestep_ind, folders, view_ind, basemap_ind, storm
     step_name = 'point_frame',
     target_name = function(task_name, step_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf('6_vizprep/out/storm_point_[%s].rds.ind', cur_task$date_hour)
+      sprintf('storm_point_%s', task_name)
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_storm_point_fun(target_name, '2_process/out/storm_points_interp.rds.ind')", cur_task$date_hour)
-    }
-  )
-
-  get_point_frame <- scipiper::create_task_step(
-    step_name = 'get_point_frame',
-    target_name = function(task_name, step_name, ...){
-      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf('6_vizprep/out/storm_point_[%s].rds', cur_task$date_hour)
-    },
-    command = function(task_name, ...){
-      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("gd_get('6_vizprep/out/storm_point_[%s].rds.ind')", cur_task$date_hour)
+      sprintf("prep_storm_point_fun('2_process/out/storm_points_interp.rds.ind', I('%s'))", cur_task$timestep) # pass in storm_points.ind as arg to create_gif_tasks??
     }
   )
 
@@ -56,17 +46,16 @@ create_gif_tasks <- function(timestep_ind, folders, view_ind, basemap_ind, storm
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-
       psprintf(
         "create_storm_frame(",
         "png_file=target_name,",
         "config=storm_frame_config,",
-        "'%s',"=view_ind,
-        "'%s',"=basemap_ind,
-        "'%s',"=river_lines_ind,
-        "'%s',"=storm_line_ind,
-        "'6_vizprep/out/storm_point_[%s].rds.ind',"=cur_task$date_hour,
-        "'%s')"=watermark_ind,
+        "view_fun,",
+        "basemap_fun,",
+        "rivers_fun,",
+        "storm_line_fun,",
+        "storm_point_%s,"= cur_task$tn,
+        "watermark_fun)",
         #"'6_vizprep/out/streamdata_[%s].rds.ind')"=cur_task$date_hour,
         #"'6_vizprep/out/precip_raster_[%s].rds.ind',"=cur_task$date_hour, # need to add: precip_raster_[YYYmmdd-HH]_fun.rds.ind
         sep="\n      ")
@@ -75,7 +64,7 @@ create_gif_tasks <- function(timestep_ind, folders, view_ind, basemap_ind, storm
 
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
-    task_steps=list(point_frame, get_point_frame, gif_frame),
+    task_steps=list(point_frame, gif_frame),
     add_complete=FALSE,
     final_steps='gif_frame',
     ind_dir=folders$log)

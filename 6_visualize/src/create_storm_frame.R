@@ -5,10 +5,9 @@ create_storm_frame <- function(png_file, config, ...) {
 
   # plot the pieces in order, passing through data files or R objects from the
   # scipiper pipeline
-  plot_function_inds <- c(...)
+  plot_funs <- c(...)
 
-  for (plot_fun_ind in plot_function_inds){
-    plot_fun <- readRDS(sc_retrieve(plot_fun_ind))
+  for (plot_fun in plot_funs){
     plot_fun()
   }
 

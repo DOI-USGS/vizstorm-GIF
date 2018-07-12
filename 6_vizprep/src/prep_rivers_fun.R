@@ -1,5 +1,5 @@
 
-prep_rivers_fun <- function(ind_file, river_ind){
+prep_rivers_fun <- function(river_ind){
 
   sf_rivers <- readRDS(sc_retrieve(river_ind))
 
@@ -8,5 +8,5 @@ prep_rivers_fun <- function(ind_file, river_ind){
     plot(sf_rivers$sf_major_rivers$geometry, col = "dodgerblue3", lwd = 1, add = TRUE)
   }
 
-  write_put_fun(plot_fun, ind_file)
+  return(plot_fun)
 }
