@@ -76,6 +76,10 @@ targets:
   6_vizprep/out/rivers_fun.rds:
     command: gd_get('6_vizprep/out/rivers_fun.rds.ind')
 
+  6_vizprep/out/watermark_fun.rds.ind:
+    command: prep_watermark_fun(target_name, '6_visualize/in/usgs_logo_black.png')
+  6_vizprep/out/watermark_fun.rds:
+    command: gd_get('6_vizprep/out/watermark_fun.rds.ind')
 
   gif_tasks:
     command: create_gif_tasks(
@@ -85,6 +89,7 @@ targets:
       basemap_ind = '6_vizprep/out/basemap_fun.rds.ind',
       storm_line_ind = '6_vizprep/out/storm_line_fun.rds.ind',
       river_lines_ind = '6_vizprep/out/rivers_fun.rds.ind',
+      watermark_ind = '6_vizprep/out/watermark_fun.rds.ind',
       storm_cfg = storm_frame_config)
 
   6_gif_tasks.yml:

@@ -35,7 +35,8 @@ targets:
       '6_vizprep/out/basemap_fun.rds.ind',
       '6_vizprep/out/rivers_fun.rds.ind',
       '6_vizprep/out/storm_line_fun.rds.ind',
-      '6_vizprep/out/storm_point_[20170825-01].rds.ind')
+      '6_vizprep/out/storm_point_[20170825-01].rds.ind',
+      '6_vizprep/out/watermark_fun.rds.ind')
 
   # --- a_20170825_02 --- #
   
@@ -53,7 +54,8 @@ targets:
       '6_vizprep/out/basemap_fun.rds.ind',
       '6_vizprep/out/rivers_fun.rds.ind',
       '6_vizprep/out/storm_line_fun.rds.ind',
-      '6_vizprep/out/storm_point_[20170825-02].rds.ind')
+      '6_vizprep/out/storm_point_[20170825-02].rds.ind',
+      '6_vizprep/out/watermark_fun.rds.ind')
 
   # --- a_20170825_03 --- #
   
@@ -71,7 +73,141 @@ targets:
       '6_vizprep/out/basemap_fun.rds.ind',
       '6_vizprep/out/rivers_fun.rds.ind',
       '6_vizprep/out/storm_line_fun.rds.ind',
-      '6_vizprep/out/storm_point_[20170825-03].rds.ind')
+      '6_vizprep/out/storm_point_[20170825-03].rds.ind',
+      '6_vizprep/out/watermark_fun.rds.ind')
+
+  # --- a_20170825_04 --- #
+  
+  6_vizprep/out/storm_point_[20170825-04].rds.ind:
+    command: prep_storm_point_fun(target_name, '2_process/out/storm_points_interp.rds.ind')
+
+  6_vizprep/out/storm_point_[20170825-04].rds:
+    command: gd_get('6_vizprep/out/storm_point_[20170825-04].rds.ind')
+
+  6_visualize/tmp/gif_frame_a_20170825_04.png:
+    command: create_storm_frame(
+      png_file=target_name,
+      config=storm_frame_config,
+      '6_vizprep/out/view_fun.rds.ind',
+      '6_vizprep/out/basemap_fun.rds.ind',
+      '6_vizprep/out/rivers_fun.rds.ind',
+      '6_vizprep/out/storm_line_fun.rds.ind',
+      '6_vizprep/out/storm_point_[20170825-04].rds.ind',
+      '6_vizprep/out/watermark_fun.rds.ind')
+
+  # --- a_20170825_05 --- #
+  
+  6_vizprep/out/storm_point_[20170825-05].rds.ind:
+    command: prep_storm_point_fun(target_name, '2_process/out/storm_points_interp.rds.ind')
+
+  6_vizprep/out/storm_point_[20170825-05].rds:
+    command: gd_get('6_vizprep/out/storm_point_[20170825-05].rds.ind')
+
+  6_visualize/tmp/gif_frame_a_20170825_05.png:
+    command: create_storm_frame(
+      png_file=target_name,
+      config=storm_frame_config,
+      '6_vizprep/out/view_fun.rds.ind',
+      '6_vizprep/out/basemap_fun.rds.ind',
+      '6_vizprep/out/rivers_fun.rds.ind',
+      '6_vizprep/out/storm_line_fun.rds.ind',
+      '6_vizprep/out/storm_point_[20170825-05].rds.ind',
+      '6_vizprep/out/watermark_fun.rds.ind')
+
+  # --- a_20170825_06 --- #
+  
+  6_vizprep/out/storm_point_[20170825-06].rds.ind:
+    command: prep_storm_point_fun(target_name, '2_process/out/storm_points_interp.rds.ind')
+
+  6_vizprep/out/storm_point_[20170825-06].rds:
+    command: gd_get('6_vizprep/out/storm_point_[20170825-06].rds.ind')
+
+  6_visualize/tmp/gif_frame_a_20170825_06.png:
+    command: create_storm_frame(
+      png_file=target_name,
+      config=storm_frame_config,
+      '6_vizprep/out/view_fun.rds.ind',
+      '6_vizprep/out/basemap_fun.rds.ind',
+      '6_vizprep/out/rivers_fun.rds.ind',
+      '6_vizprep/out/storm_line_fun.rds.ind',
+      '6_vizprep/out/storm_point_[20170825-06].rds.ind',
+      '6_vizprep/out/watermark_fun.rds.ind')
+
+  # --- a_20170825_07 --- #
+  
+  6_vizprep/out/storm_point_[20170825-07].rds.ind:
+    command: prep_storm_point_fun(target_name, '2_process/out/storm_points_interp.rds.ind')
+
+  6_vizprep/out/storm_point_[20170825-07].rds:
+    command: gd_get('6_vizprep/out/storm_point_[20170825-07].rds.ind')
+
+  6_visualize/tmp/gif_frame_a_20170825_07.png:
+    command: create_storm_frame(
+      png_file=target_name,
+      config=storm_frame_config,
+      '6_vizprep/out/view_fun.rds.ind',
+      '6_vizprep/out/basemap_fun.rds.ind',
+      '6_vizprep/out/rivers_fun.rds.ind',
+      '6_vizprep/out/storm_line_fun.rds.ind',
+      '6_vizprep/out/storm_point_[20170825-07].rds.ind',
+      '6_vizprep/out/watermark_fun.rds.ind')
+
+  # --- a_20170825_08 --- #
+  
+  6_vizprep/out/storm_point_[20170825-08].rds.ind:
+    command: prep_storm_point_fun(target_name, '2_process/out/storm_points_interp.rds.ind')
+
+  6_vizprep/out/storm_point_[20170825-08].rds:
+    command: gd_get('6_vizprep/out/storm_point_[20170825-08].rds.ind')
+
+  6_visualize/tmp/gif_frame_a_20170825_08.png:
+    command: create_storm_frame(
+      png_file=target_name,
+      config=storm_frame_config,
+      '6_vizprep/out/view_fun.rds.ind',
+      '6_vizprep/out/basemap_fun.rds.ind',
+      '6_vizprep/out/rivers_fun.rds.ind',
+      '6_vizprep/out/storm_line_fun.rds.ind',
+      '6_vizprep/out/storm_point_[20170825-08].rds.ind',
+      '6_vizprep/out/watermark_fun.rds.ind')
+
+  # --- a_20170825_09 --- #
+  
+  6_vizprep/out/storm_point_[20170825-09].rds.ind:
+    command: prep_storm_point_fun(target_name, '2_process/out/storm_points_interp.rds.ind')
+
+  6_vizprep/out/storm_point_[20170825-09].rds:
+    command: gd_get('6_vizprep/out/storm_point_[20170825-09].rds.ind')
+
+  6_visualize/tmp/gif_frame_a_20170825_09.png:
+    command: create_storm_frame(
+      png_file=target_name,
+      config=storm_frame_config,
+      '6_vizprep/out/view_fun.rds.ind',
+      '6_vizprep/out/basemap_fun.rds.ind',
+      '6_vizprep/out/rivers_fun.rds.ind',
+      '6_vizprep/out/storm_line_fun.rds.ind',
+      '6_vizprep/out/storm_point_[20170825-09].rds.ind',
+      '6_vizprep/out/watermark_fun.rds.ind')
+
+  # --- a_20170825_10 --- #
+  
+  6_vizprep/out/storm_point_[20170825-10].rds.ind:
+    command: prep_storm_point_fun(target_name, '2_process/out/storm_points_interp.rds.ind')
+
+  6_vizprep/out/storm_point_[20170825-10].rds:
+    command: gd_get('6_vizprep/out/storm_point_[20170825-10].rds.ind')
+
+  6_visualize/tmp/gif_frame_a_20170825_10.png:
+    command: create_storm_frame(
+      png_file=target_name,
+      config=storm_frame_config,
+      '6_vizprep/out/view_fun.rds.ind',
+      '6_vizprep/out/basemap_fun.rds.ind',
+      '6_vizprep/out/rivers_fun.rds.ind',
+      '6_vizprep/out/storm_line_fun.rds.ind',
+      '6_vizprep/out/storm_point_[20170825-10].rds.ind',
+      '6_vizprep/out/watermark_fun.rds.ind')
 
   # --- Overall job --- #
 
@@ -81,3 +217,10 @@ targets:
       - 6_visualize/tmp/gif_frame_a_20170825_01.png
       - 6_visualize/tmp/gif_frame_a_20170825_02.png
       - 6_visualize/tmp/gif_frame_a_20170825_03.png
+      - 6_visualize/tmp/gif_frame_a_20170825_04.png
+      - 6_visualize/tmp/gif_frame_a_20170825_05.png
+      - 6_visualize/tmp/gif_frame_a_20170825_06.png
+      - 6_visualize/tmp/gif_frame_a_20170825_07.png
+      - 6_visualize/tmp/gif_frame_a_20170825_08.png
+      - 6_visualize/tmp/gif_frame_a_20170825_09.png
+      - 6_visualize/tmp/gif_frame_a_20170825_10.png
