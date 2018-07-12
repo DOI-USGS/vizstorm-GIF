@@ -22,7 +22,7 @@ secondary_geoms:
     xlim: [275, 300]
     ylim: [16, 30]
   - # Mexico
-    database: "mapdata::world2Hires"
+    database: "mapdata::worldHires"
     regions: "Mexico"
 
 # Change will cause refetch of entire nhdplus for view_polygon

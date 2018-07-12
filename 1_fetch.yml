@@ -46,7 +46,7 @@ targets:
   stream_params:
     command: yaml.load_file('1_fetch/cfg/stream_params.yml')
   precip_config:
-    command: viz_config[I(c("precip_cols", "precip_bin"))]
+    command: viz_config[I(c('precip_cols', 'precip_bin'))]
 
   # -- precip colors and legend info --
   precip_bins:
