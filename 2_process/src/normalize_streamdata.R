@@ -6,7 +6,7 @@ normalize_streamdata <- function(ind_file, raw_ind_file, gd_config){
     rename(stage = X_00065_00000, stage_cd = X_00065_00000_cd) %>%
     select(site_no, dateTime, stage, stage_cd) %>%
     group_by(site_no) %>%
-    mutate(stage_normalized = (stage - min(stage, na.rm = T)) / (max(stage, na.rm = T) - min(stage, na.rm = T))) %>% # normalizing to min & max
+    mutate(stage_normalized = (stage - min(stage, na.rm = T)) / (max(stage, na.rm = T) - min(stage, na.rm = T))) %>% # normalizing to min & max ignoring missing data
     ungroup()
 
   data_file <- as_data_file(ind_file)
