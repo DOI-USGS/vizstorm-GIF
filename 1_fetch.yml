@@ -107,6 +107,8 @@ targets:
       dates = dates,
       stream_params = stream_params,
       gd_config = 'lib/cfg/gd_config.yml')
+  1_fetch/out/streamdata.rds:
+    command: gd_get('1_fetch/out/streamdata.rds.ind')
 
   # -- get precip --
   1_fetch/out/precip_spatial.rds.ind:
@@ -122,10 +124,20 @@ targets:
   1_fetch/out/precip_values.rds:
     command: gd_get('1_fetch/out/precip_values.rds.ind')
 
-  1_fetch/out/river_geometry.rds.ind:
-    command: fetch_river_geoms(ind_fil=target_name,
+  # -- get river geometry --
+  fetch_simplification_tolerance_m:
+    command: viz_config[I('fetch_simplification_tolerance_m')]
+
+  1_fetch/out/major_river_geometry.rds.ind:
+    command: fetch_major_river_geoms(ind_fil=target_name,
                                view_polygon=view_polygon,
-                               sites='2_process/out/storm_sites.rds.ind',
-                               streamorder=6)
-  1_fetch/out/river_geometry.rds:
-    command: gd_get('1_fetch/out/river_geometry.rds.ind')
+                               pre_simplify_m=fetch_simplification_tolerance_m)
+  1_fetch/out/major_river_geometry.rds:
+    command: gd_get('1_fetch/out/major_river_geometry.rds.ind')
+
+  1_fetch/out/gage_river_geometry.rds.ind:
+    command: fetch_gage_river_geoms(ind_fil=target_name,
+                               view_polygon=view_polygon,
+                               sites_ind='2_process/out/storm_sites.rds.ind')
+  1_fetch/out/gage_river_geometry.rds:
+    command: gd_get('1_fetch/out/gage_river_geometry.rds.ind')

@@ -56,7 +56,7 @@ targets:
     command: prep_storm_line_fun("2_process/out/storm_line.rds.ind")
 
   rivers_fun:
-    command: prep_rivers_fun('1_fetch/out/river_geometry.rds.ind')
+    command: prep_rivers_fun('2_process/out/river_geoms.rds.ind')
 
   legend_fun:
     command: prep_legend_fun(precip_bins = precip_bins)
