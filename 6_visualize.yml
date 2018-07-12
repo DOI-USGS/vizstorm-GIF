@@ -55,6 +55,9 @@ targets:
   storm_line_fun:
     command: prep_storm_line_fun("2_process/out/storm_line.rds.ind")
 
+  storm_points_sf:
+    command: fetch_read('2_process/out/storm_points_interp.rds.ind')
+
   rivers_fun:
     command: prep_rivers_fun('2_process/out/river_geoms.rds.ind')
 
