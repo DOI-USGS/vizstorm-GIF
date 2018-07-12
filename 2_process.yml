@@ -22,6 +22,7 @@ sources:
   - 2_process/src/process_precip.R
   - 2_process/src/extract_storm_points.R
   - 2_process/src/interpolate_storm_points.R
+  - 2_process/src/process_river_geoms.R
 
 targets:
 
@@ -91,3 +92,14 @@ targets:
       coarse_points_ind='2_process/out/storm_points_coarse.rds.ind')
   2_process/out/storm_points_interp.rds:
     command: gd_get('2_process/out/storm_points_interp.rds.ind')
+
+  2_process/out/river_geoms.rds.ind:
+    command: process_river_geoms(
+      ind_file=target_name,
+      river_geoms_ind='1_fetch/out/river_geometry.rds.ind',
+      view_polygon=view_polygon,
+      coastal_threshold_sqkm=1000,
+      inland_threshold_sqkm=40000,
+      simplification_tolerance_m=5000)
+  2_process/out/river_geoms.rds:
+    command: gd_get('2_process/out/river_geoms.rds.ind')

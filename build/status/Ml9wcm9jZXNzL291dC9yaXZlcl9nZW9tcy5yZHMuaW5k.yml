@@ -1,0 +1,13 @@
+version: 0.3.0
+name: 2_process/out/river_geoms.rds.ind
+type: file
+hash: 5a1cedafd76aa6f692c7e20b52a1f699
+time: 2018-07-12 14:18:16 UTC
+depends:
+  1_fetch/out/river_geometry.rds.ind: 0e8651a1842aed6c0e56f11adc31192f
+  view_polygon: 7ac3d28632d1dfbad8fd1b6044d4485a
+fixed: d5ed6f9e97245a552ea6f9c488718bcb
+code:
+  functions:
+    process_river_geoms: c03c39516df2626f1559e7d320d8e8e3
+
