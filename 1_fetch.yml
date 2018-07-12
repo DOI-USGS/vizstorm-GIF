@@ -99,6 +99,8 @@ targets:
       dates = dates,
       stream_params = stream_params,
       gd_config = 'lib/cfg/gd_config.yml')
+  1_fetch/out/streamdata.rds:
+    command: gd_get('1_fetch/out/streamdata.rds.ind')
 
   # -- get precip --
   1_fetch/out/precip_spatial.rds.ind:
