@@ -6,7 +6,7 @@ create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
 
 
   message('subsetting times to simplify for now')
-  timestep <- readRDS(sc_retrieve(timestep_ind))[1:10]
+  timestep <- readRDS(sc_retrieve(timestep_ind))
 
   cfgs <- c('a') # for now, just use one config, since > 1 results in duplication of input files
   #,'b') # dummy placement for different configurations; will eventually be configurations that hold information about size, aspect, ect...
@@ -56,8 +56,8 @@ create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
         "storm_line_fun,",
         "storm_point_%s,"= cur_task$tn,
         "watermark_fun)",
-        #"'6_vizprep/out/streamdata_[%s].rds.ind')"=cur_task$date_hour,
-        #"'6_vizprep/out/precip_raster_[%s].rds.ind',"=cur_task$date_hour, # need to add: precip_raster_[YYYmmdd-HH]_fun.rds.ind
+        #"streamdata_%s,"= cur_task$tn,
+        #"precip_raster_%s,"=cur_task$tn, # need to add: precip_raster_[YYYmmdd-HH]_fun.rds.ind
         sep="\n      ")
     }
   )

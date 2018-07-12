@@ -15,12 +15,12 @@ sources:
   - 6_visualize/src/create_gif_tasks.R
   - 6_visualize/src/create_gif_makefile.R
   - 6_visualize/src/create_storm_frame.R
-  - 6_vizprep/src/prep_plot_funs.R
-  - 6_vizprep/src/prep_basemap_fun.R
-  - 6_vizprep/src/prep_view_fun.R
-  - 6_vizprep/src/prep_storm_point_fun.R
-  - 6_vizprep/src/prep_storm_line_fun.R
-  - 6_vizprep/src/prep_rivers_fun.R
+  - 6_visualize/src/prep_plot_funs.R
+  - 6_visualize/src/prep_basemap_fun.R
+  - 6_visualize/src/prep_view_fun.R
+  - 6_visualize/src/prep_storm_point_fun.R
+  - 6_visualize/src/prep_storm_line_fun.R
+  - 6_visualize/src/prep_rivers_fun.R
 
 targets:
 
@@ -36,17 +36,6 @@ targets:
   # component is a closure, i.e., a function that contains all the data it needs
   # to run. the closure should accept 0 arguments. the closure should be saved
   # into an RDS file with a corresponding .rds.ind indicator file.
-
-  # here's an example of the a single task-step for that last column=step of the task table:
-  #6_visualize/out/storm_frame.png:
-  #  command: create_storm_frame(
-  #    png_file=target_name, config=storm_frame_config,
-  #    '6_vizprep/out/view_fun.rds.ind',
-  #    '6_vizprep/out/basemap_fun.rds.ind',
-  #    '6_vizprep/out/storm_line_fun.rds.ind')
-      #'6_vizprep/out/storm_point_[20170826-11]_fun.rds.ind',
-      #'6_vizprep/out/precip_raster_[20170826-11]_fun.rds.ind',
-      #'6_vizprep/out/streamdata_[20170826-11]_fun.rds.ind')
 
   # tmp=temporary folder for holding files to only be created on 1 computer.
   # out=folder to hold .ind and data files corresponding to shared cache or everybody's local build.
