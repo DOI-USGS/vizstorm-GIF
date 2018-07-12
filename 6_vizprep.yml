@@ -15,6 +15,7 @@ sources:
   - 6_vizprep/src/prep_view_fun.R
   - 6_vizprep/src/prep_storm_point_fun.R
   - 6_vizprep/src/prep_storm_line_fun.R
+  - 6_vizprep/src/prep_rivers_fun.R
 
 targets:
 
@@ -39,3 +40,8 @@ targets:
     command: prep_storm_line_fun(target_name, "2_process/out/storm_line.rds.ind")
   6_vizprep/out/storm_line_fun.rds:
     command: gd_get('6_vizprep/out/storm_line_fun.rds.ind')
+
+  6_vizprep/out/rivers_fun.rds.ind:
+    command: prep_rivers_fun(target_name, '1_fetch/out/river_geometry.rds.ind')
+  6_vizprep/out/rivers_fun.rds:
+    command: gd_get('6_vizprep/out/rivers_fun.rds.ind')

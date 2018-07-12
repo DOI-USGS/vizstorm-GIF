@@ -60,13 +60,13 @@ targets:
   2_process/out/storm_sites_custom.rds.ind:
     command: filter_sites_custom(
       ind_file = target_name,
-      sites_ind = '1_fetch/out/nws_stage_sites.rds.ind')
+      sites_ind = '2_process/out/storm_sites_geom.rds.ind')
   2_process/out/storm_sites_custom.rds:
     command: gd_get('2_process/out/storm_sites_custom.rds.ind')
   2_process/out/storm_sites.rds.ind:
     command: filter_using_custom(
       ind_file = target_name,
-      sites_ind = '1_fetch/out/nws_stage_sites.rds.ind',
+      sites_ind = '2_process/out/storm_sites_geom.rds.ind',
       sites_custom_ind = '2_process/out/storm_sites_custom.rds.ind')
   2_process/out/storm_sites.rds:
     command: gd_get('2_process/out/storm_sites.rds.ind')
