@@ -10,3 +10,4 @@ lib/cfg/gd_config.yml
 *.rds
 *.feather
 .DS_Store
+6_visualize/tmp/

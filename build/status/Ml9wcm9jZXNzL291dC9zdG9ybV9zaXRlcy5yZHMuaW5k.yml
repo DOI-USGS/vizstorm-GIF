@@ -1,11 +1,11 @@
 version: 0.3.0
 name: 2_process/out/storm_sites.rds.ind
 type: file
-hash: 976de985a16ded49b39d815bf6e4c1b7
-time: 2018-07-11 20:22:46 UTC
+hash: 786f99ab027a0d41fa3cf100c2f73121
+time: 2018-07-12 01:10:56 UTC
 depends:
-  1_fetch/out/nws_stage_sites.rds.ind: 12ce9e493f7b1840ee8045fa5dce4d7e
-  2_process/out/storm_sites_custom.rds.ind: 8ee13ae491a04d76640dd3934e38ccf7
+  2_process/out/storm_sites_geom.rds.ind: dfce805cc6919e2db2979f9985b1357f
+  2_process/out/storm_sites_custom.rds.ind: 9a886b752465914a8bbcbff5e74af41b
 fixed: 8c3c49e4197f3b1b4846b98a7b3a3efb
 code:
   functions:
