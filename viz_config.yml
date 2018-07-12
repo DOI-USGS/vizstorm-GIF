@@ -17,10 +17,13 @@ focus_geoms:
 
 secondary_geoms:
   - # non-U.S. islands
-    database: mapdata::world2Hires
+    database: "mapdata::world2Hires"
     regions: "(?!USA)"
     xlim: [275, 300]
     ylim: [16, 30]
+  - # Mexico
+    database: "mapdata::world2Hires"
+    regions: "Mexico"
 
 # Change will cause refetch of entire nhdplus for view_polygon
 # This is input to sf::st_simplify on the NHDPlus flowlines that
