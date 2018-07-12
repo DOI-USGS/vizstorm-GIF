@@ -27,6 +27,7 @@ sources:
   - 1_fetch/src/fetch_precip_spatial.R
   - 1_fetch/src/fetch_precip_values.R
   - 1_fetch/src/fetch_river_geometry.R
+  - 1_fetch/src/fetch_precip_bins.R
 
 targets:
 
@@ -44,8 +45,15 @@ targets:
     command: viz_config[[I('dates')]]
   stream_params:
     command: yaml.load_file('1_fetch/cfg/stream_params.yml')
+  precip_config:
+    command: viz_config[I(c('precip_cols', 'precip_bin'))]
+
+  # -- precip colors and legend info --
+  precip_bins:
+    command: fetch_precip_bins(precip_config)
 
   # -- get spatial extent and data --
+
 
   view_config:
     command: viz_config[I(c('bbox', 'projection', 'width', 'height'))]

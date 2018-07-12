@@ -55,6 +55,7 @@ create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
         "rivers_fun,",
         "storm_line_fun,",
         "storm_point_%s,"= cur_task$tn,
+        "legend_fun,",
         "watermark_fun)",
         #"streamdata_%s,"= cur_task$tn,
         #"precip_raster_%s,"=cur_task$tn, # need to add: precip_raster_[YYYmmdd-HH]_fun.rds.ind

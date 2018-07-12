@@ -12,7 +12,7 @@ prep_basemap_fun <- function(focus_geoms_ind, secondary_geoms_ind = NULL, detail
     }
 
     focus_geoms <- readRDS(sc_retrieve(focus_geoms_ind))
-    plot(focus_geoms, add = TRUE, col = NA, border = 'grey40')
+    plot(focus_geoms, add = TRUE, col = "grey95", border = 'grey40')
   }
   return(plot_fun)
 }
