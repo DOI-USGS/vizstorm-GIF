@@ -4,6 +4,8 @@ include:
   - 6_vizprep.yml
 
 packages:
+  - dplyr
+  - tidyr
 
 file_extensions:
   - feather
