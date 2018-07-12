@@ -26,6 +26,7 @@ sources:
   - 1_fetch/src/fetch_sites.R
   - 1_fetch/src/fetch_precip_spatial.R
   - 1_fetch/src/fetch_precip_values.R
+  - 1_fetch/src/fetch_river_geometry.R
 
 targets:
 
@@ -110,6 +111,13 @@ targets:
     command: fetch_precip_values(target_name,
                                  precip_spatial_ind='1_fetch/out/precip_spatial.rds.ind',
                                  dates)
-
   1_fetch/out/precip_values.rds:
     command: gd_get('1_fetch/out/precip_values.rds.ind')
+
+  1_fetch/out/river_geometry.rds.ind:
+    command: fetch_river_geoms(ind_fil=target_name,
+                               view_polygon=view_polygon,
+                               sites='2_process/out/storm_sites.rds.ind',
+                               streamorder=6)
+  1_fetch/out/river_geometry.rds:
+    command: gd_get('1_fetch/out/river_geometry.rds.ind')
