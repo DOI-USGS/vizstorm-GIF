@@ -2,9 +2,10 @@ combine_storm_frames <- function(gif_file, task_names) {
 
   # run imageMagick convert to build a gif
   png_files <- paste(sprintf('6_visualize/tmp/gif_frame_%s.png', task_names), collapse=',')
-  command <- sprintf('convert -delay 8 -loop 0 %s %s', png_files, gif_file)
-  system(command)
+  magick_command <- sprintf('magick convert -delay 8 -loop 0 %s %s', '6_visualize/tmp/gif_frame_*.png', gif_file)
+  system(magick_command)
 
-  # simplify the gif with gifsicle
-  #[coming]
+  # simplify the gif with gifsicle - cuts size by about 2/3
+  gifsicle_command <- sprintf('gifsicle -b -O3 %s --colors 256', gif_file)
+  system(gifsicle_command)
 }
