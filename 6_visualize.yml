@@ -63,7 +63,7 @@ targets:
     command: prep_rivers_fun('2_process/out/river_geoms.rds.ind')
 
   legend_fun:
-    command: prep_legend_fun(precip_bins = precip_bins)
+    command: prep_legend_fun(precip_bins = precip_bins, legend_styles = legend_styles)
 
   watermark_fun:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png')
