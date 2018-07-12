@@ -1,12 +1,18 @@
 # normalize stream stage for sparklines
 
-normalize_streamdata <- function(ind_file, raw_ind_file, gd_config){
+normalize_streamdata <- function(ind_file, raw_ind_file, sites_ind_file){
 
-  norm_stream <- readRDS(sc_retrieve(raw_ind_file)) %>% # NWIS raw data
+  streamdata <- readRDS(sc_retrieve(raw_ind_file)) # NWIS raw data
+  storm_sites <- readRDS(sc_retrieve(sites_ind_file))
+  storm_data <- left_join(streamdata, storm_sites)
+
+  norm_stream <- storm_data %>%
     rename(stage = X_00065_00000, stage_cd = X_00065_00000_cd) %>%
-    select(site_no, dateTime, stage, stage_cd) %>%
+    select(site_no, dateTime, stage, flood_stage) %>%
     group_by(site_no) %>%
-    mutate(stage_normalized = (stage - min(stage, na.rm = T)) / (max(stage, na.rm = T) - min(stage, na.rm = T))) %>% # normalizing to min & max ignoring missing data
+    # normalizing stage and flood_stage to min & max ignoring missing data
+    mutate(stage_normalized = (stage - min(stage, na.rm = T)) / (max(stage, na.rm = T) - min(stage, na.rm = T))) %>%
+    mutate(flood_stage_normalized = (as.numeric(flood_stage) - min(stage, na.rm = T)) / (max(stage, na.rm = T) - min(stage, na.rm = T))) %>%
     ungroup()
 
   data_file <- as_data_file(ind_file)
