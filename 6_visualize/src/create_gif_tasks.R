@@ -39,6 +39,18 @@ create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
     }
   )
 
+  datetime_frame <- scipiper::create_task_step(
+    step_name = 'datetime_frame',
+    target_name = function(task_name, step_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf('datetime_%s', task_name)
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf("prep_datetime_fun(I('%s'))", cur_task$timestep)
+    }
+  )
+
   gif_frame <- scipiper::create_task_step(
     step_name = 'gif_frame',
     target_name = function(task_name, step_name, ...){
@@ -65,7 +77,7 @@ create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
 
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
-    task_steps=list(point_frame, gif_frame),
+    task_steps=list(point_frame, datetime_frame, gif_frame),
     add_complete=FALSE,
     final_steps='gif_frame',
     ind_dir=folders$log)
