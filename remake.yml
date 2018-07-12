@@ -1,7 +1,7 @@
 target_default: 6_visualize
 
 include:
-  - 6_visualize.yml
+  - 6_gif_tasks.yml
 
 targets:
 
