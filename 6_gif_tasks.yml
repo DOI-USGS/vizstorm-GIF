@@ -20,7 +20,7 @@ file_extensions:
 
 targets:
   # --- a_20170825_01 --- #
-
+  
   6_vizprep/out/storm_point_[20170825-01].rds.ind:
     command: prep_storm_point_fun(target_name, '2_process/out/storm_points_interp.rds.ind')
 
@@ -33,11 +33,12 @@ targets:
       config=storm_frame_config,
       '6_vizprep/out/view_fun.rds.ind',
       '6_vizprep/out/basemap_fun.rds.ind',
+      '6_vizprep/out/rivers_fun.rds.ind',
       '6_vizprep/out/storm_line_fun.rds.ind',
       '6_vizprep/out/storm_point_[20170825-01].rds.ind')
 
   # --- a_20170825_02 --- #
-
+  
   6_vizprep/out/storm_point_[20170825-02].rds.ind:
     command: prep_storm_point_fun(target_name, '2_process/out/storm_points_interp.rds.ind')
 
@@ -50,11 +51,12 @@ targets:
       config=storm_frame_config,
       '6_vizprep/out/view_fun.rds.ind',
       '6_vizprep/out/basemap_fun.rds.ind',
+      '6_vizprep/out/rivers_fun.rds.ind',
       '6_vizprep/out/storm_line_fun.rds.ind',
       '6_vizprep/out/storm_point_[20170825-02].rds.ind')
 
   # --- a_20170825_03 --- #
-
+  
   6_vizprep/out/storm_point_[20170825-03].rds.ind:
     command: prep_storm_point_fun(target_name, '2_process/out/storm_points_interp.rds.ind')
 
@@ -67,6 +69,7 @@ targets:
       config=storm_frame_config,
       '6_vizprep/out/view_fun.rds.ind',
       '6_vizprep/out/basemap_fun.rds.ind',
+      '6_vizprep/out/rivers_fun.rds.ind',
       '6_vizprep/out/storm_line_fun.rds.ind',
       '6_vizprep/out/storm_point_[20170825-03].rds.ind')
 
@@ -74,13 +77,7 @@ targets:
 
   6_gif_tasks:
     command: sc_indicate(I('6_visualize/log/6_gif_tasks.ind'), hash_depends=I(TRUE), depends_target=I('6_gif_tasks'), depends_makefile=I('6_gif_tasks.yml'))
-    depends:
-      - 6_vizprep/out/storm_point_[20170825-01].rds.ind
-      - 6_vizprep/out/storm_point_[20170825-01].rds
+    depends: 
       - 6_visualize/tmp/gif_frame_a_20170825_01.png
-      - 6_vizprep/out/storm_point_[20170825-02].rds.ind
-      - 6_vizprep/out/storm_point_[20170825-02].rds
       - 6_visualize/tmp/gif_frame_a_20170825_02.png
-      - 6_vizprep/out/storm_point_[20170825-03].rds.ind
-      - 6_vizprep/out/storm_point_[20170825-03].rds
       - 6_visualize/tmp/gif_frame_a_20170825_03.png

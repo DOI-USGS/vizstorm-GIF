@@ -1,7 +1,7 @@
 target_default: 6_visualize
 
 include:
-  - 6_vizprep.yml
+  - 2_process.yml
 
 packages:
   - dplyr
@@ -15,6 +15,12 @@ sources:
   - 6_visualize/src/create_gif_tasks.R
   - 6_visualize/src/create_gif_makefile.R
   - 6_visualize/src/create_storm_frame.R
+  - 6_vizprep/src/prep_plot_funs.R
+  - 6_vizprep/src/prep_basemap_fun.R
+  - 6_vizprep/src/prep_view_fun.R
+  - 6_vizprep/src/prep_storm_point_fun.R
+  - 6_vizprep/src/prep_storm_line_fun.R
+  - 6_vizprep/src/prep_rivers_fun.R
 
 targets:
 
@@ -32,12 +38,12 @@ targets:
   # into an RDS file with a corresponding .rds.ind indicator file.
 
   # here's an example of the a single task-step for that last column=step of the task table:
-  6_visualize/out/storm_frame.png:
-    command: create_storm_frame(
-      png_file=target_name, config=storm_frame_config,
-      '6_vizprep/out/view_fun.rds.ind',
-      '6_vizprep/out/basemap_fun.rds.ind',
-      '6_vizprep/out/storm_line_fun.rds.ind')
+  #6_visualize/out/storm_frame.png:
+  #  command: create_storm_frame(
+  #    png_file=target_name, config=storm_frame_config,
+  #    '6_vizprep/out/view_fun.rds.ind',
+  #    '6_vizprep/out/basemap_fun.rds.ind',
+  #    '6_vizprep/out/storm_line_fun.rds.ind')
       #'6_vizprep/out/storm_point_[20170826-11]_fun.rds.ind',
       #'6_vizprep/out/precip_raster_[20170826-11]_fun.rds.ind',
       #'6_vizprep/out/streamdata_[20170826-11]_fun.rds.ind')
@@ -50,6 +56,27 @@ targets:
       tmp=I('6_visualize/tmp'),
       log=I('6_visualize/log'))
 
+  6_vizprep/out/view_fun.rds.ind:
+    command: prep_view_fun(target_name, view_polygon)
+  6_vizprep/out/view_fun.rds:
+    command: gd_get('6_vizprep/out/view_fun.rds.ind')
+
+  6_vizprep/out/basemap_fun.rds.ind:
+    command: prep_basemap_fun(target_name, '1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind')
+  6_vizprep/out/basemap_fun.rds:
+    command: gd_get('6_vizprep/out/basemap_fun.rds.ind')
+
+  6_vizprep/out/storm_line_fun.rds.ind:
+    command: prep_storm_line_fun(target_name, "2_process/out/storm_line.rds.ind")
+  6_vizprep/out/storm_line_fun.rds:
+    command: gd_get('6_vizprep/out/storm_line_fun.rds.ind')
+
+  6_vizprep/out/rivers_fun.rds.ind:
+    command: prep_rivers_fun(target_name, '1_fetch/out/river_geometry.rds.ind')
+  6_vizprep/out/rivers_fun.rds:
+    command: gd_get('6_vizprep/out/rivers_fun.rds.ind')
+
+
   gif_tasks:
     command: create_gif_tasks(
       timestep_ind = '2_process/out/timesteps.rds.ind',
@@ -57,6 +84,7 @@ targets:
       view_ind = '6_vizprep/out/view_fun.rds.ind',
       basemap_ind = '6_vizprep/out/basemap_fun.rds.ind',
       storm_line_ind = '6_vizprep/out/storm_line_fun.rds.ind',
+      river_lines_ind = '6_vizprep/out/rivers_fun.rds.ind',
       storm_cfg = storm_frame_config)
 
   6_gif_tasks.yml:

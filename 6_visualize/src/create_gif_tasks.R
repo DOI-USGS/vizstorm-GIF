@@ -2,7 +2,7 @@
 
 
 
-create_gif_tasks <- function(timestep_ind, folders, view_ind, basemap_ind, storm_line_ind, storm_cfg){
+create_gif_tasks <- function(timestep_ind, folders, view_ind, basemap_ind, storm_line_ind, river_lines_ind, storm_cfg){
 
   message('subsetting times to simplify for now')
   timestep <- readRDS(sc_retrieve(timestep_ind))[1:3]
@@ -62,9 +62,10 @@ create_gif_tasks <- function(timestep_ind, folders, view_ind, basemap_ind, storm
         "config=storm_frame_config,",
         "'%s',"=view_ind,
         "'%s',"=basemap_ind,
+        "'%s',"=river_lines_ind,
         "'%s',"=storm_line_ind,
+        #"'6_vizprep/out/precip_raster_[%s].rds.ind',"=cur_task$date_hour, # need to add: precip_raster_[YYYmmdd-HH]_fun.rds.ind
         "'6_vizprep/out/storm_point_[%s].rds.ind')"=cur_task$date_hour,
-        #"'6_vizprep/out/precip_raster_[%s].rds.ind',"=cur_task$date_hour,
         #"'6_vizprep/out/streamdata_[%s].rds.ind')"=cur_task$date_hour,
         sep="\n      ")
     }
@@ -74,5 +75,6 @@ create_gif_tasks <- function(timestep_ind, folders, view_ind, basemap_ind, storm
     task_names=tasks$task_name,
     task_steps=list(point_frame, get_point_frame, gif_frame),
     add_complete=FALSE,
+    final_steps='gif_frame',
     ind_dir=folders$log)
 }
