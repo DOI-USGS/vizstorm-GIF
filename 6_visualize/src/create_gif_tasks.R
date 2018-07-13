@@ -90,7 +90,7 @@ create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
 
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
-    task_steps=list(point_frame, precip_frame, datetime_frame, gif_frame),
+    task_steps=list(point_frame, precip_frame, gif_frame),
     add_complete=FALSE,
     final_steps='gif_frame',
     ind_dir=folders$log)

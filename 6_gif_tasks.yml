@@ -27,9 +27,6 @@ targets:
   precip_raster_a_20170825_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 01:00:00'))
 
-  datetime_a_20170825_01:
-    command: prep_datetime_fun(I('2017-08-25 01:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170825_01.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -51,9 +48,6 @@ targets:
 
   precip_raster_a_20170825_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 02:00:00'))
-
-  datetime_a_20170825_02:
-    command: prep_datetime_fun(I('2017-08-25 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_02.png:
     command: create_storm_frame(
@@ -77,9 +71,6 @@ targets:
   precip_raster_a_20170825_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 03:00:00'))
 
-  datetime_a_20170825_03:
-    command: prep_datetime_fun(I('2017-08-25 03:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170825_03.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -101,9 +92,6 @@ targets:
 
   precip_raster_a_20170825_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 04:00:00'))
-
-  datetime_a_20170825_04:
-    command: prep_datetime_fun(I('2017-08-25 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_04.png:
     command: create_storm_frame(
@@ -127,9 +115,6 @@ targets:
   precip_raster_a_20170825_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 05:00:00'))
 
-  datetime_a_20170825_05:
-    command: prep_datetime_fun(I('2017-08-25 05:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170825_05.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -151,9 +136,6 @@ targets:
 
   precip_raster_a_20170825_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 06:00:00'))
-
-  datetime_a_20170825_06:
-    command: prep_datetime_fun(I('2017-08-25 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_06.png:
     command: create_storm_frame(
@@ -177,9 +159,6 @@ targets:
   precip_raster_a_20170825_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 07:00:00'))
 
-  datetime_a_20170825_07:
-    command: prep_datetime_fun(I('2017-08-25 07:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170825_07.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -201,9 +180,6 @@ targets:
 
   precip_raster_a_20170825_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 08:00:00'))
-
-  datetime_a_20170825_08:
-    command: prep_datetime_fun(I('2017-08-25 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_08.png:
     command: create_storm_frame(
@@ -227,9 +203,6 @@ targets:
   precip_raster_a_20170825_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 09:00:00'))
 
-  datetime_a_20170825_09:
-    command: prep_datetime_fun(I('2017-08-25 09:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170825_09.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -251,9 +224,6 @@ targets:
 
   precip_raster_a_20170825_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 10:00:00'))
-
-  datetime_a_20170825_10:
-    command: prep_datetime_fun(I('2017-08-25 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_10.png:
     command: create_storm_frame(
@@ -277,9 +247,6 @@ targets:
   precip_raster_a_20170825_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 11:00:00'))
 
-  datetime_a_20170825_11:
-    command: prep_datetime_fun(I('2017-08-25 11:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170825_11.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -301,9 +268,6 @@ targets:
 
   precip_raster_a_20170825_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 12:00:00'))
-
-  datetime_a_20170825_12:
-    command: prep_datetime_fun(I('2017-08-25 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_12.png:
     command: create_storm_frame(
@@ -327,9 +291,6 @@ targets:
   precip_raster_a_20170825_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 13:00:00'))
 
-  datetime_a_20170825_13:
-    command: prep_datetime_fun(I('2017-08-25 13:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170825_13.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -351,9 +312,6 @@ targets:
 
   precip_raster_a_20170825_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 14:00:00'))
-
-  datetime_a_20170825_14:
-    command: prep_datetime_fun(I('2017-08-25 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_14.png:
     command: create_storm_frame(
@@ -377,9 +335,6 @@ targets:
   precip_raster_a_20170825_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 15:00:00'))
 
-  datetime_a_20170825_15:
-    command: prep_datetime_fun(I('2017-08-25 15:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170825_15.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -401,9 +356,6 @@ targets:
 
   precip_raster_a_20170825_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 16:00:00'))
-
-  datetime_a_20170825_16:
-    command: prep_datetime_fun(I('2017-08-25 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_16.png:
     command: create_storm_frame(
@@ -427,9 +379,6 @@ targets:
   precip_raster_a_20170825_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 17:00:00'))
 
-  datetime_a_20170825_17:
-    command: prep_datetime_fun(I('2017-08-25 17:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170825_17.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -451,9 +400,6 @@ targets:
 
   precip_raster_a_20170825_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 18:00:00'))
-
-  datetime_a_20170825_18:
-    command: prep_datetime_fun(I('2017-08-25 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_18.png:
     command: create_storm_frame(
@@ -477,9 +423,6 @@ targets:
   precip_raster_a_20170825_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 19:00:00'))
 
-  datetime_a_20170825_19:
-    command: prep_datetime_fun(I('2017-08-25 19:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170825_19.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -501,9 +444,6 @@ targets:
 
   precip_raster_a_20170825_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 20:00:00'))
-
-  datetime_a_20170825_20:
-    command: prep_datetime_fun(I('2017-08-25 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_20.png:
     command: create_storm_frame(
@@ -527,9 +467,6 @@ targets:
   precip_raster_a_20170825_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 21:00:00'))
 
-  datetime_a_20170825_21:
-    command: prep_datetime_fun(I('2017-08-25 21:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170825_21.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -551,9 +488,6 @@ targets:
 
   precip_raster_a_20170825_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 22:00:00'))
-
-  datetime_a_20170825_22:
-    command: prep_datetime_fun(I('2017-08-25 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_22.png:
     command: create_storm_frame(
@@ -577,9 +511,6 @@ targets:
   precip_raster_a_20170825_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 23:00:00'))
 
-  datetime_a_20170825_23:
-    command: prep_datetime_fun(I('2017-08-25 23:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170825_23.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -601,9 +532,6 @@ targets:
 
   precip_raster_a_20170826_00:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26'))
-
-  datetime_a_20170826_00:
-    command: prep_datetime_fun(I('2017-08-26'))
 
   6_visualize/tmp/gif_frame_a_20170826_00.png:
     command: create_storm_frame(
@@ -627,9 +555,6 @@ targets:
   precip_raster_a_20170826_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 01:00:00'))
 
-  datetime_a_20170826_01:
-    command: prep_datetime_fun(I('2017-08-26 01:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170826_01.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -651,9 +576,6 @@ targets:
 
   precip_raster_a_20170826_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 02:00:00'))
-
-  datetime_a_20170826_02:
-    command: prep_datetime_fun(I('2017-08-26 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_02.png:
     command: create_storm_frame(
@@ -677,9 +599,6 @@ targets:
   precip_raster_a_20170826_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 03:00:00'))
 
-  datetime_a_20170826_03:
-    command: prep_datetime_fun(I('2017-08-26 03:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170826_03.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -701,9 +620,6 @@ targets:
 
   precip_raster_a_20170826_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 04:00:00'))
-
-  datetime_a_20170826_04:
-    command: prep_datetime_fun(I('2017-08-26 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_04.png:
     command: create_storm_frame(
@@ -727,9 +643,6 @@ targets:
   precip_raster_a_20170826_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 05:00:00'))
 
-  datetime_a_20170826_05:
-    command: prep_datetime_fun(I('2017-08-26 05:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170826_05.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -751,9 +664,6 @@ targets:
 
   precip_raster_a_20170826_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 06:00:00'))
-
-  datetime_a_20170826_06:
-    command: prep_datetime_fun(I('2017-08-26 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_06.png:
     command: create_storm_frame(
@@ -777,9 +687,6 @@ targets:
   precip_raster_a_20170826_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 07:00:00'))
 
-  datetime_a_20170826_07:
-    command: prep_datetime_fun(I('2017-08-26 07:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170826_07.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -801,9 +708,6 @@ targets:
 
   precip_raster_a_20170826_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 08:00:00'))
-
-  datetime_a_20170826_08:
-    command: prep_datetime_fun(I('2017-08-26 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_08.png:
     command: create_storm_frame(
@@ -827,9 +731,6 @@ targets:
   precip_raster_a_20170826_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 09:00:00'))
 
-  datetime_a_20170826_09:
-    command: prep_datetime_fun(I('2017-08-26 09:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170826_09.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -851,9 +752,6 @@ targets:
 
   precip_raster_a_20170826_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 10:00:00'))
-
-  datetime_a_20170826_10:
-    command: prep_datetime_fun(I('2017-08-26 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_10.png:
     command: create_storm_frame(
@@ -877,9 +775,6 @@ targets:
   precip_raster_a_20170826_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 11:00:00'))
 
-  datetime_a_20170826_11:
-    command: prep_datetime_fun(I('2017-08-26 11:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170826_11.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -901,9 +796,6 @@ targets:
 
   precip_raster_a_20170826_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 12:00:00'))
-
-  datetime_a_20170826_12:
-    command: prep_datetime_fun(I('2017-08-26 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_12.png:
     command: create_storm_frame(
@@ -927,9 +819,6 @@ targets:
   precip_raster_a_20170826_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 13:00:00'))
 
-  datetime_a_20170826_13:
-    command: prep_datetime_fun(I('2017-08-26 13:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170826_13.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -951,9 +840,6 @@ targets:
 
   precip_raster_a_20170826_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 14:00:00'))
-
-  datetime_a_20170826_14:
-    command: prep_datetime_fun(I('2017-08-26 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_14.png:
     command: create_storm_frame(
@@ -977,9 +863,6 @@ targets:
   precip_raster_a_20170826_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 15:00:00'))
 
-  datetime_a_20170826_15:
-    command: prep_datetime_fun(I('2017-08-26 15:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170826_15.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1001,9 +884,6 @@ targets:
 
   precip_raster_a_20170826_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 16:00:00'))
-
-  datetime_a_20170826_16:
-    command: prep_datetime_fun(I('2017-08-26 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_16.png:
     command: create_storm_frame(
@@ -1027,9 +907,6 @@ targets:
   precip_raster_a_20170826_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 17:00:00'))
 
-  datetime_a_20170826_17:
-    command: prep_datetime_fun(I('2017-08-26 17:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170826_17.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1051,9 +928,6 @@ targets:
 
   precip_raster_a_20170826_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 18:00:00'))
-
-  datetime_a_20170826_18:
-    command: prep_datetime_fun(I('2017-08-26 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_18.png:
     command: create_storm_frame(
@@ -1077,9 +951,6 @@ targets:
   precip_raster_a_20170826_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 19:00:00'))
 
-  datetime_a_20170826_19:
-    command: prep_datetime_fun(I('2017-08-26 19:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170826_19.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1101,9 +972,6 @@ targets:
 
   precip_raster_a_20170826_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 20:00:00'))
-
-  datetime_a_20170826_20:
-    command: prep_datetime_fun(I('2017-08-26 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_20.png:
     command: create_storm_frame(
@@ -1127,9 +995,6 @@ targets:
   precip_raster_a_20170826_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 21:00:00'))
 
-  datetime_a_20170826_21:
-    command: prep_datetime_fun(I('2017-08-26 21:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170826_21.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1151,9 +1016,6 @@ targets:
 
   precip_raster_a_20170826_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 22:00:00'))
-
-  datetime_a_20170826_22:
-    command: prep_datetime_fun(I('2017-08-26 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_22.png:
     command: create_storm_frame(
@@ -1177,9 +1039,6 @@ targets:
   precip_raster_a_20170826_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 23:00:00'))
 
-  datetime_a_20170826_23:
-    command: prep_datetime_fun(I('2017-08-26 23:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170826_23.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1201,9 +1060,6 @@ targets:
 
   precip_raster_a_20170827_00:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27'))
-
-  datetime_a_20170827_00:
-    command: prep_datetime_fun(I('2017-08-27'))
 
   6_visualize/tmp/gif_frame_a_20170827_00.png:
     command: create_storm_frame(
@@ -1227,9 +1083,6 @@ targets:
   precip_raster_a_20170827_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 01:00:00'))
 
-  datetime_a_20170827_01:
-    command: prep_datetime_fun(I('2017-08-27 01:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170827_01.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1251,9 +1104,6 @@ targets:
 
   precip_raster_a_20170827_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 02:00:00'))
-
-  datetime_a_20170827_02:
-    command: prep_datetime_fun(I('2017-08-27 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_02.png:
     command: create_storm_frame(
@@ -1277,9 +1127,6 @@ targets:
   precip_raster_a_20170827_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 03:00:00'))
 
-  datetime_a_20170827_03:
-    command: prep_datetime_fun(I('2017-08-27 03:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170827_03.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1301,9 +1148,6 @@ targets:
 
   precip_raster_a_20170827_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 04:00:00'))
-
-  datetime_a_20170827_04:
-    command: prep_datetime_fun(I('2017-08-27 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_04.png:
     command: create_storm_frame(
@@ -1327,9 +1171,6 @@ targets:
   precip_raster_a_20170827_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 05:00:00'))
 
-  datetime_a_20170827_05:
-    command: prep_datetime_fun(I('2017-08-27 05:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170827_05.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1351,9 +1192,6 @@ targets:
 
   precip_raster_a_20170827_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 06:00:00'))
-
-  datetime_a_20170827_06:
-    command: prep_datetime_fun(I('2017-08-27 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_06.png:
     command: create_storm_frame(
@@ -1377,9 +1215,6 @@ targets:
   precip_raster_a_20170827_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 07:00:00'))
 
-  datetime_a_20170827_07:
-    command: prep_datetime_fun(I('2017-08-27 07:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170827_07.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1401,9 +1236,6 @@ targets:
 
   precip_raster_a_20170827_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 08:00:00'))
-
-  datetime_a_20170827_08:
-    command: prep_datetime_fun(I('2017-08-27 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_08.png:
     command: create_storm_frame(
@@ -1427,9 +1259,6 @@ targets:
   precip_raster_a_20170827_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 09:00:00'))
 
-  datetime_a_20170827_09:
-    command: prep_datetime_fun(I('2017-08-27 09:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170827_09.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1451,9 +1280,6 @@ targets:
 
   precip_raster_a_20170827_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 10:00:00'))
-
-  datetime_a_20170827_10:
-    command: prep_datetime_fun(I('2017-08-27 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_10.png:
     command: create_storm_frame(
@@ -1477,9 +1303,6 @@ targets:
   precip_raster_a_20170827_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 11:00:00'))
 
-  datetime_a_20170827_11:
-    command: prep_datetime_fun(I('2017-08-27 11:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170827_11.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1501,9 +1324,6 @@ targets:
 
   precip_raster_a_20170827_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 12:00:00'))
-
-  datetime_a_20170827_12:
-    command: prep_datetime_fun(I('2017-08-27 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_12.png:
     command: create_storm_frame(
@@ -1527,9 +1347,6 @@ targets:
   precip_raster_a_20170827_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 13:00:00'))
 
-  datetime_a_20170827_13:
-    command: prep_datetime_fun(I('2017-08-27 13:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170827_13.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1551,9 +1368,6 @@ targets:
 
   precip_raster_a_20170827_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 14:00:00'))
-
-  datetime_a_20170827_14:
-    command: prep_datetime_fun(I('2017-08-27 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_14.png:
     command: create_storm_frame(
@@ -1577,9 +1391,6 @@ targets:
   precip_raster_a_20170827_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 15:00:00'))
 
-  datetime_a_20170827_15:
-    command: prep_datetime_fun(I('2017-08-27 15:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170827_15.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1601,9 +1412,6 @@ targets:
 
   precip_raster_a_20170827_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 16:00:00'))
-
-  datetime_a_20170827_16:
-    command: prep_datetime_fun(I('2017-08-27 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_16.png:
     command: create_storm_frame(
@@ -1627,9 +1435,6 @@ targets:
   precip_raster_a_20170827_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 17:00:00'))
 
-  datetime_a_20170827_17:
-    command: prep_datetime_fun(I('2017-08-27 17:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170827_17.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1651,9 +1456,6 @@ targets:
 
   precip_raster_a_20170827_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 18:00:00'))
-
-  datetime_a_20170827_18:
-    command: prep_datetime_fun(I('2017-08-27 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_18.png:
     command: create_storm_frame(
@@ -1677,9 +1479,6 @@ targets:
   precip_raster_a_20170827_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 19:00:00'))
 
-  datetime_a_20170827_19:
-    command: prep_datetime_fun(I('2017-08-27 19:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170827_19.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1701,9 +1500,6 @@ targets:
 
   precip_raster_a_20170827_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 20:00:00'))
-
-  datetime_a_20170827_20:
-    command: prep_datetime_fun(I('2017-08-27 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_20.png:
     command: create_storm_frame(
@@ -1727,9 +1523,6 @@ targets:
   precip_raster_a_20170827_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 21:00:00'))
 
-  datetime_a_20170827_21:
-    command: prep_datetime_fun(I('2017-08-27 21:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170827_21.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1751,9 +1544,6 @@ targets:
 
   precip_raster_a_20170827_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 22:00:00'))
-
-  datetime_a_20170827_22:
-    command: prep_datetime_fun(I('2017-08-27 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_22.png:
     command: create_storm_frame(
@@ -1777,9 +1567,6 @@ targets:
   precip_raster_a_20170827_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 23:00:00'))
 
-  datetime_a_20170827_23:
-    command: prep_datetime_fun(I('2017-08-27 23:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170827_23.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1801,9 +1588,6 @@ targets:
 
   precip_raster_a_20170828_00:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28'))
-
-  datetime_a_20170828_00:
-    command: prep_datetime_fun(I('2017-08-28'))
 
   6_visualize/tmp/gif_frame_a_20170828_00.png:
     command: create_storm_frame(
@@ -1827,9 +1611,6 @@ targets:
   precip_raster_a_20170828_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 01:00:00'))
 
-  datetime_a_20170828_01:
-    command: prep_datetime_fun(I('2017-08-28 01:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170828_01.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1851,9 +1632,6 @@ targets:
 
   precip_raster_a_20170828_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 02:00:00'))
-
-  datetime_a_20170828_02:
-    command: prep_datetime_fun(I('2017-08-28 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_02.png:
     command: create_storm_frame(
@@ -1877,9 +1655,6 @@ targets:
   precip_raster_a_20170828_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 03:00:00'))
 
-  datetime_a_20170828_03:
-    command: prep_datetime_fun(I('2017-08-28 03:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170828_03.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1901,9 +1676,6 @@ targets:
 
   precip_raster_a_20170828_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 04:00:00'))
-
-  datetime_a_20170828_04:
-    command: prep_datetime_fun(I('2017-08-28 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_04.png:
     command: create_storm_frame(
@@ -1927,9 +1699,6 @@ targets:
   precip_raster_a_20170828_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 05:00:00'))
 
-  datetime_a_20170828_05:
-    command: prep_datetime_fun(I('2017-08-28 05:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170828_05.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -1951,9 +1720,6 @@ targets:
 
   precip_raster_a_20170828_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 06:00:00'))
-
-  datetime_a_20170828_06:
-    command: prep_datetime_fun(I('2017-08-28 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_06.png:
     command: create_storm_frame(
@@ -1977,9 +1743,6 @@ targets:
   precip_raster_a_20170828_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 07:00:00'))
 
-  datetime_a_20170828_07:
-    command: prep_datetime_fun(I('2017-08-28 07:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170828_07.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2001,9 +1764,6 @@ targets:
 
   precip_raster_a_20170828_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 08:00:00'))
-
-  datetime_a_20170828_08:
-    command: prep_datetime_fun(I('2017-08-28 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_08.png:
     command: create_storm_frame(
@@ -2027,9 +1787,6 @@ targets:
   precip_raster_a_20170828_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 09:00:00'))
 
-  datetime_a_20170828_09:
-    command: prep_datetime_fun(I('2017-08-28 09:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170828_09.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2051,9 +1808,6 @@ targets:
 
   precip_raster_a_20170828_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 10:00:00'))
-
-  datetime_a_20170828_10:
-    command: prep_datetime_fun(I('2017-08-28 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_10.png:
     command: create_storm_frame(
@@ -2077,9 +1831,6 @@ targets:
   precip_raster_a_20170828_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 11:00:00'))
 
-  datetime_a_20170828_11:
-    command: prep_datetime_fun(I('2017-08-28 11:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170828_11.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2101,9 +1852,6 @@ targets:
 
   precip_raster_a_20170828_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 12:00:00'))
-
-  datetime_a_20170828_12:
-    command: prep_datetime_fun(I('2017-08-28 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_12.png:
     command: create_storm_frame(
@@ -2127,9 +1875,6 @@ targets:
   precip_raster_a_20170828_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 13:00:00'))
 
-  datetime_a_20170828_13:
-    command: prep_datetime_fun(I('2017-08-28 13:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170828_13.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2151,9 +1896,6 @@ targets:
 
   precip_raster_a_20170828_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 14:00:00'))
-
-  datetime_a_20170828_14:
-    command: prep_datetime_fun(I('2017-08-28 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_14.png:
     command: create_storm_frame(
@@ -2177,9 +1919,6 @@ targets:
   precip_raster_a_20170828_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 15:00:00'))
 
-  datetime_a_20170828_15:
-    command: prep_datetime_fun(I('2017-08-28 15:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170828_15.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2201,9 +1940,6 @@ targets:
 
   precip_raster_a_20170828_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 16:00:00'))
-
-  datetime_a_20170828_16:
-    command: prep_datetime_fun(I('2017-08-28 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_16.png:
     command: create_storm_frame(
@@ -2227,9 +1963,6 @@ targets:
   precip_raster_a_20170828_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 17:00:00'))
 
-  datetime_a_20170828_17:
-    command: prep_datetime_fun(I('2017-08-28 17:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170828_17.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2251,9 +1984,6 @@ targets:
 
   precip_raster_a_20170828_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 18:00:00'))
-
-  datetime_a_20170828_18:
-    command: prep_datetime_fun(I('2017-08-28 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_18.png:
     command: create_storm_frame(
@@ -2277,9 +2007,6 @@ targets:
   precip_raster_a_20170828_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 19:00:00'))
 
-  datetime_a_20170828_19:
-    command: prep_datetime_fun(I('2017-08-28 19:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170828_19.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2301,9 +2028,6 @@ targets:
 
   precip_raster_a_20170828_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 20:00:00'))
-
-  datetime_a_20170828_20:
-    command: prep_datetime_fun(I('2017-08-28 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_20.png:
     command: create_storm_frame(
@@ -2327,9 +2051,6 @@ targets:
   precip_raster_a_20170828_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 21:00:00'))
 
-  datetime_a_20170828_21:
-    command: prep_datetime_fun(I('2017-08-28 21:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170828_21.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2351,9 +2072,6 @@ targets:
 
   precip_raster_a_20170828_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 22:00:00'))
-
-  datetime_a_20170828_22:
-    command: prep_datetime_fun(I('2017-08-28 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_22.png:
     command: create_storm_frame(
@@ -2377,9 +2095,6 @@ targets:
   precip_raster_a_20170828_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 23:00:00'))
 
-  datetime_a_20170828_23:
-    command: prep_datetime_fun(I('2017-08-28 23:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170828_23.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2401,9 +2116,6 @@ targets:
 
   precip_raster_a_20170829_00:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29'))
-
-  datetime_a_20170829_00:
-    command: prep_datetime_fun(I('2017-08-29'))
 
   6_visualize/tmp/gif_frame_a_20170829_00.png:
     command: create_storm_frame(
@@ -2427,9 +2139,6 @@ targets:
   precip_raster_a_20170829_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 01:00:00'))
 
-  datetime_a_20170829_01:
-    command: prep_datetime_fun(I('2017-08-29 01:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170829_01.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2451,9 +2160,6 @@ targets:
 
   precip_raster_a_20170829_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 02:00:00'))
-
-  datetime_a_20170829_02:
-    command: prep_datetime_fun(I('2017-08-29 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_02.png:
     command: create_storm_frame(
@@ -2477,9 +2183,6 @@ targets:
   precip_raster_a_20170829_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 03:00:00'))
 
-  datetime_a_20170829_03:
-    command: prep_datetime_fun(I('2017-08-29 03:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170829_03.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2501,9 +2204,6 @@ targets:
 
   precip_raster_a_20170829_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 04:00:00'))
-
-  datetime_a_20170829_04:
-    command: prep_datetime_fun(I('2017-08-29 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_04.png:
     command: create_storm_frame(
@@ -2527,9 +2227,6 @@ targets:
   precip_raster_a_20170829_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 05:00:00'))
 
-  datetime_a_20170829_05:
-    command: prep_datetime_fun(I('2017-08-29 05:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170829_05.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2551,9 +2248,6 @@ targets:
 
   precip_raster_a_20170829_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 06:00:00'))
-
-  datetime_a_20170829_06:
-    command: prep_datetime_fun(I('2017-08-29 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_06.png:
     command: create_storm_frame(
@@ -2577,9 +2271,6 @@ targets:
   precip_raster_a_20170829_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 07:00:00'))
 
-  datetime_a_20170829_07:
-    command: prep_datetime_fun(I('2017-08-29 07:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170829_07.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2601,9 +2292,6 @@ targets:
 
   precip_raster_a_20170829_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 08:00:00'))
-
-  datetime_a_20170829_08:
-    command: prep_datetime_fun(I('2017-08-29 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_08.png:
     command: create_storm_frame(
@@ -2627,9 +2315,6 @@ targets:
   precip_raster_a_20170829_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 09:00:00'))
 
-  datetime_a_20170829_09:
-    command: prep_datetime_fun(I('2017-08-29 09:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170829_09.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2651,9 +2336,6 @@ targets:
 
   precip_raster_a_20170829_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 10:00:00'))
-
-  datetime_a_20170829_10:
-    command: prep_datetime_fun(I('2017-08-29 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_10.png:
     command: create_storm_frame(
@@ -2677,9 +2359,6 @@ targets:
   precip_raster_a_20170829_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 11:00:00'))
 
-  datetime_a_20170829_11:
-    command: prep_datetime_fun(I('2017-08-29 11:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170829_11.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2701,9 +2380,6 @@ targets:
 
   precip_raster_a_20170829_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 12:00:00'))
-
-  datetime_a_20170829_12:
-    command: prep_datetime_fun(I('2017-08-29 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_12.png:
     command: create_storm_frame(
@@ -2727,9 +2403,6 @@ targets:
   precip_raster_a_20170829_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 13:00:00'))
 
-  datetime_a_20170829_13:
-    command: prep_datetime_fun(I('2017-08-29 13:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170829_13.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2751,9 +2424,6 @@ targets:
 
   precip_raster_a_20170829_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 14:00:00'))
-
-  datetime_a_20170829_14:
-    command: prep_datetime_fun(I('2017-08-29 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_14.png:
     command: create_storm_frame(
@@ -2777,9 +2447,6 @@ targets:
   precip_raster_a_20170829_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 15:00:00'))
 
-  datetime_a_20170829_15:
-    command: prep_datetime_fun(I('2017-08-29 15:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170829_15.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2801,9 +2468,6 @@ targets:
 
   precip_raster_a_20170829_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 16:00:00'))
-
-  datetime_a_20170829_16:
-    command: prep_datetime_fun(I('2017-08-29 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_16.png:
     command: create_storm_frame(
@@ -2827,9 +2491,6 @@ targets:
   precip_raster_a_20170829_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 17:00:00'))
 
-  datetime_a_20170829_17:
-    command: prep_datetime_fun(I('2017-08-29 17:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170829_17.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2851,9 +2512,6 @@ targets:
 
   precip_raster_a_20170829_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 18:00:00'))
-
-  datetime_a_20170829_18:
-    command: prep_datetime_fun(I('2017-08-29 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_18.png:
     command: create_storm_frame(
@@ -2877,9 +2535,6 @@ targets:
   precip_raster_a_20170829_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 19:00:00'))
 
-  datetime_a_20170829_19:
-    command: prep_datetime_fun(I('2017-08-29 19:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170829_19.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2901,9 +2556,6 @@ targets:
 
   precip_raster_a_20170829_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 20:00:00'))
-
-  datetime_a_20170829_20:
-    command: prep_datetime_fun(I('2017-08-29 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_20.png:
     command: create_storm_frame(
@@ -2927,9 +2579,6 @@ targets:
   precip_raster_a_20170829_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 21:00:00'))
 
-  datetime_a_20170829_21:
-    command: prep_datetime_fun(I('2017-08-29 21:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170829_21.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -2951,9 +2600,6 @@ targets:
 
   precip_raster_a_20170829_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 22:00:00'))
-
-  datetime_a_20170829_22:
-    command: prep_datetime_fun(I('2017-08-29 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_22.png:
     command: create_storm_frame(
@@ -2977,9 +2623,6 @@ targets:
   precip_raster_a_20170829_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 23:00:00'))
 
-  datetime_a_20170829_23:
-    command: prep_datetime_fun(I('2017-08-29 23:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170829_23.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3001,9 +2644,6 @@ targets:
 
   precip_raster_a_20170830_00:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30'))
-
-  datetime_a_20170830_00:
-    command: prep_datetime_fun(I('2017-08-30'))
 
   6_visualize/tmp/gif_frame_a_20170830_00.png:
     command: create_storm_frame(
@@ -3027,9 +2667,6 @@ targets:
   precip_raster_a_20170830_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 01:00:00'))
 
-  datetime_a_20170830_01:
-    command: prep_datetime_fun(I('2017-08-30 01:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170830_01.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3051,9 +2688,6 @@ targets:
 
   precip_raster_a_20170830_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 02:00:00'))
-
-  datetime_a_20170830_02:
-    command: prep_datetime_fun(I('2017-08-30 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_02.png:
     command: create_storm_frame(
@@ -3077,9 +2711,6 @@ targets:
   precip_raster_a_20170830_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 03:00:00'))
 
-  datetime_a_20170830_03:
-    command: prep_datetime_fun(I('2017-08-30 03:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170830_03.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3101,9 +2732,6 @@ targets:
 
   precip_raster_a_20170830_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 04:00:00'))
-
-  datetime_a_20170830_04:
-    command: prep_datetime_fun(I('2017-08-30 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_04.png:
     command: create_storm_frame(
@@ -3127,9 +2755,6 @@ targets:
   precip_raster_a_20170830_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 05:00:00'))
 
-  datetime_a_20170830_05:
-    command: prep_datetime_fun(I('2017-08-30 05:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170830_05.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3151,9 +2776,6 @@ targets:
 
   precip_raster_a_20170830_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 06:00:00'))
-
-  datetime_a_20170830_06:
-    command: prep_datetime_fun(I('2017-08-30 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_06.png:
     command: create_storm_frame(
@@ -3177,9 +2799,6 @@ targets:
   precip_raster_a_20170830_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 07:00:00'))
 
-  datetime_a_20170830_07:
-    command: prep_datetime_fun(I('2017-08-30 07:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170830_07.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3201,9 +2820,6 @@ targets:
 
   precip_raster_a_20170830_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 08:00:00'))
-
-  datetime_a_20170830_08:
-    command: prep_datetime_fun(I('2017-08-30 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_08.png:
     command: create_storm_frame(
@@ -3227,9 +2843,6 @@ targets:
   precip_raster_a_20170830_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 09:00:00'))
 
-  datetime_a_20170830_09:
-    command: prep_datetime_fun(I('2017-08-30 09:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170830_09.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3251,9 +2864,6 @@ targets:
 
   precip_raster_a_20170830_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 10:00:00'))
-
-  datetime_a_20170830_10:
-    command: prep_datetime_fun(I('2017-08-30 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_10.png:
     command: create_storm_frame(
@@ -3277,9 +2887,6 @@ targets:
   precip_raster_a_20170830_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 11:00:00'))
 
-  datetime_a_20170830_11:
-    command: prep_datetime_fun(I('2017-08-30 11:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170830_11.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3301,9 +2908,6 @@ targets:
 
   precip_raster_a_20170830_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 12:00:00'))
-
-  datetime_a_20170830_12:
-    command: prep_datetime_fun(I('2017-08-30 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_12.png:
     command: create_storm_frame(
@@ -3327,9 +2931,6 @@ targets:
   precip_raster_a_20170830_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 13:00:00'))
 
-  datetime_a_20170830_13:
-    command: prep_datetime_fun(I('2017-08-30 13:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170830_13.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3351,9 +2952,6 @@ targets:
 
   precip_raster_a_20170830_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 14:00:00'))
-
-  datetime_a_20170830_14:
-    command: prep_datetime_fun(I('2017-08-30 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_14.png:
     command: create_storm_frame(
@@ -3377,9 +2975,6 @@ targets:
   precip_raster_a_20170830_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 15:00:00'))
 
-  datetime_a_20170830_15:
-    command: prep_datetime_fun(I('2017-08-30 15:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170830_15.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3401,9 +2996,6 @@ targets:
 
   precip_raster_a_20170830_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 16:00:00'))
-
-  datetime_a_20170830_16:
-    command: prep_datetime_fun(I('2017-08-30 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_16.png:
     command: create_storm_frame(
@@ -3427,9 +3019,6 @@ targets:
   precip_raster_a_20170830_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 17:00:00'))
 
-  datetime_a_20170830_17:
-    command: prep_datetime_fun(I('2017-08-30 17:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170830_17.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3451,9 +3040,6 @@ targets:
 
   precip_raster_a_20170830_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 18:00:00'))
-
-  datetime_a_20170830_18:
-    command: prep_datetime_fun(I('2017-08-30 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_18.png:
     command: create_storm_frame(
@@ -3477,9 +3063,6 @@ targets:
   precip_raster_a_20170830_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 19:00:00'))
 
-  datetime_a_20170830_19:
-    command: prep_datetime_fun(I('2017-08-30 19:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170830_19.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3501,9 +3084,6 @@ targets:
 
   precip_raster_a_20170830_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 20:00:00'))
-
-  datetime_a_20170830_20:
-    command: prep_datetime_fun(I('2017-08-30 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_20.png:
     command: create_storm_frame(
@@ -3527,9 +3107,6 @@ targets:
   precip_raster_a_20170830_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 21:00:00'))
 
-  datetime_a_20170830_21:
-    command: prep_datetime_fun(I('2017-08-30 21:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170830_21.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3551,9 +3128,6 @@ targets:
 
   precip_raster_a_20170830_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 22:00:00'))
-
-  datetime_a_20170830_22:
-    command: prep_datetime_fun(I('2017-08-30 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_22.png:
     command: create_storm_frame(
@@ -3577,9 +3151,6 @@ targets:
   precip_raster_a_20170830_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 23:00:00'))
 
-  datetime_a_20170830_23:
-    command: prep_datetime_fun(I('2017-08-30 23:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170830_23.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3601,9 +3172,6 @@ targets:
 
   precip_raster_a_20170831_00:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31'))
-
-  datetime_a_20170831_00:
-    command: prep_datetime_fun(I('2017-08-31'))
 
   6_visualize/tmp/gif_frame_a_20170831_00.png:
     command: create_storm_frame(
@@ -3627,9 +3195,6 @@ targets:
   precip_raster_a_20170831_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 01:00:00'))
 
-  datetime_a_20170831_01:
-    command: prep_datetime_fun(I('2017-08-31 01:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170831_01.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3651,9 +3216,6 @@ targets:
 
   precip_raster_a_20170831_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 02:00:00'))
-
-  datetime_a_20170831_02:
-    command: prep_datetime_fun(I('2017-08-31 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_02.png:
     command: create_storm_frame(
@@ -3677,9 +3239,6 @@ targets:
   precip_raster_a_20170831_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 03:00:00'))
 
-  datetime_a_20170831_03:
-    command: prep_datetime_fun(I('2017-08-31 03:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170831_03.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3701,9 +3260,6 @@ targets:
 
   precip_raster_a_20170831_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 04:00:00'))
-
-  datetime_a_20170831_04:
-    command: prep_datetime_fun(I('2017-08-31 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_04.png:
     command: create_storm_frame(
@@ -3727,9 +3283,6 @@ targets:
   precip_raster_a_20170831_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 05:00:00'))
 
-  datetime_a_20170831_05:
-    command: prep_datetime_fun(I('2017-08-31 05:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170831_05.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3751,9 +3304,6 @@ targets:
 
   precip_raster_a_20170831_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 06:00:00'))
-
-  datetime_a_20170831_06:
-    command: prep_datetime_fun(I('2017-08-31 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_06.png:
     command: create_storm_frame(
@@ -3777,9 +3327,6 @@ targets:
   precip_raster_a_20170831_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 07:00:00'))
 
-  datetime_a_20170831_07:
-    command: prep_datetime_fun(I('2017-08-31 07:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170831_07.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3801,9 +3348,6 @@ targets:
 
   precip_raster_a_20170831_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 08:00:00'))
-
-  datetime_a_20170831_08:
-    command: prep_datetime_fun(I('2017-08-31 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_08.png:
     command: create_storm_frame(
@@ -3827,9 +3371,6 @@ targets:
   precip_raster_a_20170831_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 09:00:00'))
 
-  datetime_a_20170831_09:
-    command: prep_datetime_fun(I('2017-08-31 09:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170831_09.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3851,9 +3392,6 @@ targets:
 
   precip_raster_a_20170831_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 10:00:00'))
-
-  datetime_a_20170831_10:
-    command: prep_datetime_fun(I('2017-08-31 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_10.png:
     command: create_storm_frame(
@@ -3877,9 +3415,6 @@ targets:
   precip_raster_a_20170831_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 11:00:00'))
 
-  datetime_a_20170831_11:
-    command: prep_datetime_fun(I('2017-08-31 11:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170831_11.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3901,9 +3436,6 @@ targets:
 
   precip_raster_a_20170831_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 12:00:00'))
-
-  datetime_a_20170831_12:
-    command: prep_datetime_fun(I('2017-08-31 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_12.png:
     command: create_storm_frame(
@@ -3927,9 +3459,6 @@ targets:
   precip_raster_a_20170831_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 13:00:00'))
 
-  datetime_a_20170831_13:
-    command: prep_datetime_fun(I('2017-08-31 13:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170831_13.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -3951,9 +3480,6 @@ targets:
 
   precip_raster_a_20170831_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 14:00:00'))
-
-  datetime_a_20170831_14:
-    command: prep_datetime_fun(I('2017-08-31 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_14.png:
     command: create_storm_frame(
@@ -3977,9 +3503,6 @@ targets:
   precip_raster_a_20170831_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 15:00:00'))
 
-  datetime_a_20170831_15:
-    command: prep_datetime_fun(I('2017-08-31 15:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170831_15.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4001,9 +3524,6 @@ targets:
 
   precip_raster_a_20170831_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 16:00:00'))
-
-  datetime_a_20170831_16:
-    command: prep_datetime_fun(I('2017-08-31 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_16.png:
     command: create_storm_frame(
@@ -4027,9 +3547,6 @@ targets:
   precip_raster_a_20170831_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 17:00:00'))
 
-  datetime_a_20170831_17:
-    command: prep_datetime_fun(I('2017-08-31 17:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170831_17.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4051,9 +3568,6 @@ targets:
 
   precip_raster_a_20170831_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 18:00:00'))
-
-  datetime_a_20170831_18:
-    command: prep_datetime_fun(I('2017-08-31 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_18.png:
     command: create_storm_frame(
@@ -4077,9 +3591,6 @@ targets:
   precip_raster_a_20170831_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 19:00:00'))
 
-  datetime_a_20170831_19:
-    command: prep_datetime_fun(I('2017-08-31 19:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170831_19.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4101,9 +3612,6 @@ targets:
 
   precip_raster_a_20170831_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 20:00:00'))
-
-  datetime_a_20170831_20:
-    command: prep_datetime_fun(I('2017-08-31 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_20.png:
     command: create_storm_frame(
@@ -4127,9 +3635,6 @@ targets:
   precip_raster_a_20170831_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 21:00:00'))
 
-  datetime_a_20170831_21:
-    command: prep_datetime_fun(I('2017-08-31 21:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170831_21.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4151,9 +3656,6 @@ targets:
 
   precip_raster_a_20170831_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 22:00:00'))
-
-  datetime_a_20170831_22:
-    command: prep_datetime_fun(I('2017-08-31 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_22.png:
     command: create_storm_frame(
@@ -4177,9 +3679,6 @@ targets:
   precip_raster_a_20170831_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 23:00:00'))
 
-  datetime_a_20170831_23:
-    command: prep_datetime_fun(I('2017-08-31 23:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170831_23.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4201,9 +3700,6 @@ targets:
 
   precip_raster_a_20170901_00:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01'))
-
-  datetime_a_20170901_00:
-    command: prep_datetime_fun(I('2017-09-01'))
 
   6_visualize/tmp/gif_frame_a_20170901_00.png:
     command: create_storm_frame(
@@ -4227,9 +3723,6 @@ targets:
   precip_raster_a_20170901_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 01:00:00'))
 
-  datetime_a_20170901_01:
-    command: prep_datetime_fun(I('2017-09-01 01:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170901_01.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4251,9 +3744,6 @@ targets:
 
   precip_raster_a_20170901_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 02:00:00'))
-
-  datetime_a_20170901_02:
-    command: prep_datetime_fun(I('2017-09-01 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_02.png:
     command: create_storm_frame(
@@ -4277,9 +3767,6 @@ targets:
   precip_raster_a_20170901_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 03:00:00'))
 
-  datetime_a_20170901_03:
-    command: prep_datetime_fun(I('2017-09-01 03:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170901_03.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4301,9 +3788,6 @@ targets:
 
   precip_raster_a_20170901_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 04:00:00'))
-
-  datetime_a_20170901_04:
-    command: prep_datetime_fun(I('2017-09-01 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_04.png:
     command: create_storm_frame(
@@ -4327,9 +3811,6 @@ targets:
   precip_raster_a_20170901_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 05:00:00'))
 
-  datetime_a_20170901_05:
-    command: prep_datetime_fun(I('2017-09-01 05:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170901_05.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4351,9 +3832,6 @@ targets:
 
   precip_raster_a_20170901_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 06:00:00'))
-
-  datetime_a_20170901_06:
-    command: prep_datetime_fun(I('2017-09-01 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_06.png:
     command: create_storm_frame(
@@ -4377,9 +3855,6 @@ targets:
   precip_raster_a_20170901_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 07:00:00'))
 
-  datetime_a_20170901_07:
-    command: prep_datetime_fun(I('2017-09-01 07:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170901_07.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4401,9 +3876,6 @@ targets:
 
   precip_raster_a_20170901_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 08:00:00'))
-
-  datetime_a_20170901_08:
-    command: prep_datetime_fun(I('2017-09-01 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_08.png:
     command: create_storm_frame(
@@ -4427,9 +3899,6 @@ targets:
   precip_raster_a_20170901_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 09:00:00'))
 
-  datetime_a_20170901_09:
-    command: prep_datetime_fun(I('2017-09-01 09:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170901_09.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4451,9 +3920,6 @@ targets:
 
   precip_raster_a_20170901_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 10:00:00'))
-
-  datetime_a_20170901_10:
-    command: prep_datetime_fun(I('2017-09-01 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_10.png:
     command: create_storm_frame(
@@ -4477,9 +3943,6 @@ targets:
   precip_raster_a_20170901_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 11:00:00'))
 
-  datetime_a_20170901_11:
-    command: prep_datetime_fun(I('2017-09-01 11:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170901_11.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4501,9 +3964,6 @@ targets:
 
   precip_raster_a_20170901_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 12:00:00'))
-
-  datetime_a_20170901_12:
-    command: prep_datetime_fun(I('2017-09-01 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_12.png:
     command: create_storm_frame(
@@ -4527,9 +3987,6 @@ targets:
   precip_raster_a_20170901_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 13:00:00'))
 
-  datetime_a_20170901_13:
-    command: prep_datetime_fun(I('2017-09-01 13:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170901_13.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4551,9 +4008,6 @@ targets:
 
   precip_raster_a_20170901_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 14:00:00'))
-
-  datetime_a_20170901_14:
-    command: prep_datetime_fun(I('2017-09-01 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_14.png:
     command: create_storm_frame(
@@ -4577,9 +4031,6 @@ targets:
   precip_raster_a_20170901_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 15:00:00'))
 
-  datetime_a_20170901_15:
-    command: prep_datetime_fun(I('2017-09-01 15:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170901_15.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4601,9 +4052,6 @@ targets:
 
   precip_raster_a_20170901_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 16:00:00'))
-
-  datetime_a_20170901_16:
-    command: prep_datetime_fun(I('2017-09-01 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_16.png:
     command: create_storm_frame(
@@ -4627,9 +4075,6 @@ targets:
   precip_raster_a_20170901_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 17:00:00'))
 
-  datetime_a_20170901_17:
-    command: prep_datetime_fun(I('2017-09-01 17:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170901_17.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4651,9 +4096,6 @@ targets:
 
   precip_raster_a_20170901_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 18:00:00'))
-
-  datetime_a_20170901_18:
-    command: prep_datetime_fun(I('2017-09-01 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_18.png:
     command: create_storm_frame(
@@ -4677,9 +4119,6 @@ targets:
   precip_raster_a_20170901_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 19:00:00'))
 
-  datetime_a_20170901_19:
-    command: prep_datetime_fun(I('2017-09-01 19:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170901_19.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4701,9 +4140,6 @@ targets:
 
   precip_raster_a_20170901_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 20:00:00'))
-
-  datetime_a_20170901_20:
-    command: prep_datetime_fun(I('2017-09-01 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_20.png:
     command: create_storm_frame(
@@ -4727,9 +4163,6 @@ targets:
   precip_raster_a_20170901_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 21:00:00'))
 
-  datetime_a_20170901_21:
-    command: prep_datetime_fun(I('2017-09-01 21:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170901_21.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4752,9 +4185,6 @@ targets:
   precip_raster_a_20170901_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 22:00:00'))
 
-  datetime_a_20170901_22:
-    command: prep_datetime_fun(I('2017-09-01 22:00:00'))
-
   6_visualize/tmp/gif_frame_a_20170901_22.png:
     command: create_storm_frame(
       png_file=target_name,
@@ -4776,9 +4206,6 @@ targets:
 
   precip_raster_a_20170901_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 23:00:00'))
-
-  datetime_a_20170901_23:
-    command: prep_datetime_fun(I('2017-09-01 23:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_23.png:
     command: create_storm_frame(

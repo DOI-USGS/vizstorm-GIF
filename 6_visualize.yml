@@ -23,6 +23,7 @@ sources:
   - 6_visualize/src/prep_precip_fun.R
   - 6_visualize/src/prep_rivers_fun.R
   - 6_visualize/src/prep_legend_fun.R
+  - 6_visualize/src/prep_datetime_fun.R
   - 6_visualize/src/combine_storm_frames.R
 
 targets:
