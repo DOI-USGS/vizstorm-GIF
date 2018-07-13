@@ -21,10 +21,10 @@ file_extensions:
 targets:
   # --- a_20170825_01 --- #
   
-  storm_point_a_20170825_01:
+  storm_point_fun_a_20170825_01:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 01:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_01:
+  precip_raster_fun_a_20170825_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 01:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_01.png:
@@ -34,18 +34,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_01,
+      precip_raster_fun_a_20170825_01,
       storm_line_fun,
-      storm_point_a_20170825_01,
+      storm_point_fun_a_20170825_01,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_02 --- #
   
-  storm_point_a_20170825_02:
+  storm_point_fun_a_20170825_02:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 02:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_02:
+  precip_raster_fun_a_20170825_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_02.png:
@@ -55,18 +55,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_02,
+      precip_raster_fun_a_20170825_02,
       storm_line_fun,
-      storm_point_a_20170825_02,
+      storm_point_fun_a_20170825_02,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_03 --- #
   
-  storm_point_a_20170825_03:
+  storm_point_fun_a_20170825_03:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 03:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_03:
+  precip_raster_fun_a_20170825_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 03:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_03.png:
@@ -76,18 +76,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_03,
+      precip_raster_fun_a_20170825_03,
       storm_line_fun,
-      storm_point_a_20170825_03,
+      storm_point_fun_a_20170825_03,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_04 --- #
   
-  storm_point_a_20170825_04:
+  storm_point_fun_a_20170825_04:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 04:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_04:
+  precip_raster_fun_a_20170825_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_04.png:
@@ -97,18 +97,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_04,
+      precip_raster_fun_a_20170825_04,
       storm_line_fun,
-      storm_point_a_20170825_04,
+      storm_point_fun_a_20170825_04,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_05 --- #
   
-  storm_point_a_20170825_05:
+  storm_point_fun_a_20170825_05:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 05:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_05:
+  precip_raster_fun_a_20170825_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 05:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_05.png:
@@ -118,18 +118,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_05,
+      precip_raster_fun_a_20170825_05,
       storm_line_fun,
-      storm_point_a_20170825_05,
+      storm_point_fun_a_20170825_05,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_06 --- #
   
-  storm_point_a_20170825_06:
+  storm_point_fun_a_20170825_06:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 06:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_06:
+  precip_raster_fun_a_20170825_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_06.png:
@@ -139,18 +139,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_06,
+      precip_raster_fun_a_20170825_06,
       storm_line_fun,
-      storm_point_a_20170825_06,
+      storm_point_fun_a_20170825_06,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_07 --- #
   
-  storm_point_a_20170825_07:
+  storm_point_fun_a_20170825_07:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 07:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_07:
+  precip_raster_fun_a_20170825_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 07:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_07.png:
@@ -160,18 +160,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_07,
+      precip_raster_fun_a_20170825_07,
       storm_line_fun,
-      storm_point_a_20170825_07,
+      storm_point_fun_a_20170825_07,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_08 --- #
   
-  storm_point_a_20170825_08:
+  storm_point_fun_a_20170825_08:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 08:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_08:
+  precip_raster_fun_a_20170825_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_08.png:
@@ -181,18 +181,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_08,
+      precip_raster_fun_a_20170825_08,
       storm_line_fun,
-      storm_point_a_20170825_08,
+      storm_point_fun_a_20170825_08,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_09 --- #
   
-  storm_point_a_20170825_09:
+  storm_point_fun_a_20170825_09:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 09:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_09:
+  precip_raster_fun_a_20170825_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 09:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_09.png:
@@ -202,18 +202,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_09,
+      precip_raster_fun_a_20170825_09,
       storm_line_fun,
-      storm_point_a_20170825_09,
+      storm_point_fun_a_20170825_09,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_10 --- #
   
-  storm_point_a_20170825_10:
+  storm_point_fun_a_20170825_10:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 10:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_10:
+  precip_raster_fun_a_20170825_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_10.png:
@@ -223,18 +223,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_10,
+      precip_raster_fun_a_20170825_10,
       storm_line_fun,
-      storm_point_a_20170825_10,
+      storm_point_fun_a_20170825_10,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_11 --- #
   
-  storm_point_a_20170825_11:
+  storm_point_fun_a_20170825_11:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 11:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_11:
+  precip_raster_fun_a_20170825_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 11:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_11.png:
@@ -244,18 +244,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_11,
+      precip_raster_fun_a_20170825_11,
       storm_line_fun,
-      storm_point_a_20170825_11,
+      storm_point_fun_a_20170825_11,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_12 --- #
   
-  storm_point_a_20170825_12:
+  storm_point_fun_a_20170825_12:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 12:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_12:
+  precip_raster_fun_a_20170825_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_12.png:
@@ -265,18 +265,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_12,
+      precip_raster_fun_a_20170825_12,
       storm_line_fun,
-      storm_point_a_20170825_12,
+      storm_point_fun_a_20170825_12,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_13 --- #
   
-  storm_point_a_20170825_13:
+  storm_point_fun_a_20170825_13:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 13:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_13:
+  precip_raster_fun_a_20170825_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 13:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_13.png:
@@ -286,18 +286,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_13,
+      precip_raster_fun_a_20170825_13,
       storm_line_fun,
-      storm_point_a_20170825_13,
+      storm_point_fun_a_20170825_13,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_14 --- #
   
-  storm_point_a_20170825_14:
+  storm_point_fun_a_20170825_14:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 14:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_14:
+  precip_raster_fun_a_20170825_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_14.png:
@@ -307,18 +307,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_14,
+      precip_raster_fun_a_20170825_14,
       storm_line_fun,
-      storm_point_a_20170825_14,
+      storm_point_fun_a_20170825_14,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_15 --- #
   
-  storm_point_a_20170825_15:
+  storm_point_fun_a_20170825_15:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 15:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_15:
+  precip_raster_fun_a_20170825_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 15:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_15.png:
@@ -328,18 +328,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_15,
+      precip_raster_fun_a_20170825_15,
       storm_line_fun,
-      storm_point_a_20170825_15,
+      storm_point_fun_a_20170825_15,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_16 --- #
   
-  storm_point_a_20170825_16:
+  storm_point_fun_a_20170825_16:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 16:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_16:
+  precip_raster_fun_a_20170825_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_16.png:
@@ -349,18 +349,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_16,
+      precip_raster_fun_a_20170825_16,
       storm_line_fun,
-      storm_point_a_20170825_16,
+      storm_point_fun_a_20170825_16,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_17 --- #
   
-  storm_point_a_20170825_17:
+  storm_point_fun_a_20170825_17:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 17:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_17:
+  precip_raster_fun_a_20170825_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 17:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_17.png:
@@ -370,18 +370,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_17,
+      precip_raster_fun_a_20170825_17,
       storm_line_fun,
-      storm_point_a_20170825_17,
+      storm_point_fun_a_20170825_17,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_18 --- #
   
-  storm_point_a_20170825_18:
+  storm_point_fun_a_20170825_18:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 18:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_18:
+  precip_raster_fun_a_20170825_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_18.png:
@@ -391,18 +391,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_18,
+      precip_raster_fun_a_20170825_18,
       storm_line_fun,
-      storm_point_a_20170825_18,
+      storm_point_fun_a_20170825_18,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_19 --- #
   
-  storm_point_a_20170825_19:
+  storm_point_fun_a_20170825_19:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 19:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_19:
+  precip_raster_fun_a_20170825_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 19:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_19.png:
@@ -412,18 +412,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_19,
+      precip_raster_fun_a_20170825_19,
       storm_line_fun,
-      storm_point_a_20170825_19,
+      storm_point_fun_a_20170825_19,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_20 --- #
   
-  storm_point_a_20170825_20:
+  storm_point_fun_a_20170825_20:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 20:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_20:
+  precip_raster_fun_a_20170825_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_20.png:
@@ -433,18 +433,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_20,
+      precip_raster_fun_a_20170825_20,
       storm_line_fun,
-      storm_point_a_20170825_20,
+      storm_point_fun_a_20170825_20,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_21 --- #
   
-  storm_point_a_20170825_21:
+  storm_point_fun_a_20170825_21:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 21:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_21:
+  precip_raster_fun_a_20170825_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 21:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_21.png:
@@ -454,18 +454,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_21,
+      precip_raster_fun_a_20170825_21,
       storm_line_fun,
-      storm_point_a_20170825_21,
+      storm_point_fun_a_20170825_21,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_22 --- #
   
-  storm_point_a_20170825_22:
+  storm_point_fun_a_20170825_22:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 22:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_22:
+  precip_raster_fun_a_20170825_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_22.png:
@@ -475,18 +475,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_22,
+      precip_raster_fun_a_20170825_22,
       storm_line_fun,
-      storm_point_a_20170825_22,
+      storm_point_fun_a_20170825_22,
       legend_fun,
       watermark_fun)
 
   # --- a_20170825_23 --- #
   
-  storm_point_a_20170825_23:
+  storm_point_fun_a_20170825_23:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-25 23:00:00'), hurricane_col)
 
-  precip_raster_a_20170825_23:
+  precip_raster_fun_a_20170825_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-25 23:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170825_23.png:
@@ -496,19 +496,19 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170825_23,
+      precip_raster_fun_a_20170825_23,
       storm_line_fun,
-      storm_point_a_20170825_23,
+      storm_point_fun_a_20170825_23,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_00 --- #
   
-  storm_point_a_20170826_00:
-    command: prep_storm_point_fun(storm_points_sf, I('2017-08-26'), hurricane_col)
+  storm_point_fun_a_20170826_00:
+    command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 00:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_00:
-    command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26'))
+  precip_raster_fun_a_20170826_00:
+    command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 00:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_00.png:
     command: create_storm_frame(
@@ -517,18 +517,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_00,
+      precip_raster_fun_a_20170826_00,
       storm_line_fun,
-      storm_point_a_20170826_00,
+      storm_point_fun_a_20170826_00,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_01 --- #
   
-  storm_point_a_20170826_01:
+  storm_point_fun_a_20170826_01:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 01:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_01:
+  precip_raster_fun_a_20170826_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 01:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_01.png:
@@ -538,18 +538,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_01,
+      precip_raster_fun_a_20170826_01,
       storm_line_fun,
-      storm_point_a_20170826_01,
+      storm_point_fun_a_20170826_01,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_02 --- #
   
-  storm_point_a_20170826_02:
+  storm_point_fun_a_20170826_02:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 02:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_02:
+  precip_raster_fun_a_20170826_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_02.png:
@@ -559,18 +559,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_02,
+      precip_raster_fun_a_20170826_02,
       storm_line_fun,
-      storm_point_a_20170826_02,
+      storm_point_fun_a_20170826_02,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_03 --- #
   
-  storm_point_a_20170826_03:
+  storm_point_fun_a_20170826_03:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 03:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_03:
+  precip_raster_fun_a_20170826_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 03:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_03.png:
@@ -580,18 +580,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_03,
+      precip_raster_fun_a_20170826_03,
       storm_line_fun,
-      storm_point_a_20170826_03,
+      storm_point_fun_a_20170826_03,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_04 --- #
   
-  storm_point_a_20170826_04:
+  storm_point_fun_a_20170826_04:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 04:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_04:
+  precip_raster_fun_a_20170826_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_04.png:
@@ -601,18 +601,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_04,
+      precip_raster_fun_a_20170826_04,
       storm_line_fun,
-      storm_point_a_20170826_04,
+      storm_point_fun_a_20170826_04,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_05 --- #
   
-  storm_point_a_20170826_05:
+  storm_point_fun_a_20170826_05:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 05:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_05:
+  precip_raster_fun_a_20170826_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 05:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_05.png:
@@ -622,18 +622,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_05,
+      precip_raster_fun_a_20170826_05,
       storm_line_fun,
-      storm_point_a_20170826_05,
+      storm_point_fun_a_20170826_05,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_06 --- #
   
-  storm_point_a_20170826_06:
+  storm_point_fun_a_20170826_06:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 06:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_06:
+  precip_raster_fun_a_20170826_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_06.png:
@@ -643,18 +643,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_06,
+      precip_raster_fun_a_20170826_06,
       storm_line_fun,
-      storm_point_a_20170826_06,
+      storm_point_fun_a_20170826_06,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_07 --- #
   
-  storm_point_a_20170826_07:
+  storm_point_fun_a_20170826_07:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 07:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_07:
+  precip_raster_fun_a_20170826_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 07:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_07.png:
@@ -664,18 +664,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_07,
+      precip_raster_fun_a_20170826_07,
       storm_line_fun,
-      storm_point_a_20170826_07,
+      storm_point_fun_a_20170826_07,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_08 --- #
   
-  storm_point_a_20170826_08:
+  storm_point_fun_a_20170826_08:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 08:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_08:
+  precip_raster_fun_a_20170826_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_08.png:
@@ -685,18 +685,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_08,
+      precip_raster_fun_a_20170826_08,
       storm_line_fun,
-      storm_point_a_20170826_08,
+      storm_point_fun_a_20170826_08,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_09 --- #
   
-  storm_point_a_20170826_09:
+  storm_point_fun_a_20170826_09:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 09:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_09:
+  precip_raster_fun_a_20170826_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 09:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_09.png:
@@ -706,18 +706,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_09,
+      precip_raster_fun_a_20170826_09,
       storm_line_fun,
-      storm_point_a_20170826_09,
+      storm_point_fun_a_20170826_09,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_10 --- #
   
-  storm_point_a_20170826_10:
+  storm_point_fun_a_20170826_10:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 10:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_10:
+  precip_raster_fun_a_20170826_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_10.png:
@@ -727,18 +727,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_10,
+      precip_raster_fun_a_20170826_10,
       storm_line_fun,
-      storm_point_a_20170826_10,
+      storm_point_fun_a_20170826_10,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_11 --- #
   
-  storm_point_a_20170826_11:
+  storm_point_fun_a_20170826_11:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 11:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_11:
+  precip_raster_fun_a_20170826_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 11:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_11.png:
@@ -748,18 +748,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_11,
+      precip_raster_fun_a_20170826_11,
       storm_line_fun,
-      storm_point_a_20170826_11,
+      storm_point_fun_a_20170826_11,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_12 --- #
   
-  storm_point_a_20170826_12:
+  storm_point_fun_a_20170826_12:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 12:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_12:
+  precip_raster_fun_a_20170826_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_12.png:
@@ -769,18 +769,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_12,
+      precip_raster_fun_a_20170826_12,
       storm_line_fun,
-      storm_point_a_20170826_12,
+      storm_point_fun_a_20170826_12,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_13 --- #
   
-  storm_point_a_20170826_13:
+  storm_point_fun_a_20170826_13:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 13:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_13:
+  precip_raster_fun_a_20170826_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 13:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_13.png:
@@ -790,18 +790,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_13,
+      precip_raster_fun_a_20170826_13,
       storm_line_fun,
-      storm_point_a_20170826_13,
+      storm_point_fun_a_20170826_13,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_14 --- #
   
-  storm_point_a_20170826_14:
+  storm_point_fun_a_20170826_14:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 14:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_14:
+  precip_raster_fun_a_20170826_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_14.png:
@@ -811,18 +811,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_14,
+      precip_raster_fun_a_20170826_14,
       storm_line_fun,
-      storm_point_a_20170826_14,
+      storm_point_fun_a_20170826_14,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_15 --- #
   
-  storm_point_a_20170826_15:
+  storm_point_fun_a_20170826_15:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 15:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_15:
+  precip_raster_fun_a_20170826_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 15:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_15.png:
@@ -832,18 +832,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_15,
+      precip_raster_fun_a_20170826_15,
       storm_line_fun,
-      storm_point_a_20170826_15,
+      storm_point_fun_a_20170826_15,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_16 --- #
   
-  storm_point_a_20170826_16:
+  storm_point_fun_a_20170826_16:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 16:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_16:
+  precip_raster_fun_a_20170826_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_16.png:
@@ -853,18 +853,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_16,
+      precip_raster_fun_a_20170826_16,
       storm_line_fun,
-      storm_point_a_20170826_16,
+      storm_point_fun_a_20170826_16,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_17 --- #
   
-  storm_point_a_20170826_17:
+  storm_point_fun_a_20170826_17:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 17:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_17:
+  precip_raster_fun_a_20170826_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 17:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_17.png:
@@ -874,18 +874,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_17,
+      precip_raster_fun_a_20170826_17,
       storm_line_fun,
-      storm_point_a_20170826_17,
+      storm_point_fun_a_20170826_17,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_18 --- #
   
-  storm_point_a_20170826_18:
+  storm_point_fun_a_20170826_18:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 18:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_18:
+  precip_raster_fun_a_20170826_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_18.png:
@@ -895,18 +895,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_18,
+      precip_raster_fun_a_20170826_18,
       storm_line_fun,
-      storm_point_a_20170826_18,
+      storm_point_fun_a_20170826_18,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_19 --- #
   
-  storm_point_a_20170826_19:
+  storm_point_fun_a_20170826_19:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 19:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_19:
+  precip_raster_fun_a_20170826_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 19:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_19.png:
@@ -916,18 +916,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_19,
+      precip_raster_fun_a_20170826_19,
       storm_line_fun,
-      storm_point_a_20170826_19,
+      storm_point_fun_a_20170826_19,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_20 --- #
   
-  storm_point_a_20170826_20:
+  storm_point_fun_a_20170826_20:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 20:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_20:
+  precip_raster_fun_a_20170826_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_20.png:
@@ -937,18 +937,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_20,
+      precip_raster_fun_a_20170826_20,
       storm_line_fun,
-      storm_point_a_20170826_20,
+      storm_point_fun_a_20170826_20,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_21 --- #
   
-  storm_point_a_20170826_21:
+  storm_point_fun_a_20170826_21:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 21:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_21:
+  precip_raster_fun_a_20170826_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 21:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_21.png:
@@ -958,18 +958,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_21,
+      precip_raster_fun_a_20170826_21,
       storm_line_fun,
-      storm_point_a_20170826_21,
+      storm_point_fun_a_20170826_21,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_22 --- #
   
-  storm_point_a_20170826_22:
+  storm_point_fun_a_20170826_22:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 22:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_22:
+  precip_raster_fun_a_20170826_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_22.png:
@@ -979,18 +979,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_22,
+      precip_raster_fun_a_20170826_22,
       storm_line_fun,
-      storm_point_a_20170826_22,
+      storm_point_fun_a_20170826_22,
       legend_fun,
       watermark_fun)
 
   # --- a_20170826_23 --- #
   
-  storm_point_a_20170826_23:
+  storm_point_fun_a_20170826_23:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-26 23:00:00'), hurricane_col)
 
-  precip_raster_a_20170826_23:
+  precip_raster_fun_a_20170826_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-26 23:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170826_23.png:
@@ -1000,19 +1000,19 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170826_23,
+      precip_raster_fun_a_20170826_23,
       storm_line_fun,
-      storm_point_a_20170826_23,
+      storm_point_fun_a_20170826_23,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_00 --- #
   
-  storm_point_a_20170827_00:
-    command: prep_storm_point_fun(storm_points_sf, I('2017-08-27'), hurricane_col)
+  storm_point_fun_a_20170827_00:
+    command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 00:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_00:
-    command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27'))
+  precip_raster_fun_a_20170827_00:
+    command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 00:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_00.png:
     command: create_storm_frame(
@@ -1021,18 +1021,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_00,
+      precip_raster_fun_a_20170827_00,
       storm_line_fun,
-      storm_point_a_20170827_00,
+      storm_point_fun_a_20170827_00,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_01 --- #
   
-  storm_point_a_20170827_01:
+  storm_point_fun_a_20170827_01:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 01:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_01:
+  precip_raster_fun_a_20170827_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 01:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_01.png:
@@ -1042,18 +1042,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_01,
+      precip_raster_fun_a_20170827_01,
       storm_line_fun,
-      storm_point_a_20170827_01,
+      storm_point_fun_a_20170827_01,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_02 --- #
   
-  storm_point_a_20170827_02:
+  storm_point_fun_a_20170827_02:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 02:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_02:
+  precip_raster_fun_a_20170827_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_02.png:
@@ -1063,18 +1063,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_02,
+      precip_raster_fun_a_20170827_02,
       storm_line_fun,
-      storm_point_a_20170827_02,
+      storm_point_fun_a_20170827_02,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_03 --- #
   
-  storm_point_a_20170827_03:
+  storm_point_fun_a_20170827_03:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 03:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_03:
+  precip_raster_fun_a_20170827_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 03:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_03.png:
@@ -1084,18 +1084,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_03,
+      precip_raster_fun_a_20170827_03,
       storm_line_fun,
-      storm_point_a_20170827_03,
+      storm_point_fun_a_20170827_03,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_04 --- #
   
-  storm_point_a_20170827_04:
+  storm_point_fun_a_20170827_04:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 04:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_04:
+  precip_raster_fun_a_20170827_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_04.png:
@@ -1105,18 +1105,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_04,
+      precip_raster_fun_a_20170827_04,
       storm_line_fun,
-      storm_point_a_20170827_04,
+      storm_point_fun_a_20170827_04,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_05 --- #
   
-  storm_point_a_20170827_05:
+  storm_point_fun_a_20170827_05:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 05:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_05:
+  precip_raster_fun_a_20170827_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 05:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_05.png:
@@ -1126,18 +1126,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_05,
+      precip_raster_fun_a_20170827_05,
       storm_line_fun,
-      storm_point_a_20170827_05,
+      storm_point_fun_a_20170827_05,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_06 --- #
   
-  storm_point_a_20170827_06:
+  storm_point_fun_a_20170827_06:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 06:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_06:
+  precip_raster_fun_a_20170827_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_06.png:
@@ -1147,18 +1147,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_06,
+      precip_raster_fun_a_20170827_06,
       storm_line_fun,
-      storm_point_a_20170827_06,
+      storm_point_fun_a_20170827_06,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_07 --- #
   
-  storm_point_a_20170827_07:
+  storm_point_fun_a_20170827_07:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 07:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_07:
+  precip_raster_fun_a_20170827_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 07:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_07.png:
@@ -1168,18 +1168,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_07,
+      precip_raster_fun_a_20170827_07,
       storm_line_fun,
-      storm_point_a_20170827_07,
+      storm_point_fun_a_20170827_07,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_08 --- #
   
-  storm_point_a_20170827_08:
+  storm_point_fun_a_20170827_08:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 08:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_08:
+  precip_raster_fun_a_20170827_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_08.png:
@@ -1189,18 +1189,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_08,
+      precip_raster_fun_a_20170827_08,
       storm_line_fun,
-      storm_point_a_20170827_08,
+      storm_point_fun_a_20170827_08,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_09 --- #
   
-  storm_point_a_20170827_09:
+  storm_point_fun_a_20170827_09:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 09:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_09:
+  precip_raster_fun_a_20170827_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 09:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_09.png:
@@ -1210,18 +1210,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_09,
+      precip_raster_fun_a_20170827_09,
       storm_line_fun,
-      storm_point_a_20170827_09,
+      storm_point_fun_a_20170827_09,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_10 --- #
   
-  storm_point_a_20170827_10:
+  storm_point_fun_a_20170827_10:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 10:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_10:
+  precip_raster_fun_a_20170827_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_10.png:
@@ -1231,18 +1231,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_10,
+      precip_raster_fun_a_20170827_10,
       storm_line_fun,
-      storm_point_a_20170827_10,
+      storm_point_fun_a_20170827_10,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_11 --- #
   
-  storm_point_a_20170827_11:
+  storm_point_fun_a_20170827_11:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 11:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_11:
+  precip_raster_fun_a_20170827_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 11:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_11.png:
@@ -1252,18 +1252,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_11,
+      precip_raster_fun_a_20170827_11,
       storm_line_fun,
-      storm_point_a_20170827_11,
+      storm_point_fun_a_20170827_11,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_12 --- #
   
-  storm_point_a_20170827_12:
+  storm_point_fun_a_20170827_12:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 12:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_12:
+  precip_raster_fun_a_20170827_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_12.png:
@@ -1273,18 +1273,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_12,
+      precip_raster_fun_a_20170827_12,
       storm_line_fun,
-      storm_point_a_20170827_12,
+      storm_point_fun_a_20170827_12,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_13 --- #
   
-  storm_point_a_20170827_13:
+  storm_point_fun_a_20170827_13:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 13:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_13:
+  precip_raster_fun_a_20170827_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 13:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_13.png:
@@ -1294,18 +1294,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_13,
+      precip_raster_fun_a_20170827_13,
       storm_line_fun,
-      storm_point_a_20170827_13,
+      storm_point_fun_a_20170827_13,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_14 --- #
   
-  storm_point_a_20170827_14:
+  storm_point_fun_a_20170827_14:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 14:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_14:
+  precip_raster_fun_a_20170827_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_14.png:
@@ -1315,18 +1315,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_14,
+      precip_raster_fun_a_20170827_14,
       storm_line_fun,
-      storm_point_a_20170827_14,
+      storm_point_fun_a_20170827_14,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_15 --- #
   
-  storm_point_a_20170827_15:
+  storm_point_fun_a_20170827_15:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 15:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_15:
+  precip_raster_fun_a_20170827_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 15:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_15.png:
@@ -1336,18 +1336,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_15,
+      precip_raster_fun_a_20170827_15,
       storm_line_fun,
-      storm_point_a_20170827_15,
+      storm_point_fun_a_20170827_15,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_16 --- #
   
-  storm_point_a_20170827_16:
+  storm_point_fun_a_20170827_16:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 16:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_16:
+  precip_raster_fun_a_20170827_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_16.png:
@@ -1357,18 +1357,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_16,
+      precip_raster_fun_a_20170827_16,
       storm_line_fun,
-      storm_point_a_20170827_16,
+      storm_point_fun_a_20170827_16,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_17 --- #
   
-  storm_point_a_20170827_17:
+  storm_point_fun_a_20170827_17:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 17:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_17:
+  precip_raster_fun_a_20170827_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 17:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_17.png:
@@ -1378,18 +1378,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_17,
+      precip_raster_fun_a_20170827_17,
       storm_line_fun,
-      storm_point_a_20170827_17,
+      storm_point_fun_a_20170827_17,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_18 --- #
   
-  storm_point_a_20170827_18:
+  storm_point_fun_a_20170827_18:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 18:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_18:
+  precip_raster_fun_a_20170827_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_18.png:
@@ -1399,18 +1399,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_18,
+      precip_raster_fun_a_20170827_18,
       storm_line_fun,
-      storm_point_a_20170827_18,
+      storm_point_fun_a_20170827_18,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_19 --- #
   
-  storm_point_a_20170827_19:
+  storm_point_fun_a_20170827_19:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 19:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_19:
+  precip_raster_fun_a_20170827_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 19:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_19.png:
@@ -1420,18 +1420,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_19,
+      precip_raster_fun_a_20170827_19,
       storm_line_fun,
-      storm_point_a_20170827_19,
+      storm_point_fun_a_20170827_19,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_20 --- #
   
-  storm_point_a_20170827_20:
+  storm_point_fun_a_20170827_20:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 20:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_20:
+  precip_raster_fun_a_20170827_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_20.png:
@@ -1441,18 +1441,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_20,
+      precip_raster_fun_a_20170827_20,
       storm_line_fun,
-      storm_point_a_20170827_20,
+      storm_point_fun_a_20170827_20,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_21 --- #
   
-  storm_point_a_20170827_21:
+  storm_point_fun_a_20170827_21:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 21:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_21:
+  precip_raster_fun_a_20170827_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 21:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_21.png:
@@ -1462,18 +1462,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_21,
+      precip_raster_fun_a_20170827_21,
       storm_line_fun,
-      storm_point_a_20170827_21,
+      storm_point_fun_a_20170827_21,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_22 --- #
   
-  storm_point_a_20170827_22:
+  storm_point_fun_a_20170827_22:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 22:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_22:
+  precip_raster_fun_a_20170827_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_22.png:
@@ -1483,18 +1483,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_22,
+      precip_raster_fun_a_20170827_22,
       storm_line_fun,
-      storm_point_a_20170827_22,
+      storm_point_fun_a_20170827_22,
       legend_fun,
       watermark_fun)
 
   # --- a_20170827_23 --- #
   
-  storm_point_a_20170827_23:
+  storm_point_fun_a_20170827_23:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-27 23:00:00'), hurricane_col)
 
-  precip_raster_a_20170827_23:
+  precip_raster_fun_a_20170827_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-27 23:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170827_23.png:
@@ -1504,19 +1504,19 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170827_23,
+      precip_raster_fun_a_20170827_23,
       storm_line_fun,
-      storm_point_a_20170827_23,
+      storm_point_fun_a_20170827_23,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_00 --- #
   
-  storm_point_a_20170828_00:
-    command: prep_storm_point_fun(storm_points_sf, I('2017-08-28'), hurricane_col)
+  storm_point_fun_a_20170828_00:
+    command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 00:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_00:
-    command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28'))
+  precip_raster_fun_a_20170828_00:
+    command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 00:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_00.png:
     command: create_storm_frame(
@@ -1525,18 +1525,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_00,
+      precip_raster_fun_a_20170828_00,
       storm_line_fun,
-      storm_point_a_20170828_00,
+      storm_point_fun_a_20170828_00,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_01 --- #
   
-  storm_point_a_20170828_01:
+  storm_point_fun_a_20170828_01:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 01:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_01:
+  precip_raster_fun_a_20170828_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 01:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_01.png:
@@ -1546,18 +1546,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_01,
+      precip_raster_fun_a_20170828_01,
       storm_line_fun,
-      storm_point_a_20170828_01,
+      storm_point_fun_a_20170828_01,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_02 --- #
   
-  storm_point_a_20170828_02:
+  storm_point_fun_a_20170828_02:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 02:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_02:
+  precip_raster_fun_a_20170828_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_02.png:
@@ -1567,18 +1567,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_02,
+      precip_raster_fun_a_20170828_02,
       storm_line_fun,
-      storm_point_a_20170828_02,
+      storm_point_fun_a_20170828_02,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_03 --- #
   
-  storm_point_a_20170828_03:
+  storm_point_fun_a_20170828_03:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 03:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_03:
+  precip_raster_fun_a_20170828_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 03:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_03.png:
@@ -1588,18 +1588,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_03,
+      precip_raster_fun_a_20170828_03,
       storm_line_fun,
-      storm_point_a_20170828_03,
+      storm_point_fun_a_20170828_03,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_04 --- #
   
-  storm_point_a_20170828_04:
+  storm_point_fun_a_20170828_04:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 04:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_04:
+  precip_raster_fun_a_20170828_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_04.png:
@@ -1609,18 +1609,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_04,
+      precip_raster_fun_a_20170828_04,
       storm_line_fun,
-      storm_point_a_20170828_04,
+      storm_point_fun_a_20170828_04,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_05 --- #
   
-  storm_point_a_20170828_05:
+  storm_point_fun_a_20170828_05:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 05:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_05:
+  precip_raster_fun_a_20170828_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 05:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_05.png:
@@ -1630,18 +1630,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_05,
+      precip_raster_fun_a_20170828_05,
       storm_line_fun,
-      storm_point_a_20170828_05,
+      storm_point_fun_a_20170828_05,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_06 --- #
   
-  storm_point_a_20170828_06:
+  storm_point_fun_a_20170828_06:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 06:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_06:
+  precip_raster_fun_a_20170828_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_06.png:
@@ -1651,18 +1651,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_06,
+      precip_raster_fun_a_20170828_06,
       storm_line_fun,
-      storm_point_a_20170828_06,
+      storm_point_fun_a_20170828_06,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_07 --- #
   
-  storm_point_a_20170828_07:
+  storm_point_fun_a_20170828_07:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 07:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_07:
+  precip_raster_fun_a_20170828_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 07:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_07.png:
@@ -1672,18 +1672,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_07,
+      precip_raster_fun_a_20170828_07,
       storm_line_fun,
-      storm_point_a_20170828_07,
+      storm_point_fun_a_20170828_07,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_08 --- #
   
-  storm_point_a_20170828_08:
+  storm_point_fun_a_20170828_08:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 08:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_08:
+  precip_raster_fun_a_20170828_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_08.png:
@@ -1693,18 +1693,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_08,
+      precip_raster_fun_a_20170828_08,
       storm_line_fun,
-      storm_point_a_20170828_08,
+      storm_point_fun_a_20170828_08,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_09 --- #
   
-  storm_point_a_20170828_09:
+  storm_point_fun_a_20170828_09:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 09:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_09:
+  precip_raster_fun_a_20170828_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 09:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_09.png:
@@ -1714,18 +1714,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_09,
+      precip_raster_fun_a_20170828_09,
       storm_line_fun,
-      storm_point_a_20170828_09,
+      storm_point_fun_a_20170828_09,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_10 --- #
   
-  storm_point_a_20170828_10:
+  storm_point_fun_a_20170828_10:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 10:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_10:
+  precip_raster_fun_a_20170828_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_10.png:
@@ -1735,18 +1735,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_10,
+      precip_raster_fun_a_20170828_10,
       storm_line_fun,
-      storm_point_a_20170828_10,
+      storm_point_fun_a_20170828_10,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_11 --- #
   
-  storm_point_a_20170828_11:
+  storm_point_fun_a_20170828_11:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 11:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_11:
+  precip_raster_fun_a_20170828_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 11:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_11.png:
@@ -1756,18 +1756,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_11,
+      precip_raster_fun_a_20170828_11,
       storm_line_fun,
-      storm_point_a_20170828_11,
+      storm_point_fun_a_20170828_11,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_12 --- #
   
-  storm_point_a_20170828_12:
+  storm_point_fun_a_20170828_12:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 12:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_12:
+  precip_raster_fun_a_20170828_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_12.png:
@@ -1777,18 +1777,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_12,
+      precip_raster_fun_a_20170828_12,
       storm_line_fun,
-      storm_point_a_20170828_12,
+      storm_point_fun_a_20170828_12,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_13 --- #
   
-  storm_point_a_20170828_13:
+  storm_point_fun_a_20170828_13:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 13:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_13:
+  precip_raster_fun_a_20170828_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 13:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_13.png:
@@ -1798,18 +1798,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_13,
+      precip_raster_fun_a_20170828_13,
       storm_line_fun,
-      storm_point_a_20170828_13,
+      storm_point_fun_a_20170828_13,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_14 --- #
   
-  storm_point_a_20170828_14:
+  storm_point_fun_a_20170828_14:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 14:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_14:
+  precip_raster_fun_a_20170828_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_14.png:
@@ -1819,18 +1819,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_14,
+      precip_raster_fun_a_20170828_14,
       storm_line_fun,
-      storm_point_a_20170828_14,
+      storm_point_fun_a_20170828_14,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_15 --- #
   
-  storm_point_a_20170828_15:
+  storm_point_fun_a_20170828_15:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 15:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_15:
+  precip_raster_fun_a_20170828_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 15:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_15.png:
@@ -1840,18 +1840,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_15,
+      precip_raster_fun_a_20170828_15,
       storm_line_fun,
-      storm_point_a_20170828_15,
+      storm_point_fun_a_20170828_15,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_16 --- #
   
-  storm_point_a_20170828_16:
+  storm_point_fun_a_20170828_16:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 16:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_16:
+  precip_raster_fun_a_20170828_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_16.png:
@@ -1861,18 +1861,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_16,
+      precip_raster_fun_a_20170828_16,
       storm_line_fun,
-      storm_point_a_20170828_16,
+      storm_point_fun_a_20170828_16,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_17 --- #
   
-  storm_point_a_20170828_17:
+  storm_point_fun_a_20170828_17:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 17:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_17:
+  precip_raster_fun_a_20170828_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 17:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_17.png:
@@ -1882,18 +1882,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_17,
+      precip_raster_fun_a_20170828_17,
       storm_line_fun,
-      storm_point_a_20170828_17,
+      storm_point_fun_a_20170828_17,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_18 --- #
   
-  storm_point_a_20170828_18:
+  storm_point_fun_a_20170828_18:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 18:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_18:
+  precip_raster_fun_a_20170828_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_18.png:
@@ -1903,18 +1903,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_18,
+      precip_raster_fun_a_20170828_18,
       storm_line_fun,
-      storm_point_a_20170828_18,
+      storm_point_fun_a_20170828_18,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_19 --- #
   
-  storm_point_a_20170828_19:
+  storm_point_fun_a_20170828_19:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 19:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_19:
+  precip_raster_fun_a_20170828_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 19:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_19.png:
@@ -1924,18 +1924,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_19,
+      precip_raster_fun_a_20170828_19,
       storm_line_fun,
-      storm_point_a_20170828_19,
+      storm_point_fun_a_20170828_19,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_20 --- #
   
-  storm_point_a_20170828_20:
+  storm_point_fun_a_20170828_20:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 20:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_20:
+  precip_raster_fun_a_20170828_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_20.png:
@@ -1945,18 +1945,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_20,
+      precip_raster_fun_a_20170828_20,
       storm_line_fun,
-      storm_point_a_20170828_20,
+      storm_point_fun_a_20170828_20,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_21 --- #
   
-  storm_point_a_20170828_21:
+  storm_point_fun_a_20170828_21:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 21:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_21:
+  precip_raster_fun_a_20170828_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 21:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_21.png:
@@ -1966,18 +1966,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_21,
+      precip_raster_fun_a_20170828_21,
       storm_line_fun,
-      storm_point_a_20170828_21,
+      storm_point_fun_a_20170828_21,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_22 --- #
   
-  storm_point_a_20170828_22:
+  storm_point_fun_a_20170828_22:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 22:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_22:
+  precip_raster_fun_a_20170828_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_22.png:
@@ -1987,18 +1987,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_22,
+      precip_raster_fun_a_20170828_22,
       storm_line_fun,
-      storm_point_a_20170828_22,
+      storm_point_fun_a_20170828_22,
       legend_fun,
       watermark_fun)
 
   # --- a_20170828_23 --- #
   
-  storm_point_a_20170828_23:
+  storm_point_fun_a_20170828_23:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-28 23:00:00'), hurricane_col)
 
-  precip_raster_a_20170828_23:
+  precip_raster_fun_a_20170828_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-28 23:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170828_23.png:
@@ -2008,19 +2008,19 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170828_23,
+      precip_raster_fun_a_20170828_23,
       storm_line_fun,
-      storm_point_a_20170828_23,
+      storm_point_fun_a_20170828_23,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_00 --- #
   
-  storm_point_a_20170829_00:
-    command: prep_storm_point_fun(storm_points_sf, I('2017-08-29'), hurricane_col)
+  storm_point_fun_a_20170829_00:
+    command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 00:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_00:
-    command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29'))
+  precip_raster_fun_a_20170829_00:
+    command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 00:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_00.png:
     command: create_storm_frame(
@@ -2029,18 +2029,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_00,
+      precip_raster_fun_a_20170829_00,
       storm_line_fun,
-      storm_point_a_20170829_00,
+      storm_point_fun_a_20170829_00,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_01 --- #
   
-  storm_point_a_20170829_01:
+  storm_point_fun_a_20170829_01:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 01:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_01:
+  precip_raster_fun_a_20170829_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 01:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_01.png:
@@ -2050,18 +2050,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_01,
+      precip_raster_fun_a_20170829_01,
       storm_line_fun,
-      storm_point_a_20170829_01,
+      storm_point_fun_a_20170829_01,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_02 --- #
   
-  storm_point_a_20170829_02:
+  storm_point_fun_a_20170829_02:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 02:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_02:
+  precip_raster_fun_a_20170829_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_02.png:
@@ -2071,18 +2071,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_02,
+      precip_raster_fun_a_20170829_02,
       storm_line_fun,
-      storm_point_a_20170829_02,
+      storm_point_fun_a_20170829_02,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_03 --- #
   
-  storm_point_a_20170829_03:
+  storm_point_fun_a_20170829_03:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 03:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_03:
+  precip_raster_fun_a_20170829_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 03:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_03.png:
@@ -2092,18 +2092,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_03,
+      precip_raster_fun_a_20170829_03,
       storm_line_fun,
-      storm_point_a_20170829_03,
+      storm_point_fun_a_20170829_03,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_04 --- #
   
-  storm_point_a_20170829_04:
+  storm_point_fun_a_20170829_04:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 04:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_04:
+  precip_raster_fun_a_20170829_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_04.png:
@@ -2113,18 +2113,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_04,
+      precip_raster_fun_a_20170829_04,
       storm_line_fun,
-      storm_point_a_20170829_04,
+      storm_point_fun_a_20170829_04,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_05 --- #
   
-  storm_point_a_20170829_05:
+  storm_point_fun_a_20170829_05:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 05:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_05:
+  precip_raster_fun_a_20170829_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 05:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_05.png:
@@ -2134,18 +2134,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_05,
+      precip_raster_fun_a_20170829_05,
       storm_line_fun,
-      storm_point_a_20170829_05,
+      storm_point_fun_a_20170829_05,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_06 --- #
   
-  storm_point_a_20170829_06:
+  storm_point_fun_a_20170829_06:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 06:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_06:
+  precip_raster_fun_a_20170829_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_06.png:
@@ -2155,18 +2155,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_06,
+      precip_raster_fun_a_20170829_06,
       storm_line_fun,
-      storm_point_a_20170829_06,
+      storm_point_fun_a_20170829_06,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_07 --- #
   
-  storm_point_a_20170829_07:
+  storm_point_fun_a_20170829_07:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 07:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_07:
+  precip_raster_fun_a_20170829_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 07:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_07.png:
@@ -2176,18 +2176,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_07,
+      precip_raster_fun_a_20170829_07,
       storm_line_fun,
-      storm_point_a_20170829_07,
+      storm_point_fun_a_20170829_07,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_08 --- #
   
-  storm_point_a_20170829_08:
+  storm_point_fun_a_20170829_08:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 08:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_08:
+  precip_raster_fun_a_20170829_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_08.png:
@@ -2197,18 +2197,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_08,
+      precip_raster_fun_a_20170829_08,
       storm_line_fun,
-      storm_point_a_20170829_08,
+      storm_point_fun_a_20170829_08,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_09 --- #
   
-  storm_point_a_20170829_09:
+  storm_point_fun_a_20170829_09:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 09:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_09:
+  precip_raster_fun_a_20170829_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 09:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_09.png:
@@ -2218,18 +2218,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_09,
+      precip_raster_fun_a_20170829_09,
       storm_line_fun,
-      storm_point_a_20170829_09,
+      storm_point_fun_a_20170829_09,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_10 --- #
   
-  storm_point_a_20170829_10:
+  storm_point_fun_a_20170829_10:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 10:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_10:
+  precip_raster_fun_a_20170829_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_10.png:
@@ -2239,18 +2239,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_10,
+      precip_raster_fun_a_20170829_10,
       storm_line_fun,
-      storm_point_a_20170829_10,
+      storm_point_fun_a_20170829_10,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_11 --- #
   
-  storm_point_a_20170829_11:
+  storm_point_fun_a_20170829_11:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 11:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_11:
+  precip_raster_fun_a_20170829_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 11:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_11.png:
@@ -2260,18 +2260,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_11,
+      precip_raster_fun_a_20170829_11,
       storm_line_fun,
-      storm_point_a_20170829_11,
+      storm_point_fun_a_20170829_11,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_12 --- #
   
-  storm_point_a_20170829_12:
+  storm_point_fun_a_20170829_12:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 12:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_12:
+  precip_raster_fun_a_20170829_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_12.png:
@@ -2281,18 +2281,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_12,
+      precip_raster_fun_a_20170829_12,
       storm_line_fun,
-      storm_point_a_20170829_12,
+      storm_point_fun_a_20170829_12,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_13 --- #
   
-  storm_point_a_20170829_13:
+  storm_point_fun_a_20170829_13:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 13:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_13:
+  precip_raster_fun_a_20170829_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 13:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_13.png:
@@ -2302,18 +2302,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_13,
+      precip_raster_fun_a_20170829_13,
       storm_line_fun,
-      storm_point_a_20170829_13,
+      storm_point_fun_a_20170829_13,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_14 --- #
   
-  storm_point_a_20170829_14:
+  storm_point_fun_a_20170829_14:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 14:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_14:
+  precip_raster_fun_a_20170829_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_14.png:
@@ -2323,18 +2323,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_14,
+      precip_raster_fun_a_20170829_14,
       storm_line_fun,
-      storm_point_a_20170829_14,
+      storm_point_fun_a_20170829_14,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_15 --- #
   
-  storm_point_a_20170829_15:
+  storm_point_fun_a_20170829_15:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 15:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_15:
+  precip_raster_fun_a_20170829_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 15:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_15.png:
@@ -2344,18 +2344,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_15,
+      precip_raster_fun_a_20170829_15,
       storm_line_fun,
-      storm_point_a_20170829_15,
+      storm_point_fun_a_20170829_15,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_16 --- #
   
-  storm_point_a_20170829_16:
+  storm_point_fun_a_20170829_16:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 16:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_16:
+  precip_raster_fun_a_20170829_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_16.png:
@@ -2365,18 +2365,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_16,
+      precip_raster_fun_a_20170829_16,
       storm_line_fun,
-      storm_point_a_20170829_16,
+      storm_point_fun_a_20170829_16,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_17 --- #
   
-  storm_point_a_20170829_17:
+  storm_point_fun_a_20170829_17:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 17:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_17:
+  precip_raster_fun_a_20170829_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 17:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_17.png:
@@ -2386,18 +2386,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_17,
+      precip_raster_fun_a_20170829_17,
       storm_line_fun,
-      storm_point_a_20170829_17,
+      storm_point_fun_a_20170829_17,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_18 --- #
   
-  storm_point_a_20170829_18:
+  storm_point_fun_a_20170829_18:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 18:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_18:
+  precip_raster_fun_a_20170829_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_18.png:
@@ -2407,18 +2407,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_18,
+      precip_raster_fun_a_20170829_18,
       storm_line_fun,
-      storm_point_a_20170829_18,
+      storm_point_fun_a_20170829_18,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_19 --- #
   
-  storm_point_a_20170829_19:
+  storm_point_fun_a_20170829_19:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 19:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_19:
+  precip_raster_fun_a_20170829_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 19:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_19.png:
@@ -2428,18 +2428,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_19,
+      precip_raster_fun_a_20170829_19,
       storm_line_fun,
-      storm_point_a_20170829_19,
+      storm_point_fun_a_20170829_19,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_20 --- #
   
-  storm_point_a_20170829_20:
+  storm_point_fun_a_20170829_20:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 20:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_20:
+  precip_raster_fun_a_20170829_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_20.png:
@@ -2449,18 +2449,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_20,
+      precip_raster_fun_a_20170829_20,
       storm_line_fun,
-      storm_point_a_20170829_20,
+      storm_point_fun_a_20170829_20,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_21 --- #
   
-  storm_point_a_20170829_21:
+  storm_point_fun_a_20170829_21:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 21:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_21:
+  precip_raster_fun_a_20170829_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 21:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_21.png:
@@ -2470,18 +2470,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_21,
+      precip_raster_fun_a_20170829_21,
       storm_line_fun,
-      storm_point_a_20170829_21,
+      storm_point_fun_a_20170829_21,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_22 --- #
   
-  storm_point_a_20170829_22:
+  storm_point_fun_a_20170829_22:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 22:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_22:
+  precip_raster_fun_a_20170829_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_22.png:
@@ -2491,18 +2491,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_22,
+      precip_raster_fun_a_20170829_22,
       storm_line_fun,
-      storm_point_a_20170829_22,
+      storm_point_fun_a_20170829_22,
       legend_fun,
       watermark_fun)
 
   # --- a_20170829_23 --- #
   
-  storm_point_a_20170829_23:
+  storm_point_fun_a_20170829_23:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-29 23:00:00'), hurricane_col)
 
-  precip_raster_a_20170829_23:
+  precip_raster_fun_a_20170829_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-29 23:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170829_23.png:
@@ -2512,19 +2512,19 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170829_23,
+      precip_raster_fun_a_20170829_23,
       storm_line_fun,
-      storm_point_a_20170829_23,
+      storm_point_fun_a_20170829_23,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_00 --- #
   
-  storm_point_a_20170830_00:
-    command: prep_storm_point_fun(storm_points_sf, I('2017-08-30'), hurricane_col)
+  storm_point_fun_a_20170830_00:
+    command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 00:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_00:
-    command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30'))
+  precip_raster_fun_a_20170830_00:
+    command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 00:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_00.png:
     command: create_storm_frame(
@@ -2533,18 +2533,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_00,
+      precip_raster_fun_a_20170830_00,
       storm_line_fun,
-      storm_point_a_20170830_00,
+      storm_point_fun_a_20170830_00,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_01 --- #
   
-  storm_point_a_20170830_01:
+  storm_point_fun_a_20170830_01:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 01:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_01:
+  precip_raster_fun_a_20170830_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 01:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_01.png:
@@ -2554,18 +2554,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_01,
+      precip_raster_fun_a_20170830_01,
       storm_line_fun,
-      storm_point_a_20170830_01,
+      storm_point_fun_a_20170830_01,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_02 --- #
   
-  storm_point_a_20170830_02:
+  storm_point_fun_a_20170830_02:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 02:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_02:
+  precip_raster_fun_a_20170830_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_02.png:
@@ -2575,18 +2575,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_02,
+      precip_raster_fun_a_20170830_02,
       storm_line_fun,
-      storm_point_a_20170830_02,
+      storm_point_fun_a_20170830_02,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_03 --- #
   
-  storm_point_a_20170830_03:
+  storm_point_fun_a_20170830_03:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 03:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_03:
+  precip_raster_fun_a_20170830_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 03:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_03.png:
@@ -2596,18 +2596,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_03,
+      precip_raster_fun_a_20170830_03,
       storm_line_fun,
-      storm_point_a_20170830_03,
+      storm_point_fun_a_20170830_03,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_04 --- #
   
-  storm_point_a_20170830_04:
+  storm_point_fun_a_20170830_04:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 04:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_04:
+  precip_raster_fun_a_20170830_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_04.png:
@@ -2617,18 +2617,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_04,
+      precip_raster_fun_a_20170830_04,
       storm_line_fun,
-      storm_point_a_20170830_04,
+      storm_point_fun_a_20170830_04,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_05 --- #
   
-  storm_point_a_20170830_05:
+  storm_point_fun_a_20170830_05:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 05:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_05:
+  precip_raster_fun_a_20170830_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 05:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_05.png:
@@ -2638,18 +2638,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_05,
+      precip_raster_fun_a_20170830_05,
       storm_line_fun,
-      storm_point_a_20170830_05,
+      storm_point_fun_a_20170830_05,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_06 --- #
   
-  storm_point_a_20170830_06:
+  storm_point_fun_a_20170830_06:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 06:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_06:
+  precip_raster_fun_a_20170830_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_06.png:
@@ -2659,18 +2659,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_06,
+      precip_raster_fun_a_20170830_06,
       storm_line_fun,
-      storm_point_a_20170830_06,
+      storm_point_fun_a_20170830_06,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_07 --- #
   
-  storm_point_a_20170830_07:
+  storm_point_fun_a_20170830_07:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 07:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_07:
+  precip_raster_fun_a_20170830_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 07:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_07.png:
@@ -2680,18 +2680,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_07,
+      precip_raster_fun_a_20170830_07,
       storm_line_fun,
-      storm_point_a_20170830_07,
+      storm_point_fun_a_20170830_07,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_08 --- #
   
-  storm_point_a_20170830_08:
+  storm_point_fun_a_20170830_08:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 08:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_08:
+  precip_raster_fun_a_20170830_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_08.png:
@@ -2701,18 +2701,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_08,
+      precip_raster_fun_a_20170830_08,
       storm_line_fun,
-      storm_point_a_20170830_08,
+      storm_point_fun_a_20170830_08,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_09 --- #
   
-  storm_point_a_20170830_09:
+  storm_point_fun_a_20170830_09:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 09:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_09:
+  precip_raster_fun_a_20170830_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 09:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_09.png:
@@ -2722,18 +2722,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_09,
+      precip_raster_fun_a_20170830_09,
       storm_line_fun,
-      storm_point_a_20170830_09,
+      storm_point_fun_a_20170830_09,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_10 --- #
   
-  storm_point_a_20170830_10:
+  storm_point_fun_a_20170830_10:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 10:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_10:
+  precip_raster_fun_a_20170830_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_10.png:
@@ -2743,18 +2743,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_10,
+      precip_raster_fun_a_20170830_10,
       storm_line_fun,
-      storm_point_a_20170830_10,
+      storm_point_fun_a_20170830_10,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_11 --- #
   
-  storm_point_a_20170830_11:
+  storm_point_fun_a_20170830_11:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 11:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_11:
+  precip_raster_fun_a_20170830_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 11:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_11.png:
@@ -2764,18 +2764,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_11,
+      precip_raster_fun_a_20170830_11,
       storm_line_fun,
-      storm_point_a_20170830_11,
+      storm_point_fun_a_20170830_11,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_12 --- #
   
-  storm_point_a_20170830_12:
+  storm_point_fun_a_20170830_12:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 12:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_12:
+  precip_raster_fun_a_20170830_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_12.png:
@@ -2785,18 +2785,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_12,
+      precip_raster_fun_a_20170830_12,
       storm_line_fun,
-      storm_point_a_20170830_12,
+      storm_point_fun_a_20170830_12,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_13 --- #
   
-  storm_point_a_20170830_13:
+  storm_point_fun_a_20170830_13:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 13:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_13:
+  precip_raster_fun_a_20170830_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 13:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_13.png:
@@ -2806,18 +2806,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_13,
+      precip_raster_fun_a_20170830_13,
       storm_line_fun,
-      storm_point_a_20170830_13,
+      storm_point_fun_a_20170830_13,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_14 --- #
   
-  storm_point_a_20170830_14:
+  storm_point_fun_a_20170830_14:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 14:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_14:
+  precip_raster_fun_a_20170830_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_14.png:
@@ -2827,18 +2827,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_14,
+      precip_raster_fun_a_20170830_14,
       storm_line_fun,
-      storm_point_a_20170830_14,
+      storm_point_fun_a_20170830_14,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_15 --- #
   
-  storm_point_a_20170830_15:
+  storm_point_fun_a_20170830_15:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 15:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_15:
+  precip_raster_fun_a_20170830_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 15:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_15.png:
@@ -2848,18 +2848,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_15,
+      precip_raster_fun_a_20170830_15,
       storm_line_fun,
-      storm_point_a_20170830_15,
+      storm_point_fun_a_20170830_15,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_16 --- #
   
-  storm_point_a_20170830_16:
+  storm_point_fun_a_20170830_16:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 16:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_16:
+  precip_raster_fun_a_20170830_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_16.png:
@@ -2869,18 +2869,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_16,
+      precip_raster_fun_a_20170830_16,
       storm_line_fun,
-      storm_point_a_20170830_16,
+      storm_point_fun_a_20170830_16,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_17 --- #
   
-  storm_point_a_20170830_17:
+  storm_point_fun_a_20170830_17:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 17:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_17:
+  precip_raster_fun_a_20170830_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 17:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_17.png:
@@ -2890,18 +2890,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_17,
+      precip_raster_fun_a_20170830_17,
       storm_line_fun,
-      storm_point_a_20170830_17,
+      storm_point_fun_a_20170830_17,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_18 --- #
   
-  storm_point_a_20170830_18:
+  storm_point_fun_a_20170830_18:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 18:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_18:
+  precip_raster_fun_a_20170830_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_18.png:
@@ -2911,18 +2911,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_18,
+      precip_raster_fun_a_20170830_18,
       storm_line_fun,
-      storm_point_a_20170830_18,
+      storm_point_fun_a_20170830_18,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_19 --- #
   
-  storm_point_a_20170830_19:
+  storm_point_fun_a_20170830_19:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 19:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_19:
+  precip_raster_fun_a_20170830_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 19:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_19.png:
@@ -2932,18 +2932,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_19,
+      precip_raster_fun_a_20170830_19,
       storm_line_fun,
-      storm_point_a_20170830_19,
+      storm_point_fun_a_20170830_19,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_20 --- #
   
-  storm_point_a_20170830_20:
+  storm_point_fun_a_20170830_20:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 20:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_20:
+  precip_raster_fun_a_20170830_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_20.png:
@@ -2953,18 +2953,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_20,
+      precip_raster_fun_a_20170830_20,
       storm_line_fun,
-      storm_point_a_20170830_20,
+      storm_point_fun_a_20170830_20,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_21 --- #
   
-  storm_point_a_20170830_21:
+  storm_point_fun_a_20170830_21:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 21:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_21:
+  precip_raster_fun_a_20170830_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 21:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_21.png:
@@ -2974,18 +2974,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_21,
+      precip_raster_fun_a_20170830_21,
       storm_line_fun,
-      storm_point_a_20170830_21,
+      storm_point_fun_a_20170830_21,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_22 --- #
   
-  storm_point_a_20170830_22:
+  storm_point_fun_a_20170830_22:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 22:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_22:
+  precip_raster_fun_a_20170830_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_22.png:
@@ -2995,18 +2995,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_22,
+      precip_raster_fun_a_20170830_22,
       storm_line_fun,
-      storm_point_a_20170830_22,
+      storm_point_fun_a_20170830_22,
       legend_fun,
       watermark_fun)
 
   # --- a_20170830_23 --- #
   
-  storm_point_a_20170830_23:
+  storm_point_fun_a_20170830_23:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-30 23:00:00'), hurricane_col)
 
-  precip_raster_a_20170830_23:
+  precip_raster_fun_a_20170830_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-30 23:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170830_23.png:
@@ -3016,19 +3016,19 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170830_23,
+      precip_raster_fun_a_20170830_23,
       storm_line_fun,
-      storm_point_a_20170830_23,
+      storm_point_fun_a_20170830_23,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_00 --- #
   
-  storm_point_a_20170831_00:
-    command: prep_storm_point_fun(storm_points_sf, I('2017-08-31'), hurricane_col)
+  storm_point_fun_a_20170831_00:
+    command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 00:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_00:
-    command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31'))
+  precip_raster_fun_a_20170831_00:
+    command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 00:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_00.png:
     command: create_storm_frame(
@@ -3037,18 +3037,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_00,
+      precip_raster_fun_a_20170831_00,
       storm_line_fun,
-      storm_point_a_20170831_00,
+      storm_point_fun_a_20170831_00,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_01 --- #
   
-  storm_point_a_20170831_01:
+  storm_point_fun_a_20170831_01:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 01:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_01:
+  precip_raster_fun_a_20170831_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 01:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_01.png:
@@ -3058,18 +3058,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_01,
+      precip_raster_fun_a_20170831_01,
       storm_line_fun,
-      storm_point_a_20170831_01,
+      storm_point_fun_a_20170831_01,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_02 --- #
   
-  storm_point_a_20170831_02:
+  storm_point_fun_a_20170831_02:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 02:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_02:
+  precip_raster_fun_a_20170831_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_02.png:
@@ -3079,18 +3079,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_02,
+      precip_raster_fun_a_20170831_02,
       storm_line_fun,
-      storm_point_a_20170831_02,
+      storm_point_fun_a_20170831_02,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_03 --- #
   
-  storm_point_a_20170831_03:
+  storm_point_fun_a_20170831_03:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 03:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_03:
+  precip_raster_fun_a_20170831_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 03:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_03.png:
@@ -3100,18 +3100,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_03,
+      precip_raster_fun_a_20170831_03,
       storm_line_fun,
-      storm_point_a_20170831_03,
+      storm_point_fun_a_20170831_03,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_04 --- #
   
-  storm_point_a_20170831_04:
+  storm_point_fun_a_20170831_04:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 04:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_04:
+  precip_raster_fun_a_20170831_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_04.png:
@@ -3121,18 +3121,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_04,
+      precip_raster_fun_a_20170831_04,
       storm_line_fun,
-      storm_point_a_20170831_04,
+      storm_point_fun_a_20170831_04,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_05 --- #
   
-  storm_point_a_20170831_05:
+  storm_point_fun_a_20170831_05:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 05:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_05:
+  precip_raster_fun_a_20170831_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 05:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_05.png:
@@ -3142,18 +3142,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_05,
+      precip_raster_fun_a_20170831_05,
       storm_line_fun,
-      storm_point_a_20170831_05,
+      storm_point_fun_a_20170831_05,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_06 --- #
   
-  storm_point_a_20170831_06:
+  storm_point_fun_a_20170831_06:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 06:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_06:
+  precip_raster_fun_a_20170831_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_06.png:
@@ -3163,18 +3163,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_06,
+      precip_raster_fun_a_20170831_06,
       storm_line_fun,
-      storm_point_a_20170831_06,
+      storm_point_fun_a_20170831_06,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_07 --- #
   
-  storm_point_a_20170831_07:
+  storm_point_fun_a_20170831_07:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 07:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_07:
+  precip_raster_fun_a_20170831_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 07:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_07.png:
@@ -3184,18 +3184,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_07,
+      precip_raster_fun_a_20170831_07,
       storm_line_fun,
-      storm_point_a_20170831_07,
+      storm_point_fun_a_20170831_07,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_08 --- #
   
-  storm_point_a_20170831_08:
+  storm_point_fun_a_20170831_08:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 08:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_08:
+  precip_raster_fun_a_20170831_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_08.png:
@@ -3205,18 +3205,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_08,
+      precip_raster_fun_a_20170831_08,
       storm_line_fun,
-      storm_point_a_20170831_08,
+      storm_point_fun_a_20170831_08,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_09 --- #
   
-  storm_point_a_20170831_09:
+  storm_point_fun_a_20170831_09:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 09:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_09:
+  precip_raster_fun_a_20170831_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 09:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_09.png:
@@ -3226,18 +3226,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_09,
+      precip_raster_fun_a_20170831_09,
       storm_line_fun,
-      storm_point_a_20170831_09,
+      storm_point_fun_a_20170831_09,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_10 --- #
   
-  storm_point_a_20170831_10:
+  storm_point_fun_a_20170831_10:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 10:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_10:
+  precip_raster_fun_a_20170831_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_10.png:
@@ -3247,18 +3247,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_10,
+      precip_raster_fun_a_20170831_10,
       storm_line_fun,
-      storm_point_a_20170831_10,
+      storm_point_fun_a_20170831_10,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_11 --- #
   
-  storm_point_a_20170831_11:
+  storm_point_fun_a_20170831_11:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 11:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_11:
+  precip_raster_fun_a_20170831_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 11:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_11.png:
@@ -3268,18 +3268,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_11,
+      precip_raster_fun_a_20170831_11,
       storm_line_fun,
-      storm_point_a_20170831_11,
+      storm_point_fun_a_20170831_11,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_12 --- #
   
-  storm_point_a_20170831_12:
+  storm_point_fun_a_20170831_12:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 12:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_12:
+  precip_raster_fun_a_20170831_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_12.png:
@@ -3289,18 +3289,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_12,
+      precip_raster_fun_a_20170831_12,
       storm_line_fun,
-      storm_point_a_20170831_12,
+      storm_point_fun_a_20170831_12,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_13 --- #
   
-  storm_point_a_20170831_13:
+  storm_point_fun_a_20170831_13:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 13:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_13:
+  precip_raster_fun_a_20170831_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 13:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_13.png:
@@ -3310,18 +3310,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_13,
+      precip_raster_fun_a_20170831_13,
       storm_line_fun,
-      storm_point_a_20170831_13,
+      storm_point_fun_a_20170831_13,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_14 --- #
   
-  storm_point_a_20170831_14:
+  storm_point_fun_a_20170831_14:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 14:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_14:
+  precip_raster_fun_a_20170831_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_14.png:
@@ -3331,18 +3331,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_14,
+      precip_raster_fun_a_20170831_14,
       storm_line_fun,
-      storm_point_a_20170831_14,
+      storm_point_fun_a_20170831_14,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_15 --- #
   
-  storm_point_a_20170831_15:
+  storm_point_fun_a_20170831_15:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 15:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_15:
+  precip_raster_fun_a_20170831_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 15:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_15.png:
@@ -3352,18 +3352,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_15,
+      precip_raster_fun_a_20170831_15,
       storm_line_fun,
-      storm_point_a_20170831_15,
+      storm_point_fun_a_20170831_15,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_16 --- #
   
-  storm_point_a_20170831_16:
+  storm_point_fun_a_20170831_16:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 16:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_16:
+  precip_raster_fun_a_20170831_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_16.png:
@@ -3373,18 +3373,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_16,
+      precip_raster_fun_a_20170831_16,
       storm_line_fun,
-      storm_point_a_20170831_16,
+      storm_point_fun_a_20170831_16,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_17 --- #
   
-  storm_point_a_20170831_17:
+  storm_point_fun_a_20170831_17:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 17:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_17:
+  precip_raster_fun_a_20170831_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 17:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_17.png:
@@ -3394,18 +3394,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_17,
+      precip_raster_fun_a_20170831_17,
       storm_line_fun,
-      storm_point_a_20170831_17,
+      storm_point_fun_a_20170831_17,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_18 --- #
   
-  storm_point_a_20170831_18:
+  storm_point_fun_a_20170831_18:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 18:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_18:
+  precip_raster_fun_a_20170831_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_18.png:
@@ -3415,18 +3415,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_18,
+      precip_raster_fun_a_20170831_18,
       storm_line_fun,
-      storm_point_a_20170831_18,
+      storm_point_fun_a_20170831_18,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_19 --- #
   
-  storm_point_a_20170831_19:
+  storm_point_fun_a_20170831_19:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 19:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_19:
+  precip_raster_fun_a_20170831_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 19:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_19.png:
@@ -3436,18 +3436,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_19,
+      precip_raster_fun_a_20170831_19,
       storm_line_fun,
-      storm_point_a_20170831_19,
+      storm_point_fun_a_20170831_19,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_20 --- #
   
-  storm_point_a_20170831_20:
+  storm_point_fun_a_20170831_20:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 20:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_20:
+  precip_raster_fun_a_20170831_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_20.png:
@@ -3457,18 +3457,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_20,
+      precip_raster_fun_a_20170831_20,
       storm_line_fun,
-      storm_point_a_20170831_20,
+      storm_point_fun_a_20170831_20,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_21 --- #
   
-  storm_point_a_20170831_21:
+  storm_point_fun_a_20170831_21:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 21:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_21:
+  precip_raster_fun_a_20170831_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 21:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_21.png:
@@ -3478,18 +3478,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_21,
+      precip_raster_fun_a_20170831_21,
       storm_line_fun,
-      storm_point_a_20170831_21,
+      storm_point_fun_a_20170831_21,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_22 --- #
   
-  storm_point_a_20170831_22:
+  storm_point_fun_a_20170831_22:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 22:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_22:
+  precip_raster_fun_a_20170831_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_22.png:
@@ -3499,18 +3499,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_22,
+      precip_raster_fun_a_20170831_22,
       storm_line_fun,
-      storm_point_a_20170831_22,
+      storm_point_fun_a_20170831_22,
       legend_fun,
       watermark_fun)
 
   # --- a_20170831_23 --- #
   
-  storm_point_a_20170831_23:
+  storm_point_fun_a_20170831_23:
     command: prep_storm_point_fun(storm_points_sf, I('2017-08-31 23:00:00'), hurricane_col)
 
-  precip_raster_a_20170831_23:
+  precip_raster_fun_a_20170831_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-08-31 23:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170831_23.png:
@@ -3520,19 +3520,19 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170831_23,
+      precip_raster_fun_a_20170831_23,
       storm_line_fun,
-      storm_point_a_20170831_23,
+      storm_point_fun_a_20170831_23,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_00 --- #
   
-  storm_point_a_20170901_00:
-    command: prep_storm_point_fun(storm_points_sf, I('2017-09-01'), hurricane_col)
+  storm_point_fun_a_20170901_00:
+    command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 00:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_00:
-    command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01'))
+  precip_raster_fun_a_20170901_00:
+    command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 00:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_00.png:
     command: create_storm_frame(
@@ -3541,18 +3541,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_00,
+      precip_raster_fun_a_20170901_00,
       storm_line_fun,
-      storm_point_a_20170901_00,
+      storm_point_fun_a_20170901_00,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_01 --- #
   
-  storm_point_a_20170901_01:
+  storm_point_fun_a_20170901_01:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 01:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_01:
+  precip_raster_fun_a_20170901_01:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 01:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_01.png:
@@ -3562,18 +3562,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_01,
+      precip_raster_fun_a_20170901_01,
       storm_line_fun,
-      storm_point_a_20170901_01,
+      storm_point_fun_a_20170901_01,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_02 --- #
   
-  storm_point_a_20170901_02:
+  storm_point_fun_a_20170901_02:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 02:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_02:
+  precip_raster_fun_a_20170901_02:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 02:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_02.png:
@@ -3583,18 +3583,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_02,
+      precip_raster_fun_a_20170901_02,
       storm_line_fun,
-      storm_point_a_20170901_02,
+      storm_point_fun_a_20170901_02,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_03 --- #
   
-  storm_point_a_20170901_03:
+  storm_point_fun_a_20170901_03:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 03:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_03:
+  precip_raster_fun_a_20170901_03:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 03:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_03.png:
@@ -3604,18 +3604,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_03,
+      precip_raster_fun_a_20170901_03,
       storm_line_fun,
-      storm_point_a_20170901_03,
+      storm_point_fun_a_20170901_03,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_04 --- #
   
-  storm_point_a_20170901_04:
+  storm_point_fun_a_20170901_04:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 04:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_04:
+  precip_raster_fun_a_20170901_04:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 04:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_04.png:
@@ -3625,18 +3625,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_04,
+      precip_raster_fun_a_20170901_04,
       storm_line_fun,
-      storm_point_a_20170901_04,
+      storm_point_fun_a_20170901_04,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_05 --- #
   
-  storm_point_a_20170901_05:
+  storm_point_fun_a_20170901_05:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 05:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_05:
+  precip_raster_fun_a_20170901_05:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 05:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_05.png:
@@ -3646,18 +3646,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_05,
+      precip_raster_fun_a_20170901_05,
       storm_line_fun,
-      storm_point_a_20170901_05,
+      storm_point_fun_a_20170901_05,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_06 --- #
   
-  storm_point_a_20170901_06:
+  storm_point_fun_a_20170901_06:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 06:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_06:
+  precip_raster_fun_a_20170901_06:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 06:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_06.png:
@@ -3667,18 +3667,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_06,
+      precip_raster_fun_a_20170901_06,
       storm_line_fun,
-      storm_point_a_20170901_06,
+      storm_point_fun_a_20170901_06,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_07 --- #
   
-  storm_point_a_20170901_07:
+  storm_point_fun_a_20170901_07:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 07:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_07:
+  precip_raster_fun_a_20170901_07:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 07:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_07.png:
@@ -3688,18 +3688,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_07,
+      precip_raster_fun_a_20170901_07,
       storm_line_fun,
-      storm_point_a_20170901_07,
+      storm_point_fun_a_20170901_07,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_08 --- #
   
-  storm_point_a_20170901_08:
+  storm_point_fun_a_20170901_08:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 08:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_08:
+  precip_raster_fun_a_20170901_08:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 08:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_08.png:
@@ -3709,18 +3709,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_08,
+      precip_raster_fun_a_20170901_08,
       storm_line_fun,
-      storm_point_a_20170901_08,
+      storm_point_fun_a_20170901_08,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_09 --- #
   
-  storm_point_a_20170901_09:
+  storm_point_fun_a_20170901_09:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 09:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_09:
+  precip_raster_fun_a_20170901_09:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 09:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_09.png:
@@ -3730,18 +3730,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_09,
+      precip_raster_fun_a_20170901_09,
       storm_line_fun,
-      storm_point_a_20170901_09,
+      storm_point_fun_a_20170901_09,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_10 --- #
   
-  storm_point_a_20170901_10:
+  storm_point_fun_a_20170901_10:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 10:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_10:
+  precip_raster_fun_a_20170901_10:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 10:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_10.png:
@@ -3751,18 +3751,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_10,
+      precip_raster_fun_a_20170901_10,
       storm_line_fun,
-      storm_point_a_20170901_10,
+      storm_point_fun_a_20170901_10,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_11 --- #
   
-  storm_point_a_20170901_11:
+  storm_point_fun_a_20170901_11:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 11:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_11:
+  precip_raster_fun_a_20170901_11:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 11:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_11.png:
@@ -3772,18 +3772,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_11,
+      precip_raster_fun_a_20170901_11,
       storm_line_fun,
-      storm_point_a_20170901_11,
+      storm_point_fun_a_20170901_11,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_12 --- #
   
-  storm_point_a_20170901_12:
+  storm_point_fun_a_20170901_12:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 12:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_12:
+  precip_raster_fun_a_20170901_12:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 12:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_12.png:
@@ -3793,18 +3793,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_12,
+      precip_raster_fun_a_20170901_12,
       storm_line_fun,
-      storm_point_a_20170901_12,
+      storm_point_fun_a_20170901_12,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_13 --- #
   
-  storm_point_a_20170901_13:
+  storm_point_fun_a_20170901_13:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 13:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_13:
+  precip_raster_fun_a_20170901_13:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 13:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_13.png:
@@ -3814,18 +3814,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_13,
+      precip_raster_fun_a_20170901_13,
       storm_line_fun,
-      storm_point_a_20170901_13,
+      storm_point_fun_a_20170901_13,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_14 --- #
   
-  storm_point_a_20170901_14:
+  storm_point_fun_a_20170901_14:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 14:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_14:
+  precip_raster_fun_a_20170901_14:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 14:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_14.png:
@@ -3835,18 +3835,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_14,
+      precip_raster_fun_a_20170901_14,
       storm_line_fun,
-      storm_point_a_20170901_14,
+      storm_point_fun_a_20170901_14,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_15 --- #
   
-  storm_point_a_20170901_15:
+  storm_point_fun_a_20170901_15:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 15:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_15:
+  precip_raster_fun_a_20170901_15:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 15:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_15.png:
@@ -3856,18 +3856,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_15,
+      precip_raster_fun_a_20170901_15,
       storm_line_fun,
-      storm_point_a_20170901_15,
+      storm_point_fun_a_20170901_15,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_16 --- #
   
-  storm_point_a_20170901_16:
+  storm_point_fun_a_20170901_16:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 16:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_16:
+  precip_raster_fun_a_20170901_16:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 16:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_16.png:
@@ -3877,18 +3877,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_16,
+      precip_raster_fun_a_20170901_16,
       storm_line_fun,
-      storm_point_a_20170901_16,
+      storm_point_fun_a_20170901_16,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_17 --- #
   
-  storm_point_a_20170901_17:
+  storm_point_fun_a_20170901_17:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 17:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_17:
+  precip_raster_fun_a_20170901_17:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 17:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_17.png:
@@ -3898,18 +3898,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_17,
+      precip_raster_fun_a_20170901_17,
       storm_line_fun,
-      storm_point_a_20170901_17,
+      storm_point_fun_a_20170901_17,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_18 --- #
   
-  storm_point_a_20170901_18:
+  storm_point_fun_a_20170901_18:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 18:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_18:
+  precip_raster_fun_a_20170901_18:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 18:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_18.png:
@@ -3919,18 +3919,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_18,
+      precip_raster_fun_a_20170901_18,
       storm_line_fun,
-      storm_point_a_20170901_18,
+      storm_point_fun_a_20170901_18,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_19 --- #
   
-  storm_point_a_20170901_19:
+  storm_point_fun_a_20170901_19:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 19:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_19:
+  precip_raster_fun_a_20170901_19:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 19:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_19.png:
@@ -3940,18 +3940,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_19,
+      precip_raster_fun_a_20170901_19,
       storm_line_fun,
-      storm_point_a_20170901_19,
+      storm_point_fun_a_20170901_19,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_20 --- #
   
-  storm_point_a_20170901_20:
+  storm_point_fun_a_20170901_20:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 20:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_20:
+  precip_raster_fun_a_20170901_20:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 20:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_20.png:
@@ -3961,18 +3961,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_20,
+      precip_raster_fun_a_20170901_20,
       storm_line_fun,
-      storm_point_a_20170901_20,
+      storm_point_fun_a_20170901_20,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_21 --- #
   
-  storm_point_a_20170901_21:
+  storm_point_fun_a_20170901_21:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 21:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_21:
+  precip_raster_fun_a_20170901_21:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 21:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_21.png:
@@ -3982,18 +3982,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_21,
+      precip_raster_fun_a_20170901_21,
       storm_line_fun,
-      storm_point_a_20170901_21,
+      storm_point_fun_a_20170901_21,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_22 --- #
   
-  storm_point_a_20170901_22:
+  storm_point_fun_a_20170901_22:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 22:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_22:
+  precip_raster_fun_a_20170901_22:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 22:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_22.png:
@@ -4003,18 +4003,18 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_22,
+      precip_raster_fun_a_20170901_22,
       storm_line_fun,
-      storm_point_a_20170901_22,
+      storm_point_fun_a_20170901_22,
       legend_fun,
       watermark_fun)
 
   # --- a_20170901_23 --- #
   
-  storm_point_a_20170901_23:
+  storm_point_fun_a_20170901_23:
     command: prep_storm_point_fun(storm_points_sf, I('2017-09-01 23:00:00'), hurricane_col)
 
-  precip_raster_a_20170901_23:
+  precip_raster_fun_a_20170901_23:
     command: prep_precip_fun(precip_rasters, precip_bins, I('2017-09-01 23:00:00'))
 
   6_visualize/tmp/gif_frame_a_20170901_23.png:
@@ -4024,9 +4024,9 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
-      precip_raster_a_20170901_23,
+      precip_raster_fun_a_20170901_23,
       storm_line_fun,
-      storm_point_a_20170901_23,
+      storm_point_fun_a_20170901_23,
       legend_fun,
       watermark_fun)
 
