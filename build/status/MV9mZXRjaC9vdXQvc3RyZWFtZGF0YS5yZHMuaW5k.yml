@@ -1,10 +1,10 @@
 version: 0.3.0
 name: 1_fetch/out/streamdata.rds.ind
 type: file
-hash: 8be47037fd5f812fe361095def343f80
-time: 2018-07-11 21:37:58 UTC
+hash: f9df0a2f3a9ba455f773128d589c92b7
+time: 2018-07-13 15:27:25 UTC
 depends:
-  2_process/out/storm_sites.rds.ind: 6bce9c86398f49e7005a866786806d9a
+  2_process/out/storm_sites.rds.ind: 4c7d7105c3e2a937f7e346d35e05eb55
   dates: 5a6317d91a1fb110e6a154ea8c391fec
   stream_params: 089aebea962cdd0eb862e4ccd23302bd
   lib/cfg/gd_config.yml: 48b9a0e46bf23a8fdbf6ed9ee984a5f9
