@@ -23,14 +23,13 @@ sources:
   - 6_visualize/src/prep_rivers_fun.R
   - 6_visualize/src/prep_legend_fun.R
   - 6_visualize/src/prep_datetime_fun.R
-  - 6_visualize/src/combine_storm_frames.R
   - 6_visualize/src/combine_animation_frames.R
 
 targets:
 
   6_visualize:
     depends:
-      - 6_gif_tasks.yml
+      - 6_storm_gif_tasks.yml
 
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
   # adn storm_line. each of these components doesn't change over time. each
