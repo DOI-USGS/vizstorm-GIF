@@ -106,8 +106,11 @@ targets:
   #   if any of the pngs have changed
   # When we're close to done, we can add depends: 6_visualize/log/6_gif_tasks.ind
   #   and set task_names=NULL to build all the frames.
+  animation_cfg:
+    command: viz_config[I('frame_delay_cs')]
   6_visualize/out/animation_a.gif:
     command: combine_storm_frames(
       gif_file=target_name,
+      animation_cfg=animation_cfg,
       task_names=trial_frames)
 

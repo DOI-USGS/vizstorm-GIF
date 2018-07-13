@@ -21,14 +21,3 @@ prep_precip_fun <- function(precip_rasters, precip_bins, timestep){
   }
   return(plot_fun)
 }
-
-
-
-
-
-png("../demo.png",
-    width = 1024, height = 512, units = "px")
-par(omi = c(0,0,0,0), mai = c(0,0,0,0))
-plot(view_polygon, col = NA, border = NA, xaxs = 'i', yaxs = 'i')
-plot(sf::st_geometry(county), add = TRUE)
-
