@@ -66,8 +66,11 @@ targets:
   storm_points_sf:
     command: fetch_read('2_process/out/storm_points_interp.rds.ind')
 
-  storm_sites_fun:
-    command: prep_storm_sites_fun('2_process/out/storm_sites.rds.ind', viz_config)
+  storm_sites_initial:
+    command: prep_storm_sites_initial('2_process/out/storm_sites.rds.ind', 'viz_config.yml')
+
+  storm_data:
+    command: fetch_read('2_process/out/normalized_streamdata.rds.ind')
 
   precip_rasters:
     command: fetch_read('2_process/out/precip_rasters.rds.ind')

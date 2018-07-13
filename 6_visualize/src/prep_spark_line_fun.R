@@ -1,6 +1,5 @@
 
-prep_spark_line_fun <- function(storm_data_ind_file, viz_config_yaml, DateTime){
-  storm_data <- readRDS(sc_retrieve(storm_data_ind_file))
+prep_spark_line_fun <- function(storm_data, viz_config_yaml, DateTime){
   viz_config <- yaml::yaml.load_file(viz_config_yaml)
 
   sites <- unique(storm_data$site_no)

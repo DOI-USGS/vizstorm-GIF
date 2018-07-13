@@ -10,7 +10,7 @@ normalize_streamdata <- function(ind_file, raw_ind_file, sites_ind_file){
   # if that changes, see 6_visualize/src/prep_spark_line_fun.R
   norm_stream <- storm_data %>%
     rename(stage = X_00065_00000, stage_cd = X_00065_00000_cd) %>%
-    select(site_no, dateTime, stage, flood_stage) %>%
+    select(site_no, dateTime, stage, flood_stage, geometry) %>%
     group_by(site_no) %>%
     # normalizing stage and flood_stage to min & max ignoring missing data
     mutate(stage_normalized = (stage - min(stage, na.rm = T)) / (max(stage, na.rm = T) - min(stage, na.rm = T))) %>%
