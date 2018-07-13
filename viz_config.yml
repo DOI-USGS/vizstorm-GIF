@@ -17,6 +17,33 @@ hurricane_col_names: ["Tropical Storm", "1", "2", "3", "4"] # If these change, l
 n_intro_frames: 20 # number of frames in the intro animation linking gages to sparklines
 frame_delay_cs: 8 # delay between frames of the gif animation. cs = centiseconds = hundredths of a second
 
+# Image placement for function calls of USGS watermark, legend, datetime, etc..
+#  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
+image_placement:
+  watermark:
+    x1: 0.01
+    y1: 0.01
+  datetime: # above watermark for now
+    x1: 0.01
+    y1: 0.2
+  legend:
+    x1:
+    y1:
+
+ocean_name_placement:
+  atlantic:
+    x1: 0.8
+    y1: 0.75
+  g_of_mex:
+    x1: 0.5
+    y1: 0.35
+ocean_name_labels:
+  atlantic: 'Atlantic Ocean'
+  g_of_mex: 'Gulf of Mexico'
+datetime_placement: # above watermark for now
+    x1: 0.01
+    y1: 0.2
+
 focus_geoms:
   - # U.S. counties
     database: county
