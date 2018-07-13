@@ -24,9 +24,10 @@ sources:
 
 targets:
 
+  # this command won't rebuild the individual animation frames; it'll just save
+  # some time on typing to rebuild the .gif itself from complete .pngs
   6_visualize:
-    depends:
-      - 6_gif_tasks.yml
+    command: scmake(I('6_visualize/out/animation_a.gif'), force=TRUE)
 
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
   # adn storm_line. each of these components doesn't change over time. each
