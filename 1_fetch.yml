@@ -130,13 +130,13 @@ targets:
     command: gd_get('1_fetch/out/precip_values.rds.ind')
 
   # -- get river geometry --
-  fetch_simplification_tolerance_m:
-    command: viz_config[I('fetch_simplification_tolerance_m')]
+  fetch_streamorder:
+    command: viz_config[I('fetch_streamorder')]
 
   1_fetch/out/major_river_geometry.rds.ind:
     command: fetch_major_river_geoms(ind_fil=target_name,
                                view_polygon=view_polygon,
-                               pre_simplify_m=fetch_simplification_tolerance_m)
+                               fetch_streamorder=fetch_streamorder)
   1_fetch/out/major_river_geometry.rds:
     command: gd_get('1_fetch/out/major_river_geometry.rds.ind')
 

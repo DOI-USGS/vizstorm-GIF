@@ -1,13 +1,13 @@
 version: 0.3.0
 name: 1_fetch/out/major_river_geometry.rds.ind
 type: file
-hash: 773b9ef177c5538907d07be4a9e5a130
-time: 2018-07-12 17:25:41 UTC
+hash: ebaed721ec4ba7cd720fe8d0476a3cd4
+time: 2018-07-13 16:01:33 UTC
 depends:
   view_polygon: 7ac3d28632d1dfbad8fd1b6044d4485a
-  fetch_simplification_tolerance_m: 7c7d9aa6a1103fbc5a31b391b2661f19
+  fetch_streamorder: 06a8d98990c2c3bbe1f02e8a82b72727
 fixed: 5b890ba647d25b5e57a59506fe05c249
 code:
   functions:
-    fetch_major_river_geoms: 81dbe5fcf181dfe9390a8aab0cc86bf6
+    fetch_major_river_geoms: 9fe55369755b64ef3b0a4caf9dc8de9e
 
