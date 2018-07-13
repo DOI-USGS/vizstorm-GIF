@@ -1,4 +1,4 @@
-combine_storm_frames <- function(gif_file, animation_cfg=8, task_names=NULL) {
+combine_storm_frames <- function(gif_file, animation_cfg, task_names=NULL) {
 
   # run imageMagick convert to build a gif
   if(is.null(task_names)) task_names <- '*'
