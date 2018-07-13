@@ -30,9 +30,6 @@ targets:
     depends:
       - 6_gif_tasks.yml
 
-  storm_frame_config:
-    command: viz_config[I(c('width','height'))]
-
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
   # adn storm_line. each of these components doesn't change over time. each
   # component is a closure, i.e., a function that contains all the data it needs
@@ -72,6 +69,9 @@ targets:
 
   #### intro frames - animating the link between gages and sparklines ####
 
+  intro_frame_config:
+    command: viz_config[I(c('width','height'))]
+
   n_intro_frames:
     command: viz_config[[I('n_intro_frames')]]
   intro_gif_tasks:
@@ -104,11 +104,13 @@ targets:
 
   #### storm frames - animating the progression of the storm, precip, and stage over time ####
 
+  storm_frame_config:
+    command: viz_config[I(c('width','height'))]
+
   storm_gif_tasks:
     command: create_storm_gif_tasks(
       timestep_ind = '2_process/out/timesteps.rds.ind',
-      folders = visualize_folders,
-      storm_cfg = storm_frame_config)
+      folders = visualize_folders)
 
   6_storm_gif_tasks.yml:
     command: create_storm_gif_makefile(

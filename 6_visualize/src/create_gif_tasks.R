@@ -28,9 +28,7 @@ create_intro_gif_tasks <- function(n_timesteps, folders){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
       psprintf(
         "prep_gage2spark_fun(",
-        "'2_process/out/storm_points_interp.rds.ind',",
-        "I('%s')," = cur_task$timestep,
-        "hurricane_col)"
+        "timestep=I(%d))" = cur_task$timestep
       )
     }
   )
