@@ -19,6 +19,7 @@ sources:
   - 6_visualize/src/prep_view_fun.R
   - 6_visualize/src/prep_storm_point_fun.R
   - 6_visualize/src/prep_storm_line_fun.R
+  - 6_visualize/src/prep_precip_fun.R
   - 6_visualize/src/prep_rivers_fun.R
   - 6_visualize/src/prep_legend_fun.R
   - 6_visualize/src/combine_animation_frames.R
@@ -53,6 +54,12 @@ targets:
 
   storm_line_fun:
     command: prep_storm_line_fun("2_process/out/storm_line.rds.ind")
+
+  storm_points_sf:
+    command: fetch_read('2_process/out/storm_points_interp.rds.ind')
+
+  precip_rasters:
+    command: fetch_read('2_process/out/precip_rasters.rds.ind')
 
   rivers_fun:
     command: prep_rivers_fun('2_process/out/river_geoms.rds.ind')
