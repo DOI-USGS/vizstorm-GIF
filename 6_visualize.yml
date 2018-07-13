@@ -44,6 +44,9 @@ targets:
       tmp=I('6_visualize/tmp'),
       log=I('6_visualize/log'))
 
+  image_placement:
+    command: viz_config[[I('image_placement')]]
+
   view_fun:
     command: prep_view_fun(view_polygon)
 
