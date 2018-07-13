@@ -116,6 +116,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
         "precip_raster_fun_%s,"=cur_task$tn,
         "storm_line_fun,",
         "storm_point_fun_%s,"= cur_task$tn,
+        "storm_sites_fun,",
         "legend_fun,",
         "watermark_fun)",
         #"streamdata_%s,"= cur_task$tn,
