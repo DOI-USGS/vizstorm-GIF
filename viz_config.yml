@@ -16,9 +16,9 @@ n_intro_frames: 20 # number of frames in the intro animation linking gages to sp
 frame_delay_cs: 8 # delay between frames of the gif animation. cs = centiseconds = hundredths of a second
 sparks:
   xleft: 0.85 # as percentage of figure width
-  xright: 1
+  xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
   ybottom: 0.30 # as percentage of figure height
-  ytop: 1
+  ytop: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 focus_geoms:
   - # U.S. counties
