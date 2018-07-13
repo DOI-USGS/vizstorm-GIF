@@ -12,10 +12,10 @@ process_river_geoms <- function(ind_file,
 
   outlets <- filter(sf_major_rivers,
                     (terminalfl == 1 &
-                       totdasqkm > coastal_threshold_sqkm))$levelpathi
+                       divdasqkm > coastal_threshold_sqkm))$levelpathi
 
   inland <- filter(sf_major_rivers,
-                   totdasqkm > inland_threshold_sqkm)$levelpathi
+                   divdasqkm > inland_threshold_sqkm)$levelpathi
 
   sf_major_rivers <- filter(sf_major_rivers,
                             levelpathi %in% c(outlets, inland)) %>%

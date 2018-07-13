@@ -18,16 +18,17 @@ sources:
   - 6_visualize/src/prep_basemap_fun.R
   - 6_visualize/src/prep_view_fun.R
   - 6_visualize/src/prep_storm_line_fun.R
+  - 6_visualize/src/prep_storm_sites_fun.R
   - 6_visualize/src/prep_rivers_fun.R
   - 6_visualize/src/prep_legend_fun.R
+  - 6_visualize/src/visualize_utils.R
   - 6_visualize/src/combine_animation_frames.R
 
 targets:
 
-  # this command won't rebuild the individual animation frames; it'll just save
-  # some time on typing to rebuild the .gif itself from complete .pngs
   6_visualize:
-    command: scmake(I('6_visualize/out/animation_a.gif'), force=TRUE)
+    depends:
+      - 6_storm_gif_tasks.yml
 
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
   # adn storm_line. each of these components doesn't change over time. each
@@ -42,6 +43,11 @@ targets:
       tmp=I('6_visualize/tmp'),
       log=I('6_visualize/log'))
 
+ # ---- location of images on figure ---- #
+  datetime_placement:
+    command: viz_config[[I('datetime_placement')]]
+
+ # ---- static image calls ----- #
   view_fun:
     command: prep_view_fun(view_polygon)
 
@@ -53,6 +59,9 @@ targets:
 
   storm_points_sf:
     command: fetch_read('2_process/out/storm_points_interp.rds.ind')
+
+  storm_sites_fun:
+    command: prep_storm_sites_fun('2_process/out/storm_sites.rds.ind', viz_config)
 
   precip_rasters:
     command: fetch_read('2_process/out/precip_rasters.rds.ind')

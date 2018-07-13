@@ -1,5 +1,4 @@
 
-fetch_read <- function(ind_file) readRDS(sc_retrieve(ind_file))
 
 prep_storm_point_fun <- function(storm_points_sf, DateTime, hurricane_col){
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
