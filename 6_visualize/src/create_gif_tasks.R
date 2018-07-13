@@ -1,9 +1,69 @@
-# create task table for gif generation
+# create task tables for gif generation - first table is the animation showing
+# how gages map to sparklines, second table shows the storm+precip+stage changes
+# over time
 
+create_intro_gif_tasks <- function(n_timesteps, folders){
 
+  # set up a series of animation frame timesteps (not related to actual time,
+  # just describe time within the explanatory animation)
+  timestep <- seq_len(n_timesteps)
 
-create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
+  # aspect/resolution configuration placeholder. see same code in
+  # create_storm_gif_tasks - we should extract this into shared location once we
+  # get multiple configurations really going
+  cfgs <- c('a')
 
+  tasks <- tidyr::crossing(timestep, cfgs) %>%
+    unite(task_name, cfgs, timestep, sep = '_', remove = F) %>%
+    mutate(date_hour = sprintf('00_%03d', timestep),
+           task_name = sprintf("%s_%s", cfgs, date_hour))
+
+  gage2spark <- scipiper::create_task_step(
+    step_name = 'gage2spark',
+    target_name = function(task_name, step_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf('gage2spark_%s', task_name)
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      psprintf(
+        "prep_gage2spark_fun(",
+        "timestep=I(%d))" = cur_task$timestep
+      )
+    }
+  )
+
+  gif_frame <- scipiper::create_task_step(
+    step_name = 'gif_frame',
+    target_name = function(task_name, step_name, ...){
+      file.path(folders$tmp, sprintf('gif_frame_%s.png', task_name))
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      psprintf(
+        "create_animation_frame(",
+        "png_file=target_name,",
+        "config=intro_frame_config,",
+        "view_fun,",
+        "basemap_fun,",
+        "rivers_fun,",
+        "storm_line_fun,",
+        "gage2spark_%s," = cur_task$tn,
+        "legend_fun,",
+        "watermark_fun)"
+      )
+    }
+  )
+
+  gif_task_plan <- scipiper::create_task_plan(
+    task_names=tasks$task_name,
+    task_steps=list(gage2spark, gif_frame),
+    add_complete=FALSE,
+    final_steps='gif_frame',
+    ind_dir=folders$log)
+}
+
+create_storm_gif_tasks <- function(timestep_ind, folders){
 
   message('subsetting times to simplify for now')
   timestep <- readRDS(sc_retrieve(timestep_ind))
@@ -15,17 +75,6 @@ create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
     unite(task_name, cfgs, timestep, sep = '_', remove = F) %>%
     mutate(date_hour = strftime(timestep, format = '%Y%m%d_%H', tz = 'UTC'),
            task_name = sprintf("%s_%s", cfgs, date_hour))
-
-  # function to sprintf a bunch of key-value (string-variableVector) pairs, then
-  # paste them together with a good separator for constructing remake recipes
-  psprintf <- function(..., sep='\n      ') {
-    args <- list(...)
-    strs <- mapply(function(string, variables) {
-      spargs <- if(string == '') list(variables) else c(list(string), as.list(variables))
-      do.call(sprintf, spargs)
-    }, string=names(args), variables=args)
-    paste(strs, collapse=sep)
-  }
 
   point_frame <- scipiper::create_task_step(
     step_name = 'point_frame',
@@ -71,7 +120,7 @@ create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
       psprintf(
-        "create_storm_frame(",
+        "create_animation_frame(",
         "png_file=target_name,",
         "config=storm_frame_config,",
         "view_fun,",
@@ -94,4 +143,15 @@ create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
     add_complete=FALSE,
     final_steps='gif_frame',
     ind_dir=folders$log)
+}
+
+# helper function to sprintf a bunch of key-value (string-variableVector) pairs,
+# then paste them together with a good separator for constructing remake recipes
+psprintf <- function(..., sep='\n      ') {
+  args <- list(...)
+  strs <- mapply(function(string, variables) {
+    spargs <- if(string == '') list(variables) else c(list(string), as.list(variables))
+    do.call(sprintf, spargs)
+  }, string=names(args), variables=args)
+  paste(strs, collapse=sep)
 }
