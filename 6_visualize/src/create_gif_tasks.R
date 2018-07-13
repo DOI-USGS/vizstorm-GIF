@@ -15,7 +15,7 @@ create_intro_gif_tasks <- function(n_timesteps, folders){
 
   tasks <- tidyr::crossing(timestep, cfgs) %>%
     unite(task_name, cfgs, timestep, sep = '_', remove = F) %>%
-    mutate(date_hour = sprintf('00_%03d', timestep),
+    mutate(date_hour = sprintf('01_%03d', timestep),
            task_name = sprintf("%s_%s", cfgs, date_hour))
 
   gage2spark <- scipiper::create_task_step(

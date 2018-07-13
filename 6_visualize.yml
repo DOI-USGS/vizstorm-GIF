@@ -91,9 +91,9 @@ targets:
   #   to iterate on all frames at once.
   trial_intro_frames:
     command: c(I(c(
-      'a_00_001',
-      'a_00_005',
-      'a_00_009')))
+      'a_01_001',
+      'a_01_005',
+      'a_01_009')))
   6_visualize/log/6_intro_gif_tasks.ind:
     command: loop_tasks(
       task_plan=intro_gif_tasks, task_makefile='6_intro_gif_tasks.yml',
@@ -135,7 +135,7 @@ targets:
 
   # Combine the png files into a gif.
   #
-  # For now, call scmake('6_visualize/out/animation_a.png', force=TRUE)
+  # For now, call scmake('6_visualize/out/animation_a.gif', force=TRUE)
   #   if any of the pngs have changed
   #
   # When we're close to done, we can add
