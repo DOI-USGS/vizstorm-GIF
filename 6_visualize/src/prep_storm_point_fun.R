@@ -1,6 +1,7 @@
 
-prep_storm_point_fun <- function(storm_points_ind_file, DateTime, hurricane_col){
-  storm_points_sf <- readRDS(sc_retrieve(storm_points_ind_file))
+fetch_read <- function(ind_file) readRDS(sc_retrieve(ind_file))
+
+prep_storm_point_fun <- function(storm_points_sf, DateTime, hurricane_col){
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
   this_dot <- filter(storm_points_sf, DateTime == this_DateTime)
   plot_fun <- function(){
