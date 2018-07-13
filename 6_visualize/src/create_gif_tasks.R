@@ -35,7 +35,19 @@ create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_storm_point_fun('2_process/out/storm_points_interp.rds.ind', I('%s'), hurricane_col)", cur_task$timestep) # pass in storm_points.ind as arg to create_gif_tasks??
+      sprintf("prep_storm_point_fun(storm_points_sf, I('%s'), hurricane_col)", cur_task$timestep)
+    }
+  )
+
+  precip_frame <- scipiper::create_task_step( # not sure why this is called "frame".
+    step_name = 'precip_frame',
+    target_name = function(task_name, step_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf('precip_raster_%s', task_name)
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf("prep_precip_fun(precip_rasters, precip_bins, I('%s'))", cur_task$timestep)
     }
   )
 
@@ -53,19 +65,19 @@ create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
         "view_fun,",
         "basemap_fun,",
         "rivers_fun,",
+        "precip_raster_%s,"=cur_task$tn,
         "storm_line_fun,",
         "storm_point_%s,"= cur_task$tn,
         "legend_fun,",
         "watermark_fun)",
         #"streamdata_%s,"= cur_task$tn,
-        #"precip_raster_%s,"=cur_task$tn, # need to add: precip_raster_[YYYmmdd-HH]_fun.rds.ind
         sep="\n      ")
     }
   )
 
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
-    task_steps=list(point_frame, gif_frame),
+    task_steps=list(point_frame, precip_frame, gif_frame),
     add_complete=FALSE,
     final_steps='gif_frame',
     ind_dir=folders$log)
