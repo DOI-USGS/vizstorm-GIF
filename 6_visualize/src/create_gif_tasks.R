@@ -22,7 +22,7 @@ create_intro_gif_tasks <- function(n_timesteps, folders){
     step_name = 'gage2spark',
     target_name = function(task_name, step_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf('gage2spark_%s', task_name)
+      sprintf('gage2spark_fun_%s', task_name)
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
@@ -48,7 +48,7 @@ create_intro_gif_tasks <- function(n_timesteps, folders){
         "basemap_fun,",
         "rivers_fun,",
         "storm_line_fun,",
-        "gage2spark_%s," = cur_task$tn,
+        "gage2spark_fun_%s," = cur_task$tn,
         "legend_fun,",
         "watermark_fun)"
       )
