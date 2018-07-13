@@ -12,3 +12,4 @@ lib/cfg/gd_config.yml
 *.rds
 *.feather
 .DS_Store
+*_tasks.yml
