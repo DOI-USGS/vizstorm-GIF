@@ -17,7 +17,7 @@ prep_precip_fun <- function(precip_rasters, precip_bins, timestep){
                         maxColorValue = 255)})
 
   plot_fun <- function(){
-    plot(precip[[timestep]], add = TRUE, breaks = breaks, col = colors, legend = FALSE)
+    plot(precip_rasters[[timestep]], add = TRUE, breaks = breaks, col = colors, legend = FALSE)
   }
   return(plot_fun)
 }
