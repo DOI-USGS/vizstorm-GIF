@@ -36,9 +36,7 @@ prep_spark_line_fun <- function(storm_data_ind_file, viz_config_yaml, DateTime){
                              stage_normalized = min(storm_data_i$stage_normalized)))
 
       # Fill values lower than flood stage with the stage & then create a polygon out of it
-      above_flood_data <- mutate(storm_data_i, stage_normalized = ifelse(stage_normalized < flood_stage_va,
-                                                                         flood_stage_va,
-                                                                         stage_normalized))
+      above_flood_data <- mutate(storm_data_i, stage_normalized = pmax(stage_normalized, flood_stage_va))
       above_flood_polygon <- data.frame(dateTime = head(above_flood_data$dateTime, 1),
                                         stage_normalized = head(above_flood_data$stage_normalized, 1)) %>%
         bind_rows(select(above_flood_data, dateTime, stage_normalized)) %>%
