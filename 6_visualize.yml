@@ -18,9 +18,11 @@ sources:
   - 6_visualize/src/prep_basemap_fun.R
   - 6_visualize/src/prep_view_fun.R
   - 6_visualize/src/prep_storm_line_fun.R
+  - 6_visualize/src/prep_storm_sites_fun.R
   - 6_visualize/src/prep_rivers_fun.R
   - 6_visualize/src/prep_legend_fun.R
   - 6_visualize/src/prep_ocean_name_fun.R
+  - 6_visualize/src/visualize_utils.R
   - 6_visualize/src/combine_animation_frames.R
 
 targets:
@@ -63,6 +65,9 @@ targets:
 
   storm_points_sf:
     command: fetch_read('2_process/out/storm_points_interp.rds.ind')
+
+  storm_sites_fun:
+    command: prep_storm_sites_fun('2_process/out/storm_sites.rds.ind', viz_config)
 
   precip_rasters:
     command: fetch_read('2_process/out/precip_rasters.rds.ind')
