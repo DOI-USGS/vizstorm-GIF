@@ -26,6 +26,7 @@ prep_legend_fun <- function(precip_bins, legend_styles){
     normal_y <- ybottom+4*bin_h
     gage_caveat_y <- ybottom+5*bin_h*1.02
     hurricane_y <- ybottom+6*bin_h*1.05
+    title_y <- ybottom+7*bin_h*1.05
 
     dot_x <- right_edge-bin_w/2
     dot_txt_x <- right_edge-bin_w*0.7
@@ -36,8 +37,16 @@ prep_legend_fun <- function(precip_bins, legend_styles){
     points(dot_x, normal_y, pch = 21, bg = legend_styles$gage_norm_col, col = NA, cex = 2)
     text(dot_txt_x, normal_y, labels = 'Below flood stage', pos = 2, cex = 1.5)
     text(right_edge, gage_caveat_y, labels = 'USGS Stream Gages (< 1% of U.S. total)', pos = 2, cex = 1.5)
-    points(dot_x, hurricane_y, pch = 21, bg = legend_styles$hurricane_col, col = NA, cex = 3)
-    text(dot_txt_x, hurricane_y, labels = legend_styles$storm_name, pos = 2, cex = 1.5)
+    text(right_edge, title_y, labels = paste(legend_styles$storm_name, "Storm Severity"), pos = 2, cex = 1.5)
+
+    h_dot_x <- dot_x
+    h_dot_size <- 3
+    for(i in length(legend_styles$hurricane_cols):1) {
+      points(h_dot_x, hurricane_y, pch = 21, bg = legend_styles$hurricane_cols[i], col = NA, cex = h_dot_size)
+      h_dot_txt_x <- h_dot_x - (h_dot_size + bin_w * 0.1)
+      text(h_dot_txt_x, hurricane_y, labels = legend_styles$hurricane_col_names[i], pos = 2, cex = 1.5)
+      h_dot_x <- h_dot_x - (bin_w * 0.8)
+    }
   }
   return(plot_fun)
 }
