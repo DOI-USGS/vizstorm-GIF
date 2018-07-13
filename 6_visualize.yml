@@ -20,8 +20,10 @@ sources:
   - 6_visualize/src/prep_view_fun.R
   - 6_visualize/src/prep_storm_point_fun.R
   - 6_visualize/src/prep_storm_line_fun.R
+  - 6_visualize/src/prep_precip_fun.R
   - 6_visualize/src/prep_rivers_fun.R
   - 6_visualize/src/prep_legend_fun.R
+  - 6_visualize/src/combine_storm_frames.R
 
 targets:
 
@@ -55,11 +57,17 @@ targets:
   storm_line_fun:
     command: prep_storm_line_fun("2_process/out/storm_line.rds.ind")
 
+  storm_points_sf:
+    command: fetch_read('2_process/out/storm_points_interp.rds.ind')
+
+  precip_rasters:
+    command: fetch_read('2_process/out/precip_rasters.rds.ind')
+
   rivers_fun:
     command: prep_rivers_fun('2_process/out/river_geoms.rds.ind')
 
   legend_fun:
-    command: prep_legend_fun(precip_bins = precip_bins)
+    command: prep_legend_fun(precip_bins = precip_bins, legend_styles = legend_styles)
 
   watermark_fun:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png')
@@ -75,3 +83,34 @@ targets:
       makefile = target_name,
       task_plan = gif_tasks,
       remake_file = I('6_visualize.yml'))
+
+  # Build the timestep-specific functions and png files.
+  # When we like how this is looking, we can set task_names=NULL to build all frames.
+  # If you're trying to iterate on just a few png frames, delete 6_visualize/log/6_gif_tasks.ind,
+  # then you can call scmake('6_visualize/log/6_gif_tasks.ind') repeatedly.
+  # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_gif_tasks.ind', force=TRUE)
+  #   to iterate on all frames at once.
+  trial_frames:
+    command: c(I(c(
+      'a_20170826_14',
+      'a_20170826_15',
+      'a_20170826_16')))
+  6_visualize/log/6_gif_tasks.ind:
+    command: loop_tasks(
+      task_plan=gif_tasks, task_makefile='6_gif_tasks.yml',
+      task_names=trial_frames,
+      num_tries=I(1), sleep_on_error=I(0))
+
+  # Combine the png files into a gif.
+  # For now, call scmake('6_visualize/out/gif_a.png', force=TRUE)
+  #   if any of the pngs have changed
+  # When we're close to done, we can add depends: 6_visualize/log/6_gif_tasks.ind
+  #   and set task_names=NULL to build all the frames.
+  animation_cfg:
+    command: viz_config[I('frame_delay_cs')]
+  6_visualize/out/animation_a.gif:
+    command: combine_storm_frames(
+      gif_file=target_name,
+      animation_cfg=animation_cfg,
+      task_names=trial_frames)
+

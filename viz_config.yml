@@ -1,4 +1,5 @@
 storm_code: al092017 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
+storm_name: "Hurricane Harvey"
 dates:
   start: '2017-08-25'
   end: '2017-09-02'
@@ -8,6 +9,10 @@ height: 512
 width: 1024
 precip_cols: ["#FAFBF3", "#F0F8E3", "#D4E9CA", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
 precip_bin: 4 # inches per bin
+gage_flood_col: "#175676"
+gage_norm_col: "#4BA3C3"
+hurricane_col: "orange"
+frame_delay_cs: 8 # delay between frames of the gif animation. cs = centiseconds = hundredths of a second
 
 focus_geoms:
   - # U.S. counties
