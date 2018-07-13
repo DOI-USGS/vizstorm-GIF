@@ -1,4 +1,4 @@
-create_storm_frame <- function(png_file, config, ...) {
+create_animation_frame <- function(png_file, config, ...) {
 
   # open the plotting device. this should eventually be a gif function, but i don't know how that looks yet
   png(filename=png_file, width=config$width, height=config$height, units='px')

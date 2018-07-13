@@ -47,7 +47,7 @@ create_gif_tasks <- function(timestep_ind, folders, storm_cfg){
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
       psprintf(
-        "create_storm_frame(",
+        "create_animation_frame(",
         "png_file=target_name,",
         "config=storm_frame_config,",
         "view_fun,",
