@@ -16,8 +16,8 @@ prep_datetime_fun <- function(datetime, image_placement){
     # datetime_alpha <- 0.4 # transparency of datetime image
 
     # datetime placement
-    x1 <- coord_space_left + coord_width * image_placement$datetime$x1
-    y1 <- coord_space_bot + coord_height * image_placement$datetime$y1 # bump up from bottom of figure (trying to place above the USGS watermark)
+    x1 <- coord_space_left + coord_width * image_placement$x1
+    y1 <- coord_space_bot + coord_height * image_placement$y1 # bump up from bottom of figure (trying to place above the USGS watermark)
 
     text(x = x1, y = y1, labels = datetime, cex = 2, pos = 4)
   }

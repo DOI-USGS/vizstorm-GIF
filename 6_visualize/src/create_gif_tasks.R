@@ -107,7 +107,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_datetime_fun(I('%s'), image_placement)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+      sprintf("prep_datetime_fun(I('%s'), datetime_placement)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
     }
   )
 
