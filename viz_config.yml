@@ -58,6 +58,8 @@ secondary_geoms:
     database: "mapdata::worldHires"
     regions: "Mexico"
 
+city_pop_min: 500000 # minimum population size of cities to be plotted
+
 # Only streamorders greater than this will be fetched.
 fetch_streamorder: 2
 

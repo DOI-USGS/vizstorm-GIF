@@ -28,6 +28,7 @@ sources:
   - 1_fetch/src/fetch_precip_values.R
   - 1_fetch/src/fetch_river_geometry.R
   - 1_fetch/src/fetch_precip_bins.R
+  - 1_fetch/src/fetch_major_cities.R
 
 targets:
 
@@ -146,3 +147,13 @@ targets:
                                sites_ind='2_process/out/storm_sites.rds.ind')
   1_fetch/out/gage_river_geometry.rds:
     command: gd_get('1_fetch/out/gage_river_geometry.rds.ind')
+
+  # -- get major cities -- #
+  city_pop_min:
+    command: viz_config[I('city_pop_min')]
+
+  1_fetch/out/major_cities.rds.ind:
+    command: fetch_major_cities(
+      ind_file = target_name,
+      city_pop_min = city_pop_min,
+      within = view_polygon)
