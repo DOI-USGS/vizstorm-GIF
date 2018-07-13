@@ -65,7 +65,6 @@ create_intro_gif_tasks <- function(n_timesteps, folders){
 
 create_storm_gif_tasks <- function(timestep_ind, folders){
 
-  message('subsetting times to simplify for now')
   timestep <- readRDS(sc_retrieve(timestep_ind))
 
   cfgs <- c('a') # for now, just use one config, since > 1 results in duplication of input files
