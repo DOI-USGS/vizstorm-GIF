@@ -16,6 +16,11 @@ hurricane_cols: ["#71c633", "#f4f141", "#f47c41", "#f44141", "#d63995"]
 hurricane_col_names: ["Tropical Storm", "1", "2", "3", "4"] # If these change, legend layout may break
 n_intro_frames: 20 # number of frames in the intro animation linking gages to sparklines
 frame_delay_cs: 8 # delay between frames of the gif animation. cs = centiseconds = hundredths of a second
+sparks:
+  xleft: 0.85 # as percentage of figure width
+  xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+  ybottom: 0.30 # as percentage of figure height
+  ytop: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
