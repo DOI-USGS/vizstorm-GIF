@@ -35,6 +35,9 @@ ocean_name_placement:
   g_of_mex:
     x1: 0.5
     y1: 0.35
+ocean_name_labels:
+  atlantic: 'Atlantic Ocean'
+  g_of_mex: 'Gulf of Mexico'
 datetime_placement: # above watermark for now
     x1: 0.01
     y1: 0.2

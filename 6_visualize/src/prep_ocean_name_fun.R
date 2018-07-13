@@ -1,5 +1,5 @@
 
-prep_ocean_name_fun <- function(ocean_name_placement){
+prep_ocean_name_fun <- function(ocean_name_placement, ocean_name_labels){
 
   plot_fun <- function(){
     # coordinate space (edges, width, height)
@@ -23,7 +23,7 @@ prep_ocean_name_fun <- function(ocean_name_placement){
     x1_coords <- c(atlantic_x1, g_of_mex_x1)
     y1_coords <- c(atlantic_y1, g_of_mex_y1)
 
-    labs <- c('Atlantic Ocean', 'Gulf of Mexico')
+    labs <- c(ocean_name_labels$atlantic, ocean_name_labels$g_of_mex)
 
     text(x = x1_coords, y = y1_coords, labels = labs, cex = 2, pos = 4, col = 'grey', font = 3)
   }
