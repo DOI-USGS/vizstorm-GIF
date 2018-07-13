@@ -15,6 +15,23 @@ hurricane_col: "orange"
 n_intro_frames: 20 # number of frames in the intro animation linking gages to sparklines
 frame_delay_cs: 8 # delay between frames of the gif animation. cs = centiseconds = hundredths of a second
 
+# Image placement for function calls of USGS watermark, legend, datetime, etc..
+#  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
+image_placement:
+  watermark:
+    x1: 0.01
+    y1: 0.01
+  datetime: # above watermark for now
+    x1: 0.01
+    y1: 0.2
+  legend:
+    x1:
+    y1:
+
+datetime_placement: # above watermark for now
+    x1: 0.01
+    y1: 0.2
+
 focus_geoms:
   - # U.S. counties
     database: county
@@ -31,13 +48,8 @@ secondary_geoms:
     database: "mapdata::worldHires"
     regions: "Mexico"
 
-# Change will cause refetch of entire nhdplus for view_polygon
-# This is input to sf::st_simplify on the NHDPlus flowlines that
-# are downloaded by the fetcher that uses it. Reduce it if you
-# are going to reduce simplification_tolerance_m below it.
-# a value of about 30m will have no affect on the data anything
-# greater will remove increasingly more curvature from lines.
-fetch_simplification_tolerance_m: 500
+# Only streamorders greater than this will be fetched.
+fetch_streamorder: 2
 
 # Changes only affect river geom process step.
 # Coastal threshold controls the drainage area used to limit
@@ -46,4 +58,4 @@ fetch_simplification_tolerance_m: 500
 # that terminate into other flowlines.
 coastal_threshold_sqkm: 1000
 inland_threshold_sqkm: 40000
-simplification_tolerance_m: 5000
+simplification_tolerance_m: 1000
