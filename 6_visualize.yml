@@ -20,6 +20,7 @@ sources:
   - 6_visualize/src/prep_view_fun.R
   - 6_visualize/src/prep_storm_point_fun.R
   - 6_visualize/src/prep_storm_line_fun.R
+  - 6_visualize/src/prep_spark_line_fun.R
   - 6_visualize/src/prep_rivers_fun.R
   - 6_visualize/src/prep_legend_fun.R
 
