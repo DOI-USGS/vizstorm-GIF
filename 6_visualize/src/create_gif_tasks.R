@@ -124,6 +124,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
         "config=storm_frame_config,",
         "view_fun,",
         "basemap_fun,",
+        "ocean_name_fun,",
         "rivers_fun,",
         "precip_raster_fun_%s,"=cur_task$tn,
         "storm_line_fun,",

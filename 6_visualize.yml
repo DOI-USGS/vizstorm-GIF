@@ -6,6 +6,7 @@ include:
 packages:
   - dplyr
   - tidyr
+  - scales
 
 file_extensions:
   - feather
@@ -23,6 +24,7 @@ sources:
   - 6_visualize/src/prep_rivers_fun.R
   - 6_visualize/src/prep_legend_fun.R
   - 6_visualize/src/prep_datetime_fun.R
+  - 6_visualize/src/prep_ocean_name_fun.R
   - 6_visualize/src/combine_animation_frames.R
 
 targets:
@@ -70,6 +72,9 @@ targets:
 
   watermark_fun:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png')
+
+  ocean_name_fun:
+    command: prep_ocean_name_fun(image_placement)
 
   #### intro frames - animating the link between gages and sparklines ####
 
