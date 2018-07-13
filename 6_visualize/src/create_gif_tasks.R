@@ -84,7 +84,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_storm_point_fun(storm_points_sf, I('%s'), hurricane_col)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+      sprintf("prep_storm_point_fun(storm_points_sf, I('%s'), hurricane_cols)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
     }
   )
 
@@ -97,6 +97,19 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
       sprintf("prep_precip_fun(precip_rasters, precip_bins, I('%s'))", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+    }
+  )
+
+  spark_frame <- scipiper::create_task_step(
+    step_name = 'spark_frame',
+    target_name = function(task_name, step_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf('spark_line_%s', task_name)
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf("prep_spark_line_fun('2_process/out/normalized_streamdata.rds.ind',
+              'viz_config.yml', I('%s'))", cur_task$timestep)
     }
   )
 
@@ -125,11 +138,13 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
         "config=storm_frame_config,",
         "view_fun,",
         "basemap_fun,",
+        "ocean_name_fun,",
         "rivers_fun,",
         "precip_raster_fun_%s,"=cur_task$tn,
         "storm_sites_fun,",
         "storm_line_fun,",
-        "storm_point_fun_%s,"=cur_task$tn,
+        "storm_point_fun_%s,"= cur_task$tn,
+        "spark_line_%s,"= cur_task$tn,
         "legend_fun,",
         "datetime_fun_%s,"=cur_task$tn,
         "watermark_fun)",
@@ -140,7 +155,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
 
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
-    task_steps=list(point_frame, precip_frame, datetime_frame, gif_frame),
+    task_steps=list(point_frame, precip_frame, spark_frame, datetime_frame, gif_frame),
     add_complete=FALSE,
     final_steps='gif_frame',
     ind_dir=folders$log)

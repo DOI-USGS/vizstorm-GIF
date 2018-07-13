@@ -21,6 +21,7 @@ sources:
   - 6_visualize/src/prep_storm_sites_fun.R
   - 6_visualize/src/prep_rivers_fun.R
   - 6_visualize/src/prep_legend_fun.R
+  - 6_visualize/src/prep_ocean_name_fun.R
   - 6_visualize/src/visualize_utils.R
   - 6_visualize/src/combine_animation_frames.R
 
@@ -46,6 +47,11 @@ targets:
  # ---- location of images on figure ---- #
   datetime_placement:
     command: viz_config[[I('datetime_placement')]]
+  ocean_name_placement:
+    command: viz_config[[I('ocean_name_placement')]]
+
+  ocean_name_labels:
+    command: viz_config[[I('ocean_name_labels')]]
 
  # ---- static image calls ----- #
   view_fun:
@@ -74,6 +80,9 @@ targets:
 
   watermark_fun:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png')
+
+  ocean_name_fun:
+    command: prep_ocean_name_fun(ocean_name_placement, ocean_name_labels)
 
   #### intro frames - animating the link between gages and sparklines ####
 

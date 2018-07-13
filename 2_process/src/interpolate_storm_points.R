@@ -12,7 +12,8 @@ interpolate_storm_points <- function(ind_file, timesteps_ind, coarse_points_ind)
   coords_interp <- data_frame(
     DateTime = timesteps,
     X = approx(coarse_points$DateTime, sf::st_coordinates(coarse_points)[,'X'], xout = timesteps)$y,
-    Y = approx(coarse_points$DateTime, sf::st_coordinates(coarse_points)[,'Y'], xout = timesteps)$y) %>%
+    Y = approx(coarse_points$DateTime, sf::st_coordinates(coarse_points)[,'Y'], xout = timesteps)$y,
+    SS = round(approx(coarse_points$DateTime, coarse_points$SS, xout = timesteps)$y)) %>%
     filter(., complete.cases(.))
   coords_interp_sf <- sf::st_as_sf(coords_interp, coords=c('X','Y'))
 

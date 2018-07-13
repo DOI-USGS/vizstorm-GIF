@@ -112,6 +112,7 @@ targets:
   2_process/out/normalized_streamdata.rds.ind:
     command: normalize_streamdata(
       ind_file = target_name,
-      raw_ind_file = '1_fetch/out/streamdata.rds.ind')
+      raw_ind_file = '1_fetch/out/streamdata.rds.ind',
+      sites_ind_file = '2_process/out/storm_sites.rds.ind')
   2_process/out/normalized_streamdata.rds:
     command: gd_get('2_process/out/normalized_streamdata.rds.ind')
