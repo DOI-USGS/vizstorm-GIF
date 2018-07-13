@@ -48,6 +48,11 @@ targets:
   precip_config:
     command: viz_config[I(c('precip_cols', 'precip_bin'))]
 
+  legend_styles:
+    command: viz_config[I(c('gage_flood_col','gage_norm_col','hurricane_col','storm_name'))]
+
+  hurricane_col:
+    command: viz_config[[I('hurricane_col')]]
   # -- precip colors and legend info --
   precip_bins:
     command: fetch_precip_bins(precip_config)

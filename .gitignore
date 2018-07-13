@@ -3,6 +3,8 @@
 .RData
 .Ruserdata
 .httr-oauth
+*/tmp/*
+*/out/*
 !*/out/*.ind
 lib/cfg/gd_config.yml
 .remake
@@ -10,4 +12,4 @@ lib/cfg/gd_config.yml
 *.rds
 *.feather
 .DS_Store
-6_visualize/tmp/
+*_tasks.yml
