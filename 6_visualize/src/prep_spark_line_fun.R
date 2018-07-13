@@ -54,10 +54,10 @@ prep_spark_line_fun <- function(storm_data_ind_file, viz_config_yaml, DateTime){
            xlim = c(as.POSIXct(viz_config$dates$start, tz = "UTC"), as.POSIXct(viz_config$dates$end, tz = "UTC")),
            ylim = c(lowest_stage, highest_stage))
       # put stage polygons on plot
-      polygon(full_polygon$dateTime, full_polygon$stage_normalized, col = "#4BA3C3", border=NA)
-      polygon(above_flood_polygon$dateTime, above_flood_polygon$stage_normalized, col = "#175676", border=NA)
+      polygon(full_polygon$dateTime, full_polygon$stage_normalized, col = viz_config$gage_norm_col, border=NA)
+      polygon(above_flood_polygon$dateTime, above_flood_polygon$stage_normalized, col = viz_config$gage_flood_col, border=NA)
       points(full_polygon$dateTime[-nrow(full_polygon)], full_polygon$stage_normalized[-nrow(full_polygon)],
-             col = "#175676", type='l', lwd=2.5)
+             col = viz_config$gage_flood_col, type='l', lwd=2.5)
       par(op) # reset plot parameters
 
       y_pos <- y_pos + vertical_spacing # increment spacing for next plot
