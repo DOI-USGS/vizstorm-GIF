@@ -17,12 +17,9 @@ sources:
   - 6_visualize/src/prep_watermark_fun.R
   - 6_visualize/src/prep_basemap_fun.R
   - 6_visualize/src/prep_view_fun.R
-  - 6_visualize/src/prep_storm_point_fun.R
   - 6_visualize/src/prep_storm_line_fun.R
-  - 6_visualize/src/prep_precip_fun.R
   - 6_visualize/src/prep_rivers_fun.R
   - 6_visualize/src/prep_legend_fun.R
-  - 6_visualize/src/prep_datetime_fun.R
   - 6_visualize/src/combine_animation_frames.R
 
 targets:
@@ -44,9 +41,11 @@ targets:
       tmp=I('6_visualize/tmp'),
       log=I('6_visualize/log'))
 
-  image_placement:
-    command: viz_config[[I('image_placement')]]
+ # ---- location of images on figure ---- #
+  datetime_placement:
+    command: viz_config[[I('datetime_placement')]]
 
+ # ---- static image calls ----- #
   view_fun:
     command: prep_view_fun(view_polygon)
 

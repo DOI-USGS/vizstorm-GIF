@@ -28,6 +28,10 @@ image_placement:
     x1:
     y1:
 
+datetime_placement: # above watermark for now
+    x1: 0.01
+    y1: 0.2
+
 focus_geoms:
   - # U.S. counties
     database: county
