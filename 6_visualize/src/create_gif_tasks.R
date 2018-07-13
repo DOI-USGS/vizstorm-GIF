@@ -99,6 +99,18 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
     }
   )
 
+  datetime_frame <- scipiper::create_task_step(
+    step_name = 'datetime_frame',
+    target_name = function(task_name, step_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf('datetime_fun_%s', task_name)
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf("prep_datetime_fun(I('%s'), datetime_placement)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+    }
+  )
+
   gif_frame <- scipiper::create_task_step(
     step_name = 'gif_frame',
     target_name = function(task_name, step_name, ...){
@@ -115,8 +127,9 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
         "rivers_fun,",
         "precip_raster_fun_%s,"=cur_task$tn,
         "storm_line_fun,",
-        "storm_point_fun_%s,"= cur_task$tn,
+        "storm_point_fun_%s,"=cur_task$tn,
         "legend_fun,",
+        "datetime_fun_%s,"=cur_task$tn,
         "watermark_fun)",
         #"streamdata_%s,"= cur_task$tn,
         sep="\n      ")
@@ -125,7 +138,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
 
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
-    task_steps=list(point_frame, precip_frame, gif_frame),
+    task_steps=list(point_frame, precip_frame, datetime_frame, gif_frame),
     add_complete=FALSE,
     final_steps='gif_frame',
     ind_dir=folders$log)
