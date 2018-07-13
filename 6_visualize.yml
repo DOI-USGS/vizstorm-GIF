@@ -22,13 +22,14 @@ sources:
   - 6_visualize/src/prep_precip_fun.R
   - 6_visualize/src/prep_rivers_fun.R
   - 6_visualize/src/prep_legend_fun.R
+  - 6_visualize/src/prep_datetime_fun.R
   - 6_visualize/src/combine_animation_frames.R
 
 targets:
 
   6_visualize:
     depends:
-      - 6_gif_tasks.yml
+      - 6_storm_gif_tasks.yml
 
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
   # adn storm_line. each of these components doesn't change over time. each
@@ -42,6 +43,9 @@ targets:
     command: list(
       tmp=I('6_visualize/tmp'),
       log=I('6_visualize/log'))
+
+  image_placement:
+    command: viz_config[[I('image_placement')]]
 
   view_fun:
     command: prep_view_fun(view_polygon)
