@@ -25,7 +25,7 @@ prep_spark_line_fun <- function(storm_data_ind_file, viz_config_yaml, DateTime){
 
       if(nrow(storm_data_i) == 0) { next } # skip if there's no data at or before this timestep
 
-      flood_stage_va <- as.numeric(unique(storm_data_i$flood_stage_normalized))
+      flood_stage_va <- unique(storm_data_i$flood_stage_normalized)
       lowest_stage <- min(storm_data_site_all$stage_normalized, na.rm = TRUE)
       highest_stage <- max(storm_data_site_all$stage_normalized, na.rm = TRUE)
 
