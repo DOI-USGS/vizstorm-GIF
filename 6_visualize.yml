@@ -39,7 +39,6 @@ targets:
   # into an RDS file with a corresponding .rds.ind indicator file.
 
   # tmp=temporary folder for holding files to only be created on 1 computer.
-  # out=folder to hold .ind and data files corresponding to shared cache or everybody's local build.
   # log=folder for the few indicator files that don't correspond to a data file.
   visualize_folders:
     command: list(
@@ -64,19 +63,39 @@ targets:
   watermark_fun:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png')
 
+  #### intro frames - animating the link between gages and sparklines ####
+
   n_intro_frames:
-    command: viz_config[I('n_intro_frames')]
+    command: viz_config[[I('n_intro_frames')]]
   intro_gif_tasks:
     command: create_intro_gif_tasks(
-      n_timesteps = n_timesteps,
-      folders = visualize_folders,
-      storm_cfg = storm_frame_config)
+      n_timesteps = n_intro_frames,
+      folders = visualize_folders)
 
   6_intro_gif_tasks.yml:
     command: create_intro_gif_makefile(
       makefile = target_name,
-      task_plan = gif_tasks,
+      task_plan = intro_gif_tasks,
       remake_file = I('6_visualize.yml'))
+
+  # Build the timestep-specific functions and png files.
+  # When we like how this is looking, we can set task_names=NULL to build all frames.
+  # If you're trying to iterate on just a few png frames, delete 6_visualize/log/6_intro_gif_tasks.ind,
+  # then you can call scmake('6_visualize/log/6_intro_gif_tasks.ind') repeatedly.
+  # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_intro_gif_tasks.ind', force=TRUE)
+  #   to iterate on all frames at once.
+  trial_intro_frames:
+    command: c(I(c(
+      'a_00_001',
+      'a_00_005',
+      'a_00_009')))
+  6_visualize/log/6_intro_gif_tasks.ind:
+    command: loop_tasks(
+      task_plan=intro_gif_tasks, task_makefile='6_intro_gif_tasks.yml',
+      task_names=trial_intro_frames,
+      num_tries=I(1), sleep_on_error=I(0))
+
+  #### storm frames - animating the progression of the storm, precip, and stage over time ####
 
   storm_gif_tasks:
     command: create_storm_gif_tasks(
@@ -87,24 +106,24 @@ targets:
   6_storm_gif_tasks.yml:
     command: create_storm_gif_makefile(
       makefile = target_name,
-      task_plan = gif_tasks,
+      task_plan = storm_gif_tasks,
       remake_file = I('6_visualize.yml'))
 
   # Build the timestep-specific functions and png files.
   # When we like how this is looking, we can set task_names=NULL to build all frames.
-  # If you're trying to iterate on just a few png frames, delete 6_visualize/log/6_gif_tasks.ind,
-  # then you can call scmake('6_visualize/log/6_gif_tasks.ind') repeatedly.
-  # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_gif_tasks.ind', force=TRUE)
+  # If you're trying to iterate on just a few png frames, delete 6_visualize/log/6_storm_gif_tasks.ind,
+  # then you can call scmake('6_visualize/log/6_storm_gif_tasks.ind') repeatedly.
+  # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_storm_gif_tasks.ind', force=TRUE)
   #   to iterate on all frames at once.
-  trial_frames:
+  trial_storm_frames:
     command: c(I(c(
       'a_20170826_14',
       'a_20170826_15',
       'a_20170826_16')))
   6_visualize/log/6_storm_gif_tasks.ind:
     command: loop_tasks(
-      task_plan=gif_tasks, task_makefile='6_storm_gif_tasks.yml',
-      task_names=trial_frames,
+      task_plan=storm_gif_tasks, task_makefile='6_storm_gif_tasks.yml',
+      task_names=trial_storm_frames,
       num_tries=I(1), sleep_on_error=I(0))
 
   # Combine the png files into a gif.
@@ -117,6 +136,8 @@ targets:
   #     - 6_visualize/log/6_intro_gif_tasks.ind
   #     - 6_visualize/log/6_storm_gif_tasks.ind
   #   and set task_names=NULL to build all the frames.
+  trial_frames:
+    command: c(trial_intro_frames, trial_storm_frames)
   animation_cfg:
     command: viz_config[I('frame_delay_cs')]
   6_visualize/out/animation_a.gif:
