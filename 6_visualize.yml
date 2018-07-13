@@ -127,8 +127,8 @@ targets:
   trial_storm_frames:
     command: c(I(c(
       'a_20170826_14',
-      'a_20170826_15',
-      'a_20170826_16')))
+      'a_20170827_14',
+      'a_20170828_14')))
   6_visualize/log/6_storm_gif_tasks.ind:
     command: loop_tasks(
       task_plan=storm_gif_tasks, task_makefile='6_storm_gif_tasks.yml',
