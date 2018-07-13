@@ -1,5 +1,5 @@
 
-prep_ocean_name_fun <- function(image_placement){
+prep_ocean_name_fun <- function(ocean_name_placement){
 
   plot_fun <- function(){
     # coordinate space (edges, width, height)
@@ -15,10 +15,10 @@ prep_ocean_name_fun <- function(image_placement){
     # ocean_name_alpha <- 0.4
 
     # ocean name placement
-    atlantic_x1 <- coord_space_left + coord_width * image_placement$ocean_name$atlantic$x1
-    atlantic_y1 <- coord_space_bot + coord_height * image_placement$ocean_name$atlatnic$y1
-    g_of_mex_x1 <- coord_space_left + coord_width * image_placement$ocean_name$g_of_mex$x1
-    g_of_mex_y1 <- coord_space_bot + coord_height * image_placement$ocean_name$g_of_mex$y1
+    atlantic_x1 <- coord_space_left + coord_width * ocean_name_placement$atlantic$x1
+    atlantic_y1 <- coord_space_bot + coord_height * ocean_name_placement$atlantic$y1
+    g_of_mex_x1 <- coord_space_left + coord_width * ocean_name_placement$g_of_mex$x1
+    g_of_mex_y1 <- coord_space_bot + coord_height * ocean_name_placement$g_of_mex$y1
 
     x1_coords <- c(atlantic_x1, g_of_mex_x1)
     y1_coords <- c(atlantic_y1, g_of_mex_y1)

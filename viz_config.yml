@@ -27,13 +27,14 @@ image_placement:
   legend:
     x1:
     y1:
-  ocean_name:
-    atlantic:
-      x1: 0.8
-      y1: 0.7
-    g_of_mex:
-      x1: 0.5
-      y1: 0.35
+
+ocean_name_placement:
+  atlantic:
+    x1: 0.8
+    y1: 0.75
+  g_of_mex:
+    x1: 0.5
+    y1: 0.35
 
 focus_geoms:
   - # U.S. counties
