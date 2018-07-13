@@ -6,6 +6,8 @@ normalize_streamdata <- function(ind_file, raw_ind_file, sites_ind_file){
   storm_sites <- readRDS(sc_retrieve(sites_ind_file))
   storm_data <- left_join(streamdata, storm_sites)
 
+  # we assume "normalized" stage is between 0 and 1
+  # if that changes, see 6_visualize/src/prep_spark_line_fun.R
   norm_stream <- storm_data %>%
     rename(stage = X_00065_00000, stage_cd = X_00065_00000_cd) %>%
     select(site_no, dateTime, stage, flood_stage) %>%

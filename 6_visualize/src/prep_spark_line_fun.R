@@ -21,24 +21,21 @@ prep_spark_line_fun <- function(storm_data_ind_file, viz_config_yaml, DateTime){
 
       # Filter data to just one site & create polygon out of it
       storm_data_i <- filter(this_spark, site_no == i) %>% arrange(dateTime)
-      storm_data_site_all <- filter(storm_data, site_no == i)
 
       if(nrow(storm_data_i) == 0) { next } # skip if there's no data at or before this timestep
 
       flood_stage_va <- unique(storm_data_i$flood_stage_normalized)
-      lowest_stage <- min(storm_data_site_all$stage_normalized, na.rm = TRUE)
-      highest_stage <- max(storm_data_site_all$stage_normalized, na.rm = TRUE)
 
       full_polygon <- data.frame(dateTime = head(storm_data_i$dateTime, 1),
-                                 stage_normalized = min(storm_data_i$stage_normalized,1)) %>%
+                                 stage_normalized = 0) %>%
         bind_rows(select(storm_data_i, dateTime, stage_normalized)) %>%
         bind_rows(data.frame(dateTime = tail(storm_data_i$dateTime, 1),
-                             stage_normalized = min(storm_data_i$stage_normalized)))
+                             stage_normalized = 0))
 
       # Fill values lower than flood stage with the stage & then create a polygon out of it
       above_flood_data <- mutate(storm_data_i, stage_normalized = pmax(stage_normalized, flood_stage_va))
       above_flood_polygon <- data.frame(dateTime = head(above_flood_data$dateTime, 1),
-                                        stage_normalized = head(above_flood_data$stage_normalized, 1)) %>%
+                                        stage_normalized = flood_stage_va) %>%
         bind_rows(select(above_flood_data, dateTime, stage_normalized)) %>%
         bind_rows(data.frame(dateTime = tail(above_flood_data$dateTime, 1),
                              stage_normalized = min(above_flood_data$stage_normalized)))
@@ -50,7 +47,7 @@ prep_spark_line_fun <- function(storm_data_ind_file, viz_config_yaml, DateTime){
       # setup a plotting device
       plot(x=NA, y=NA, type='n', axes=FALSE, xlab="", ylab="",
            xlim = c(as.POSIXct(viz_config$dates$start, tz = "UTC"), as.POSIXct(viz_config$dates$end, tz = "UTC")),
-           ylim = c(lowest_stage, highest_stage))
+           ylim = c(0, 1)) # we assume "normalized" stage is between 0 and 1
       # put stage polygons on plot
       polygon(full_polygon$dateTime, full_polygon$stage_normalized, col = viz_config$gage_norm_col, border=NA)
       polygon(above_flood_polygon$dateTime, above_flood_polygon$stage_normalized, col = viz_config$gage_flood_col, border=NA)
