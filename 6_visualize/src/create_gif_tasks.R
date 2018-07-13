@@ -65,7 +65,6 @@ create_intro_gif_tasks <- function(n_timesteps, folders){
 
 create_storm_gif_tasks <- function(timestep_ind, folders){
 
-  message('subsetting times to simplify for now')
   timestep <- readRDS(sc_retrieve(timestep_ind))
 
   cfgs <- c('a') # for now, just use one config, since > 1 results in duplication of input files
@@ -80,11 +79,11 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
     step_name = 'point_frame',
     target_name = function(task_name, step_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf('storm_point_%s', task_name)
+      sprintf('storm_point_fun_%s', task_name)
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_storm_point_fun(storm_points_sf, I('%s'), hurricane_col)", cur_task$timestep)
+      sprintf("prep_storm_point_fun(storm_points_sf, I('%s'), hurricane_col)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
     }
   )
 
@@ -92,11 +91,11 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
     step_name = 'precip_frame',
     target_name = function(task_name, step_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf('precip_raster_%s', task_name)
+      sprintf('precip_raster_fun_%s', task_name)
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_precip_fun(precip_rasters, precip_bins, I('%s'))", cur_task$timestep)
+      sprintf("prep_precip_fun(precip_rasters, precip_bins, I('%s'))", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
     }
   )
 
@@ -114,9 +113,9 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
         "view_fun,",
         "basemap_fun,",
         "rivers_fun,",
-        "precip_raster_%s,"=cur_task$tn,
+        "precip_raster_fun_%s,"=cur_task$tn,
         "storm_line_fun,",
-        "storm_point_%s,"= cur_task$tn,
+        "storm_point_fun_%s,"= cur_task$tn,
         "legend_fun,",
         "watermark_fun)",
         #"streamdata_%s,"= cur_task$tn,
