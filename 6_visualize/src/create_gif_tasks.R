@@ -84,7 +84,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_storm_sites_fun(storm_data, 'viz_config.yml', I('%s'))", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+      sprintf("prep_storm_sites_fun(storm_data, gage_color_config, I('%s'))", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
     }
   )
 
@@ -120,7 +120,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_spark_line_fun(storm_data, 'viz_config.yml', I('%s'))", cur_task$timestep)
+      sprintf("prep_spark_line_fun(storm_data, dates_config, sparkline_placement, gage_color_config, I('%s'))", cur_task$timestep)
     }
   )
 

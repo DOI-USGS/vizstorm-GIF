@@ -44,11 +44,18 @@ targets:
       tmp=I('6_visualize/tmp'),
       log=I('6_visualize/log'))
 
+  dates_config:
+    command: viz_config[[I('dates')]]
+  gage_color_config:
+    command: viz_config[I(c('gage_flood_col','gage_norm_col'))]
+
  # ---- location of images on figure ---- #
   datetime_placement:
     command: viz_config[[I('datetime_placement')]]
   ocean_name_placement:
     command: viz_config[[I('ocean_name_placement')]]
+  sparkline_placement:
+    command: viz_config[[I('sparks')]]
 
   ocean_name_labels:
     command: viz_config[[I('ocean_name_labels')]]
@@ -67,7 +74,7 @@ targets:
     command: fetch_read('2_process/out/storm_points_interp.rds.ind')
 
   storm_sites_initial:
-    command: prep_storm_sites_initial('2_process/out/storm_sites.rds.ind', 'viz_config.yml')
+    command: prep_storm_sites_initial('2_process/out/storm_sites.rds.ind', gage_color_config)
 
   storm_data:
     command: fetch_read('2_process/out/normalized_streamdata.rds.ind')

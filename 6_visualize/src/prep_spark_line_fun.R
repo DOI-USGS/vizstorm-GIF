@@ -1,7 +1,5 @@
 
-prep_spark_line_fun <- function(storm_data, viz_config_yaml, DateTime){
-  viz_config <- yaml::yaml.load_file(viz_config_yaml)
-
+prep_spark_line_fun <- function(storm_data, date_config, spark_config, gage_col_config, DateTime){
   sites <- unique(storm_data$site_no)
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
   this_spark <- filter(storm_data, dateTime <= this_DateTime) # keep all data up until this timestep
@@ -10,9 +8,9 @@ prep_spark_line_fun <- function(storm_data, viz_config_yaml, DateTime){
     orig_par <- par()
 
     # Set spacing configurations
-    x_coords <- c(viz_config$sparks$xleft, viz_config$sparks$xright)
-    y_start <- viz_config$sparks$ybottom
-    y_space <- viz_config$sparks$ytop-y_start
+    x_coords <- c(spark_config$xleft, spark_config$xright)
+    y_start <- spark_config$ybottom
+    y_space <- spark_config$ytop-y_start
     vertical_spacing <- y_space/length(sites)
 
     y_pos <- y_start # initialize position of first spark
@@ -45,13 +43,13 @@ prep_spark_line_fun <- function(storm_data, viz_config_yaml, DateTime){
       op <- par(fig=fig.new, cex=2, new=TRUE, mar=rep(0, 4)) # setup parameters
       # setup a plotting device
       plot(x=NA, y=NA, type='n', axes=FALSE, xlab="", ylab="",
-           xlim = c(as.POSIXct(viz_config$dates$start, tz = "UTC"), as.POSIXct(viz_config$dates$end, tz = "UTC")),
+           xlim = c(as.POSIXct(date_config$start, tz = "UTC"), as.POSIXct(date_config$end, tz = "UTC")),
            ylim = c(0, 1)) # we assume "normalized" stage is between 0 and 1
       # put stage polygons on plot
-      polygon(full_polygon$dateTime, full_polygon$stage_normalized, col = viz_config$gage_norm_col, border=NA)
-      polygon(above_flood_polygon$dateTime, above_flood_polygon$stage_normalized, col = viz_config$gage_flood_col, border=NA)
+      polygon(full_polygon$dateTime, full_polygon$stage_normalized, col = gage_col_config$gage_norm_col, border=NA)
+      polygon(above_flood_polygon$dateTime, above_flood_polygon$stage_normalized, col = gage_col_config$gage_flood_col, border=NA)
       points(full_polygon$dateTime[-nrow(full_polygon)], full_polygon$stage_normalized[-nrow(full_polygon)],
-             col = viz_config$gage_flood_col, type='l', lwd=2.5)
+             col = gage_col_config$gage_flood_col, type='l', lwd=2.5)
       par(op) # reset plot parameters
 
       y_pos <- y_pos + vertical_spacing # increment spacing for next plot
