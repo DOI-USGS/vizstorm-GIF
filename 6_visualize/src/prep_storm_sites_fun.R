@@ -1,15 +1,3 @@
-prep_storm_sites_initial <- function(storm_sites_ind_file, gage_col_config, DateTime){
-  storm_sites <- readRDS(sc_retrieve(storm_sites_ind_file))
-
-  plot_fun <- function(){
-
-    plot(sf::st_geometry(storm_sites$geometry), add = TRUE,
-         pch = 21, bg = gage_col_config$gage_norm_col, col = NA)
-
-  }
-  return(plot_fun)
-}
-
 prep_storm_sites_fun <- function(storm_data, gage_col_config, DateTime){
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
   this_storm_data <- filter(storm_data, dateTime == this_DateTime)
