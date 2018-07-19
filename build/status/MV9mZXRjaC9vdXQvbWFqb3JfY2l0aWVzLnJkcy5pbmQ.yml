@@ -1,0 +1,13 @@
+version: 0.3.0
+name: 1_fetch/out/major_cities.rds.ind
+type: file
+hash: 115ce79c4b70b65b8c57e609bdd7c8f5
+time: 2018-07-13 21:38:53 UTC
+depends:
+  city_pop_min: 2e05709d95d1c9112e469cd810ad2c25
+  view_polygon: 7ac3d28632d1dfbad8fd1b6044d4485a
+fixed: 01bf7c791ffe6029df4bca9d98e9ce7b
+code:
+  functions:
+    fetch_major_cities: 55befe2de7d34cb3e8dbf7202558eb70
+
