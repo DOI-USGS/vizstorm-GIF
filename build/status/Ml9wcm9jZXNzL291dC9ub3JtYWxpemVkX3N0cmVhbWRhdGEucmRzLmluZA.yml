@@ -1,13 +1,13 @@
 version: 0.3.0
 name: 2_process/out/normalized_streamdata.rds.ind
 type: file
-hash: 6b461152f50df5235264038342e2c302
-time: 2018-07-13 21:23:24 UTC
+hash: 9a9f34f323fc85e9b43ccf47d39a938f
+time: 2018-07-19 21:09:00 UTC
 depends:
-  1_fetch/out/streamdata.rds.ind: 602d028e08c12cb6808068f929354bb4
+  1_fetch/out/streamdata.rds.ind: 846892726e245ac965583c7a938c9dcc
   2_process/out/storm_sites.rds.ind: 607ee3a73a02b812c0f24842f158e47d
 fixed: e8220ed7526ce5e94f7e6256176d60db
 code:
   functions:
-    normalize_streamdata: 2637ccc90b9bf34407a4e87e32b28dce
+    normalize_streamdata: 87270436c8e81f3b4f000afc756cbb45
 
