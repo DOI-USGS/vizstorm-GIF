@@ -18,6 +18,7 @@ create_storm_gif_makefile <- function(makefile, task_plan, remake_file) {
     sources=c(
       '6_visualize/src/create_animation_frame.R',
       '6_visualize/src/prep_datetime_fun.R',
+      '6_visualize/src/prep_storm_sites_fun.R',
       '6_visualize/src/prep_storm_point_fun.R',
       '6_visualize/src/prep_precip_fun.R',
       '6_visualize/src/prep_spark_line_fun.R'),
