@@ -61,7 +61,7 @@ prep_gage2spark_fun <- function(n_timesteps, timestep) {
   # then make the function
   clean_env <- function(coords) {
     function(){
-      plot(coords, add=TRUE)
+      plot(x=pull(coords, x), y=pull(coords, y), add=TRUE)
     }
   }
   plot_fun <- clean_env(coords)
