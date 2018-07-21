@@ -1,5 +1,8 @@
-
-prep_spark_line_fun <- function(storm_data, dates_config, spark_config, gage_col_config, DateTime){
+# This function prepares the coordinates and shapes (polygons and line) for each
+# site as much as is possible without yet knowing the final plot view
+# coordinates. This function is called from both prep_spark_lines_fun and
+# prep_spark_starts_fun.
+prep_spark_funs_data <- function(storm_data, dates_config, spark_config, gage_col_config, DateTime) {
   sites <- unique(storm_data$site_no)
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
   this_spark <- filter(storm_data, dateTime <= this_DateTime) # keep all data up until this timestep
@@ -27,6 +30,7 @@ prep_spark_line_fun <- function(storm_data, dates_config, spark_config, gage_col
     y_user[1] + y_frac*diff(y_user)
   }
 
+  # Prepare a list of shapes for each site: two polygons and one line
   shapes <- list()
   for(site in sites) {
 
@@ -67,14 +71,37 @@ prep_spark_line_fun <- function(storm_data, dates_config, spark_config, gage_col
     )
   }
 
+  return(list(
+    x_coords=x_coords,
+    y_coords=y_coords,
+    shapes=shapes,
+    dateTime_to_x=dateTime_to_x,
+    stage_to_y=stage_to_y
+  ))
+
+}
+
+prep_spark_line_fun <- function(storm_data, dates_config, spark_config, gage_col_config, DateTime) {
+
+  # most of the prep work happens in prep_spark_funs_data, which is shared with prep_spark_starts_fun
+  spark_funs_data <- prep_spark_funs_data(storm_data, dates_config, spark_config, gage_col_config, DateTime)
+  # now unpack the results
+  x_coords <- spark_funs_data$x_coords
+  y_coords <- spark_funs_data$y_coords
+  shapes <- spark_funs_data$shapes
+  dateTime_to_x <- spark_funs_data$dateTime_to_x
+  stage_to_y <- spark_funs_data$stage_to_y
+
+  # Create and return a closure/function that can be called to add sparklines
+  # when making the full plot
   plot_fun <- function(){
 
-    # needs x_coords, y_coords, shapes
+    # closure needs x_coords, y_coords, shapes, dateTime_to_x(), stage_to_y()
 
     # Ask the open device for the user coordinates
     coord_space <- par()$usr
 
-   for(site in names(shapes)) {
+    for(site in names(shapes)) {
       # Skip if there's no data at or before this timestep
       if(is.null(shapes[[site]])) { next }
 
@@ -102,4 +129,43 @@ prep_spark_line_fun <- function(storm_data, dates_config, spark_config, gage_col
   }
 
   return(plot_fun)
+}
+
+prep_spark_starts_fun <- function() {
+
+  # most of the prep work happens in prep_spark_funs_data, which is shared with prep_spark_line_fun
+  spark_funs_data <- prep_spark_funs_data(storm_data, dates_config, spark_config, gage_col_config, DateTime)
+  # now unpack the results
+  x_coords <- spark_funs_data$x_coords
+  y_coords <- spark_funs_data$y_coords
+  shapes <- spark_funs_data$shapes
+  dateTime_to_x <- spark_funs_data$dateTime_to_x
+  stage_to_y <- spark_funs_data$stage_to_y
+
+  extract_spark_starts_fun <- function() {
+    # closure needs x_coords, y_coords, shapes, dateTime_to_x(), stage_to_y()
+
+    # Ask the open device for the user coordinates
+    coord_space <- par()$usr
+
+    spark_starts <- bind_rows(lapply(names(shapes), function(site) {
+      # Skip if there's no data at or before this timestep
+      if(is.null(shapes[[site]])) { next }
+
+      # Convert normalized plot coordinates to user coordinates
+      x_user <- coord_space[1] + x_coords * diff(coord_space[1:2])
+      y_coords_site <- y_coords %>% filter(site_no==site) %>% {c(.$lower, .$upper)}
+      y_user <- coord_space[3] + y_coords_site * diff(coord_space[3:4])
+
+      # Convert this site's shapes to user coordinates
+      hydro_start <- shapes[[site]]$hydro_line[1,] %>% mutate(
+        x = dateTime_to_x(dateTime, x_user),
+        y = stage_to_y(stage_normalized, y_user))
+
+      hydro_start
+    }))
+
+    return(spark_starts)
+  }
+
 }
