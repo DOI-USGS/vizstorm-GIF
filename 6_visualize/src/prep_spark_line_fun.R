@@ -4,8 +4,28 @@ prep_spark_line_fun <- function(storm_data, dates_config, spark_config, gage_col
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
   this_spark <- filter(storm_data, dateTime <= this_DateTime) # keep all data up until this timestep
 
-  # compute the full x limits for all datetimes
+  # Compute the full x limits for all datetimes
   date_lims <- as.POSIXct(c(dates_config$start, dates_config$end), tz = "UTC")
+
+  # Compute normalized plot coordinates for all sites
+  x_coords <- c(spark_config$xleft, spark_config$xright)
+  vertical_spacing <- (spark_config$ytop - spark_config$ybottom) / length(shapes)
+  y_coords <- data_frame(
+    site_no=sites,
+    lower=seq(spark_config$ybottom, spark_config$ytop - vertical_spacing, length.out=length(sites)),
+    upper=lower + vertical_spacing)
+
+  # Define functions that will convert each site's shapes to user coordinates
+  dateTime_to_x <- function(dateTime, x_user) {
+    date_lims_num <- as.numeric(date_lims, units='days')
+    date_time_num <- as.numeric(dateTime, units='days')
+    x_frac <- (date_time_num - date_lims_num[1]) / diff(date_lims_num)
+    x_user[1] + x_frac*diff(x_user)
+  }
+  stage_to_y <- function(stage_normalized, y_user) {
+    y_frac <- stage_normalized # stage_normalized is already a fraction between 0 and 1
+    y_user[1] + y_frac*diff(y_user)
+  }
 
   shapes <- list()
   for(site in sites) {
@@ -15,7 +35,7 @@ prep_spark_line_fun <- function(storm_data, dates_config, spark_config, gage_col
       arrange(dateTime) %>%
       sf::st_set_geometry(NULL)
 
-    # skip if there's no data at or before this timestep
+    # Skip if there's no data at or before this timestep
     if(nrow(storm_data_i) == 0) {
       shapes[[site]] <- NULL
       next
@@ -48,18 +68,13 @@ prep_spark_line_fun <- function(storm_data, dates_config, spark_config, gage_col
   }
 
   plot_fun <- function(){
-    # Compute normalized plot coordinates for all sites
-    x_coords <- c(spark_config$xleft, spark_config$xright)
-    vertical_spacing <- (spark_config$ytop - spark_config$ybottom) / length(sites)
-    y_coords <- data_frame(
-      site_no=sites,
-      lower=seq(spark_config$ybottom, spark_config$ytop - vertical_spacing, length.out=length(sites)),
-      upper=lower + vertical_spacing)
+
+    # needs x_coords, y_coords, shapes
 
     # Ask the open device for the user coordinates
     coord_space <- par()$usr
 
-    for(site in sites) {
+   for(site in names(shapes)) {
       # Skip if there's no data at or before this timestep
       if(is.null(shapes[[site]])) { next }
 
@@ -69,25 +84,15 @@ prep_spark_line_fun <- function(storm_data, dates_config, spark_config, gage_col
       y_user <- coord_space[3] + y_coords_site * diff(coord_space[3:4])
 
       # Convert this site's shapes to user coordinates
-      dateTime_to_x <- function(dateTime) {
-        date_lims_num <- as.numeric(date_lims, units='days')
-        date_time_num <- as.numeric(dateTime, units='days')
-        x_frac <- (date_time_num - date_lims_num[1]) / diff(date_lims_num)
-        x_user[1] + x_frac*diff(x_user)
-      }
-      stage_to_y <- function(stage_normalized) {
-        y_frac <- stage_normalized # stage_normalized is already a fraction between 0 and 1
-        y_user[1] + y_frac*diff(y_user)
-      }
       full_poly <- shapes[[site]]$full_poly %>% mutate(
-        x = dateTime_to_x(dateTime),
-        y = stage_to_y(stage_normalized))
+        x = dateTime_to_x(dateTime, x_user),
+        y = stage_to_y(stage_normalized, y_user))
       flood_poly <- shapes[[site]]$flood_poly %>% mutate(
-        x = dateTime_to_x(dateTime),
-        y = stage_to_y(stage_normalized))
+        x = dateTime_to_x(dateTime, x_user),
+        y = stage_to_y(stage_normalized, y_user))
       hydro_line <- shapes[[site]]$hydro_line %>% mutate(
-        x = dateTime_to_x(dateTime),
-        y = stage_to_y(stage_normalized))
+        x = dateTime_to_x(dateTime, x_user),
+        y = stage_to_y(stage_normalized, y_user))
 
       # Add stage shapes to plot
       polygon(full_poly$x, full_poly$y, col = gage_col_config$gage_norm_col, border=NA)
