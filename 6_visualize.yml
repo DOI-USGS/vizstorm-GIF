@@ -48,15 +48,20 @@ targets:
     command: viz_config[[I('dates')]]
   gage_color_config:
     command: viz_config[I(c('gage_flood_col','gage_norm_col'))]
+  intro_config:
+    command: viz_config[[I(c('intro'))]]
 
- # ---- location of images on figure ---- #
+  # ---- location of images on figure ---- #
+  image_placement:
+    command: viz_config[[I('image_placement')]]
   datetime_placement:
-    command: viz_config[[I('datetime_placement')]]
+    command: image_placement[[I('datetime')]]
+  sparkline_placement:
+    command: image_placement[[I('sparks')]]
+
+  # ---- location of labels on figure ---- #
   ocean_name_placement:
     command: viz_config[[I('ocean_name_placement')]]
-  sparkline_placement:
-    command: viz_config[[I('sparks')]]
-
   ocean_name_labels:
     command: viz_config[[I('ocean_name_labels')]]
 
@@ -106,7 +111,8 @@ targets:
   intro_gif_tasks:
     command: create_intro_gif_tasks(
       n_timesteps = n_intro_frames,
-      folders = visualize_folders)
+      folders = visualize_folders,
+      storm_start_date = storm_start_date)
 
   6_intro_gif_tasks.yml:
     command: create_intro_gif_makefile(
