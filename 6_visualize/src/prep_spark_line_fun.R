@@ -2,7 +2,7 @@
 # site as much as is possible without yet knowing the final plot view
 # coordinates. This function is called from both prep_spark_lines_fun and
 # prep_spark_starts_fun.
-prep_spark_funs_data <- function(storm_data, dates_config, spark_config, gage_col_config, DateTime) {
+prep_spark_funs_data <- function(storm_data, dates_config, spark_config, DateTime) {
   sites <- unique(storm_data$site_no)
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
   this_spark <- filter(storm_data, dateTime <= this_DateTime) # keep all data up until this timestep
@@ -84,7 +84,7 @@ prep_spark_funs_data <- function(storm_data, dates_config, spark_config, gage_co
 prep_spark_line_fun <- function(storm_data, dates_config, spark_config, gage_col_config, DateTime) {
 
   # most of the prep work happens in prep_spark_funs_data, which is shared with prep_spark_starts_fun
-  spark_funs_data <- prep_spark_funs_data(storm_data, dates_config, spark_config, gage_col_config, DateTime)
+  spark_funs_data <- prep_spark_funs_data(storm_data, dates_config, spark_config, DateTime)
   # now unpack the results
   x_coords <- spark_funs_data$x_coords
   y_coords <- spark_funs_data$y_coords
@@ -131,10 +131,10 @@ prep_spark_line_fun <- function(storm_data, dates_config, spark_config, gage_col
   return(plot_fun)
 }
 
-prep_spark_starts_fun <- function() {
+prep_spark_starts_fun <- function(storm_data, dates_config, spark_config, DateTime) {
 
   # most of the prep work happens in prep_spark_funs_data, which is shared with prep_spark_line_fun
-  spark_funs_data <- prep_spark_funs_data(storm_data, dates_config, spark_config, gage_col_config, DateTime)
+  spark_funs_data <- prep_spark_funs_data(storm_data, dates_config, spark_config, DateTime)
   # now unpack the results
   x_coords <- spark_funs_data$x_coords
   y_coords <- spark_funs_data$y_coords
