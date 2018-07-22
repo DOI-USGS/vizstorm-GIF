@@ -39,11 +39,14 @@ prep_spark_funs_data <- function(storm_data, dates_config, spark_config, DateTim
       arrange(dateTime) %>%
       sf::st_set_geometry(NULL)
 
+    # Stop if there's no data at or before this timestep
+    stop(sprintf('no stage data for dateTime<=%s and site=%s', DateTime, site))
     # Skip if there's no data at or before this timestep
-    if(nrow(storm_data_i) == 0) {
-      shapes[[site]] <- NULL
-      next
-    }
+    # if(nrow(storm_data_i) == 0) {
+    #   warning(sprintf('no stage data for dateTime<=%s and site=%s', DateTime, site))
+    #   shapes[[site]] <- NULL
+    #   next
+    # }
 
     # Create a hydrograph line
     hydro_line <- storm_data_i %>% select(dateTime, stage_normalized)
