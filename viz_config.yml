@@ -24,6 +24,7 @@ intro:
   t_last_start: 5 # last frame in the intro animation when a site should leave its lat/lon (they're staggered)
   n_frames: 20 # number of frames in the intro animation linking gages to sparklines
   elbow_radius: 50000 # radius of the curvature at the elbow of the dot travel path, in 10000ths of degrees
+  point_background: "#8F6F9E"
 
 # all animations
 frame_delay_cs: 8 # delay between frames of the gif animation. cs = centiseconds = hundredths of a second

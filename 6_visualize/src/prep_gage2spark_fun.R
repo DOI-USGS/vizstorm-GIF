@@ -36,8 +36,8 @@ prep_gage2spark_fun <- function(intro_config, timestep, storm_data, site_data, g
     sites_ordered <- spark_starts %>%
       select(site_no) %>%
       left_join(sites, by='site_no')
-    x1 <- sites$X
-    y1 <- sites$Y
+    x1 <- sites_ordered$X
+    y1 <- sites_ordered$Y
 
     # calculate additional variables. naming convention for d and t: lowercase =
     # position in space/time, uppercase = length/duration
@@ -91,7 +91,7 @@ prep_gage2spark_fun <- function(intro_config, timestep, storm_data, site_data, g
     # add points to the plot
     points(
       x = coords$x, y = coords$y, pch = 21,
-      bg = sites$background, col = sites$color)
+      bg = intro_config$point_background, col = sites_ordered$color)
   }
   return(plot_fun)
 }

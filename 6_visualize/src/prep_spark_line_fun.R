@@ -7,12 +7,14 @@ prep_spark_funs_data <- function(storm_data, site_data, timestep_ind, spark_conf
   storm_timesteps <- fetch_read(timestep_ind)
   date_lims <- as.POSIXct(range(storm_timesteps), tz = "UTC")
 
-  # Filter timeseries gage data
+  # Choose order of sparklines
   sites <- site_data %>%
     bind_cols(., as_data_frame(sf::st_coordinates(.))) %>%
     sf::st_set_geometry(NULL) %>%
     arrange(desc(Y)) %>%
     pull(site_no)
+
+  # Filter timeseries gage data
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
   this_spark <- filter(storm_data, dateTime >= date_lims[1], dateTime <= this_DateTime) # keep all data up until this timestep
 
@@ -93,6 +95,7 @@ prep_spark_line_fun <- function(storm_data, site_data, timestep_ind, spark_confi
 
   # most of the prep work happens in prep_spark_funs_data, which is shared with prep_spark_starts_fun
   spark_funs_data <- prep_spark_funs_data(storm_data, site_data, timestep_ind, spark_config, DateTime)
+  rm(storm_data, site_data, timestep_ind, spark_config, DateTime) # clean up to keep closure small
   # now unpack the results
   x_coords <- spark_funs_data$x_coords
   y_coords <- spark_funs_data$y_coords
@@ -143,6 +146,7 @@ prep_spark_starts_fun <- function(storm_data, site_data, timestep_ind, spark_con
 
   # most of the prep work happens in prep_spark_funs_data, which is shared with prep_spark_line_fun
   spark_funs_data <- prep_spark_funs_data(storm_data, site_data, timestep_ind, spark_config, DateTime)
+  rm(storm_data, site_data, timestep_ind, spark_config, DateTime) # clean up to keep closure small
   # now unpack the results
   x_coords <- spark_funs_data$x_coords
   y_coords <- spark_funs_data$y_coords
