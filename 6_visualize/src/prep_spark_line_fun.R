@@ -2,20 +2,26 @@
 # site as much as is possible without yet knowing the final plot view
 # coordinates. This function is called from both prep_spark_lines_fun and
 # prep_spark_starts_fun.
-prep_spark_funs_data <- function(storm_data, dates_config, spark_config, DateTime) {
-  sites <- unique(storm_data$site_no)
-  this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
-  this_spark <- filter(storm_data, dateTime <= this_DateTime) # keep all data up until this timestep
-
+prep_spark_funs_data <- function(storm_data, site_data, timestep_ind, spark_config, DateTime) {
   # Compute the full x limits for all datetimes
-  date_lims <- as.POSIXct(c(dates_config$start, dates_config$end), tz = "UTC")
+  storm_timesteps <- fetch_read(timestep_ind)
+  date_lims <- as.POSIXct(range(storm_timesteps), tz = "UTC")
+
+  # Filter timeseries gage data
+  sites <- site_data %>%
+    bind_cols(., as_data_frame(sf::st_coordinates(.))) %>%
+    sf::st_set_geometry(NULL) %>%
+    arrange(desc(Y)) %>%
+    pull(site_no)
+  this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
+  this_spark <- filter(storm_data, dateTime >= date_lims[1], dateTime <= this_DateTime) # keep all data up until this timestep
 
   # Compute normalized plot coordinates for all sites
   x_coords <- c(spark_config$xleft, spark_config$xright)
-  vertical_spacing <- (spark_config$ytop - spark_config$ybottom) / length(shapes)
+  vertical_spacing <- (spark_config$ytop - spark_config$ybottom) / length(sites)
   y_coords <- data_frame(
     site_no=sites,
-    lower=seq(spark_config$ybottom, spark_config$ytop - vertical_spacing, length.out=length(sites)),
+    lower=seq(spark_config$ytop - vertical_spacing, spark_config$ybottom, length.out=length(sites)),
     upper=lower + vertical_spacing)
 
   # Define functions that will convert each site's shapes to user coordinates
@@ -83,10 +89,10 @@ prep_spark_funs_data <- function(storm_data, dates_config, spark_config, DateTim
 
 }
 
-prep_spark_line_fun <- function(storm_data, dates_config, spark_config, gage_col_config, DateTime) {
+prep_spark_line_fun <- function(storm_data, site_data, timestep_ind, spark_config, gage_col_config, DateTime) {
 
   # most of the prep work happens in prep_spark_funs_data, which is shared with prep_spark_starts_fun
-  spark_funs_data <- prep_spark_funs_data(storm_data, dates_config, spark_config, DateTime)
+  spark_funs_data <- prep_spark_funs_data(storm_data, site_data, timestep_ind, spark_config, DateTime)
   # now unpack the results
   x_coords <- spark_funs_data$x_coords
   y_coords <- spark_funs_data$y_coords
@@ -133,10 +139,10 @@ prep_spark_line_fun <- function(storm_data, dates_config, spark_config, gage_col
   return(plot_fun)
 }
 
-prep_spark_starts_fun <- function(storm_data, dates_config, spark_config, DateTime) {
+prep_spark_starts_fun <- function(storm_data, site_data, timestep_ind, spark_config, DateTime) {
 
   # most of the prep work happens in prep_spark_funs_data, which is shared with prep_spark_line_fun
-  spark_funs_data <- prep_spark_funs_data(storm_data, dates_config, spark_config, DateTime)
+  spark_funs_data <- prep_spark_funs_data(storm_data, site_data, timestep_ind, spark_config, DateTime)
   # now unpack the results
   x_coords <- spark_funs_data$x_coords
   y_coords <- spark_funs_data$y_coords
@@ -161,6 +167,7 @@ prep_spark_starts_fun <- function(storm_data, dates_config, spark_config, DateTi
 
       # Convert this site's shapes to user coordinates
       hydro_start <- shapes[[site]]$hydro_line[1,] %>% mutate(
+        site_no = site,
         x = dateTime_to_x(dateTime, x_user),
         y = stage_to_y(stage_normalized, y_user))
 

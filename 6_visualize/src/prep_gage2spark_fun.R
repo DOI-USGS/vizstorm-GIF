@@ -1,6 +1,6 @@
 # animate gage points so they move vertically, round a corner, and then move
 # horizontally until they stop at their respective sparkline start locations
-prep_gage2spark_fun <- function(intro_config, timestep, storm_data, gage_color_config, dates_config, spark_config, DateTime) {
+prep_gage2spark_fun <- function(intro_config, timestep, storm_data, site_data, gage_color_config, timestep_ind, spark_config, DateTime) {
 
   # identify locations and styling for the sites
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
@@ -11,14 +11,11 @@ prep_gage2spark_fun <- function(intro_config, timestep, storm_data, gage_color_c
       color=ifelse(is_flooding, gage_color_config$gage_flood_col, NA)) %>%
       {bind_cols(., as_data_frame(sf::st_coordinates(.)))} %>%
     select(site_no, X, Y, background, color)
-  # create simpler variable names for calculating transition locations
   n_sites <- nrow(sites)
-  x1 <- sites$X
-  y1 <- sites$Y
 
   # get a closure that will provide us with sparkline start locations when we
   # run it during create_animation_frame
-  spark_starts_fun <- prep_spark_starts_fun(storm_data, dates_config, spark_config, DateTime)
+  spark_starts_fun <- prep_spark_starts_fun(storm_data, site_data, timestep_ind, spark_config, DateTime)
 
   # prepare other animation information
   r <- intro_config$elbow_radius # radius of the curvature at the elbow of the dot travel path, in 10000ths of degrees
@@ -33,6 +30,14 @@ prep_gage2spark_fun <- function(intro_config, timestep, storm_data, gage_color_c
     spark_starts <- spark_starts_fun()
     x2 <- spark_starts$x # beginning of spark line
     y2 <- spark_starts$y
+
+    # order gage locations to match order of sparklines, then create simpler
+    # variable names for calculating transition locations
+    sites_ordered <- spark_starts %>%
+      select(site_no) %>%
+      left_join(sites, by='site_no')
+    x1 <- sites$X
+    y1 <- sites$Y
 
     # calculate additional variables. naming convention for d and t: lowercase =
     # position in space/time, uppercase = length/duration

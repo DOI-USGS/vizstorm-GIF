@@ -31,8 +31,9 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_start_date){
         "intro_config = intro_config,",
         "timestep=I(%d)," = cur_task$timestep,
         "storm_data = storm_data,",
+        "site_data = site_data,",
         "gage_color_config = gage_color_config,",
-        "dates_config = dates_config,",
+        "timestep_ind = '2_process/out/timesteps.rds.ind',",
         "spark_config = sparkline_placement,",
         "DateTime = I('%s'))" = format(storm_start_date, "%Y-%m-%d %H:%M:%S")
       )
@@ -52,6 +53,7 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_start_date){
         "config=intro_frame_config,",
         "view_fun,",
         "basemap_fun,",
+        "ocean_name_fun,",
         "rivers_fun,",
         "storm_sites_initial,",
         "storm_line_fun,",
@@ -136,7 +138,14 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_spark_line_fun(storm_data, dates_config, sparkline_placement, gage_color_config, I('%s'))", cur_task$timestep)
+      psprintf(
+        "prep_spark_line_fun(",
+        "storm_data,",
+        "site_data,",
+        "timestep_ind = '2_process/out/timesteps.rds.ind',",
+        "sparkline_placement,",
+        "gage_color_config,",
+        "I('%s'))"=cur_task$timestep)
     }
   )
 
