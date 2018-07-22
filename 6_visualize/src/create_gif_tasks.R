@@ -2,11 +2,11 @@
 # how gages map to sparklines, second table shows the storm+precip+stage changes
 # over time
 
-create_intro_gif_tasks <- function(n_timesteps, folders, storm_start_date){
+create_intro_gif_tasks <- function(intro_config, folders, storm_start_date){
 
   # set up a series of animation frame timesteps (not related to actual time,
   # just describe time within the explanatory animation)
-  timestep <- seq_len(n_timesteps)
+  timestep <- seq_len(intro_config$n_frames)
 
   # aspect/resolution configuration placeholder. see same code in
   # create_storm_gif_tasks - we should extract this into shared location once we
@@ -32,6 +32,8 @@ create_intro_gif_tasks <- function(n_timesteps, folders, storm_start_date){
         "timestep=I(%d)," = cur_task$timestep,
         "storm_data = storm_data,",
         "gage_color_config = gage_color_config,",
+        "dates_config = dates_config,",
+        "spark_config = sparkline_placement,",
         "DateTime = I('%s'))" = format(storm_start_date, "%Y-%m-%d %H:%M:%S")
       )
     }

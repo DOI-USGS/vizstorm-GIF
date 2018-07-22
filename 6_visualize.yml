@@ -106,11 +106,9 @@ targets:
   intro_frame_config:
     command: viz_config[I(c('width','height'))]
 
-  n_intro_frames:
-    command: viz_config[[I('n_intro_frames')]]
   intro_gif_tasks:
     command: create_intro_gif_tasks(
-      n_timesteps = n_intro_frames,
+      intro_config = intro_config,
       folders = visualize_folders,
       storm_start_date = storm_start_date)
 

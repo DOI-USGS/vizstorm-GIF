@@ -1,6 +1,6 @@
 # animate gage points so they move vertically, round a corner, and then move
 # horizontally until they stop at their respective sparkline start locations
-prep_gage2spark_fun <- function(intro_config, timestep, storm_data, gage_color_config, DateTime) {
+prep_gage2spark_fun <- function(intro_config, timestep, storm_data, gage_color_config, dates_config, spark_config, DateTime) {
 
   # identify locations and styling for the sites
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
@@ -16,6 +16,10 @@ prep_gage2spark_fun <- function(intro_config, timestep, storm_data, gage_color_c
   x1 <- sites$X
   y1 <- sites$Y
 
+  # get a closure that will provide us with sparkline start locations when we
+  # run it during create_animation_frame
+  spark_starts_fun <- prep_spark_starts_fun(storm_data, dates_config, spark_config, DateTime)
+
   # prepare other animation information
   r <- intro_config$elbow_radius # radius of the curvature at the elbow of the dot travel path, in 10000ths of degrees
   t_start <- seq(1, intro_config$t_last_start, length.out=n_sites) # timestep at which each site dot first leaves its lat/lon location, vector of 1 value per site
@@ -26,17 +30,13 @@ prep_gage2spark_fun <- function(intro_config, timestep, storm_data, gage_color_c
   # function
   plot_fun <- function(){
     # identify locations for the starts of the spark lines
-    x_coords <- c(spark_config$xleft, spark_config$xright)
-    y_start <- spark_config$ybottom
-    y_space <- spark_config$ytop-y_start
-    vertical_spacing <- y_space/length(sites)
-
-    x2 <- .90 # beginning of spark line
-    y2 <- seq(.40, .20, length.out=n)
+    spark_starts <- spark_starts_fun()
+    x2 <- spark_starts$x # beginning of spark line
+    y2 <- spark_starts$y
 
     # calculate additional variables. naming convention for d and t: lowercase =
     # position in space/time, uppercase = length/duration
-    r_revised <- pmin(r, x2-x1, y2-y1)
+    r_revised <- pmin(r, abs(x2 - x1), abs(y2 - y1))
     r_rise <- r_revised * sign(y2 - y1)
     r_run <- r_revised * sign(x2 - x1)
     T_move <- t_end - t_start # length of the move in number of timesteps. probably the same for all sites
