@@ -2,7 +2,7 @@
 # how gages map to sparklines, second table shows the storm+precip+stage changes
 # over time
 
-create_intro_gif_tasks <- function(n_timesteps, folders){
+create_intro_gif_tasks <- function(n_timesteps, folders, storm_start_date){
 
   # set up a series of animation frame timesteps (not related to actual time,
   # just describe time within the explanatory animation)
@@ -15,20 +15,24 @@ create_intro_gif_tasks <- function(n_timesteps, folders){
 
   tasks <- tidyr::crossing(timestep, cfgs) %>%
     unite(task_name, cfgs, timestep, sep = '_', remove = F) %>%
-    mutate(date_hour = sprintf('00_%03d', timestep),
+    mutate(date_hour = sprintf('01_%03d', timestep),
            task_name = sprintf("%s_%s", cfgs, date_hour))
 
   gage2spark <- scipiper::create_task_step(
     step_name = 'gage2spark',
     target_name = function(task_name, step_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf('gage2spark_%s', task_name)
+      sprintf('gage2spark_fun_%s', task_name)
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
       psprintf(
         "prep_gage2spark_fun(",
-        "timestep=I(%d))" = cur_task$timestep
+        "intro_config = intro_config,",
+        "timestep=I(%d)," = cur_task$timestep,
+        "storm_data = storm_data,",
+        "gage_color_config = gage_color_config,",
+        "DateTime = I('%s'))" = format(storm_start_date, "%Y-%m-%d %H:%M:%S")
       )
     }
   )
@@ -49,7 +53,7 @@ create_intro_gif_tasks <- function(n_timesteps, folders){
         "rivers_fun,",
         "storm_sites_initial,",
         "storm_line_fun,",
-        "gage2spark_%s," = cur_task$tn,
+        "gage2spark_fun_%s," = cur_task$tn,
         "legend_fun,",
         "watermark_fun)"
       )
@@ -84,7 +88,12 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_storm_sites_fun(storm_data, gage_color_config, I('%s'))", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+      psprintf(
+        "prep_storm_sites_fun(",
+        "storm_data = storm_data,",
+        "gage_col_config = gage_color_config,",
+        "DateTime = I('%s'))"=format(cur_task$timestep, "%Y-%m-%d %H:%M:%S")
+      )
     }
   )
 
@@ -96,7 +105,12 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_storm_point_fun(storm_points_sf, I('%s'), hurricane_cols)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+      psprintf(
+        "prep_storm_point_fun(",
+        "storm_data = storm_points_sf,",
+        "DateTime = I('%s'),"=format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"),
+        "hurricane_cols = hurricane_cols)"
+      )
     }
   )
 

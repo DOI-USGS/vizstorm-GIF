@@ -48,15 +48,20 @@ targets:
     command: viz_config[[I('dates')]]
   gage_color_config:
     command: viz_config[I(c('gage_flood_col','gage_norm_col'))]
+  intro_config:
+    command: viz_config[[I(c('intro'))]]
 
- # ---- location of images on figure ---- #
+  # ---- location of images on figure ---- #
+  image_placement:
+    command: viz_config[[I('image_placement')]]
   datetime_placement:
-    command: viz_config[[I('datetime_placement')]]
+    command: image_placement[[I('datetime')]]
+  sparkline_placement:
+    command: image_placement[[I('sparks')]]
+
+  # ---- location of labels on figure ---- #
   ocean_name_placement:
     command: viz_config[[I('ocean_name_placement')]]
-  sparkline_placement:
-    command: viz_config[[I('sparks')]]
-
   ocean_name_labels:
     command: viz_config[[I('ocean_name_labels')]]
 
@@ -106,7 +111,8 @@ targets:
   intro_gif_tasks:
     command: create_intro_gif_tasks(
       n_timesteps = n_intro_frames,
-      folders = visualize_folders)
+      folders = visualize_folders,
+      storm_start_date = storm_start_date)
 
   6_intro_gif_tasks.yml:
     command: create_intro_gif_makefile(
@@ -122,9 +128,9 @@ targets:
   #   to iterate on all frames at once.
   trial_intro_frames:
     command: c(I(c(
-      'a_00_001',
-      'a_00_005',
-      'a_00_009')))
+      'a_01_001',
+      'a_01_005',
+      'a_01_009')))
   6_visualize/log/6_intro_gif_tasks.ind:
     command: loop_tasks(
       task_plan=intro_gif_tasks, task_makefile='6_intro_gif_tasks.yml',
@@ -166,7 +172,7 @@ targets:
 
   # Combine the png files into a gif.
   #
-  # For now, call scmake('6_visualize/out/animation_a.png', force=TRUE)
+  # For now, call scmake('6_visualize/out/animation_a.gif', force=TRUE)
   #   if any of the pngs have changed
   #
   # When we're close to done, we can add
