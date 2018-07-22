@@ -83,8 +83,9 @@ targets:
 
   storm_data:
     command: fetch_read('2_process/out/normalized_streamdata.rds.ind')
+
   storm_start_date:
-    command: format_start_date(storm_data)
+    command: format_start_date(timestep_ind = '2_process/out/timesteps.rds.ind')
 
   precip_rasters:
     command: fetch_read('2_process/out/precip_rasters.rds.ind')
