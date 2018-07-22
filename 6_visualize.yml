@@ -126,13 +126,11 @@ targets:
   # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_intro_gif_tasks.ind', force=TRUE)
   #   to iterate on all frames at once.
   trial_intro_frames:
-    command: sprintf(
-      I('a_01_%03d'),
-      I(c(1:20)))
+    command: sprintf(I('a_01_%03d'), I(c(1:5,7,9,11,13,15:20)))
   6_visualize/log/6_intro_gif_tasks.ind:
     command: loop_tasks(
       task_plan=intro_gif_tasks, task_makefile='6_intro_gif_tasks.yml',
-      task_names=NULL,
+      task_names=trial_intro_frames,
       num_tries=I(1), sleep_on_error=I(0))
 
   #### storm frames - animating the progression of the storm, precip, and stage over time ####
@@ -158,10 +156,7 @@ targets:
   # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_storm_gif_tasks.ind', force=TRUE)
   #   to iterate on all frames at once.
   trial_storm_frames:
-    command: c(I(c(
-      'a_20170826_14',
-      'a_20170827_14',
-      'a_20170828_14')))
+    command: sprintf(I('a_201708%02d_01'), I(25:31))
   6_visualize/log/6_storm_gif_tasks.ind:
     command: loop_tasks(
       task_plan=storm_gif_tasks, task_makefile='6_storm_gif_tasks.yml',
@@ -180,10 +175,16 @@ targets:
   #   and set task_names=NULL to build all the frames.
   trial_frames:
     command: c(trial_intro_frames, trial_storm_frames)
+  final_intro_frames:
+    command: existing_png_tasks(pattern=I('a_01_[[:digit:]]{3}'))
+  final_storm_frames:
+    command: existing_png_tasks(pattern=I('a_[[:digit:]]{8}_[[:digit:]]{2}'))
+  final_frames:
+    command: c(I('a_20170825_01'), final_intro_frames, final_storm_frames)
   animation_cfg:
     command: viz_config[I('frame_delay_cs')]
   6_visualize/out/animation_a.gif:
     command: combine_animation_frames(
       gif_file=target_name,
       animation_cfg=animation_cfg,
-      task_names=trial_frames)
+      task_names=final_frames)
