@@ -125,14 +125,13 @@ targets:
   # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_intro_gif_tasks.ind', force=TRUE)
   #   to iterate on all frames at once.
   trial_intro_frames:
-    command: c(I(c(
-      'a_01_001',
-      'a_01_005',
-      'a_01_009')))
+    command: sprintf(
+      I('a_01_%03d'),
+      I(c(1:20)))
   6_visualize/log/6_intro_gif_tasks.ind:
     command: loop_tasks(
       task_plan=intro_gif_tasks, task_makefile='6_intro_gif_tasks.yml',
-      task_names=trial_intro_frames,
+      task_names=NULL,
       num_tries=I(1), sleep_on_error=I(0))
 
   #### storm frames - animating the progression of the storm, precip, and stage over time ####

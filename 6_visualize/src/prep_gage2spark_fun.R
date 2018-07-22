@@ -49,22 +49,24 @@ prep_gage2spark_fun <- function(intro_config, timestep, storm_data, gage_color_c
     phases <- data_frame(
       prelude = rep(-Inf, length(x1)),
       rise = t_start,
-      round = t_start + T_move * D_rise/D,
-      run = t_start + T_move * (D_rise+D_round)/D,
+      round = t_start + T_move * abs(D_rise)/D,
+      run = t_start + T_move * (abs(D_rise)+abs(D_round))/D,
       epilog = t_end,
       end = Inf) %>%
       as.matrix()
 
-    phase <- sapply(seq_len(n), function(site) {
+    # figure out which phase each site is in
+    phase <- sapply(seq_len(n_sites), function(site) {
       breaks_all <- phases[site,]
       empty_bins <- breaks_all[diff(breaks_all)==0]
       breaks_nonempty <- breaks_all[setdiff(names(breaks_all), names(empty_bins))]
       cut(timestep, breaks=breaks_nonempty, labels=setdiff(names(breaks_nonempty), 'end'), right=FALSE) %>%
         as.character()
     }) %>% ordered(levels=colnames(phases))
+
     # calculate phase_pos, the fraction of the way each site is through its current phase
-    phase_start <- phases[cbind(seq_len(n), phase)]
-    phase_end <- phases[cbind(seq_len(n), as.numeric(phase)+1)]
+    phase_start <- phases[cbind(seq_len(n_sites), phase)]
+    phase_end <- phases[cbind(seq_len(n_sites), as.numeric(phase)+1)]
     phase_pos <- (timestep - phase_start)/(phase_end - phase_start)
     theta <- phase_pos*pi/2 # angle as fraction of 90 degrees (pi/2 radians); calculated for all, applies only to round phase
 
@@ -77,14 +79,14 @@ prep_gage2spark_fun <- function(intro_config, timestep, storm_data, gage_color_c
       round = data_frame(x=x1 + r_run*(1-cos(theta)), y=y2 - r_rise*(1 - sin(theta))),
       run = data_frame(x=x1 + r_run + phase_pos*D_run, y=y2),
       epilog = data_frame(x=x2, y=y2))
-    coords <- bind_rows(lapply(seq_len(n), function(site) {
+    coords <- bind_rows(lapply(seq_len(n_sites), function(site) {
       too_many_coords[[as.character(phase[site])]][site,]
     }))
 
     # add points to the plot
     points(
-      x = coords$X, y = coords$Y, pch = 21,
-      bg = site_data$background, col = site_data$color)
+      x = coords$x, y = coords$y, pch = 21,
+      bg = sites$background, col = sites$color)
   }
   return(plot_fun)
 }
