@@ -31,7 +31,7 @@ frame_delay_cs: 8 # delay between frames of the gif animation. cs = centiseconds
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
-image_placement:
+component_placement:
   watermark:
     x1: 0.01
     y1: 0.01

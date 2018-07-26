@@ -41,7 +41,7 @@ prep_gage2spark_fun <- function(intro_config, timestep, storm_data, site_data, g
 
     # calculate additional variables. naming convention for d and t: lowercase =
     # position in space/time, uppercase = length/duration
-    r_revised <- pmin(r, abs(x2 - x1), abs(y2 - y1))
+    r_revised <- pmin(r, abs(x2 - x1), abs(y2 - y1)) # if the elbow radius for a site would cause that site to overshoot its final sparkline position during the animation, scale back to a radius that won't do that
     r_rise <- r_revised * sign(y2 - y1)
     r_run <- r_revised * sign(x2 - x1)
     T_move <- t_end - t_start # length of the move in number of timesteps. probably the same for all sites

@@ -52,12 +52,12 @@ targets:
     command: viz_config[[I(c('intro'))]]
 
   # ---- location of images on figure ---- #
-  image_placement:
-    command: viz_config[[I('image_placement')]]
+  component_placement:
+    command: viz_config[[I('component_placement')]]
   datetime_placement:
-    command: image_placement[[I('datetime')]]
+    command: component_placement[[I('datetime')]]
   sparkline_placement:
-    command: image_placement[[I('sparks')]]
+    command: component_placement[[I('sparks')]]
 
   # ---- location of labels on figure ---- #
   ocean_name_placement:
