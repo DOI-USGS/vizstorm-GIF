@@ -48,15 +48,20 @@ targets:
     command: viz_config[[I('dates')]]
   gage_color_config:
     command: viz_config[I(c('gage_flood_col','gage_norm_col'))]
+  intro_config:
+    command: viz_config[[I(c('intro'))]]
 
- # ---- location of images on figure ---- #
+  # ---- location of images on figure ---- #
+  component_placement:
+    command: viz_config[[I('component_placement')]]
   datetime_placement:
-    command: viz_config[[I('datetime_placement')]]
+    command: component_placement[[I('datetime')]]
+  sparkline_placement:
+    command: component_placement[[I('sparks')]]
+
+  # ---- location of labels on figure ---- #
   ocean_name_placement:
     command: viz_config[[I('ocean_name_placement')]]
-  sparkline_placement:
-    command: viz_config[[I('sparks')]]
-
   ocean_name_labels:
     command: viz_config[[I('ocean_name_labels')]]
 
@@ -78,8 +83,12 @@ targets:
 
   storm_data:
     command: fetch_read('2_process/out/normalized_streamdata.rds.ind')
+
   storm_start_date:
-    command: format_start_date(storm_data)
+    command: format_start_date(timestep_ind = '2_process/out/timesteps.rds.ind')
+
+  site_data:
+    command: fetch_read('2_process/out/storm_sites.rds.ind')
 
   precip_rasters:
     command: fetch_read('2_process/out/precip_rasters.rds.ind')
@@ -101,12 +110,11 @@ targets:
   intro_frame_config:
     command: viz_config[I(c('width','height'))]
 
-  n_intro_frames:
-    command: viz_config[[I('n_intro_frames')]]
   intro_gif_tasks:
     command: create_intro_gif_tasks(
-      n_timesteps = n_intro_frames,
-      folders = visualize_folders)
+      intro_config = intro_config,
+      folders = visualize_folders,
+      storm_start_date = storm_start_date)
 
   6_intro_gif_tasks.yml:
     command: create_intro_gif_makefile(
@@ -121,10 +129,7 @@ targets:
   # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_intro_gif_tasks.ind', force=TRUE)
   #   to iterate on all frames at once.
   trial_intro_frames:
-    command: c(I(c(
-      'a_00_001',
-      'a_00_005',
-      'a_00_009')))
+    command: sprintf(I('a_01_%03d'), I(c(1:5,7,9,11,13,15:20)))
   6_visualize/log/6_intro_gif_tasks.ind:
     command: loop_tasks(
       task_plan=intro_gif_tasks, task_makefile='6_intro_gif_tasks.yml',
@@ -153,11 +158,16 @@ targets:
   # then you can call scmake('6_visualize/log/6_storm_gif_tasks.ind') repeatedly.
   # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_storm_gif_tasks.ind', force=TRUE)
   #   to iterate on all frames at once.
+  trial_storm_frames_01:
+    command: sprintf(I('a_201708%02d_01'), I(25:31))
+  trial_storm_frames_07:
+    command: sprintf(I('a_201708%02d_07'), I(25:31))
+  trial_storm_frames_13:
+    command: sprintf(I('a_201708%02d_13'), I(25:31))
+  trial_storm_frames_19:
+    command: sprintf(I('a_201708%02d_19'), I(25:31))
   trial_storm_frames:
-    command: c(I(c(
-      'a_20170826_14',
-      'a_20170827_14',
-      'a_20170828_14')))
+    command: c(trial_storm_frames_01, trial_storm_frames_07, trial_storm_frames_13, trial_storm_frames_19)
   6_visualize/log/6_storm_gif_tasks.ind:
     command: loop_tasks(
       task_plan=storm_gif_tasks, task_makefile='6_storm_gif_tasks.yml',
@@ -166,7 +176,7 @@ targets:
 
   # Combine the png files into a gif.
   #
-  # For now, call scmake('6_visualize/out/animation_a.png', force=TRUE)
+  # For now, call scmake('6_visualize/out/animation_a.gif', force=TRUE)
   #   if any of the pngs have changed
   #
   # When we're close to done, we can add
@@ -176,10 +186,16 @@ targets:
   #   and set task_names=NULL to build all the frames.
   trial_frames:
     command: c(trial_intro_frames, trial_storm_frames)
+  final_intro_frames:
+    command: existing_png_tasks(pattern=I('a_01_[[:digit:]]{3}'))
+  final_storm_frames:
+    command: existing_png_tasks(pattern=I('a_[[:digit:]]{8}_[[:digit:]]{2}'))
+  final_frames:
+    command: c(I('a_20170825_01'), final_intro_frames, final_storm_frames)
   animation_cfg:
     command: viz_config[I('frame_delay_cs')]
   6_visualize/out/animation_a.gif:
     command: combine_animation_frames(
       gif_file=target_name,
       animation_cfg=animation_cfg,
-      task_names=trial_frames)
+      task_names=final_frames)

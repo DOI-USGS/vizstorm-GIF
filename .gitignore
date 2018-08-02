@@ -13,3 +13,5 @@ lib/cfg/gd_config.yml
 *.feather
 .DS_Store
 *_tasks.yml
+6_visualize/log/*
+build/status/Nl92aXN1YWxpemUvbG9n*

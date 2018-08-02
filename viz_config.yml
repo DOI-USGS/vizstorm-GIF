@@ -3,10 +3,14 @@ storm_name: "Hurricane Harvey"
 dates:
   start: '2017-08-25'
   end: '2017-09-02'
+
+# view, dimensions
 bbox: [-100, 22, -80, 34]
 projection: "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"
 height: 512
 width: 1024
+
+# styling
 precip_cols: ["#FAFBF3", "#F0F8E3", "#D4E9CA", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
 precip_bin: 4 # inches per bin
 gage_flood_col: "#175676"
@@ -14,17 +18,20 @@ gage_norm_col: "#4BA3C3"
 hurricane_col: "orange"
 hurricane_cols: ["#71c633", "#f4f141", "#f47c41", "#f44141", "#d63995"]
 hurricane_col_names: ["Tropical Storm", "1", "2", "3", "4"] # If these change, legend layout may break
-n_intro_frames: 20 # number of frames in the intro animation linking gages to sparklines
+
+# introductory animation
+intro:
+  t_last_start: 5 # last frame in the intro animation when a site should leave its lat/lon (they're staggered)
+  n_frames: 20 # number of frames in the intro animation linking gages to sparklines
+  elbow_radius: 50000 # radius of the curvature at the elbow of the dot travel path, in 10000ths of degrees
+  point_background: "#175676"
+
+# all animations
 frame_delay_cs: 8 # delay between frames of the gif animation. cs = centiseconds = hundredths of a second
-sparks:
-  xleft: 0.85 # as percentage of figure width
-  xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-  ybottom: 0.30 # as percentage of figure height
-  ytop: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
-image_placement:
+component_placement:
   watermark:
     x1: 0.01
     y1: 0.01
@@ -34,6 +41,11 @@ image_placement:
   legend:
     x1:
     y1:
+  sparks:
+    xleft: 0.85 # as percentage of figure width
+    xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    ybottom: 0.30 # as percentage of figure height
+    ytop: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 ocean_name_placement:
   atlantic:
@@ -45,9 +57,6 @@ ocean_name_placement:
 ocean_name_labels:
   atlantic: 'Atlantic Ocean'
   g_of_mex: 'Gulf of Mexico'
-datetime_placement: # above watermark for now
-    x1: 0.01
-    y1: 0.2
 
 focus_geoms:
   - # U.S. counties
