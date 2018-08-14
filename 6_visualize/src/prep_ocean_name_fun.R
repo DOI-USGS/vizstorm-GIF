@@ -11,21 +11,11 @@ prep_ocean_name_fun <- function(ocean_name_placement, ocean_name_labels){
 
     ocean_name_w_frac <- 0.1 # fraction of the width of the entire figure
     ocean_name_w <- ocean_name_w_frac * coord_width # width of ocean name
-
-    # ocean_name_alpha <- 0.4
-
-    # ocean name placement
-    atlantic_x1 <- coord_space_left + coord_width * ocean_name_placement$atlantic$x1
-    atlantic_y1 <- coord_space_bot + coord_height * ocean_name_placement$atlantic$y1
-    g_of_mex_x1 <- coord_space_left + coord_width * ocean_name_placement$g_of_mex$x1
-    g_of_mex_y1 <- coord_space_bot + coord_height * ocean_name_placement$g_of_mex$y1
-
-    x1_coords <- c(atlantic_x1, g_of_mex_x1)
-    y1_coords <- c(atlantic_y1, g_of_mex_y1)
-
-    labs <- c(ocean_name_labels$atlantic, ocean_name_labels$g_of_mex)
-
-    text(x = x1_coords, y = y1_coords, labels = labs, cex = 2, pos = 4, col = 'grey', font = 3)
+    for (ocean in names(ocean_name_labels)){
+      x <- coord_space_left + coord_width * ocean_name_placement[[ocean]]$x1
+      y <- coord_space_bot + coord_height * ocean_name_placement[[ocean]]$y1
+      text(x = x, y = y, labels = ocean_name_labels[[ocean]], cex = 2, pos = 4, col = 'grey', font = 3)
+    }
   }
   return(plot_fun)
 }
