@@ -17,7 +17,7 @@ gage_flood_col: "#175676"
 gage_norm_col: "#4BA3C3"
 hurricane_col: "orange"
 hurricane_cols: ["#71c633", "#f4f141", "#f47c41", "#f44141", "#d63995"]
-hurricane_col_names: ["Tropical Storm", "Cat1 Hurricane", "Cat2 Hurricane", "Cat3 Hurricane", "Cat4 Hurricane"] # If these change, legend layout may break
+hurricane_col_names: ["Tropical Storm %s", "Hurricane %s (CAT1)", "Hurricane %s (CAT2)", "Hurricane %s (CAT3)", "Hurricane %s (CAT4)"] # If these change, legend layout may break
 
 # introductory animation
 intro:
