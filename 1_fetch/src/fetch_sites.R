@@ -13,7 +13,8 @@ fetch_states_from_sf <- function(sf_ind) {
   return(state_cds)
 }
 
-#' Download all NWIS stage sites within the bounding box of a supplied spatial object
+#' Download all NWIS stage sites within the states specified
+#'    that also have NWS flood stage data
 #'
 #' @param ind_file character file name where the output should be saved
 #' @param state_cds spatial object with IDs indicating the state name
@@ -24,7 +25,7 @@ fetch_sites_from_states <- function(ind_file, state_cds, dates, stream_params) {
   # Cast wide net for all NWIS sites with stage data that fall within that bbox
   sites_df <- bind_rows(lapply(state_cds, function(cd) {
     dataRetrieval::whatNWISdata(stateCd = cd, parameterCd = stream_params$stage, service = "uv") %>%
-      dplyr::select(site_no, station_nm, dec_lat_va, dec_long_va, site_tp_cd, end_date)
+      dplyr::select(site_no, station_nm, dec_lat_va, dec_long_va, site_tp_cd, end_date, begin_date)
   }))
 
   # Get NWS flood stage table
@@ -40,7 +41,8 @@ fetch_sites_from_states <- function(ind_file, state_cds, dates, stream_params) {
     dplyr::filter(site_tp_cd == "ST") %>%
     # keeps only sites that have data since the start of the storm
     # if a gage goes out during the storm, this filter would still capture that gage
-    dplyr::filter(end_date >= as.Date(dates$start)) %>%
+    # also filter out sites that weren't up before the start of the storm (e.g., we are GIF'ing a historical storm)
+    dplyr::filter(end_date >= as.Date(dates$start), begin_date <= as.Date(dates$start)) %>%
     # reduce to distinct sites (why are there duplicates?? but there are)
     distinct()
 

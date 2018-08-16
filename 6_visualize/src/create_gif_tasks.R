@@ -188,11 +188,35 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
         sep="\n      ")
     }
   )
+  gif_test_frame <- scipiper::create_task_step(
+    step_name = 'gif_test_frame',
+    target_name = function(task_name, step_name, ...){
+      file.path(folders$tmp, sprintf('gif_TEST_frame_%s.png', task_name))
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      psprintf(
+        "create_animation_frame(",
+        "png_file=target_name,",
+        "config=storm_frame_config,",
+        "view_fun,",
+        "basemap_fun,",
+        "ocean_name_fun,",
+        "storm_line_fun,",
+        "storm_point_fun_%s,"= cur_task$tn,
+        "legend_fun,",
+        "bbox_fun,",
+        "datetime_fun_%s,"=cur_task$tn,
+        "watermark_fun)",
+        sep="\n      ")
+    }
+  )
+
 
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
     task_steps=list(sites_frame, point_frame, precip_frame,
-                    spark_frame, datetime_frame, gif_frame),
+                    spark_frame, datetime_frame, gif_frame, gif_test_frame),
     add_complete=FALSE,
     final_steps='gif_frame',
     ind_dir=folders$log)

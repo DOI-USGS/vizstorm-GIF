@@ -3,7 +3,7 @@ prep_legend_fun <- function(precip_bins, legend_styles){
 
   plot_fun <- function(){
     coord_space <- par()$usr
-    bin_w_perc <- 0.05 # percentage of X domain
+    bin_w_perc <- 0.10 # percentage of X domain
     bin_h_perc <- 0.02 # *also* percentage of X domain
     bin_w <- bin_w_perc * diff(coord_space[c(1,2)])
     bin_h <- bin_h_perc * diff(coord_space[c(1,2)])
