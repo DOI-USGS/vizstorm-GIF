@@ -1,10 +1,10 @@
 version: 0.3.0
 name: 1_fetch/out/storm_track.zip.ind
 type: file
-hash: 2891ad2f4b86edbb307a554a396b73c2
-time: 2018-07-10 19:56:22 UTC
+hash: c93344dcf16f79c1b74b9b79dc7bb8fa
+time: 2018-08-15 13:45:28 UTC
 depends:
-  storm_track_cfg: 00ae4e6869cfbd6101fcd7b0e0717d1d
+  storm_track_cfg: 4ff3c1ab6a09f31b9d655f6f9712942f
 fixed: 2f4367832f61e7160a3b28bde436e206
 code:
   functions:

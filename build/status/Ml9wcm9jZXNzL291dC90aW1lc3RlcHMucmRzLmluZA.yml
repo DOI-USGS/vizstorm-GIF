@@ -1,12 +1,12 @@
 version: 0.3.0
 name: 2_process/out/timesteps.rds.ind
 type: file
-hash: 95ceb2415cc0cdce0c1028008c8b448b
-time: 2018-07-12 20:27:00 UTC
+hash: 770c23dc1c165915ed04e3511bef74da
+time: 2018-08-16 17:56:12 UTC
 depends:
-  2_process/out/precip_rasters.rds.ind: abe4dc031b1bd6319862aa4774a9f6fa
+  dates: fcf907abf1ead8f3e56a11bb5362e882
 fixed: a69af68e368ac84d7c9edf47648c5800
 code:
   functions:
-    choose_timesteps: e4c972084bcdbc2b305af936a63373cc
+    choose_timesteps: fb979f896d1352971c7fc36b2952068f
 
