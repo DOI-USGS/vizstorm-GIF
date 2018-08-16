@@ -8,10 +8,10 @@ prep_storm_sites_fun <- function(storm_data, gage_col_config, DateTime){
   plot_fun <- function(){
 
     plot(sf::st_geometry(norm_data_sites$geometry), add = TRUE,
-         pch = 21, bg = gage_col_config$gage_norm_col, col = NA)
+         pch = 21, bg = gage_col_config$gage_norm_col, col = NA, cex = 1.3)
     plot(sf::st_geometry(flood_data_sites$geometry),
          pch = 21, bg = gage_col_config$gage_norm_col, add = TRUE,
-         col = gage_col_config$gage_flood_col, lwd = 1)
+         col = gage_col_config$gage_flood_col, lwd = 2, cex = 1.3)
 
   }
   return(plot_fun)

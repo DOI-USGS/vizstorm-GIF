@@ -1,5 +1,5 @@
 storm_code: al092017 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
-storm_name: "Hurricane Harvey"
+storm_name: "Harvey"
 dates:
   start: '2017-08-25'
   end: '2017-09-02'
@@ -17,7 +17,7 @@ gage_flood_col: "#175676"
 gage_norm_col: "#4BA3C3"
 hurricane_col: "orange"
 hurricane_cols: ["#71c633", "#f4f141", "#f47c41", "#f44141", "#d63995"]
-hurricane_col_names: ["Tropical Storm", "1", "2", "3", "4"] # If these change, legend layout may break
+hurricane_col_names: ["Tropical Storm %s", "Hurricane %s (Cat1)", "Hurricane %s (Cat2)", "Hurricane %s (Cat3)", "Hurricane %s (Cat4)"] # If these change, legend layout may break
 
 # introductory animation
 intro:
