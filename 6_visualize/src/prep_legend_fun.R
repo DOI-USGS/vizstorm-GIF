@@ -1,7 +1,11 @@
 
-prep_legend_fun <- function(precip_bins, legend_styles){
+prep_legend_fun <- function(precip_bins, legend_styles, storm_points_sf, DateTime){
 
   plot_fun <- function(){
+    this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
+    this_dot <- filter(storm_points_sf, DateTime == this_DateTime)
+    hurricane_col <- legend_styles$hurricane_cols[(this_dot$SS + 1)]
+    hurricane_cat <- legend_styles$hurricane_col_names[(this_dot$SS + 1)]
     coord_space <- par()$usr
     bin_w_perc <- 0.10 # percentage of X domain
     bin_h_perc <- 0.02 # *also* percentage of X domain
@@ -37,16 +41,12 @@ prep_legend_fun <- function(precip_bins, legend_styles){
     points(dot_x, normal_y, pch = 21, bg = legend_styles$gage_norm_col, col = NA, cex = 2)
     text(dot_txt_x, normal_y, labels = 'Below flood stage', pos = 2, cex = 1.5)
     text(right_edge, gage_caveat_y, labels = 'USGS Stream Gages (< 1% of U.S. total)', pos = 2, cex = 1.5)
-    text(right_edge, title_y, labels = paste(legend_styles$storm_name, "Storm Severity"), pos = 2, cex = 1.5)
+    text(dot_txt_x, hurricane_y, labels = sprintf(hurricane_cat, legend_styles$storm_name), pos = 2, cex = 1.5)
 
     h_dot_x <- dot_x
     h_dot_size <- 3
-    for(i in length(legend_styles$hurricane_cols):1) {
-      points(h_dot_x, hurricane_y, pch = 21, bg = legend_styles$hurricane_cols[i], col = NA, cex = h_dot_size)
-      h_dot_txt_x <- h_dot_x - (h_dot_size + bin_w * 0.1)
-      text(h_dot_txt_x, hurricane_y, labels = legend_styles$hurricane_col_names[i], pos = 2, cex = 1.5)
-      h_dot_x <- h_dot_x - (bin_w * 0.8)
-    }
+    points(h_dot_x, hurricane_y, pch = 21, bg = hurricane_col, col = NA, cex = h_dot_size)
+
   }
   return(plot_fun)
 }

@@ -161,6 +161,24 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
     }
   )
 
+  legend_frame <- scipiper::create_task_step(
+    step_name = 'legend_frame',
+    target_name = function(task_name, step_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf('legend_fun_%s', task_name)
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      psprintf(
+        "prep_legend_fun(",
+        "precip_bins = precip_bins,",
+        "legend_styles = legend_styles,",
+        "storm_points_sf = storm_points_sf,",
+        "DateTime = I('%s'))" = format(cur_task$timestep, "%Y-%m-%d %H:%M:%S")
+      )
+    }
+  )
+
   gif_frame <- scipiper::create_task_step(
     step_name = 'gif_frame',
     target_name = function(task_name, step_name, ...){
@@ -181,7 +199,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
         "storm_line_fun,",
         "storm_point_fun_%s,"= cur_task$tn,
         "spark_line_%s,"= cur_task$tn,
-        "legend_fun,",
+        "legend_fun_%s,"=cur_task$tn,
         "datetime_fun_%s,"=cur_task$tn,
         "watermark_fun)",
         #"streamdata_%s,"= cur_task$tn,
