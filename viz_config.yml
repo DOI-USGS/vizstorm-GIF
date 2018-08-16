@@ -1,19 +1,21 @@
-storm_code: al092017 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
-storm_name: "Hurricane Harvey"
+storm_code: al112017 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
+storm_name: "Hurricane Irma"
 dates:
-  start: '2017-08-25'
-  end: '2017-09-02'
+  start: '2017-09-08 00:00:00'
+  end: '2017-09-13 04:00:00'
+gage_states: ["FL", "GA", "AL"] # states from which to include gages
 
 # view, dimensions
-bbox: [-100, 22, -80, 34]
-projection: "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"
-height: 512
-width: 1024
+bbox: [-89, 19, -70, 30]
+projection: "+proj=aea +lat_1=24 +lat_2=31.5 +lat_0=24 +lon_0=-84 +x_0=400000 +y_0=0 +ellps=GRS80 +units=m +no_defs"
+height: 540
+width: 720
 
 # styling
-precip_cols: ["#FAFBF3", "#F0F8E3", "#D4E9CA", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
+precip_cols: ["#FAFBF3", "#D4E9CA","#B7DAD0", "#A9B8D7", "#8F6F9E", "#41234D"]
 precip_bin: 4 # inches per bin
 gage_flood_col: "#175676"
+
 gage_norm_col: "#4BA3C3"
 hurricane_col: "orange"
 hurricane_cols: ["#71c633", "#f4f141", "#f47c41", "#f44141", "#d63995"]
@@ -42,21 +44,21 @@ component_placement:
     x1:
     y1:
   sparks:
-    xleft: 0.85 # as percentage of figure width
+    xleft: 0.7 # as percentage of figure width
     xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
     ybottom: 0.30 # as percentage of figure height
     ytop: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 ocean_name_placement:
-  atlantic:
-    x1: 0.8
-    y1: 0.75
   g_of_mex:
-    x1: 0.5
-    y1: 0.35
+    x1: 0.05
+    y1: 0.70
+  atlantic:
+    x1: 0.4
+    y1: 0.92
 ocean_name_labels:
-  atlantic: 'Atlantic Ocean'
   g_of_mex: 'Gulf of Mexico'
+  atlantic: 'Atlantic Ocean'
 
 focus_geoms:
   - # U.S. counties
@@ -77,7 +79,7 @@ secondary_geoms:
 city_pop_min: 500000 # minimum population size of cities to be plotted
 
 # Only streamorders greater than this will be fetched.
-fetch_streamorder: 2
+fetch_streamorder: 4
 
 # Changes only affect river geom process step.
 # Coastal threshold controls the drainage area used to limit

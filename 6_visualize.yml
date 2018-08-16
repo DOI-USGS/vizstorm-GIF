@@ -69,6 +69,9 @@ targets:
   view_fun:
     command: prep_view_fun(view_polygon)
 
+  bbox_fun:
+    command: prep_bbox_fun(view_config)
+
   basemap_fun:
     command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind')
 
@@ -171,7 +174,6 @@ targets:
   6_visualize/log/6_storm_gif_tasks.ind:
     command: loop_tasks(
       task_plan=storm_gif_tasks, task_makefile='6_storm_gif_tasks.yml',
-      task_names=trial_storm_frames,
       num_tries=I(1), sleep_on_error=I(0))
 
   # Combine the png files into a gif.
@@ -197,5 +199,4 @@ targets:
   6_visualize/out/animation_a.gif:
     command: combine_animation_frames(
       gif_file=target_name,
-      animation_cfg=animation_cfg,
-      task_names=final_frames)
+      animation_cfg=animation_cfg)

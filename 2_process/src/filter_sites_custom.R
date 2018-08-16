@@ -14,13 +14,9 @@ filter_sites_custom <- function(ind_file, sites_ind) {
 
   sites_info_subset <- sites_info %>%
     # only include sites with large drainage areas
-    filter(drain_area_va > quantile(drain_area_va, 0.75, na.rm=TRUE)) %>%
-    # manually subsetting to 20 sites
-    filter(site_no %in% c("08114000", "08160400", "08066250", "08162000", "08161000",
-                          "08033500", "08111500", "08175800", "08066500", "08040600",
-                          "08162500", "08116650", "08173900", "08041780", "08159500",
-                          #"08067000", #comment out for now - this site has a gap
-                          "08072050", "08106350", "08106500", "08041000"))
+    filter(drain_area_va > quantile(drain_area_va, 0.75, na.rm=TRUE))# %>%
+    # manually subsetting for the first few sites :shrug:
+    #filter(site_no %in% c("07185000", "03430250", "07068000", "02105500", "03431514", "03431712", "03431500", "07171000", "02129000", "07157950", "02146000", "07151000", "02105769", "03603000" ))
 
   # write the data file and the indicator file
   data_file <- as_data_file(ind_file)
