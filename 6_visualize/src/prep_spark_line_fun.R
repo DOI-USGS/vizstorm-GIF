@@ -156,7 +156,7 @@ prep_spark_line_fun <- function(storm_data, site_data, timestep_ind, spark_confi
         chunk <- shapes[[site]][[i]]
 
         # Skip if there's no data at or before this timestep
-        if(is.null(chunk)) { next }
+        if(length(chunk) == 0) { next }
 
         # Convert this site's shapes to user coordinates
         full_poly <- chunk$full_poly %>% mutate(
