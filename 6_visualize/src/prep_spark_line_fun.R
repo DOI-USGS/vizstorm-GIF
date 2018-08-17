@@ -49,36 +49,68 @@ prep_spark_funs_data <- function(storm_data, site_data, timestep_ind, spark_conf
 
     # Stop if there's no data at or before this timestep
     if(nrow(storm_data_i) == 0) {
-      stop(sprintf('no stage data for dateTime<=%s and site=%s', DateTime, site))
-      # warning(sprintf('no stage data for dateTime<=%s and site=%s', DateTime, site))
-      # shapes[[site]] <- NULL
-      # next
+      # stop(sprintf('no stage data for dateTime<=%s and site=%s', DateTime, site))
+      warning(sprintf('no stage data for dateTime<=%s and site=%s', DateTime, site))
+      shapes[[site]] <- list(list())
+      next
     }
 
-    # Create a hydrograph line
-    hydro_line <- storm_data_i %>% select(dateTime, stage_normalized)
+    # look for gaps so we can break lines/polygons into chunks
+    data_chunks_meta <- rle(is.na(storm_data_i$stage_normalized)) %>% {
+      data_frame(
+        is_gap=.$values,
+        end=cumsum(.$lengths),
+        start=end - .$lengths + 1,
+        before=ifelse(start-1==0, NA, start-1),
+        after=ifelse(end+1>nrow(storm_data_i), NA, end+1),
+        duration_hr=as.numeric(storm_data_i$dateTime[end] - storm_data_i$dateTime[start], units='hours'))
+    }
 
-    # Create a polygon for the full background polygon for the sparkline
-    full_poly <- bind_rows(
-      data_frame(dateTime = head(hydro_line$dateTime, 1), stage_normalized = 0),
-      hydro_line,
-      data.frame(dateTime = tail(hydro_line$dateTime, 1), stage_normalized = 0))
+    # Package each chunk of lines/polygons into a list within the shapes list
+    # for this site
+    shapes[[site]] <- list()
+    j <- 1
+    # tack an empty list to the beginning of shapes() if there's
+    # a data gap at the beginning
+    if(head(data_chunks_meta$is_gap, 1)) {
+      shapes[[site]] <- c(shapes[[site]], list(list()))
+      j <- j + 1
+    }
+    for(i in which(!data_chunks_meta$is_gap)) {
+      # Pick out one continuous chunk of data
+      data_chunk_meta <- data_chunks_meta[i,]
+      data_chunk <- storm_data_i[data_chunk_meta$start : data_chunk_meta$end, ]
 
-    # Replace values lower than flood stage with the stage & then create a polygon out of it
-    flood_stage_va <- unique(storm_data_i$flood_stage_normalized)
-    flood_stage_line <- hydro_line %>%
-      mutate(stage_normalized = pmax(stage_normalized, flood_stage_va))
-    flood_poly <- bind_rows(
-      data_frame(dateTime = head(flood_stage_line$dateTime, 1), stage_normalized = flood_stage_va),
-      flood_stage_line %>% select(dateTime, stage_normalized),
-      data.frame(dateTime = tail(flood_stage_line$dateTime, 1), stage_normalized = flood_stage_va))
+      # Create a hydrograph line
+      hydro_line <- data_chunk %>% select(dateTime, stage_normalized)
 
-    # Package the line and polygons into a list within the shapes list
-    shapes[[site]] <- list(
-      full_poly=full_poly,
-      flood_poly=flood_poly,
-      hydro_line=hydro_line
-    )
+      # Create a polygon for the full background polygon for the sparkline
+      full_poly <- bind_rows(
+        data_frame(dateTime = head(hydro_line$dateTime, 1), stage_normalized = 0),
+        hydro_line,
+        data.frame(dateTime = tail(hydro_line$dateTime, 1), stage_normalized = 0))
+
+      # Replace values lower than flood stage with the stage & then create a polygon out of it
+      flood_stage_va <- unique(data_chunk$flood_stage_normalized)
+      flood_stage_line <- hydro_line %>%
+        mutate(stage_normalized = pmax(stage_normalized, flood_stage_va))
+      flood_poly <- bind_rows(
+        data_frame(dateTime = head(flood_stage_line$dateTime, 1), stage_normalized = flood_stage_va),
+        flood_stage_line %>% select(dateTime, stage_normalized),
+        data.frame(dateTime = tail(flood_stage_line$dateTime, 1), stage_normalized = flood_stage_va))
+
+      # add to any previous chunks of those geometry datasets
+      shapes[[site]][[j]] <- list(
+        full_poly=full_poly,
+        flood_poly=flood_poly,
+        hydro_line=hydro_line)
+      j <- j + 1
+    }
+    # tack on an empty list if there's a gap at the end
+    if(tail(data_chunks_meta$is_gap, 1)) {
+      shapes[[site]] <- c(shapes[[site]], list(list()))
+      j <- j + 1
+    }
   }
 
   return(list(
@@ -113,29 +145,45 @@ prep_spark_line_fun <- function(storm_data, site_data, timestep_ind, spark_confi
     coord_space <- par()$usr
 
     for(site in names(shapes)) {
-      # Skip if there's no data at or before this timestep
-      if(is.null(shapes[[site]])) { next }
 
       # Convert normalized plot coordinates to user coordinates
       x_user <- coord_space[1] + x_coords * diff(coord_space[1:2])
       y_coords_site <- y_coords %>% filter(site_no==site) %>% {c(.$lower, .$upper)}
       y_user <- coord_space[3] + y_coords_site * diff(coord_space[3:4])
 
-      # Convert this site's shapes to user coordinates
-      full_poly <- shapes[[site]]$full_poly %>% mutate(
-        x = dateTime_to_x(dateTime, x_user),
-        y = stage_to_y(stage_normalized, y_user))
-      flood_poly <- shapes[[site]]$flood_poly %>% mutate(
-        x = dateTime_to_x(dateTime, x_user),
-        y = stage_to_y(stage_normalized, y_user))
-      hydro_line <- shapes[[site]]$hydro_line %>% mutate(
-        x = dateTime_to_x(dateTime, x_user),
-        y = stage_to_y(stage_normalized, y_user))
+      num_chunks <- length(shapes[[site]])
+      for(i in seq_len(num_chunks)) {
+        chunk <- shapes[[site]][[i]]
 
-      # Add stage shapes to plot
-      polygon(full_poly$x, full_poly$y, col = gage_col_config$gage_norm_col, border=NA)
-      polygon(flood_poly$x, flood_poly$y, col = gage_col_config$gage_flood_col, border=NA)
-      points(hydro_line$x, hydro_line$y, col = gage_col_config$gage_flood_col, type='l', lwd=2.5)
+        # Skip if there's no data at or before this timestep
+        if(is.null(chunk)) { next }
+
+        # Convert this site's shapes to user coordinates
+        full_poly <- chunk$full_poly %>% mutate(
+          x = dateTime_to_x(dateTime, x_user),
+          y = stage_to_y(stage_normalized, y_user))
+        flood_poly <- chunk$flood_poly %>% mutate(
+          x = dateTime_to_x(dateTime, x_user),
+          y = stage_to_y(stage_normalized, y_user))
+        hydro_line <- chunk$hydro_line %>% mutate(
+          x = dateTime_to_x(dateTime, x_user),
+          y = stage_to_y(stage_normalized, y_user))
+
+        # Add stage shapes to plot
+        polygon(full_poly$x, full_poly$y, col = gage_col_config$gage_norm_col, border=NA)
+        polygon(flood_poly$x, flood_poly$y, col = gage_col_config$gage_flood_col, border=NA)
+        points(hydro_line$x, hydro_line$y, col = gage_col_config$gage_flood_col, type='l', lwd=2.5)
+
+        # add the x and/or o
+        if(num_chunks > 1) {
+          if(i < num_chunks) {
+            points(tail(hydro_line$x,1), tail(hydro_line$y,1), col='white', pch=4, cex=1.2, lwd=4)
+          }
+          if(i > 1) {
+            points(head(hydro_line$x,1), head(hydro_line$y,1), col='white', pch=19, cex=1, lwd=4)
+          }
+        }
+      }
     }
   }
 
@@ -150,7 +198,7 @@ prep_spark_starts_fun <- function(storm_data, site_data, timestep_ind, spark_con
   # now unpack the results
   x_coords <- spark_funs_data$x_coords
   y_coords <- spark_funs_data$y_coords
-  shapes <- spark_funs_data$shapes
+  shapes <- lapply(spark_funs_data$shapes, `[[`, 1) # only need the first data chunk from each shape
   dateTime_to_x <- spark_funs_data$dateTime_to_x
   stage_to_y <- spark_funs_data$stage_to_y
 
@@ -161,7 +209,7 @@ prep_spark_starts_fun <- function(storm_data, site_data, timestep_ind, spark_con
     coord_space <- par()$usr
 
     spark_starts <- bind_rows(lapply(names(shapes), function(site) {
-      # Skip if there's no data at or before this timestep
+      # Skip if there's no data for this site
       if(is.null(shapes[[site]])) { next }
 
       # Convert normalized plot coordinates to user coordinates

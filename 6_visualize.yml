@@ -133,7 +133,7 @@ targets:
   6_visualize/log/6_intro_gif_tasks.ind:
     command: loop_tasks(
       task_plan=intro_gif_tasks, task_makefile='6_intro_gif_tasks.yml',
-      task_names=trial_intro_frames,
+      task_names=NULL,
       num_tries=I(1), sleep_on_error=I(0))
 
   #### storm frames - animating the progression of the storm, precip, and stage over time ####
@@ -198,4 +198,4 @@ targets:
     command: combine_animation_frames(
       gif_file=target_name,
       animation_cfg=animation_cfg,
-      task_names=final_frames)
+      task_names=NULL)
