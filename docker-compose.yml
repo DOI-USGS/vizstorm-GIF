@@ -1,9 +1,0 @@
-version: "3"
-services:
-  vizzy-dev-mode:
-    image: aapplingusgs/vizstorm-gif:latest
-    ports:
-      - "8787:8787"
-    volumes:
-      - "YOUR_PATH/vizstorm-GIF:/home/rstudio/vizstorm-GIF"
-
