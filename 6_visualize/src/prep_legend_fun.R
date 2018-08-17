@@ -1,7 +1,8 @@
 
-prep_legend_fun <- function(precip_bins, legend_styles, storm_points_sf, DateTime){
+prep_legend_fun <- function(precip_bins, legend_styles, storm_points_sf, DateTime=NA){
 
   plot_fun <- function(){
+    if(is.na(DateTime)) DateTime <- min(storm_points_sf$DateTime)
     this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
     this_dot <- filter(storm_points_sf, DateTime == this_DateTime)
     hurricane_col <- legend_styles$hurricane_cols[(this_dot$SS + 1)]
