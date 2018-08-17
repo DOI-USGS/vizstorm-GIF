@@ -1,13 +1,15 @@
 
-process_precip_rasters <- function(ind_file, precip_spatial_ind,
-                                   precip_values_ind,
+process_precip_rasters <- function(ind_file, precip_data_ind,
                                    view_polygon,
                                    view_config) {
 
-  precip_spatial <- readRDS(sc_retrieve(precip_spatial_ind)) %>%
+  precip_data <- readRDS(sc_retrieve(precip_data_ind))
+
+
+  precip_spatial <- precip_data$spatial %>%
     dplyr::select(-x, -y)
 
-  precip <- readRDS(sc_retrieve(precip_values_ind))
+  precip <- precip_data$values
 
 
   time <- dplyr::select(precip, time) %>%
