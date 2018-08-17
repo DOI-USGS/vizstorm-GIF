@@ -1,10 +1,10 @@
 version: 0.3.0
 name: 1_fetch/out/precip_spatial.rds.ind
 type: file
-hash: 52bd753a6a21d0a8912c2468459407ea
-time: 2018-08-16 16:27:22 UTC
+hash: 23c3b575a5ce707b6a6992439e170713
+time: 2018-08-16 21:36:42 UTC
 depends:
-  view_polygon: 1d03a0644d005bf7afafab8277c0d092
+  view_polygon: 1718b2b95eb4c09a58e4f4d53a5bd239
 fixed: c5f72a369c2642177323a48925a442f2
 code:
   functions:

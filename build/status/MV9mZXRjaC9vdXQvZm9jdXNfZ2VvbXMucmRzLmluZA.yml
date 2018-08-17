@@ -1,11 +1,11 @@
 version: 0.3.0
 name: 1_fetch/out/focus_geoms.rds.ind
 type: file
-hash: 3ca80064f1d0de3817ce107d6c322ac0
-time: 2018-08-16 16:16:06 UTC
+hash: dce16a78013d0f8079438d9fadd2a5df
+time: 2018-08-16 21:30:12 UTC
 depends:
   focus_geoms_config: d702b7a80b5867d1d1d136c816bc30b8
-  view_polygon: 1d03a0644d005bf7afafab8277c0d092
+  view_polygon: 1718b2b95eb4c09a58e4f4d53a5bd239
 fixed: e548410b82803d2577a1790db8e645ce
 code:
   functions:

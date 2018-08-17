@@ -1,15 +1,15 @@
-storm_code: al142014 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
+storm_code: al142016 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
 storm_name: "Matthew"
 dates:
-  start: '2017-09-08 00:00:00'
-  end: '2017-09-13 04:00:00'
-gage_states: ["FL", "GA", "AL"] # states from which to include gages
+  start: '2016-10-06 00:00:00'
+  end: '2016-10-10 04:00:00'
+gage_states: ["FL", "GA", "SC", "NC", "VA"] # states from which to include gages
 
 # view, dimensions
-bbox: [-89, 19, -70, 30]
+bbox: [-87, 22, -65, 38]
 projection: "+proj=aea +lat_1=24 +lat_2=31.5 +lat_0=24 +lon_0=-84 +x_0=400000 +y_0=0 +ellps=GRS80 +units=m +no_defs"
-height: 540
-width: 720
+height: 720
+width: 1020
 
 # styling
 precip_cols: ["#FAFBF3", "#D4E9CA","#B7DAD0", "#A9B8D7", "#8F6F9E", "#41234D"]

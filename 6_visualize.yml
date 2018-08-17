@@ -170,6 +170,7 @@ targets:
   6_visualize/log/6_storm_gif_tasks.ind:
     command: loop_tasks(
       task_plan=storm_gif_tasks, task_makefile='6_storm_gif_tasks.yml',
+      task_names=I(NULL),
       num_tries=I(1), sleep_on_error=I(0))
 
   # Combine the png files into a gif.

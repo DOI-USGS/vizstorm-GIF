@@ -39,6 +39,23 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_start_date){
       )
     }
   )
+  legend_frame <- scipiper::create_task_step(
+    step_name = 'legend_frame',
+    target_name = function(task_name, step_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf('legend_fun_%s', task_name)
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      psprintf(
+        "prep_legend_fun(",
+        "precip_bins = precip_bins,",
+        "legend_styles = legend_styles,",
+        "storm_points_sf = storm_points_sf,",
+        "DateTime = I('%s'))" = format(storm_start_date, "%Y-%m-%d %H:%M:%S")
+      )
+    }
+  )
 
   gif_frame <- scipiper::create_task_step(
     step_name = 'gif_frame',
@@ -58,7 +75,7 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_start_date){
         "storm_sites_initial,",
         "storm_line_fun,",
         "gage2spark_fun_%s," = cur_task$tn,
-        "legend_fun,",
+        "legend_fun_%s," = cur_task$tn,
         "watermark_fun)"
       )
     }
@@ -66,7 +83,7 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_start_date){
 
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
-    task_steps=list(gage2spark, gif_frame),
+    task_steps=list(gage2spark, legend_frame, gif_frame),
     add_complete=FALSE,
     final_steps='gif_frame',
     ind_dir=folders$log)
@@ -222,7 +239,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
         "ocean_name_fun,",
         "storm_line_fun,",
         "storm_point_fun_%s,"= cur_task$tn,
-        "legend_fun,",
+        "legend_fun_%s,"=cur_task$tn,
         "bbox_fun,",
         "datetime_fun_%s,"=cur_task$tn,
         "watermark_fun)",
@@ -233,7 +250,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
 
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
-    task_steps=list(sites_frame, point_frame, precip_frame,
+    task_steps=list(sites_frame, point_frame, precip_frame, legend_frame,
                     spark_frame, datetime_frame, gif_frame, gif_test_frame),
     add_complete=FALSE,
     final_steps='gif_frame',
