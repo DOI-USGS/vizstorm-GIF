@@ -42,7 +42,7 @@ component_placement:
   sparks:
     xleft: 0.85 # as percentage of figure width
     xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-    ybottom: 0.10 # as percentage of figure height
+    ybottom: 0.01 # as percentage of figure height
     ytop: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 ocean_name_placement:
