@@ -8,7 +8,7 @@ prep_legend_fun <- function(precip_bins, legend_styles, storm_points_sf, DateTim
     hurricane_col <- legend_styles$hurricane_cols[(this_dot$SS + 1)]
     hurricane_cat <- legend_styles$hurricane_col_names[(this_dot$SS + 1)]
     coord_space <- par()$usr
-    bin_w_perc <- 0.05 # percentage of X domain
+    bin_w_perc <- 0.10 # percentage of X domain
     bin_h_perc <- 0.02 # *also* percentage of X domain
     bin_w <- bin_w_perc * diff(coord_space[c(1,2)])
     bin_h <- bin_h_perc * diff(coord_space[c(1,2)])
@@ -42,6 +42,10 @@ prep_legend_fun <- function(precip_bins, legend_styles, storm_points_sf, DateTim
     points(dot_x, normal_y, pch = 21, bg = legend_styles$gage_norm_col, col = NA, cex = 2)
     text(dot_txt_x, normal_y, labels = 'Below flood stage', pos = 2, cex = 1.5)
     text(right_edge, gage_caveat_y, labels = 'USGS Stream Gages (< 1% of U.S. total)', pos = 2, cex = 1.5)
+    if (length(hurricane_cat) == 0){
+      hurricane_cat <- "Hurrricane %s" #hack for now
+      hurricane_col <- 'orange'
+    }
     text(dot_txt_x, hurricane_y, labels = sprintf(hurricane_cat, legend_styles$storm_name), pos = 2, cex = 1.5)
 
     h_dot_x <- dot_x

@@ -100,7 +100,7 @@ targets:
 
   # -- get sites and site info --
   state_cds:
-    command: fetch_states_from_sf(sf_ind = '1_fetch/out/focus_geoms.rds.ind')
+    command: viz_config[[I('gage_states')]]
   1_fetch/out/all_sites.rds.ind:
     command: fetch_sites_from_states(
       ind_file = target_name,
