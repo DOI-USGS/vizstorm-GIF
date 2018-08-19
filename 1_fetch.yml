@@ -12,6 +12,7 @@ packages:
   - maps
   - ncdf4
   - arrayhelpers
+  - geoknife
   - dplyr
   - xml2
   - jsonlite
@@ -24,6 +25,7 @@ sources:
   - 1_fetch/src/fetch_storm_track.R
   - 1_fetch/src/map_utils.R
   - 1_fetch/src/fetch_sites.R
+  - 1_fetch/src/fetch_precip_nc.R
   - 1_fetch/src/fetch_precip_spatial.R
   - 1_fetch/src/fetch_precip_values.R
   - 1_fetch/src/fetch_river_geometry.R
@@ -120,6 +122,12 @@ targets:
     command: gd_get('1_fetch/out/streamdata.rds.ind')
 
   # -- get precip --
+  1_fetch/out/precip_cube.nc.ind:
+    command: fetch_precip_nc(ind_file=target_name,
+                                view_polygon = view_polygon, times = dates)
+  1_fetch/out/precip_cube.nc:
+    command: gd_get('1_fetch/out/precip_cube.nc.ind')
+
   1_fetch/out/precip_spatial.rds.ind:
     command: fetch_precip_spatial(ind_file=target_name,
                                 view_polygon = view_polygon)

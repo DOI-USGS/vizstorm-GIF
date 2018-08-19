@@ -18,8 +18,8 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_start_date){
     mutate(date_hour = sprintf('01_%03d', timestep),
            task_name = sprintf("%s_%s", cfgs, date_hour))
 
-  gage2spark <- scipiper::create_task_step(
-    step_name = 'gage2spark',
+  gage2spark_frame <- scipiper::create_task_step(
+    step_name = 'gage2spark_frame',
     target_name = function(task_name, step_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
       sprintf('gage2spark_fun_%s', task_name)
@@ -57,6 +57,24 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_start_date){
     }
   )
 
+  legend_frame <- scipiper::create_task_step(
+    step_name = 'legend_frame',
+    target_name = function(task_name, step_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf('legend_fun_%s', task_name)
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      psprintf(
+        "prep_legend_fun(",
+        "precip_bins = precip_bins,",
+        "legend_styles = legend_styles,",
+        "storm_points_sf = storm_points_sf,",
+        "DateTime = I(NA))"
+      )
+    }
+  )
+
   gif_frame <- scipiper::create_task_step(
     step_name = 'gif_frame',
     target_name = function(task_name, step_name, ...){
@@ -74,8 +92,8 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_start_date){
         "rivers_fun,",
         "storm_sites_initial,",
         "storm_line_fun,",
-        "gage2spark_fun_%s," = cur_task$tn,
-        "legend_fun_%s," = cur_task$tn,
+        "gage2spark_fun_%s,"=cur_task$tn,
+        "legend_fun_%s,"=cur_task$tn,
         "watermark_fun)"
       )
     }
@@ -83,7 +101,7 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_start_date){
 
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
-    task_steps=list(gage2spark, legend_frame, gif_frame),
+    task_steps=list(gage2spark_frame, legend_frame, gif_frame),
     add_complete=FALSE,
     final_steps='gif_frame',
     ind_dir=folders$log)
@@ -261,9 +279,14 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
 # then paste them together with a good separator for constructing remake recipes
 psprintf <- function(..., sep='\n      ') {
   args <- list(...)
+  templates <- if(is.null(names(args))) {
+    rep('', length(args))
+  } else {
+    names(args)
+  }
   strs <- mapply(function(string, variables) {
     spargs <- if(string == '') list(variables) else c(list(string), as.list(variables))
     do.call(sprintf, spargs)
-  }, string=names(args), variables=args)
+  }, string=templates, variables=args)
   paste(strs, collapse=sep)
 }
