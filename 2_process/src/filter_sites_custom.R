@@ -15,7 +15,7 @@ filter_sites_custom <- function(ind_file, sites_ind) {
   sites_info_subset <- sites_info %>%
     # only include sites with large drainage areas
     filter(drain_area_va > quantile(drain_area_va, 0.75, na.rm=TRUE)) %>%
-    head(10)
+    head(40)
     # manually subsetting for the first few sites :shrug:
     #filter(site_no %in% c("07185000", "03430250", "07068000", "02105500", "03431514", "03431712", "03431500", "07171000", "02129000", "07157950", "02146000", "07151000", "02105769", "03603000" ))
 

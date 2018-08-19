@@ -1,0 +1,13 @@
+version: 0.3.0
+name: 2_process/out/storm_line.rds.ind
+type: file
+hash: cac3f60849473a4bdd5e720d205d4d3f
+time: 2018-08-19 11:26:39 UTC
+depends:
+  1_fetch/out/storm_track.zip.ind: b571139aae753f7a037c4b3f4373e01e
+  view_config: 36ac78b7a5a41715ab98556ad0e758f9
+fixed: 2fc5069ee017abc61f8940af980e2e0f
+code:
+  functions:
+    extract_storm_line: 9866b3c2f078032c1de1acdcbb96c364
+

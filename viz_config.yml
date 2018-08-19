@@ -6,7 +6,7 @@ dates:
 gage_states: ["FL", "GA", "SC", "NC", "VA"] # states from which to include gages
 
 # view, dimensions
-bbox: [-87, 22, -65, 38]
+bbox: [-86, 21, -62, 37]
 projection: "+proj=aea +lat_1=24 +lat_2=31.5 +lat_0=24 +lon_0=-84 +x_0=400000 +y_0=0 +ellps=GRS80 +units=m +no_defs"
 height: 720
 width: 1020
@@ -44,9 +44,9 @@ component_placement:
     x1:
     y1:
   sparks:
-    xleft: 0.7 # as percentage of figure width
+    xleft: 0.65 # as percentage of figure width
     xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-    ybottom: 0.30 # as percentage of figure height
+    ybottom: 0.22 # as percentage of figure height
     ytop: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 ocean_name_placement:
