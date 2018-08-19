@@ -87,3 +87,7 @@ fetch_streamorder: 2
 coastal_threshold_sqkm: 1000
 inland_threshold_sqkm: 40000
 simplification_tolerance_m: 1000
+
+# for linear interpolation of stage data: maximum number of hours under which
+# gaps in stage data will be interpolated
+stage_gap_threshold: 3
