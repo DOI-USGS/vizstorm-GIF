@@ -4,6 +4,7 @@ prep_storm_sites_fun <- function(storm_data, gage_col_config, DateTime){
 
   norm_data_sites <- filter(this_storm_data, stage_normalized < flood_stage_normalized)
   flood_data_sites <- filter(this_storm_data, stage_normalized >= flood_stage_normalized)
+  missing_data_sites <- filter(this_storm_data, is.na(stage_normalized))
 
   plot_fun <- function(){
 
@@ -12,6 +13,9 @@ prep_storm_sites_fun <- function(storm_data, gage_col_config, DateTime){
     plot(sf::st_geometry(flood_data_sites$geometry),
          pch = 21, bg = gage_col_config$gage_norm_col, add = TRUE,
          col = gage_col_config$gage_flood_col, lwd = 2, cex = 1.3)
+    plot(sf::st_geometry(missing_data_sites$geometry),
+         pch = 4, bg = gage_col_config$gage_norm_col, add = TRUE,
+         col = gage_col_config$gage_out_col, lwd = 4, cex = 1.3)
 
   }
   return(plot_fun)
