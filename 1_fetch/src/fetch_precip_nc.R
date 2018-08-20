@@ -1,7 +1,7 @@
 #' @param ind_file scipiper indicator file
 #' @param view_polygon from the view_polygon target
 #' @param times the start and end time of the request
-fetch_precip_nc <- function(ind_file, view_polygon, times) {
+fetch_precip_data <- function(ind_file, view_polygon, times) {
   fabric <- webdata(url = 'https://cida.usgs.gov/thredds/dodsC/stageiv_combined',
                     variables = "Total_precipitation_surface_1_Hour_Accumulation",
                     times = as.POSIXct(c(times$start,times$end), tz = 'UTC'))
@@ -27,8 +27,14 @@ fetch_precip_nc <- function(ind_file, view_polygon, times) {
   stencil_pts <- as.stencil_pt('xmin', 'ymin', 'low_left') %>% cbind(stencil_pts)
 
   job <- geoknife(stencil = stencil_pts, fabric = fabric, knife = knife)
-  data_file <- as_data_file(ind_file)
-  download(.Object = job, destination = data_file, overwrite = TRUE)
 
+  nc_file <- file.path(tempfile(fileext = '.nc'))
+
+  download(.Object = job, destination = nc_file, overwrite = TRUE)
+
+  precip_data <- get_precip_values(nc_file, dates = times, view_polygon = view_polygon)
+
+  data_file <- as_data_file(ind_file)
+  saveRDS(precip_data, file = data_file)
   gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
 }
