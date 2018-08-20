@@ -1,9 +1,8 @@
 
+prep_watermark_fun <- function(watermark_file, x_pos = c('left','right'), y_pos = c('top','bottom')){
+  x_pos <- match.arg(x_pos)
+  y_pos <- match.arg(y_pos)
 
-prep_watermark_fun <- function(watermark_file, pos = 1){
-  if (pos != 1){
-    stop('the feature of positioning the watermark is not yet implemented')
-  }
   plot_fun <- function(){
     watermark_frac <- 0.2 # fraction of the width of the figure
     watermark_bump_frac <- 0.01
@@ -20,8 +19,22 @@ prep_watermark_fun <- function(watermark_file, pos = 1){
     watermark_width <- dim(d)[2]
     img_scale <- coord_width*watermark_frac/watermark_width
 
-    x1 <- coord_space[1]+coord_width*watermark_bump_frac
-    y1 <- coord_space[3]+coord_height*watermark_bump_frac
+    if (x_pos == 'left'){
+      x1 <- coord_space[1]+coord_width*watermark_bump_frac
+    } else if (x_pos == 'right'){
+      x1 <- coord_space[2]-coord_width*watermark_bump_frac-ncol(d)*img_scale
+    } else {
+      stop('x_pos ', x_pos, ' not implemented yet')
+    }
+
+    if (y_pos == 'bottom'){
+      y1 <- coord_space[3]+coord_height*watermark_bump_frac
+    } else if (y_pos == 'top'){
+      y1 <- coord_space[4]-coord_height*watermark_bump_frac-nrow(d)*img_scale
+    } else {
+      stop('y_pos ', y_pos, ' not implemented yet')
+    }
+
 
     rasterImage(d, x1, y1, x1+ncol(d)*img_scale, y1+nrow(d)*img_scale)
   }

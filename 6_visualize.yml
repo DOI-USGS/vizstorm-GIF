@@ -56,6 +56,14 @@ targets:
     command: viz_config[[I('component_placement')]]
   datetime_placement:
     command: component_placement[[I('datetime')]]
+  watermark_x_pos:
+    command: component_placement[[I('watermark_x_pos')]]
+  watermark_y_pos:
+    command: component_placement[[I('watermark_y_pos')]]
+  legend_x_pos:
+    command: component_placement[[I('legend_x_pos')]]
+  legend_y_pos:
+    command: component_placement[[I('legend_y_pos')]]
   sparkline_placement:
     command: component_placement[[I('sparks')]]
 
@@ -68,6 +76,9 @@ targets:
  # ---- static image calls ----- #
   view_fun:
     command: prep_view_fun(view_polygon)
+
+  bbox_fun:
+    command: prep_bbox_fun(view_config)
 
   basemap_fun:
     command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind')
@@ -97,7 +108,7 @@ targets:
     command: prep_rivers_fun('2_process/out/river_geoms.rds.ind')
 
   watermark_fun:
-    command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png')
+    command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png', x_pos = watermark_x_pos, y_pos = watermark_y_pos)
 
   ocean_name_fun:
     command: prep_ocean_name_fun(ocean_name_placement, ocean_name_labels)

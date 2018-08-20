@@ -16,7 +16,7 @@ filter_sites_custom <- function(ind_file, sites_ind) {
     # only include sites with large drainage areas
     filter(drain_area_va > quantile(drain_area_va, 0.75, na.rm=TRUE)) %>%
     # manually subsetting to 20 sites
-    filter(site_no %in% c("08114000", "08160400", "08066250", "08162000", "08161000",
+    filter(site_no %in% c("08114000", "08160400", "08066250", "08162000", # "08161000", this site plots goofy
                           "08033500", "08111500", "08175800", "08066500", "08040600",
                           "08162500", "08116650", "08173900", "08041780", "08159500",
                           #"08067000", #comment out for now - this site has a gap
