@@ -52,12 +52,12 @@ get_precip_values <- function(precip_cube_nc_file, dates, view_polygon) {
 
   t_vals <- get_time_nc(nc$dim$time)
 
-  start_date <- as.Date(dates$start)
-  end_date <- as.Date(dates$end)
+  start_date <- as.POSIXct(dates$start, tz = 'UTC')
+  end_date <- as.POSIXct(dates$end, tz = 'UTC')
 
   x_inds <- seq(min(precip_spatial$x), max(precip_spatial$x), 1)
   y_inds <- seq(min(precip_spatial$y), max(precip_spatial$y), 1)
-  t_inds <- which(t_vals > start_date & t_vals < end_date)
+  t_inds <- which(t_vals >= start_date & t_vals <= end_date)
 
   # ensures we make our request in the right axis order.
   dimid_order <- match(nc$var$Total_precipitation_surface_1_Hour_Accumulation$dimids,
@@ -123,4 +123,3 @@ get_time_nc <- function(t_dim) {
              origin = origin,
              tz = "UTC")
 }
-

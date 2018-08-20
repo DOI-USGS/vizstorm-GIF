@@ -6,3 +6,12 @@ prep_view_fun <- function(view_polygon){
   }
   return(plot_fun)
 }
+
+prep_bbox_fun <- function(view_config){
+  bbox <- bbox_to_polygon(bbox = view_config$bbox, return_crs = view_config$projection)
+
+  plot_fun <- function(){
+    plot(bbox, add = TRUE, border = 'green', col = NA, lty = 3, lwd = 3)
+  }
+  return(plot_fun)
+}
