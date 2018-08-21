@@ -46,11 +46,10 @@ component_placement:
     ytop: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 ocean_name_placement:
-  g_of_mex:
+  -
     x1: 0.5
     y1: 0.35
-ocean_name_labels:
-  g_of_mex: 'Gulf of Mexico'
+    label: 'Gulf of Mexico'
 
 focus_geoms:
   - # U.S. counties

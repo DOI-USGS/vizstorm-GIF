@@ -70,8 +70,6 @@ targets:
   # ---- location of labels on figure ---- #
   ocean_name_placement:
     command: viz_config[[I('ocean_name_placement')]]
-  ocean_name_labels:
-    command: viz_config[[I('ocean_name_labels')]]
 
  # ---- static image calls ----- #
   view_fun:
@@ -111,7 +109,7 @@ targets:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png', x_pos = watermark_x_pos, y_pos = watermark_y_pos)
 
   ocean_name_fun:
-    command: prep_ocean_name_fun(ocean_name_placement, ocean_name_labels)
+    command: prep_ocean_name_fun(ocean_name_placement)
 
   #### intro frames - animating the link between gages and sparklines ####
 
