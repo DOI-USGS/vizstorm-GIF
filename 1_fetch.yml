@@ -26,7 +26,6 @@ sources:
   - 1_fetch/src/map_utils.R
   - 1_fetch/src/fetch_sites.R
   - 1_fetch/src/fetch_precip_nc.R
-  - 1_fetch/src/fetch_precip_spatial.R
   - 1_fetch/src/fetch_precip_values.R
   - 1_fetch/src/fetch_river_geometry.R
   - 1_fetch/src/fetch_precip_bins.R
@@ -40,8 +39,7 @@ targets:
       - 1_fetch/out/storm_track.zip.ind
       - 1_fetch/out/all_sites.rds.ind
       - 1_fetch/out/streamdata.rds.ind
-      - 1_fetch/out/precip_spatial.rds.ind
-      - 1_fetch/out/precip_values.rds.ind
+      - 1_fetch/out/precip_data.rds.ind
 
   # -- config --
   dates:
@@ -122,24 +120,13 @@ targets:
     command: gd_get('1_fetch/out/streamdata.rds.ind')
 
   # -- get precip --
-  1_fetch/out/precip_cube.nc.ind:
-    command: fetch_precip_nc(ind_file=target_name,
+
+
+  1_fetch/out/precip_data.rds.ind:
+    command: fetch_precip_data(ind_file=target_name,
                                 view_polygon = view_polygon, times = dates)
-  1_fetch/out/precip_cube.nc:
-    command: gd_get('1_fetch/out/precip_cube.nc.ind')
-
-  1_fetch/out/precip_spatial.rds.ind:
-    command: fetch_precip_spatial(ind_file=target_name,
-                                view_polygon = view_polygon)
-  1_fetch/out/precip_spatial.rds:
-    command: gd_get('1_fetch/out/precip_spatial.rds.ind')
-
-  1_fetch/out/precip_values.rds.ind:
-    command: fetch_precip_values(target_name,
-                                 precip_spatial_ind='1_fetch/out/precip_spatial.rds.ind',
-                                 dates)
-  1_fetch/out/precip_values.rds:
-    command: gd_get('1_fetch/out/precip_values.rds.ind')
+  1_fetch/out/precip_data.rds:
+    command: gd_get('1_fetch/out/precip_data.rds.ind')
 
   # -- get river geometry --
   fetch_streamorder:

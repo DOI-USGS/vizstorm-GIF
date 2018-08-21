@@ -1,18 +1,63 @@
 
-fetch_precip_values <- function(ind_file, precip_spatial_ind, dates) {
+precip_spatial <- function(nc, view_polygon) {
 
-  nc <- ncdf4::nc_open("https://cida.usgs.gov/thredds/dodsC/stageiv_combined")
 
-  precip_spatial <- readRDS(sc_retrieve(precip_spatial_ind))
+  lon <- ncdf4::ncvar_get(nc, "lon")
+  lat <- ncdf4::ncvar_get(nc, "lat")
+
+  x <- matrix(rep(c(1:ncol(lon)), nrow(lon)),
+              nrow = nrow(lon), ncol = ncol(lon),
+              byrow = TRUE)
+
+  y <- matrix(rep(c(1:nrow(lon)), ncol(lon)),
+              nrow = nrow(lon), ncol = ncol(lon),
+              byrow = FALSE)
+
+  sf_points <- data.frame(x = matrix(x, ncol = 1),
+                          y = matrix(y, ncol = 1),
+                          lon = matrix(lon, ncol = 1),
+                          lat = matrix(lat, ncol = 1))
+  sf_points <- sf::st_as_sf(sf_points,
+                            coords = c("lon", "lat"),
+                            crs = "+init=epsg:4326",
+                            agr = "constant")
+
+  sf_points_sub <- sf::st_intersection(
+    sf::st_transform(sf_points,
+                     sf::st_crs(view_polygon)),
+    view_polygon)
+
+  sf_polygons <- sf::st_sf(
+    sf::st_intersection(
+      sf::st_cast(
+        sf::st_voronoi(
+          sf::st_union(
+            sf_points_sub$geometry))), view_polygon))
+
+  sf_polygons <- sf::st_join(sf_polygons, sf_points_sub, join = sf::st_contains)
+
+  sf_polygons <- mutate(sf_polygons, id = 1:nrow(sf_polygons))
+
+  return(sf_polygons)
+
+}
+
+
+get_precip_values <- function(precip_cube_nc_file, dates, view_polygon) {
+
+
+  nc <- ncdf4::nc_open(precip_cube_nc_file)
+
+  precip_spatial <- precip_spatial(nc, view_polygon)
 
   t_vals <- get_time_nc(nc$dim$time)
 
-  start_date <- as.Date(dates$start)
-  end_date <- as.Date(dates$end)
+  start_date <- as.POSIXct(dates$start, tz = 'UTC')
+  end_date <- as.POSIXct(dates$end, tz = 'UTC')
 
   x_inds <- seq(min(precip_spatial$x), max(precip_spatial$x), 1)
   y_inds <- seq(min(precip_spatial$y), max(precip_spatial$y), 1)
-  t_inds <- which(t_vals > start_date & t_vals < end_date)
+  t_inds <- which(t_vals >= start_date & t_vals <= end_date)
 
   # ensures we make our request in the right axis order.
   dimid_order <- match(nc$var$Total_precipitation_surface_1_Hour_Accumulation$dimids,
@@ -37,7 +82,7 @@ fetch_precip_values <- function(ind_file, precip_spatial_ind, dates) {
 
     t_counter <- t_counter + 1
   }
-
+  nc_close(nc)
   precip <- arrayhelpers::array2df(precip)
 
   x_inds <- data.frame(d1 = seq_len(length(x_inds)), x = x_inds)
@@ -55,9 +100,7 @@ fetch_precip_values <- function(ind_file, precip_spatial_ind, dates) {
               by = "t") %>%
     dplyr::select(precip, time, id)
 
-  data_file <- as_data_file(ind_file)
-  saveRDS(precip, data_file)
-  gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
+  return(list(values = precip, spatial = precip_spatial))
 }
 
 get_time_nc <- function(t_dim) {
@@ -80,4 +123,3 @@ get_time_nc <- function(t_dim) {
              origin = origin,
              tz = "UTC")
 }
-
