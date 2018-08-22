@@ -42,12 +42,12 @@ fetch_sites_from_states <- function(ind_file, state_cds, dates, stream_params) {
     # keeps only sites that have data since the start of the storm
     # if a gage goes out during the storm, this filter would still capture that gage
     # also filter out sites that weren't up before the start of the storm (e.g., we are GIF'ing a historical storm)
-    dplyr::filter(end_date >= as.Date(dates$start), begin_date <= as.Date(dates$start)) %>%
-    # reduce to distinct sites (why are there duplicates?? but there are)
-    distinct()
+    dplyr::filter(end_date >= as.Date(dates$start), begin_date <= as.Date(dates$start))
 
   # Only keep the columns we need
-  sites <- dplyr::select(sites_filtered, site_no, station_nm, dec_lat_va, dec_long_va, flood_stage)
+  sites <- dplyr::select(sites_filtered, site_no, station_nm, dec_lat_va, dec_long_va, flood_stage) %>%
+    # reduce to distinct sites (why are there duplicates?? but there are)
+    distinct()
 
   # Write the data file and the indicator file
   data_file <- as_data_file(ind_file)
