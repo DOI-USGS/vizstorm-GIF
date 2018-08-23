@@ -68,7 +68,30 @@ secondary_geoms:
     database: "mapdata::worldHires"
     regions: "Mexico"
 
-city_pop_min: 500000 # minimum population size of cities to be plotted
+cities:
+  dot: # parameters for general coloring of the
+    bg: 'black'
+    col: NA
+    pch: 21
+    cex: 1
+  text:
+    col: 'darkgrey'
+    font: 1
+    cex: 0.8
+    angle: 30 # angle in radians for position of label relative to dot. pos is computed from angle: 225-315=1, 315-45=4, 45-135=3, 135-225=2
+    dist: 0.01 # relative (percentage of window width) distance from dot to label
+  pop_min: 700000 # minimum population size of cities to be chosen by default; `custom` will make additions or modifications and `exclude` will make subtractions
+  custom: # cities to add or modify relative to the maps::us.cities dataset. added cities can use lat/long from us.cities if they are present in us.cities, even if they don't meet the pop_min criterion
+    - name: "Fort Worth TX"
+      dot_col: 'blue'
+      text_col: 'darkblue'
+    - name: "Pharr TX"
+    - name: "Gruene TX"
+      lat: 29.7381
+      long: -98.1031
+  exclude:
+    - "San Antonio TX"
+
 
 # Only streamorders greater than this will be fetched.
 fetch_streamorder: 2
