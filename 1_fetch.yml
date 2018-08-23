@@ -1,8 +1,5 @@
 target_default: 1_fetch
 
-include:
-  - lib.yml
-
 packages:
   - dataRetrieval
   - yaml
@@ -42,6 +39,9 @@ targets:
       - 1_fetch/out/precip_data.rds.ind
 
   # -- config --
+  viz_config:
+    command: yaml.load_file('viz_config.yml')
+
   dates:
     command: viz_config[[I('dates')]]
   stream_params:
