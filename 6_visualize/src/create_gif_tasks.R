@@ -77,13 +77,9 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_track_cfg, storm
         "basemap_fun,",
         "ocean_name_fun,",
         "rivers_fun,",
-        "storm_sites_initial,",
-<<<<<<< HEAD
+        "gage_sites_initial,",
         if(has_storm_track) "storm_line_fun,",
-=======
-        "storm_line_fun,",
         "cities_fun,",
->>>>>>> dd8b3db10c91169c09ace4db0e9159f44075b2f3
         "gage2spark_fun_%s,"=cur_task$tn,
         "legend_fun_%s,"=cur_task$tn,
         "watermark_fun)"
@@ -116,12 +112,12 @@ create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders){
     step_name = 'sites_frame',
     target_name = function(task_name, step_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf('storm_sites_fun_%s', task_name)
+      sprintf('gage_sites_fun_%s', task_name)
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
       psprintf(
-        "prep_storm_sites_fun(",
+        "prep_gage_sites_fun(",
         "stage_data = stage_data,",
         "gage_col_config = gage_color_config,",
         "DateTime = I('%s'))"=format(cur_task$timestep, "%Y-%m-%d %H:%M:%S")
@@ -228,7 +224,7 @@ create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders){
         "ocean_name_fun,",
         "rivers_fun,",
         "precip_raster_fun_%s,"=cur_task$tn,
-        "storm_sites_fun_%s,"=cur_task$tn,
+        "gage_sites_fun_%s,"=cur_task$tn,
         "cities_fun,",
         if(has_storm_track) "storm_line_fun,",
         if(has_storm_track) c("storm_point_fun_%s,"=cur_task$tn),
@@ -254,14 +250,9 @@ create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders){
         "view_fun,",
         "basemap_fun,",
         "ocean_name_fun,",
-<<<<<<< HEAD
+        "cities_fun,",
         if(has_storm_track) "storm_line_fun,",
         if(has_storm_track) c("storm_point_fun_%s,"=cur_task$tn),
-=======
-        "cities_fun,",
-        "storm_line_fun,",
-        "storm_point_fun_%s,"= cur_task$tn,
->>>>>>> dd8b3db10c91169c09ace4db0e9159f44075b2f3
         "legend_fun_%s,"=cur_task$tn,
         "bbox_fun,",
         "datetime_fun_%s,"=cur_task$tn,

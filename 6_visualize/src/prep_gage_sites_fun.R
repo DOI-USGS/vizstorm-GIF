@@ -1,4 +1,4 @@
-prep_storm_sites_fun <- function(stage_data, gage_col_config, DateTime){
+prep_gage_sites_fun <- function(stage_data, gage_col_config, DateTime){
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
   this_stage_data <- filter(stage_data, dateTime == this_DateTime)
 

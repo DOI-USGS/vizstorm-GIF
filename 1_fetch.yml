@@ -111,7 +111,7 @@ targets:
   1_fetch/out/streamdata.rds.ind:
     command: fetch_streamdata(
       ind_file = target_name,
-      sites_ind = '2_process/out/storm_sites.rds.ind',
+      sites_ind = '2_process/out/gage_sites.rds.ind',
       dates = dates,
       stream_params = stream_params,
       gd_config = 'lib/cfg/gd_config.yml')
@@ -139,7 +139,7 @@ targets:
   1_fetch/out/gage_river_geometry.rds.ind:
     command: fetch_gage_river_geoms(ind_fil=target_name,
                                view_polygon=view_polygon,
-                               sites_ind='2_process/out/storm_sites.rds.ind')
+                               sites_ind='2_process/out/gage_sites.rds.ind')
   1_fetch/out/gage_river_geometry.rds:
     command: gd_get('1_fetch/out/gage_river_geometry.rds.ind')
 
