@@ -26,6 +26,10 @@ filter_sites_geom <- function(ind_file, sites_ind, view_polygon, focus_geoms_ind
   sites_sf_view_i <- sf::st_intersection(sf::st_geometry(sites_sf_focus), view_polygon)
   sites_sf_view <- sites_sf_focus[sites_sf_view_i,]
 
+  # not sure how this happens, but we've seen a site (08161000) get duplicated
+  # during this function, which makes the hydrograph plot funny
+  sites_sf_distinct <- distinct(sites_sf_view)
+
   # write the data file and the indicator file
   data_file <- as_data_file(ind_file)
   saveRDS(sites_sf_view, data_file)

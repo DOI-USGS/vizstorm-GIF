@@ -50,7 +50,7 @@ targets:
   date_display_tz:
     command: viz_config[[I('date_display_tz')]]
   gage_color_config:
-    command: viz_config[I(c('gage_flood_col','gage_norm_col'))]
+    command: viz_config[I(c('gage_flood_col','gage_norm_col','gage_out_col'))]
   intro_config:
     command: viz_config[[I(c('intro'))]]
 

@@ -1,21 +1,32 @@
 # normalize stream stage for sparklines
 
-normalize_streamdata <- function(ind_file, raw_ind_file, sites_ind_file, stage_gap_threshold=3){
+normalize_streamdata <- function(ind_file, raw_ind_file, sites_ind_file, timesteps_ind_file, stage_gap_threshold=3){
 
   streamdata <- readRDS(sc_retrieve(raw_ind_file)) # NWIS raw data
   storm_sites <- readRDS(sc_retrieve(sites_ind_file))
-  storm_data <- left_join(streamdata, storm_sites, by='site_no')
+  timesteps <- readRDS(sc_retrieve(timesteps_ind_file))
 
-  # we assume "normalized" stage is between 0 and 1
-  # if that changes, see 6_visualize/src/prep_spark_line_fun.R
-  norm_stream <- storm_data %>%
+  # make sure every site's timeseries has at least the standard timesteps
+  complete_streamdata <- streamdata %>%
+    expand(site_no, dateTime = timesteps) %>%
+    full_join(streamdata, by=c('site_no','dateTime'))
+
+  # add site geometry and flood stage info
+  site_stage_data <- left_join(complete_streamdata, storm_sites, by='site_no')
+
+  # rename, complete, mutate, and normalize the stage data. we assume
+  # "normalized" stage is between 0 and 1 if that changes, see
+  # 6_visualize/src/prep_spark_line_fun.R
+  norm_stream <- site_stage_data %>%
     rename(stage = X_00065_00000, stage_cd = X_00065_00000_cd) %>%
     select(site_no, dateTime, stage, flood_stage, geometry) %>%
     group_by(site_no) %>%
-    # normalizing stage and flood_stage to min & max ignoring missing data
+    # normalize stage and flood_stage to min & max ignoring missing data
     mutate(stage_normalized = (stage - min(stage, na.rm = T)) / (max(stage, na.rm = T) - min(stage, na.rm = T))) %>%
     mutate(flood_stage_normalized = (as.numeric(flood_stage) - min(stage, na.rm = T)) / (max(stage, na.rm = T) - min(stage, na.rm = T))) %>%
-    ungroup()
+    ungroup() %>%
+    # make sure dateTimes are ascending
+    arrange(site_no, dateTime)
 
   # turn the data back into an sf object
   norm_stream_sf <- sf::st_as_sf(norm_stream)
@@ -37,7 +48,7 @@ normalize_streamdata <- function(ind_file, raw_ind_file, sites_ind_file, stage_g
     }
     small_gaps <- filter(gap_runs, is_gap, duration_hr < stage_gap_threshold)
     if(nrow(small_gaps) > 0) {
-      storm_data_i <- mutate(dateTimeNumeric = as.numeric(storm_data_i$dateTime))
+      storm_data_i <- mutate(storm_data_i, dateTimeNumeric = as.numeric(storm_data_i$dateTime))
       for(i in seq_len(nrow(small_gaps))) {
         small_gap <- small_gaps[i,]
         gap_i <- small_gap$start : small_gap$end
