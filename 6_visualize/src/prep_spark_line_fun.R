@@ -91,7 +91,7 @@ prep_spark_funs_data <- function(storm_data, site_data, timestep_ind, spark_conf
         data.frame(dateTime = tail(hydro_line$dateTime, 1), stage_normalized = 0))
 
       # Replace values lower than flood stage with the stage & then create a polygon out of it
-      flood_stage_va <- unique(data_chunk$flood_stage_normalized)
+      flood_stage_va <- unique(na.omit(data_chunk$flood_stage_normalized))
       flood_stage_line <- hydro_line %>%
         mutate(stage_normalized = pmax(stage_normalized, flood_stage_va))
       flood_poly <- bind_rows(
@@ -177,10 +177,10 @@ prep_spark_line_fun <- function(storm_data, site_data, timestep_ind, spark_confi
         # add the x and/or o
         if(num_chunks > 1) {
           if(i < num_chunks) {
-            points(tail(hydro_line$x,1), tail(hydro_line$y,1), col='white', pch=4, cex=1.2, lwd=4)
+            points(tail(hydro_line$x,1), tail(hydro_line$y,1), col=gage_col_config$gage_out_col, pch=4, cex=1.2, lwd=4)
           }
           if(i > 1) {
-            points(head(hydro_line$x,1), head(hydro_line$y,1), col='white', pch=19, cex=1, lwd=4)
+            points(head(hydro_line$x,1), head(hydro_line$y,1), col=gage_col_config$gage_out_col, pch=19, cex=1, lwd=4)
           }
         }
       }
