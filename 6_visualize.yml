@@ -21,6 +21,7 @@ sources:
   - 6_visualize/src/prep_storm_sites_fun.R
   - 6_visualize/src/prep_rivers_fun.R
   - 6_visualize/src/prep_legend_fun.R
+  - 6_visualize/src/prep_major_cities_fun.R
   - 6_visualize/src/prep_ocean_name_fun.R
   - 6_visualize/src/visualize_utils.R
   - 6_visualize/src/combine_animation_frames.R
@@ -112,6 +113,9 @@ targets:
 
   ocean_name_fun:
     command: prep_ocean_name_fun(ocean_name_placement)
+
+  cities_fun:
+    command: prep_major_cities_fun('1_fetch/out/major_cities.rds.ind')
 
   #### intro frames - animating the link between gages and sparklines ####
 

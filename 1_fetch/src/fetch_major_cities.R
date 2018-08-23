@@ -15,6 +15,7 @@ fetch_major_cities <- function(ind_file, city_config, within = NULL, crs = sf::s
     filter(!(name %in% city_config$exclude)) %>%
     # add formatting defaults
     mutate(
+      label = substring(name, 1, nchar(name) - 3),
       dot_bg = city_config$dot$bg,
       dot_col = city_config$dot$col,
       dot_pch = city_config$dot$pch,
