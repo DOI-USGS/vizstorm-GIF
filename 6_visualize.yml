@@ -120,6 +120,7 @@ targets:
     command: create_intro_gif_tasks(
       intro_config = intro_config,
       folders = visualize_folders,
+      storm_track_cfg = storm_track_cfg,
       storm_start_date = storm_start_date)
 
   6_intro_gif_tasks.yml:
@@ -150,6 +151,7 @@ targets:
   storm_gif_tasks:
     command: create_storm_gif_tasks(
       timestep_ind = '2_process/out/timesteps.rds.ind',
+      storm_track_cfg = storm_track_cfg,
       folders = visualize_folders)
 
   6_storm_gif_tasks.yml:
