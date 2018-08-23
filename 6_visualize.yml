@@ -46,6 +46,8 @@ targets:
 
   dates_config:
     command: viz_config[[I('dates')]]
+  date_display_tz:
+    command: viz_config[[I('date_display_tz')]]
   gage_color_config:
     command: viz_config[I(c('gage_flood_col','gage_norm_col'))]
   intro_config:
