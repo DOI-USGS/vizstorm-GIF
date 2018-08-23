@@ -77,6 +77,7 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_start_date){
         "rivers_fun,",
         "storm_sites_initial,",
         "storm_line_fun,",
+        "cities_fun,",
         "gage2spark_fun_%s,"=cur_task$tn,
         "legend_fun_%s,"=cur_task$tn,
         "watermark_fun)"
@@ -177,7 +178,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
     },
     command = function(task_name, ...){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-      sprintf("prep_datetime_fun(I('%s'), datetime_placement)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+      sprintf("prep_datetime_fun(I('%s'), datetime_placement, date_display_tz)", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
     }
   )
 
@@ -218,6 +219,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
         "rivers_fun,",
         "precip_raster_fun_%s,"=cur_task$tn,
         "storm_sites_fun_%s,"=cur_task$tn,
+        "cities_fun,",
         "storm_line_fun,",
         "storm_point_fun_%s,"= cur_task$tn,
         "spark_line_%s,"= cur_task$tn,
@@ -242,6 +244,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
         "view_fun,",
         "basemap_fun,",
         "ocean_name_fun,",
+        "cities_fun,",
         "storm_line_fun,",
         "storm_point_fun_%s,"= cur_task$tn,
         "legend_fun_%s,"=cur_task$tn,
