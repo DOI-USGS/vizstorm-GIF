@@ -3,6 +3,7 @@ storm_name: "Harvey"
 dates:
   start: '2017-08-25'
   end: '2017-09-02'
+date_display_tz: 'UTC'
 
 # view, dimensions
 bbox: [-100, 22, -80, 34]
