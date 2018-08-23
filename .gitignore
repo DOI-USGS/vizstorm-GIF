@@ -6,7 +6,6 @@
 */tmp/*
 */out/*
 !*/out/*.ind
-lib/cfg/gd_config.yml
 .remake
 *.zip
 *.rds
