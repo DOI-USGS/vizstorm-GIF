@@ -144,11 +144,13 @@ targets:
     command: gd_get('1_fetch/out/gage_river_geometry.rds.ind')
 
   # -- get major cities -- #
-  city_pop_min:
-    command: viz_config[I('city_pop_min')]
+  city_config:
+    command: viz_config[[I('cities')]]
 
   1_fetch/out/major_cities.rds.ind:
     command: fetch_major_cities(
       ind_file = target_name,
-      city_pop_min = city_pop_min,
+      city_config = city_config,
       within = view_polygon)
+  1_fetch/out/major_cities.rds:
+    command: gd_get('1_fetch/out/major_cities.rds.ind')
