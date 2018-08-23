@@ -1,16 +1,29 @@
 
-prep_legend_fun <- function(precip_bins, legend_styles, storm_points_sf, DateTime=NA, x_pos = c('left', 'right'), y_pos = c('bottom','top')){
+prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_points_sf, DateTime=NA, x_pos = c('left', 'right'), y_pos = c('bottom','top')){
 
   x_pos <- match.arg(x_pos)
   y_pos <- match.arg(y_pos)
 
+  if(is.na(DateTime)) {
+    DateTime <- timesteps[1]
+    timesteps <- readRDS(sc_retrieve(timesteps_ind))
+    rm(timesteps)
+  }
+  this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
 
-  plot_fun <- function(){
-    if(is.na(DateTime)) DateTime <- min(storm_points_sf$DateTime)
-    this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
+  if(!is.null(storm_points_sf)) {
     this_dot <- filter(storm_points_sf, DateTime == this_DateTime)
     hurricane_col <- legend_styles$hurricane_cols[(this_dot$SS + 1)]
     hurricane_cat <- legend_styles$hurricane_col_names[(this_dot$SS + 1)]
+  } else {
+    hurricane_col <- NA
+  }
+
+  rm(storm_points_sf)
+
+  plot_fun <- function(){
+
+    # compute position info shared across multiple legend elements
     coord_space <- par()$usr
     bin_w_perc <- 0.05 # percentage of X domain
     bin_h_perc <- 0.02 # *also* percentage of X domain
@@ -20,49 +33,52 @@ prep_legend_fun <- function(precip_bins, legend_styles, storm_points_sf, DateTim
       txt_pos = 4
       x_edge <- coord_space[1]
       shift_dir <- 1
-      bin_j <- 1:nrow(precip_bins)
-      xright <- x_edge+bin_w
     } else if (x_pos == 'right'){
       txt_pos = 2
       x_edge <- coord_space[2]
       shift_dir <- -1
+    }
+    ybottom <- coord_space[3]
+    dot_x <- x_edge+bin_w/2*shift_dir
+    dot_txt_x <- x_edge+bin_w*0.7*shift_dir
+
+    # plot precip bins and precip label
+    precip_txt_y <- ybottom+2*bin_h*0.8
+    text(x_edge, precip_txt_y, labels = 'NOAA total rainfall amount (inches)', pos = txt_pos, cex = 1.5)
+    if (x_pos == 'left'){
+      bin_j <- 1:nrow(precip_bins)
+      xright <- x_edge+bin_w
+    } else if (x_pos == 'right'){
       bin_j <- nrow(precip_bins):1
       xright <- x_edge
     }
-
-
-    ybottom <- coord_space[3]
     for (j in bin_j){
       col <- as.character(precip_bins$col[j])
       text_col <- ifelse(any(col2rgb(col) < 130), 'white','black')
       rect(xleft = xright-bin_w, ybottom = ybottom, xright = xright, ytop = ybottom+bin_h, col = col, border = NA)
       text_char <- as.character(precip_bins$break_factor[j]) %>% gsub(pattern = ',', replacement = '-') %>% gsub(pattern = '-Inf', replacement = '+') %>% gsub(pattern = "\\(|\\]", replacement = '')
       text(xright-bin_w/2, ybottom+bin_h/2, text_char, col = text_col, cex = 1.3)
-
       xright <- xright+bin_w*shift_dir
     }
 
-    precip_txt_y <- ybottom+2*bin_h*0.8
-    flood_y <- ybottom+3*bin_h
-    normal_y <- ybottom+4*bin_h
+    # plot gage points legend
     gage_caveat_y <- ybottom+5*bin_h*1.02
-    hurricane_y <- ybottom+6*bin_h*1.05
-    title_y <- ybottom+7*bin_h*1.05
-
-    dot_x <- x_edge+bin_w/2*shift_dir
-    dot_txt_x <- x_edge+bin_w*0.7*shift_dir
-
-    text(x_edge, precip_txt_y, labels = 'NOAA total rainfall amount (inches)', pos = txt_pos, cex = 1.5)
-    points(dot_x, flood_y, pch = 21, bg = legend_styles$gage_norm_col, col = legend_styles$gage_flood_col, lwd = 4, cex = 2)
-    text(dot_txt_x, flood_y, labels = 'Above flood stage', pos = txt_pos, cex = 1.5)
+    text(x_edge, gage_caveat_y, labels = 'Selected USGS Stream Gages', pos = txt_pos, cex = 1.5)
+    normal_y <- ybottom+4*bin_h
     points(dot_x, normal_y, pch = 21, bg = legend_styles$gage_norm_col, col = NA, cex = 2)
     text(dot_txt_x, normal_y, labels = 'Below flood stage', pos = txt_pos, cex = 1.5)
-    text(x_edge, gage_caveat_y, labels = 'USGS Stream Gages (< 1% of U.S. total)', pos = txt_pos, cex = 1.5)
-    text(dot_txt_x, hurricane_y, labels = sprintf(hurricane_cat, legend_styles$storm_name), pos = txt_pos, cex = 1.5)
+    flood_y <- ybottom+3*bin_h
+    points(dot_x, flood_y, pch = 21, bg = legend_styles$gage_norm_col, col = legend_styles$gage_flood_col, lwd = 4, cex = 2)
+    text(dot_txt_x, flood_y, labels = 'Above flood stage', pos = txt_pos, cex = 1.5)
 
-    h_dot_x <- dot_x
-    h_dot_size <- 3
-    points(h_dot_x, hurricane_y, pch = 21, bg = hurricane_col, col = NA, cex = h_dot_size)
+    # plot storm legend
+    hurricane_y <- ybottom+6*bin_h*1.05
+    if(is.na(hurricane_col)) {
+      text(x_edge, hurricane_y, labels = legend_styles$storm_name, pos = txt_pos, cex = 1.5)
+    } else {
+      text(dot_txt_x, hurricane_y, labels = sprintf(hurricane_cat, legend_styles$storm_name), pos = txt_pos, cex = 1.5)
+      points(dot_x, hurricane_y, pch = 21, bg = hurricane_col, col = NA, cex = 3)
+    }
 
   }
   return(plot_fun)
