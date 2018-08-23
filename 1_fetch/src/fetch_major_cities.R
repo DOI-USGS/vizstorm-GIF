@@ -48,7 +48,7 @@ fetch_major_cities <- function(ind_file, city_config, within = NULL, crs = sf::s
       crs = sf::st_crs("+init=epsg:4326")) # maps::us.cities data always arrive with EPSG 4326
 
   # filter cities to intersections w/ `within`, using the same crs for both
-  if (!is.null(within)) {
+  if (!is.null(within) && nrow(cities_sf) > 0) {
     cities_trans <- sf::st_transform(cities_sf, crs = sf::st_crs(within))
     subset_idx <- sf::st_within(cities_trans, within, sparse = F)
     cities_sf <- cities_sf[subset_idx, ]
@@ -56,7 +56,11 @@ fetch_major_cities <- function(ind_file, city_config, within = NULL, crs = sf::s
 
   # transform to the final crs, which has a default but must always be non-NA
   if(!'crs' %in% class(crs)) stop('crs must be specified')
-  cities <- sf::st_transform(cities_sf, crs = crs)
+  if(nrow(cities_sf) > 0) {
+    cities <- sf::st_transform(cities_sf, crs = crs)
+  } else {
+    cities <- sf::st_set_crs(cities_sf, value = crs)
+  }
 
   # save and post data, write indicator file
   if(packageVersion('scipiper') < package_version('0.0.11')) stop('1-arg version of gd_put requires scipiper 0.0.11+')
