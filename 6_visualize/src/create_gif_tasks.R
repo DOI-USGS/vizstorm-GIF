@@ -30,7 +30,7 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_start_date){
         "prep_gage2spark_fun(",
         "intro_config = intro_config,",
         "timestep=I(%d)," = cur_task$timestep,
-        "storm_data = storm_data,",
+        "stage_data = stage_data,",
         "site_data = site_data,",
         "gage_color_config = gage_color_config,",
         "timestep_ind = '2_process/out/timesteps.rds.ind',",
@@ -114,7 +114,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
       psprintf(
         "prep_storm_sites_fun(",
-        "storm_data = storm_data,",
+        "stage_data = stage_data,",
         "gage_col_config = gage_color_config,",
         "DateTime = I('%s'))"=format(cur_task$timestep, "%Y-%m-%d %H:%M:%S")
       )
@@ -160,7 +160,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders){
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
       psprintf(
         "prep_spark_line_fun(",
-        "storm_data,",
+        "stage_data,",
         "site_data,",
         "timestep_ind = '2_process/out/timesteps.rds.ind',",
         "sparkline_placement,",

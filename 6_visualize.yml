@@ -88,9 +88,9 @@ targets:
     command: fetch_read('2_process/out/storm_points_interp.rds.ind')
 
   storm_sites_initial:
-    command: prep_storm_sites_fun(storm_data, gage_color_config, storm_start_date)
+    command: prep_storm_sites_fun(stage_data, gage_color_config, storm_start_date)
 
-  storm_data:
+  stage_data:
     command: fetch_read('2_process/out/normalized_streamdata.rds.ind')
 
   storm_start_date:

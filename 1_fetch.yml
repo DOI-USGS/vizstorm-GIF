@@ -38,7 +38,7 @@ targets:
       - 1_fetch/out/streamdata.rds.ind
       - 1_fetch/out/precip_data.rds.ind
 
-  # -- config --
+  # -- read config --
   viz_config:
     command: yaml.load_file('viz_config.yml')
 
@@ -57,13 +57,12 @@ targets:
 
   hurricane_col_names:
     command: viz_config[[I('hurricane_col_names')]]
-  # -- precip colors and legend info --
+
+  # -- determine precip colors and legend info --
   precip_bins:
     command: fetch_precip_bins(precip_config)
 
   # -- get spatial extent and data --
-
-
   view_config:
     command: viz_config[I(c('bbox', 'projection', 'width', 'height'))]
 
@@ -120,8 +119,6 @@ targets:
     command: gd_get('1_fetch/out/streamdata.rds.ind')
 
   # -- get precip --
-
-
   1_fetch/out/precip_data.rds.ind:
     command: fetch_precip_data(ind_file=target_name,
                                 view_polygon = view_polygon, times = dates)
