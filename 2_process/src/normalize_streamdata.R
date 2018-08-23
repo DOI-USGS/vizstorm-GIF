@@ -3,7 +3,7 @@
 normalize_streamdata <- function(ind_file, raw_ind_file, sites_ind_file, timesteps_ind_file, stage_gap_threshold=3){
 
   streamdata <- readRDS(sc_retrieve(raw_ind_file)) # NWIS raw data
-  storm_sites <- readRDS(sc_retrieve(sites_ind_file))
+  gage_sites <- readRDS(sc_retrieve(sites_ind_file))
   timesteps <- readRDS(sc_retrieve(timesteps_ind_file))
 
   # make sure every site's timeseries has at least the standard timesteps
@@ -12,7 +12,7 @@ normalize_streamdata <- function(ind_file, raw_ind_file, sites_ind_file, timeste
     full_join(streamdata, by=c('site_no','dateTime'))
 
   # add site geometry and flood stage info
-  site_stage_data <- left_join(complete_streamdata, storm_sites, by='site_no')
+  site_stage_data <- left_join(complete_streamdata, gage_sites, by='site_no')
 
   # rename, complete, mutate, and normalize the stage data. we assume
   # "normalized" stage is between 0 and 1 if that changes, see

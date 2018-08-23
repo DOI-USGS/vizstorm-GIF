@@ -2,7 +2,7 @@
 # site as much as is possible without yet knowing the final plot view
 # coordinates. This function is called from both prep_spark_lines_fun and
 # prep_spark_starts_fun.
-prep_spark_funs_data <- function(storm_data, site_data, timestep_ind, spark_config, DateTime) {
+prep_spark_funs_data <- function(stage_data, site_data, timestep_ind, spark_config, DateTime) {
   # Compute the full x limits for all datetimes
   storm_timesteps <- fetch_read(timestep_ind)
   date_lims <- as.POSIXct(range(storm_timesteps), tz = "UTC")
@@ -16,7 +16,7 @@ prep_spark_funs_data <- function(storm_data, site_data, timestep_ind, spark_conf
 
   # Filter timeseries gage data
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
-  this_spark <- filter(storm_data, dateTime >= date_lims[1], dateTime <= this_DateTime) # keep all data up until this timestep
+  this_spark <- filter(stage_data, dateTime >= date_lims[1], dateTime <= this_DateTime) # keep all data up until this timestep
 
   # Compute normalized plot coordinates for all sites
   x_coords <- c(spark_config$xleft, spark_config$xright)
@@ -43,12 +43,12 @@ prep_spark_funs_data <- function(storm_data, site_data, timestep_ind, spark_conf
   for(site in sites) {
 
     # Filter data to just one site & create polygon out of it
-    storm_data_i <- filter(this_spark, site_no == site) %>%
+    stage_data_i <- filter(this_spark, site_no == site) %>%
       arrange(dateTime) %>%
       sf::st_set_geometry(NULL)
 
     # Stop if there's no data at or before this timestep
-    if(nrow(storm_data_i) == 0) {
+    if(nrow(stage_data_i) == 0) {
       # stop(sprintf('no stage data for dateTime<=%s and site=%s', DateTime, site))
       warning(sprintf('no stage data for dateTime<=%s and site=%s', DateTime, site))
       shapes[[site]] <- list(list())
@@ -56,14 +56,14 @@ prep_spark_funs_data <- function(storm_data, site_data, timestep_ind, spark_conf
     }
 
     # look for gaps so we can break lines/polygons into chunks
-    data_chunks_meta <- rle(is.na(storm_data_i$stage_normalized)) %>% {
+    data_chunks_meta <- rle(is.na(stage_data_i$stage_normalized)) %>% {
       data_frame(
         is_gap=.$values,
         end=cumsum(.$lengths),
         start=end - .$lengths + 1,
         before=ifelse(start-1==0, NA, start-1),
-        after=ifelse(end+1>nrow(storm_data_i), NA, end+1),
-        duration_hr=as.numeric(storm_data_i$dateTime[end] - storm_data_i$dateTime[start], units='hours'))
+        after=ifelse(end+1>nrow(stage_data_i), NA, end+1),
+        duration_hr=as.numeric(stage_data_i$dateTime[end] - stage_data_i$dateTime[start], units='hours'))
     }
 
     # Package each chunk of lines/polygons into a list within the shapes list
@@ -79,7 +79,7 @@ prep_spark_funs_data <- function(storm_data, site_data, timestep_ind, spark_conf
     for(i in which(!data_chunks_meta$is_gap)) {
       # Pick out one continuous chunk of data
       data_chunk_meta <- data_chunks_meta[i,]
-      data_chunk <- storm_data_i[data_chunk_meta$start : data_chunk_meta$end, ]
+      data_chunk <- stage_data_i[data_chunk_meta$start : data_chunk_meta$end, ]
 
       # Create a hydrograph line
       hydro_line <- data_chunk %>% select(dateTime, stage_normalized)
@@ -123,11 +123,11 @@ prep_spark_funs_data <- function(storm_data, site_data, timestep_ind, spark_conf
 
 }
 
-prep_spark_line_fun <- function(storm_data, site_data, timestep_ind, spark_config, gage_col_config, DateTime) {
+prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_config, gage_col_config, DateTime) {
 
   # most of the prep work happens in prep_spark_funs_data, which is shared with prep_spark_starts_fun
-  spark_funs_data <- prep_spark_funs_data(storm_data, site_data, timestep_ind, spark_config, DateTime)
-  rm(storm_data, site_data, timestep_ind, spark_config, DateTime) # clean up to keep closure small
+  spark_funs_data <- prep_spark_funs_data(stage_data, site_data, timestep_ind, spark_config, DateTime)
+  rm(stage_data, site_data, timestep_ind, spark_config, DateTime) # clean up to keep closure small
   # now unpack the results
   x_coords <- spark_funs_data$x_coords
   y_coords <- spark_funs_data$y_coords
@@ -190,11 +190,11 @@ prep_spark_line_fun <- function(storm_data, site_data, timestep_ind, spark_confi
   return(plot_fun)
 }
 
-prep_spark_starts_fun <- function(storm_data, site_data, timestep_ind, spark_config, DateTime) {
+prep_spark_starts_fun <- function(stage_data, site_data, timestep_ind, spark_config, DateTime) {
 
   # most of the prep work happens in prep_spark_funs_data, which is shared with prep_spark_line_fun
-  spark_funs_data <- prep_spark_funs_data(storm_data, site_data, timestep_ind, spark_config, DateTime)
-  rm(storm_data, site_data, timestep_ind, spark_config, DateTime) # clean up to keep closure small
+  spark_funs_data <- prep_spark_funs_data(stage_data, site_data, timestep_ind, spark_config, DateTime)
+  rm(stage_data, site_data, timestep_ind, spark_config, DateTime) # clean up to keep closure small
   # now unpack the results
   x_coords <- spark_funs_data$x_coords
   y_coords <- spark_funs_data$y_coords

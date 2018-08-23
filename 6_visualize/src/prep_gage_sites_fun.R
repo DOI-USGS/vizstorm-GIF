@@ -1,10 +1,10 @@
-prep_storm_sites_fun <- function(storm_data, gage_col_config, DateTime){
+prep_gage_sites_fun <- function(stage_data, gage_col_config, DateTime){
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
-  this_storm_data <- filter(storm_data, dateTime == this_DateTime)
+  this_stage_data <- filter(stage_data, dateTime == this_DateTime)
 
-  norm_data_sites <- filter(this_storm_data, stage_normalized < flood_stage_normalized)
-  flood_data_sites <- filter(this_storm_data, stage_normalized >= flood_stage_normalized)
-  missing_data_sites <- filter(this_storm_data, is.na(stage_normalized))
+  norm_data_sites <- filter(this_stage_data, stage_normalized < flood_stage_normalized)
+  flood_data_sites <- filter(this_stage_data, stage_normalized >= flood_stage_normalized)
+  missing_data_sites <- filter(this_stage_data, is.na(stage_normalized))
 
   plot_fun <- function(){
 

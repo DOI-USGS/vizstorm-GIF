@@ -13,9 +13,13 @@ fetch_storm_track <- function(
   # determine where to save the data file
   data_file <- as_data_file(ind_file)
 
-  # get from NHC
-  url <- sprintf("http://www.nhc.noaa.gov/gis/best_track/%s_best_track.zip", cfg$storm_code)
-  httr::GET(url, httr::write_disk(data_file, overwrite=TRUE))
+  if(is.null(cfg$storm_code)) {
+    file.create(data_file, showWarnings = FALSE)
+  } else {
+    # get from NHC
+    url <- sprintf("http://www.nhc.noaa.gov/gis/best_track/%s_best_track.zip", cfg$storm_code)
+    httr::GET(url, httr::write_disk(data_file, overwrite=TRUE))
+  }
 
   # post to Google Drive
   gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
