@@ -16,7 +16,7 @@ To set up the branch:
 1. Edit .gitconfig so that the following files are *not* ignored: `*.ind`, `build/status/*.yml`, `viz_config.yml`, `lib/cfg/gd_config.yml`, `2_process/src/filter_sites_custom.R`.
 1. Add a viz_config.yml. See other storm branches for examples.
 1. Add a 2_process/src/filter_sites_custom.R file and function. See other storm branches for examples.
-1. Create a shared Google Drive folder for the cache and run `scipiper::gd_config(config_file=target_name, folder=I("drive-folder-id"))`.
+1. Create a shared Google Drive folder for the cache in https://drive.google.com/drive/u/1/folders/169KSGMULk6eJxBTsIDQ0l9z65CueZEbF. Run `scipiper::gd_config(config_file=target_name, folder=I("drive-folder-id"))`.
 1. The first time you build a target or run a function that uses `gd_put()` or `gd_get()`, you'll be prompted in a browser to log in to your Google Account. This will create a an .httr-oauth file locally, which should continue to be .gitignored.
 
 Most changes you'll make will be storm specific. If you make changes that should apply to all other (or future) storms, pull or copy those changes over to the master branch, taking care not to copy storm-specific files. See the next section on working on the master branch.
