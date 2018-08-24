@@ -130,18 +130,29 @@ targets:
     command: viz_config[I('fetch_streamorder')]
 
   1_fetch/out/major_river_geometry.rds.ind:
-    command: fetch_major_river_geoms(ind_fil=target_name,
+    command: fetch_major_river_geoms(ind_file=target_name,
                                view_polygon=view_polygon,
                                fetch_streamorder=fetch_streamorder)
   1_fetch/out/major_river_geometry.rds:
     command: gd_get('1_fetch/out/major_river_geometry.rds.ind')
 
   1_fetch/out/gage_river_geometry.rds.ind:
-    command: fetch_gage_river_geoms(ind_fil=target_name,
+    command: fetch_gage_river_geoms(ind_file=target_name,
                                view_polygon=view_polygon,
                                sites_ind='2_process/out/gage_sites.rds.ind')
   1_fetch/out/gage_river_geometry.rds:
     command: gd_get('1_fetch/out/gage_river_geometry.rds.ind')
+
+  # -- get waterbodies -- #
+  fetch_waterbody_areasqkm:
+    command: viz_config[I('fetch_waterbody_areasqkm')]
+
+  1_fetch/out/waterbodies.rds.ind:
+    command: fetch_waterbody_geoms(ind_file=target_name,
+                                   view_polygon=view_polygon,
+                                   fetch_waterbody_areasqkm=fetch_waterbody_areasqkm)
+  1_fetch/out/waterbodies.rds:
+    command: gd_get('1_fetch/out/waterbodies.rds.ind')
 
   # -- get major cities -- #
   city_config:
