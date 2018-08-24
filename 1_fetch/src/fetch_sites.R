@@ -8,6 +8,11 @@ fetch_states_from_sf <- function(sf_ind) {
   sf_object <- readRDS(sc_retrieve(sf_ind))
 
   state_names <- sf_object$ID[!grepl(",", sf_object$ID)]
+
+  if(length(state_names) == 0) {
+    state_names <- sapply(sf_object$ID, function(x) strsplit(x, ",")[[1]][1])
+  }
+
   state_cds <- unique(dataRetrieval::stateCdLookup(state_names))
 
   return(state_cds)

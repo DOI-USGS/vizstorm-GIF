@@ -35,6 +35,43 @@ fetch_major_river_geoms <- function(ind_file, view_polygon, fetch_streamorder) {
   gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
 }
 
+fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasqkm) {
+
+  bbox <- st_bbox(st_transform(view_polygon, 4326))
+
+  postURL <- "https://cida.usgs.gov/nwc/geoserver/nhdplus/ows"
+
+  filterXML <- paste0('<?xml version="1.0"?>',
+                      '<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" service="WFS" version="1.1.0" outputFormat="application/json" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">',
+                      '<wfs:Query xmlns:feature="http://gov.usgs.cida/nhdplus" typeName="feature:nhdflowline_network" srsName="EPSG:4326">',
+                      '<ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">',
+                      '<ogc:And>',
+                      '<ogc:PropertyIsGreaterThan>',
+                      '<ogc:PropertyName>areasqkm</ogc:PropertyName>',
+                      '<ogc:Literal>',fetch_waterbody_areasqkm,'</ogc:Literal>',
+                      '</ogc:PropertyIsGreaterThan>',
+                      '<ogc:BBOX>',
+                      '<ogc:PropertyName>the_geom</ogc:PropertyName>',
+                      '<gml:Envelope>',
+                      '<gml:lowerCorner>',bbox[2]," ",bbox[1],'</gml:lowerCorner>',
+                      '<gml:upperCorner>',bbox[4]," ",bbox[3],'</gml:upperCorner>',
+                      '</gml:Envelope>',
+                      '</ogc:BBOX>',
+                      '</ogc:And>',
+                      '</ogc:Filter>',
+                      '</wfs:Query>',
+                      '</wfs:GetFeature>')
+
+  out <- httr::POST(postURL, body = filterXML)
+
+  sf_waterbodies <- read_sf(rawToChar(out$content)) %>%
+    st_transform(st_crs(view_polygon))
+
+  data_file <- as_data_file(ind_file)
+  saveRDS(sf_waterbodies, data_file)
+  gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
+}
+
 fetch_gage_river_geoms <- function(ind_file, view_polygon, sites_ind) {
 
   sites <- readRDS(sc_retrieve(sites_ind))
