@@ -156,10 +156,10 @@ cities:
     - "Oklahoma City OK"
 
 # Only streamorders greater than this will be fetched.
-fetch_streamorder: 2
+fetch_streamorder: 5
 
 # Only waterbodies greater than this area will be fetched.
-fetch_waterbody_areasqkm: 5
+fetch_waterbody_areasqkm: 1000
 
 # Changes only affect river geom process step.
 # Coastal threshold controls the drainage area used to limit
