@@ -39,13 +39,20 @@ extract_storm_points <- function(ind_file, storm_shp_ind, cfg){
         DateTimeString = sprintf('%s-%s-%s %s', YEAR, MONTH, DAY, HHMM),
         DateTime = as.POSIXct(DateTimeString, format='%Y-%b-%d %H%M', tz='UTC'))
     if(any(is.na(points_parsed$DateTime))) {
-      bad_dts <- points_parsed %>%
-        filter(is.na(points_parsed$DateTime)) %>%
-        pull(DateTimeString)
-      stop(paste(
-        "Unable to parse datetime for these DateTimeStrings:",
-        paste(bad_dts, collapse=', ')
-      ))
+      points_parsed <- points_mainstorm %>%
+        mutate(
+          # test with numeric month instead of abbreviation
+          DateTimeString = sprintf('%s-%s-%s %s', YEAR, MONTH, DAY, HHMM),
+          DateTime = as.POSIXct(DateTimeString, format='%Y-%m-%d %H%M', tz='UTC'))
+      if(any(is.na(points_parsed$DateTime))) {
+        bad_dts <- points_parsed %>%
+          filter(is.na(points_parsed$DateTime)) %>%
+          pull(DateTimeString)
+        stop(paste(
+          "Unable to parse datetime for these DateTimeStrings:",
+          paste(bad_dts, collapse=', ')
+        ))
+      }
     }
 
     # select just the columns we need
