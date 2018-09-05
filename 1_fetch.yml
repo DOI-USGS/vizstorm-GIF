@@ -37,6 +37,10 @@ targets:
       - 1_fetch/out/all_sites.rds.ind
       - 1_fetch/out/streamdata.rds.ind
       - 1_fetch/out/precip_data.rds.ind
+      - 1_fetch/out/major_river_geometry.rds.ind
+      - 1_fetch/out/gage_river_geometry.rds.ind
+      - 1_fetch/out/waterbodies.rds.ind
+      - 1_fetch/out/major_cities.rds.ind
 
   # -- read config --
   viz_config:
