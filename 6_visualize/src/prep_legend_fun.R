@@ -43,6 +43,7 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
     dot_x <- x_edge+bin_w/2*shift_dir
     dot_txt_x <- x_edge+bin_w*0.7*shift_dir
     seg_x <- x_edge+bin_w/3*shift_dir
+    center_to_txt_y <- strheight("A")/3 # height of character divided by three seems to do the trick
 
     # plot precip bins and precip label
     precip_txt_y <- ybottom+2*bin_h*0.8
@@ -67,20 +68,20 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
     gage_caveat_y <- ybottom+5*bin_h*1.02
     text(x_edge, gage_caveat_y, labels = 'Selected USGS stream gages', pos = txt_pos, cex = 1.5)
     normal_y <- ybottom+4*bin_h
-    points(dot_x, normal_y, pch = 21, bg = legend_styles$gage_norm_col, col = NA, cex = 2)
+    points(dot_x, normal_y+center_to_txt_y, pch = 21, bg = legend_styles$gage_norm_col, col = NA, cex = 2)
     text(dot_txt_x, normal_y, labels = 'Below flood stage', pos = txt_pos, cex = 1.5)
     flood_y <- ybottom+3*bin_h
-    points(dot_x, flood_y, pch = 21, bg = legend_styles$gage_norm_col, col = legend_styles$gage_flood_col, lwd = 4, cex = 2)
+    points(dot_x, flood_y+center_to_txt_y, pch = 21, bg = legend_styles$gage_norm_col, col = legend_styles$gage_flood_col, lwd = 4, cex = 2)
     text(dot_txt_x, flood_y, labels = 'Above flood stage', pos = txt_pos, cex = 1.5)
 
     # plot storm legend
     hurricane_y <- ybottom+6*bin_h*1.05
     if(is.na(hurricane_col)) {
       text(x_edge, hurricane_y, labels = legend_styles$storm_name, pos = txt_pos, cex = 1.5)
-      segments(seg_x, hurricane_y, dot_txt_x, col = "black", lwd = 2)
+      segments(seg_x, hurricane_y+center_to_txt_y, dot_txt_x, col = "black", lwd = 2)
     } else {
       text(dot_txt_x, hurricane_y, labels = sprintf(hurricane_cat, legend_styles$storm_name), pos = txt_pos, cex = 1.5)
-      points(dot_x, hurricane_y, pch = 21, bg = hurricane_col, col = NA, cex = 3)
+      points(dot_x, hurricane_y+center_to_txt_y, pch = 21, bg = hurricane_col, col = NA, cex = 3)
     }
 
   }
