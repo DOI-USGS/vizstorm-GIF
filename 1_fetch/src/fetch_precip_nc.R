@@ -20,10 +20,12 @@ fetch_precip_data <- function(ind_file, view_polygon, times) {
   stencil_pts <- as.stencil_pt('xmin', 'ymin', 'low_left') %>% cbind(stencil_pts)
 
   # break times into chunks to avoid WAF rejections of queries that are "too big"
-  dateseq <- unique(c(
-    seq(as.POSIXct(times$start, tz='UTC'), as.POSIXct(times$end, tz='UTC'), by=as.difftime(3, units='days')),
-    as.POSIXct(times$end, tz='UTC')
-  ))
+  try_formats = c("%Y-%m-%d %H:%M:%OS", "%Y/%m/%d %H:%M:%OS", "%Y-%m-%d %H:%M", "%Y/%m/%d %H:%M", "%Y-%m-%d", "%Y/%m/%d")
+  dateformat <- try_formats[sapply(try_formats, function(fmt) all(!is.na(as.POSIXct(unlist(times), format=fmt))))]
+  dateseq <- as.POSIXct(unique(c(
+    format(seq(as.POSIXct(times$start, tz='UTC'), as.POSIXct(times$end, tz='UTC'), by=as.difftime(3, units='days')), dateformat),
+    times$end
+  )), tz='UTC')
   precip_data_list <- lapply(seq_len(length(dateseq)-1), function(i) {
     message(sprintf("pulling precip for %s to %s", dateseq[i], dateseq[i+1]))
     # define the fabric, subset by time
