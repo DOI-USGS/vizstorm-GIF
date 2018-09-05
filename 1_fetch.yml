@@ -54,7 +54,7 @@ targets:
     command: viz_config[I(c('precip_cols', 'precip_bin'))]
 
   legend_styles:
-    command: viz_config[I(c('gage_flood_col','gage_norm_col','hurricane_cols','hurricane_col_names','storm_name'))]
+    command: viz_config[I(c('gage_flood_col','gage_norm_col','hurricane_cols','hurricane_col_names','storm_name','storm_line_col'))]
 
   hurricane_cols:
     command: viz_config[[I('hurricane_cols')]]
