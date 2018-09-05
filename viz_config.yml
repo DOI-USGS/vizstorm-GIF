@@ -1,8 +1,8 @@
 storm_code: al072018 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
 storm_name: "Gordon"
 dates:
-  start: '2018-09-04'
-  end: '2018-09-05'
+  start: '2018-09-02'
+  end: '2018-09-04'
 date_display_tz: 'UTC'
 
 # view, dimensions
@@ -151,10 +151,10 @@ cities:
     - "Oklahoma City OK"
 
 # Only streamorders greater than this will be fetched.
-fetch_streamorder: 2
+fetch_streamorder: 5
 
 # Only waterbodies greater than this area will be fetched.
-fetch_waterbody_areasqkm: 5
+fetch_waterbody_areasqkm: 1000
 
 # Changes only affect river geom process step.
 # Coastal threshold controls the drainage area used to limit
