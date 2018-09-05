@@ -25,6 +25,7 @@ gage_river_col: "#5d9ddc"
 lake_col: "#a2c7eb"
 marsh_col: "#afd0c7"
 ocean_col: "#e7f1fa"
+storm_line_col: "grey70"
 
 # introductory animation
 intro:
