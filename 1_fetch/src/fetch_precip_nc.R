@@ -41,8 +41,8 @@ fetch_precip_data <- function(ind_file, view_polygon, times) {
     precip_dat <- get_precip_values(nc_file, dates = times, view_polygon = view_polygon)
     return(precip_dat)
   })
-  precip_values <- rbind(lapply(precip_data_list, function(pdat) { pdat$values }))
-  precip_spatial <- rbind(lapply(precip_data_list, function(pdat) { pdat$spatial }))
+  precip_values <- do.call(rbind, lapply(precip_data_list, function(pdat) { pdat$values }))
+  precip_spatial <- do.call(rbind, lapply(precip_data_list, function(pdat) { pdat$spatial }))
   precip_data <- list(values=precip_values, spatial=precip_spatial)
 
   data_file <- as_data_file(ind_file)
