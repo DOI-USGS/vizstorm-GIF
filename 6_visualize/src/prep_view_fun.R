@@ -1,7 +1,7 @@
 
-prep_view_fun <- function(view_polygon){
+prep_view_fun <- function(view_polygon, view_cfg){
   plot_fun <- function(){
-    par(omi = c(0,0,0,0), mai = c(0,0,0,0), bg = '#E1EDF5')
+    par(omi = c(0,0,0,0), mai = c(0,0,0,0), bg = view_cfg$ocean_col)
     plot(view_polygon, col = NA, border = NA, xaxs = 'i', yaxs = 'i')
   }
   return(plot_fun)
