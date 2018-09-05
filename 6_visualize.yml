@@ -31,6 +31,10 @@ targets:
   6_visualize:
     depends:
       - 6_storm_gif_tasks.yml
+      - 6_visualize/log/6_storm_gif_tasks.ind
+      - 6_intro_gif_tasks.yml
+      - 6_visualize/log/6_intro_gif_tasks.ind
+      - 6_visualize/out/animation_a.gif
 
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
   # adn storm_line. each of these components doesn't change over time. each
@@ -137,10 +141,12 @@ targets:
 
   # Build the timestep-specific functions and png files.
   # When we like how this is looking, we can set task_names=NULL to build all frames.
+  # In the meantime, you may want to edit the command for trial_intro_frames (rebuild with force=TRUE)
+  # and set task_names=trial_intro_frames to specify a subset of frames to build.
   # If you're trying to iterate on just a few png frames, delete 6_visualize/log/6_intro_gif_tasks.ind,
   # then you can call scmake('6_visualize/log/6_intro_gif_tasks.ind') repeatedly.
   # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_intro_gif_tasks.ind', force=TRUE)
-  #   to iterate on all frames at once.
+  # to iterate on all frames at once.
   trial_intro_frames:
     command: sprintf(I('a_01_%03d'), I(c(1:5,7,9,11,13,15:20)))
   6_visualize/log/6_intro_gif_tasks.ind:
@@ -168,10 +174,12 @@ targets:
 
   # Build the timestep-specific functions and png files.
   # When we like how this is looking, we can set task_names=NULL to build all frames.
+  # In the meantime, you may want to edit the command for trial_storm_frames (rebuild with force=TRUE)
+  # and set task_names=trial_storm_frames to specify a subset of frames to build.
   # If you're trying to iterate on just a few png frames, delete 6_visualize/log/6_storm_gif_tasks.ind,
   # then you can call scmake('6_visualize/log/6_storm_gif_tasks.ind') repeatedly.
   # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_storm_gif_tasks.ind', force=TRUE)
-  #   to iterate on all frames at once.
+  # to iterate on all frames at once.
   trial_storm_frames_01:
     command: sprintf(I('a_201708%02d_01'), I(25:31))
   trial_storm_frames_07:
@@ -185,7 +193,7 @@ targets:
   6_visualize/log/6_storm_gif_tasks.ind:
     command: loop_tasks(
       task_plan=storm_gif_tasks, task_makefile='6_storm_gif_tasks.yml',
-      task_names=trial_storm_frames,
+      task_names=NULL,
       num_tries=I(1), sleep_on_error=I(0))
 
   # Combine the png files into a gif.
@@ -214,3 +222,5 @@ targets:
       gif_file=target_name,
       animation_cfg=animation_cfg,
       task_names=NULL)
+  6_visualize/out/animation_a.gif.ind:
+    command: gd_put(target_name, '6_visualize/out/animation_a.gif')
