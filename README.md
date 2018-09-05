@@ -11,12 +11,13 @@ None of these branches have a lib/cfg/gd_config.yml file, but you always need on
 ### Working on a new storm branch
 
 To set up the branch:
-1. Create a new folder and RStudio project just for this storm. Clone the GitHub repository into this project. Because it's a separate folder, you'll be able to add storm-specific data and image files to this folder/project without overwriting files from other storms.
+1. Create a new folder and RStudio project just for this storm. Clone the GitHub repository into this project. Because it's a separate folder, you'll be able to add storm-specific data and image files to this folder/project without overwriting files from other storms. We recommend the folder and project name `vizstorm-GIF-[stormname-year]`.
 1. Create and switch to a new storm-specific branch. Use the branch naming convention `Stormname-year`, e.g., `Matthew-2016`.
 1. Edit .gitignore so that the following files are *not* ignored: `*.ind`, `build/status/*.yml`, `viz_config.yml`, `lib/cfg/gd_config.yml`, `2_process/src/filter_sites_custom.R`.
 1. Add a viz_config.yml. See other storm branches and viz_config-example.yml for examples.
 1. Add a 2_process/src/filter_sites_custom.R file and function. See other storm branches and 2_process/src/filter_sites_custom-example.R for examples.
-1. Create a shared Google Drive folder for the cache in https://drive.google.com/drive/u/1/folders/169KSGMULk6eJxBTsIDQ0l9z65CueZEbF. Run `scipiper::gd_config(config_file=target_name, folder=I("drive-folder-id"))`.
+1. Create a shared Google Drive folder for the cache in https://drive.google.com/drive/u/1/folders/169KSGMULk6eJxBTsIDQ0l9z65CueZEbF.
+1. Create or update your lib/cfg/gd_config.yml file by calling `scipiper::gd_config(config_file="lib/cfg/gd_config.yml", folder="drivefolderid")` with the new drivefolderid value from the Drive folder you just created.
 1. The first time you build a target or run a function that uses `gd_put()` or `gd_get()`, you'll be prompted in a browser to log in to your Google Account. This will create a an .httr-oauth file locally, which should continue to be .gitignored.
 
 To build the storm GIF:
@@ -44,7 +45,8 @@ Setup to work on the master branch:
 1. Edit .gitignore so that the following files *are* ignored: `*.ind`, `build/status/*.yml`, `viz_config.yml`, `lib/cfg/gd_config.yml`, `2_process/src/filter_sites_custom.R`. (This step will likely be done once by one person for all of us.)
 1. Add a viz_config.yml. See other storm branches and viz_config-example.yml for examples.
 1. Add a 2_process/src/filter_sites_custom.R file and function. See other storm branches and 2_process/src/filter_sites_custom-example.R for examples.
-1. Create *your own* Google Drive folder for the cache and run `scipiper::gd_config(config_file=target_name, folder=I("drive-folder-id"))`. With your own Drive folder, you can experiment with whichever storms, sites, etc. are most appropriate to your code development.
+1. Create *your own* Google Drive folder for the cache. With your own Drive folder, you can experiment with whichever storms, sites, etc. are most appropriate to your code development.
+1. Create or update your lib/cfg/gd_config.yml file by calling `scipiper::gd_config(config_file="lib/cfg/gd_config.yml", folder="drivefolderid")` with the new drivefolderid value from the Drive folder you just created.
 1. The first time you build a target or run a function that uses `gd_put()` or `gd_get()`, you'll be prompted in a browser to log in to your Google Account. This will create a an .httr-oauth file locally, which should continue to be .gitignored.
 
 
