@@ -14,6 +14,7 @@ To set up the branch:
 1. Create a new folder and RStudio project just for this storm. Clone the GitHub repository into this project. Because it's a separate folder, you'll be able to add storm-specific data and image files to this folder/project without overwriting files from other storms. We recommend the folder and project name `vizstorm-GIF-[stormname-year]`.
 1. Create and switch to a new storm-specific branch. Use the branch naming convention `Stormname-year`, e.g., `Matthew-2016`.
 1. Edit .gitignore so that the following files are *not* ignored: `*.ind`, `build/status/*.yml`, `viz_config.yml`, `lib/cfg/gd_config.yml`, `2_process/src/filter_sites_custom.R`.
+1. Add a lib/cfg/gd_config.yml. See other storm branches and lib/cfg/gd_config-example.yml for examples.
 1. Add a viz_config.yml. See other storm branches and viz_config-example.yml for examples.
 1. Add a 2_process/src/filter_sites_custom.R file and function. See other storm branches and 2_process/src/filter_sites_custom-example.R for examples.
 1. Create a shared Google Drive folder for the cache in https://drive.google.com/drive/u/1/folders/169KSGMULk6eJxBTsIDQ0l9z65CueZEbF.
@@ -29,6 +30,7 @@ To build the storm GIF:
 1. When git committing your changes, make sure that any `*.ind` file you commit (new or modified) has a matching `build/status/*.yml` file in your commit. If it doesn't, run `scipiper:::YAMLify_build_status('yourindfile.ind')`. The need to do this reflects the scipiper issues noted just above.
 1. Iterate through choices of bbox, site list, ocean and city names, etc. until you have the gif_frames (pngs) looking the way you want.
 1. Build the animated GIF with `scmake('6_visualize/out/animation_a.gif')`. It often takes a long time to build all the pngs, so if you want to preview an animated GIF with only some frames, consider specifying a subset of frames with the `task_names` argument to `combine_animation_frames()`.
+1. Once you're happy with the way the animated GIF looks, you will need to build the intro frames. Do this by making sure `task_names=NULL` for the target `6_visualize/log/6_intro_gif_tasks.ind` in `6_visualize.yml`. Run `scmake('6_visualize/log/6_intro_gif_tasks.ind')` to build the intro frames. Then, run `scmake(6_visualize/out/animation_a.gif')` to incorporate the intro frames into the full animated GIF (note that you might need to add `force = TRUE` if the file already exists).
 1. Build and push the final animated GIF with `scmake('6_visualize/out/animation_a.gif.ind')`. This is the one case in the vizstorm project where the .ind file does not get built before the data (.gif) file. The unusal ordering allows you to iterate on the .gif many times before needing to push to Drive. But don't forget to push when you're done so others can see!
 
 Use `scmake()` to build the intermediate or final products you want to look at right away. 
