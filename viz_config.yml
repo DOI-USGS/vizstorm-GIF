@@ -109,49 +109,6 @@ cities:
       dot_cex: 0.8
       text_cex: 0.8
       text_angle: -45
-    -
-      name: "Port Aransas TX"
-      pop: 3480
-      lat: 27.8333
-      long: -97.0667
-      dot_cex: 0.8
-      text_cex: 0.8
-      text_angle: 0
-    -
-      name: "Conroe TX"
-      dot_cex: 0.8
-      text_cex: 0.8
-      text_angle: 170
-    -
-      name: "Nederland TX"
-      pop: 17547
-      lat: 29.973056
-      long: -93.9967
-      dot_cex: 0.8
-      text_cex: 0.8
-    -
-      name: "Port Lavaca TX"
-      pop: 12248
-      lat: 28.6156
-      long: -96.6297
-      dot_cex: 0.8
-      text_cex: 0.8
-      text_angle: 0
-    -
-      name: "Rockport TX"
-      pop: 8766
-      lat: 28.0486
-      long: -97.0411
-      dot_cex: 0.8
-      text_cex: 0.8
-    -
-      name: "Victoria TX"
-      pop: 62592
-      lat: 28.8169
-      long: -96.9933
-      dot_cex: 0.8
-      text_cex: 0.8
-      text_angle: 180
   exclude:
     - "Jacksonville FL"
     - "Oklahoma City OK"
@@ -160,7 +117,7 @@ cities:
 fetch_streamorder: 5
 
 # Only waterbodies greater than this area will be fetched.
-fetch_waterbody_areasqkm: 1000
+fetch_waterbody_areasqkm: 500
 
 # Changes only affect river geom process step.
 # Coastal threshold controls the drainage area used to limit

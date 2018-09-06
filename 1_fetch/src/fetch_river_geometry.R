@@ -43,7 +43,7 @@ fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasq
 
   filterXML <- paste0('<?xml version="1.0"?>',
                       '<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" service="WFS" version="1.1.0" outputFormat="application/json" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">',
-                      '<wfs:Query xmlns:feature="http://gov.usgs.cida/nhdplus" typeName="feature:nhdflowline_network" srsName="EPSG:4326">',
+                      '<wfs:Query xmlns:feature="http://gov.usgs.cida/nhdplus" typeName="feature:nhdwaterbody" srsName="EPSG:4326">',
                       '<ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">',
                       '<ogc:And>',
                       '<ogc:PropertyIsGreaterThan>',
