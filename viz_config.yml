@@ -6,7 +6,7 @@ dates:
 date_display_tz: 'UTC'
 
 # view, dimensions
-bbox: [-98, 24, -79, 40]
+bbox: [-99, 24, -80, 40]
 projection: "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"
 height: 512
 width: 1024
