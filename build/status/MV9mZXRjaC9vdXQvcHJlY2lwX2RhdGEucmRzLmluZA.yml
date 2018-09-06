@@ -1,10 +1,10 @@
 version: 0.3.0
 name: 1_fetch/out/precip_data.rds.ind
 type: file
-hash: e8a84cdbdb647d4652312684d984b091
-time: 2018-09-05 20:32:52 UTC
+hash: 917a4d34a103c9f79ff68a200ac12159
+time: 2018-09-06 14:05:18 UTC
 depends:
-  view_polygon: 54debd6d6e335bbcdf505ce6bf1185f3
+  view_polygon: 878ecd2d732ebe2d5797738fc98bfee6
   dates: 158666ea6fec11387cc5e831b2118f27
 fixed: 677de7d642f5c54ce209836e9bab6824
 code:
