@@ -55,8 +55,8 @@ component_placement:
 
 ocean_name_placement:
   -
-    x1: 0.5
-    y1: 0.35
+    x1: 0.4
+    y1: 0.2
     label: 'Gulf of Mexico'
 
 focus_geoms:
