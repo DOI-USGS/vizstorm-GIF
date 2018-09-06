@@ -23,7 +23,7 @@ To set up the branch:
 
 To build the storm GIF:
 1. Make your best guess about an appropriate `bbox` in viz_config.yml.
-1. Make your best guess about a good site list in 2_process/src/filter_sites_custom.R (this can be broad, at the cost of needing to pull and plot more NWIS data in early iterations).
+1. Make your best guess about a good site list in 2_process/src/filter_sites_custom.R (this can be broad, at the cost of needing to pull and plot more NWIS data in early iterations). It can be helpful to see the site numbers on the figures with the spark lines as you iterate through site selection. One way to do this is to add this `text(full_poly$x[1]-strwidth("5555"), full_poly$y[1], labels=site)` to the `prep_spark_line_fun` where the stage shapes are being added to the plot. Just delete when you're done iterating. 
 1. Build 6_storm_gif_tasks.yml with `scmake('6_storm_gif_tasks.yml')`.
 1. Choose a GIF frame to build to preview the vizzy setup. The dates and therefore exact filenames will differ, but you may want to build one gif_frame and one gif_TEST_frame (which shows the bbox) to start. For example, you might run `scmake('6_visualize/tmp/gif_frame_a_20170825_00.png', '6_storm_gif_tasks.yml')` and/or `scmake('6_visualize/tmp/gif_TEST_frame_a_20170825_00.png', '6_storm_gif_tasks.yml')`
 1. If jumping directly to building a gif_frame, you may find that some steps (especially fetches from the internet) require retries. It may boost your overall build efficiency to `scmake` some of these steps individually rather than relying on the full `scipiper` chain, mainly because of known issues https://github.com/USGS-R/scipiper/issues/70 and https://github.com/USGS-R/scipiper/issues/47.
