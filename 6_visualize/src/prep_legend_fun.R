@@ -5,8 +5,8 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
   y_pos <- match.arg(y_pos)
 
   if(is.na(DateTime)) {
-    DateTime <- timesteps[1]
     timesteps <- readRDS(sc_retrieve(timesteps_ind))
+    DateTime <- timesteps[1]
     rm(timesteps)
   }
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
