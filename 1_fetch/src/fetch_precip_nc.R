@@ -36,8 +36,8 @@ fetch_precip_data <- function(ind_file, view_polygon, times) {
       dateseq[i:(i+1)]
     } else {
       as.POSIXct(
-        c(format(dateseq[i], dateformat),
-          format(dateseq[i+1]-as.difftime(1, units='mins'), dateformat)),
+        c(format(dateseq[i], "%Y-%m-%d %H:%M:%OS"),
+          format(dateseq[i+1]-as.difftime(1, units='mins'), "%Y-%m-%d %H:%M:%OS")),
         tz='UTC')
     }
     fabric <- webdata(
