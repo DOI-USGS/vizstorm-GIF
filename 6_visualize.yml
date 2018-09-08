@@ -220,7 +220,7 @@ targets:
   final_storm_frames:
     command: existing_png_tasks(pattern=I('a_[[:digit:]]{8}_[[:digit:]]{2}'))
   final_frames:
-    command: c(I('a_20170825_01'), final_intro_frames, final_storm_frames)
+    command: c(final_intro_frames, final_storm_frames)
   animation_cfg:
     command: viz_config[I('frame_delay_cs')]
   6_visualize/out/animation_a.gif:
