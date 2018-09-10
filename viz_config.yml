@@ -2,7 +2,7 @@ storm_code: al072018 # find the right code at https://www.nhc.noaa.gov/gis/archi
 storm_name: "Gordon"
 dates:
   start: '2018-09-02'
-  end: '2018-09-05'
+  end: '2018-09-09'
 date_display_tz: 'UTC'
 
 # view, dimensions
@@ -13,7 +13,7 @@ width: 1024
 
 # styling
 precip_cols: ["#FAFBF3", "#F0F8E3", "#D4E9CA", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
-precip_bin: 4 # inches per bin
+precip_bin: 0.5 # inches per bin
 gage_flood_col: "#175676"
 gage_norm_col: "#4BA3C3"
 gage_out_col: "white"
