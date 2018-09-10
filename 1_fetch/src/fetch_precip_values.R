@@ -1,26 +1,52 @@
-
 precip_spatial <- function(nc, view_polygon) {
 
+  if(!is.null(nc$var$RAINRATE)) { # NWM Precip Forcing Method (Tested with medium range)
 
-  lon <- ncdf4::ncvar_get(nc, "lon")
-  lat <- ncdf4::ncvar_get(nc, "lat")
+    nc_proj <- "+proj=lcc +lat_1=30 +lat_2=60 +x_0=0 +y_0=0 +units=m +lat_0=40.0000076294 +lon_0=-97 +a=6370000 +b=6370000 +pm=0 +no_defs"
+    # From: ncdfgeom::get_prj(ncatt_get(nc, "ProjectionCoordinateSystem"))
 
-  x <- matrix(rep(c(1:ncol(lon)), nrow(lon)),
-              nrow = nrow(lon), ncol = ncol(lon),
-              byrow = TRUE)
+    x_coord <- nc$dim$x$vals
+    y_coord <- nc$dim$y$vals
+    rows <- length(y_coord)
+    cols <- length(x_coord)
 
-  y <- matrix(rep(c(1:nrow(lon)), ncol(lon)),
-              nrow = nrow(lon), ncol = ncol(lon),
-              byrow = FALSE)
+    x_vals <- matrix(x_coord, nrow = rows, ncol = cols, byrow = TRUE)
+    y_vals <- matrix(y_coord, nrow = rows, ncol = cols, byrow = FALSE)
+    x <- matrix(rep(c(1:cols), rows), nrow = rows, ncol = cols, byrow = TRUE)
+    y <- matrix(rep(c(1:rows), cols), nrow = rows, ncol = cols, byrow = FALSE)
+    id <- matrix(c(1:(rows*cols)), nrow = rows, ncol = cols, byrow = TRUE)
 
-  sf_points <- data.frame(x = matrix(x, ncol = 1),
-                          y = matrix(y, ncol = 1),
-                          lon = matrix(lon, ncol = 1),
-                          lat = matrix(lat, ncol = 1))
-  sf_points <- sf::st_as_sf(sf_points,
-                            coords = c("lon", "lat"),
-                            crs = "+init=epsg:4326",
-                            agr = "constant")
+    sf_points <- st_as_sf(data.frame(x_coord = matrix(x_vals, ncol = 1),
+                                     y_coord = matrix(y_vals, ncol = 1),
+                                     x_ind = matrix(x, ncol = 1),
+                                     y_ind = matrix(y, ncol = 1),
+                                     id = matrix(id, ncol = 1)),
+                          coords = c("x_coord", "y_coord"),
+                          crs = nc_proj,
+                          agr = "constant")
+  } else {
+
+    lon <- ncdf4::ncvar_get(nc, "lon")
+    lat <- ncdf4::ncvar_get(nc, "lat")
+
+    x <- matrix(rep(c(1:ncol(lon)), nrow(lon)),
+                nrow = nrow(lon), ncol = ncol(lon),
+                byrow = TRUE)
+
+    y <- matrix(rep(c(1:nrow(lon)), ncol(lon)),
+                nrow = nrow(lon), ncol = ncol(lon),
+                byrow = FALSE)
+
+    sf_points <- data.frame(x = matrix(x, ncol = 1),
+                            y = matrix(y, ncol = 1),
+                            lon = matrix(lon, ncol = 1),
+                            lat = matrix(lat, ncol = 1))
+    sf_points <- sf::st_as_sf(sf_points,
+                              coords = c("lon", "lat"),
+                              crs = "+init=epsg:4326",
+                              agr = "constant")
+
+  }
 
   sf_points_sub <- sf::st_intersection(
     sf::st_transform(sf_points,
