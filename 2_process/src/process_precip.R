@@ -7,7 +7,7 @@ process_precip_rasters <- function(ind_file, precip_data_ind,
 
 
   precip_spatial <- precip_data$spatial %>%
-    dplyr::select(-x, -y)
+    dplyr::select(-x_ind, -y_ind)
 
   precip <- precip_data$values
 

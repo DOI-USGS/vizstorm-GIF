@@ -3,6 +3,38 @@
 #' @param times the start and end time of the request
 fetch_precip_data <- function(ind_file, view_polygon, times) {
 
+  now <- Sys.time()
+  attributes(now)$tzone <- "UTC"
+  start <- as.POSIXct(times$start, tz = "UTC", format = "%Y-%m-%d")
+  end <- as.POSIXct(times$end, tz = "UTC", format = "%Y-%m-%d")
+  if(start  > now) {
+    # http://thredds.hydroshare.org/thredds/dodsC/nwm/forcing_medium_range/20180910/nwm.t12z.medium_range.forcing.f240.conus.nc
+    base_url <- "http://thredds.hydroshare.org/thredds/dodsC/nwm/forcing_medium_range/"
+    try_days <- c(format(now-(24*60*60), "%Y%m%d", tz = "UTC"), format(now, "%Y%m%d", tz = "UTC"))
+    try_runs <- c( "t00z", "t06z", "t12z","t18z")
+
+    for(try_day in try_days) { # Finds the most recent available model run.
+      for(try_run in try_runs) {
+        url <- paste0(base_url, try_day, "/nwm.", try_run, ".medium_range.forcing.")
+        if(httr::HEAD(paste0(url, "f001.conus.nc.html"))$status_code == 200) {
+          run <- try_run
+          day <- try_day
+          run_time <- as.POSIXct(paste0(day, run), format = "%Y%m%dt%Hz", tz = "UTC")
+          url_base <- url
+        }
+      }
+    }
+
+    start_hour <- round(as.numeric(start - run_time) * 24)
+    end_hour <- round(as.numeric(end - run_time) * 24)
+    if(end_hour > 240) end_hour <- 240
+    hours <- sprintf("f%03d", c(start_hour:end_hour))
+    urls <- sprintf("%s%s.conus.nc", url_base, hours)
+
+    precip_data <- get_precip_values(urls, dates = times, view_polygon = view_polygon)
+
+  } else {
+
   knife <- webprocess(algorithm = list('OPeNDAP Subset' = "gov.usgs.cida.gdp.wps.algorithm.FeatureCoverageOPeNDAPIntersectionAlgorithm"),
                       REQUIRE_FULL_COVERAGE = FALSE, wait = TRUE, OUTPUT_TYPE = 'netcdf')
 
@@ -57,6 +89,7 @@ fetch_precip_data <- function(ind_file, view_polygon, times) {
   precip_values <- do.call(rbind, lapply(precip_data_list, function(pdat) { pdat$values }))
   precip_spatial <- do.call(rbind, lapply(precip_data_list, function(pdat) { pdat$spatial }))
   precip_data <- list(values=precip_values, spatial=precip_spatial)
+  }
 
   data_file <- as_data_file(ind_file)
   saveRDS(precip_data, file = data_file)

@@ -37,8 +37,8 @@ precip_spatial <- function(nc, view_polygon) {
                 nrow = nrow(lon), ncol = ncol(lon),
                 byrow = FALSE)
 
-    sf_points <- data.frame(x = matrix(x, ncol = 1),
-                            y = matrix(y, ncol = 1),
+    sf_points <- data.frame(x_ind = matrix(x, ncol = 1),
+                            y_ind = matrix(y, ncol = 1),
                             lon = matrix(lon, ncol = 1),
                             lat = matrix(lat, ncol = 1))
     sf_points <- sf::st_as_sf(sf_points,
@@ -69,79 +69,127 @@ precip_spatial <- function(nc, view_polygon) {
 }
 
 
-get_precip_values <- function(precip_cube_nc_file, dates, view_polygon) {
+get_precip_values <- function(nc_input, dates, view_polygon) {
 
+  if(length(nc_input) > 1) { # NWM precip
 
-  nc <- ncdf4::nc_open(precip_cube_nc_file)
+    nc <- ncdf4::nc_open(nc_input[1])
+
+    nc_var <- "RAINRATE"
+    nc_time_length <- length(nc_input)
+    t_inds <- 1:length(nc_input)
+    t_vals <- as.POSIXct(rep(NA, length(nc_input)))
+    attr(t_vals, "tzone") <- "UTC"
+
+  } else { # stage IV precip
+
+    nc <- ncdf4::nc_open(nc_input)
+
+    nc_var < "Total_precipitation_surface_1_Hour_Accumulation"
+
+    start_date <- as.POSIXct(dates$start, tz = 'UTC')
+    end_date <- as.POSIXct(dates$end, tz = 'UTC')
+
+    t_vals <- get_time_nc(nc$dim$time)
+    t_inds <- which(t_vals >= start_date & t_vals <= end_date)
+    nc_time_length <- length(t_inds)
+
+  }
 
   precip_spatial <- precip_spatial(nc, view_polygon)
 
-  t_vals <- get_time_nc(nc$dim$time)
-
-  start_date <- as.POSIXct(dates$start, tz = 'UTC')
-  end_date <- as.POSIXct(dates$end, tz = 'UTC')
-
   x_inds <- seq(min(precip_spatial$x), max(precip_spatial$x), 1)
   y_inds <- seq(min(precip_spatial$y), max(precip_spatial$y), 1)
-  t_inds <- which(t_vals >= start_date & t_vals <= end_date)
 
   # ensures we make our request in the right axis order.
-  dimid_order <- match(nc$var$Total_precipitation_surface_1_Hour_Accumulation$dimids,
+  dimid_order <- match(nc$var[[nc_var]]$dimids,
                        c(nc$dim$x$id, nc$dim$y$id, nc$dim$time$id))
 
-  precip <- array(dim = c(length(x_inds), length(y_inds), length((t_inds))))
+  precip <- array(dim = c(length(x_inds), length(y_inds), nc_time_length))
   t_counter <- 1
 
-  for(step in seq(min(t_inds), max(t_inds), 1)) {
-    precip[,,t_counter] <-
-      ncdf4::ncvar_get(nc, nc$var$Total_precipitation_surface_1_Hour_Accumulation,
-                       start <- c(min(x_inds),
-                                  min(y_inds),
-                                  step)[dimid_order],
-                       count <- c(length(x_inds),
-                                  length(y_inds),
-                                  1)[dimid_order])
+  if(length(nc_input) > 1) {
+    for(url in nc_input) {
+      message(paste("Precip file ", t_counter, "of ", length(nc_input)))
 
-    if (t_counter %% 10 == 0){
-      message(paste(t_counter, 'of', length(t_inds)))
+      nc <- nc_open(url)
+
+      precip[,,t_counter] <-
+        ncdf4::ncvar_get(nc, nc$var[[nc_var]],
+                         start <- c(min(x_inds),
+                                    min(y_inds),
+                                    1)[dimid_order],
+                         count <- c(length(x_inds),
+                                    length(y_inds),
+                                    1)[dimid_order])
+      t_vals[t_counter] <- get_time_nc(nc$dim$time)
+      t_counter <- t_counter + 1
+      nc_close(nc)
     }
+    persecond_to_perhour <- 60^2
+    precip <- precip * persecond_to_perhour
+  } else {
+    for(step in seq(min(t_inds), max(t_inds), 1)) {
+      precip[,,t_counter] <-
+        ncdf4::ncvar_get(nc, nc$var$Total_precipitation_surface_1_Hour_Accumulation,
+                         start <- c(min(x_inds),
+                                    min(y_inds),
+                                    step)[dimid_order],
+                         count <- c(length(x_inds),
+                                    length(y_inds),
+                                    1)[dimid_order])
 
-    t_counter <- t_counter + 1
+      if (t_counter %% 10 == 0){
+        message(paste(t_counter, 'of', length(t_inds)))
+      }
+
+      t_counter <- t_counter + 1
+    }
+    nc_close(nc)
   }
-  nc_close(nc)
   precip <- arrayhelpers::array2df(precip)
 
-  x_inds <- data.frame(d1 = seq_len(length(x_inds)), x = x_inds)
-  y_inds <- data.frame(d2 = seq_len(length(y_inds)), y = y_inds)
-  t_inds <- data.frame(d3 = seq_len(length(t_inds)), t = t_inds)
+  x_inds <- data.frame(d1 = seq_len(length(x_inds)), x_ind = x_inds)
+  y_inds <- data.frame(d2 = seq_len(length(y_inds)), y_ind = y_inds)
+  t_inds <- data.frame(d3 = seq_len(length(t_inds)), t_ind = t_inds)
 
   precip <- precip %>%
     left_join(x_inds, by = "d1") %>%
     left_join(y_inds, by = "d2") %>%
     left_join(t_inds, by = "d3") %>%
     inner_join(sf::st_set_geometry(precip_spatial, NULL),
-               by = c("x", "y")) %>%
+               by = c("x_ind", "y_ind")) %>%
     left_join(data.frame(time = t_vals,
-                         t = seq_len(length(t_vals))),
-              by = "t") %>%
+                         t_ind = seq_len(length(t_vals))),
+              by = "t_ind") %>%
     dplyr::select(precip, time, id)
 
-  return(list(values = precip, spatial = precip_spatial))
+return(list(values = precip, spatial = precip_spatial))
 }
 
 get_time_nc <- function(t_dim) {
   time_units<-strsplit(t_dim$units, " ")[[1]]
   time_step<-time_units[1]
-  date_origin<-time_units[3]
+  date_origin<-time_units[3:length(time_units)]
+
+  if(length(date_origin) > 1) {
+    date_origin <- paste(date_origin, collapse = " ")
+  }
 
   if(grepl("hour", time_step, ignore.case = TRUE)) {
     multiplier <- (60^2)
+  } else if(grepl("minute", time_step, ignore.case = TRUE)) {
+    multiplier <- 60
   } else {
     stop("only hour time steps supported so far")
   }
 
+  try_formats <- c("%Y-%m-%d %H:%M:%S UTC", "%Y-%m-%dT%H:%M:%SZ", "%Y-%m-%d %H:%M:%OS",
+                   "%Y/%m/%d %H:%M:%OS", "%Y-%m-%d %H:%M", "%Y/%m/%d %H:%M", "%Y-%m-%d", "%Y/%m/%d")
+  dateformat <- try_formats[sapply(try_formats, function(fmt) !is.na(as.POSIXct(date_origin, format=fmt)))][1]
+
   origin <- as.POSIXct(strptime(date_origin,
-                                format = "%Y-%m-%dT%H:%M:%SZ",
+                                format = dateformat,
                                 tz = "UTC"),
                        tz = "UTC")
 
