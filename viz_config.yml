@@ -55,7 +55,7 @@ component_placement:
 
 ocean_name_placement:
   -
-    x1: 0.52
+    x1: 0.55
     y1: 0.18
     label: 'Atlantic Ocean'
 
