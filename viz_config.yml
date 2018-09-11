@@ -1,7 +1,7 @@
 storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
 storm_name: "Florence"
 dates:
-  start: '2018-09-10'
+  start: '2018-09-09'
   end: '2018-09-10'
 date_display_tz: 'UTC'
 
