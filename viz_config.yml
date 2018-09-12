@@ -6,8 +6,8 @@ dates:
 date_display_tz: 'UTC'
 
 # view, dimensions
-bbox: [-90, 30, -72, 40]
-projection: "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"
+bbox: [-83, 25, -67, 39]
+projection: "+proj=lcc +lat_1=36.16666666666666 +lat_2=34.33333333333334 +lat_0=33.75 +lon_0=-79 +x_0=609601.2192024384 +y_0=0 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs"
 height: 512
 width: 1024
 
@@ -55,8 +55,8 @@ component_placement:
 
 ocean_name_placement:
   -
-    x1: 0.55
-    y1: 0.18
+    x1: 0.43
+    y1: 0.35
     label: 'Atlantic Ocean'
 
 focus_geoms:
@@ -90,36 +90,27 @@ cities:
   pop_min: 500000 # minimum population size of cities to be chosen by default; `custom` will make additions or modifications and `exclude` will make subtractions
   custom: # cities to add or modify relative to the maps::us.cities dataset. added cities can use lat/long from us.cities if they are present in us.cities, even if they don't meet the pop_min criterion
     -
-      name: "Saint Louis MO"
-      text_angle: 200
-    -
-      name: "Columbus OH"
-      text_angle: 90
-    -
-      name: "Nashville TN"
-      text_angle: 270
-    -
       name: "Richmond VA"
-      text_angle: 180
+      text_angle: 150
     -
       name: "Jacksonville FL"
-      text_angle: 270
+      text_angle: 250
     -
       name: "Raleigh NC"
+      text_angle: 170
     -
       name: "Columbia SC"
-      text_angle: 90
-    -
-      name: "Atlanta GA"
+      text_angle: 120
     -
       name: "Wilmington NC"
       dot_cex: 0.8
       text_cex: 0.8
+      text_angle: 360
     -
       name: "Charleston SC"
       dot_cex: 0.8
       text_cex: 0.8
-      text_angle: 360
+      text_angle: 330
     -
       name: "Savannah GA"
       text_angle: 200    
@@ -133,7 +124,7 @@ cities:
       long: -78.8875
       dot_cex: 0.8
       text_cex: 0.8
-      text_angle: 360
+      text_angle: 330
     -
       name: "Nags Head NC"
       lat: 35.9425
@@ -141,14 +132,12 @@ cities:
       dot_cex: 0.8
       text_cex: 0.8
     -
-      name: "Montgomery AL"
-      text_angle: 95
-    -
       name: "Ocean City MD"
       lat: 38.3362
       long: -75.0847
       dot_cex: 0.8
       text_cex: 0.8
+      text_angle: 0
   exclude:
     - "Memphis TN"
     - "Oklahoma City OK"
@@ -157,6 +146,10 @@ cities:
     - "Chicago IL"
     - "Baltimore MD"
     - "WASHINGTON DC"
+    - "Indianapolis IN"
+    - "Columbus OH"
+    - "Nashville TN"
+    - "Charlotte NC"
 
 # Only streamorders greater than this will be fetched.
 fetch_streamorder: 5
