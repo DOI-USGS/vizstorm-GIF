@@ -150,6 +150,7 @@ cities:
     - "Columbus OH"
     - "Nashville TN"
     - "Charlotte NC"
+    - "Madison WI"
 
 # Only streamorders greater than this will be fetched.
 fetch_streamorder: 5
