@@ -25,6 +25,10 @@ fetch_precip_data <- function(ind_file, view_polygon, times) {
   # user's local timezone
   try_formats <- c("%Y-%m-%d %H:%M:%OS", "%Y/%m/%d %H:%M:%OS", "%Y-%m-%d %H:%M", "%Y/%m/%d %H:%M", "%Y-%m-%d", "%Y/%m/%d")
   dateformat <- try_formats[sapply(try_formats, function(fmt) all(!is.na(as.POSIXct(unlist(times), format=fmt))))]
+  # choose only the first that matches because technically "2018-09-11 00:00:00"
+  # matches "%Y-%m-%d %H:%M:%OS", "%Y-%m-%d %H:%M", and "%Y-%m-%d"
+  # so we just need it to choose the first of these, otherwise it causes an error
+  dateformat <- dateformat[1]
   dateseq <- as.POSIXct(unique(c(
     format(seq(as.POSIXct(times$start, tz='UTC'), as.POSIXct(times$end, tz='UTC'), by=as.difftime(3, units='days')), dateformat),
     times$end
