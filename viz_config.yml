@@ -1,19 +1,19 @@
-storm_code: al092017 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
-storm_name: "Harvey"
+storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
+storm_name: "Florence"
 dates:
-  start: '2017-08-25'
-  end: '2017-09-02'
+  start: '2018-09-09 00:00:00'
+  end: '2018-09-12 06:00:00'
 date_display_tz: 'UTC'
 
 # view, dimensions
-bbox: [-100, 22, -80, 34]
-projection: "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"
+bbox: [-83, 25, -67, 39]
+projection: "+proj=lcc +lat_1=36.16666666666666 +lat_2=34.33333333333334 +lat_0=33.75 +lon_0=-79 +x_0=609601.2192024384 +y_0=0 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs"
 height: 512
 width: 1024
 
 # styling
 precip_cols: ["#FAFBF3", "#F0F8E3", "#D4E9CA", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
-precip_bin: 4 # inches per bin
+precip_bin: 2 # inches per bin
 gage_flood_col: "#175676"
 gage_norm_col: "#4BA3C3"
 gage_out_col: "white"
@@ -48,16 +48,16 @@ component_placement:
   legend_x_pos: "left"
   legend_y_pos: "bottom"
   sparks:
-    xleft: 0.85 # as percentage of figure width
+    xleft: 0.70 # as percentage of figure width
     xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
     ybottom: 0.01 # as percentage of figure height
     ytop: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 ocean_name_placement:
   -
-    x1: 0.5
+    x1: 0.43
     y1: 0.35
-    label: 'Gulf of Mexico'
+    label: 'Atlantic Ocean'
 
 focus_geoms:
   - # U.S. counties
@@ -90,71 +90,66 @@ cities:
   pop_min: 500000 # minimum population size of cities to be chosen by default; `custom` will make additions or modifications and `exclude` will make subtractions
   custom: # cities to add or modify relative to the maps::us.cities dataset. added cities can use lat/long from us.cities if they are present in us.cities, even if they don't meet the pop_min criterion
     -
-      name: "Houston TX"
-    -
-      name: "Fort Worth TX"
+      name: "Richmond VA"
       text_angle: 150
     -
-      name: "Dallas TX"
+      name: "Jacksonville FL"
+      text_angle: 250
     -
-      name: "Memphis TN"
-    -
-      name: "San Antonio TX"
-      text_angle: -180
-    -
-      name: "Austin TX"
-      text_angle: -180
-    -
-      name: "Corpus Christi TX"
-      dot_cex: 0.8
-      text_cex: 0.8
-      text_angle: -45
-    -
-      name: "Port Aransas TX"
-      pop: 3480
-      lat: 27.8333
-      long: -97.0667
-      dot_cex: 0.8
-      text_cex: 0.8
-      text_angle: 0
-    -
-      name: "Conroe TX"
-      dot_cex: 0.8
-      text_cex: 0.8
+      name: "Raleigh NC"
       text_angle: 170
     -
-      name: "Nederland TX"
-      pop: 17547
-      lat: 29.973056
-      long: -93.9967
+      name: "Columbia SC"
+      text_angle: 120
+    -
+      name: "Wilmington NC"
+      dot_cex: 0.8
+      text_cex: 0.8
+      text_angle: 360
+    -
+      name: "Charleston SC"
+      dot_cex: 0.8
+      text_cex: 0.8
+      text_angle: 330
+    -
+      name: "Savannah GA"
+      text_angle: 200    
+    -
+      name: "Virginia Beach VA"
       dot_cex: 0.8
       text_cex: 0.8
     -
-      name: "Port Lavaca TX"
-      pop: 12248
-      lat: 28.6156
-      long: -96.6297
+      name: "Myrtle Beach SC"
+      lat: 33.6917
+      long: -78.8875
+      dot_cex: 0.8
+      text_cex: 0.8
+      text_angle: 330
+    -
+      name: "Nags Head NC"
+      lat: 35.9425
+      long: -75.6228
+      dot_cex: 0.8
+      text_cex: 0.8
+    -
+      name: "Ocean City MD"
+      lat: 38.3362
+      long: -75.0847
       dot_cex: 0.8
       text_cex: 0.8
       text_angle: 0
-    -
-      name: "Rockport TX"
-      pop: 8766
-      lat: 28.0486
-      long: -97.0411
-      dot_cex: 0.8
-      text_cex: 0.8
-    -
-      name: "Victoria TX"
-      pop: 62592
-      lat: 28.8169
-      long: -96.9933
-      dot_cex: 0.8
-      text_cex: 0.8
-      text_angle: 180
   exclude:
-    - "Jacksonville FL"
+    - "Memphis TN"
     - "Oklahoma City OK"
+    - "Fort Worth TX"
+    - "Dallas TX"
+    - "Chicago IL"
+    - "Baltimore MD"
+    - "WASHINGTON DC"
+    - "Indianapolis IN"
+    - "Columbus OH"
+    - "Nashville TN"
+    - "Charlotte NC"
 
 # Only streamorders greater than this will be fetched.
 fetch_streamorder: 5
