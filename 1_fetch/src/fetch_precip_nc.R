@@ -2,6 +2,10 @@
 #' @param view_polygon from the view_polygon target
 #' @param times the start and end time of the request
 fetch_precip_data <- function(ind_file, view_polygon, times) {
+  fabric <- webdata(
+    url = 'https://cida.usgs.gov/thredds/dodsC/stageiv_combined',
+    variables = "Total_precipitation_surface_1_Hour_Accumulation",
+    times = as.POSIXct(c(times$start,times$end), tz = 'UTC'))
 
   knife <- webprocess(algorithm = list('OPeNDAP Subset' = "gov.usgs.cida.gdp.wps.algorithm.FeatureCoverageOPeNDAPIntersectionAlgorithm"),
                       REQUIRE_FULL_COVERAGE = FALSE, wait = TRUE, OUTPUT_TYPE = 'netcdf')
@@ -19,50 +23,10 @@ fetch_precip_data <- function(ind_file, view_polygon, times) {
   stencil_pts <- as.stencil_pt('xmax', 'ymin', 'low_right') %>% cbind(stencil_pts)
   stencil_pts <- as.stencil_pt('xmin', 'ymin', 'low_left') %>% cbind(stencil_pts)
 
-  # break times into chunks to avoid WAF rejections of queries that are "too
-  # big". use dateformat and some string-POSIXct back and forth to retain the
-  # UTC timezone despite calls to c(), which always switches you back into
-  # user's local timezone
-  try_formats <- c("%Y-%m-%d %H:%M:%OS", "%Y/%m/%d %H:%M:%OS", "%Y-%m-%d %H:%M", "%Y/%m/%d %H:%M", "%Y-%m-%d", "%Y/%m/%d")
-  dateformat <- try_formats[sapply(try_formats, function(fmt) all(!is.na(as.POSIXct(unlist(times), format=fmt))))]
-  # choose only the first that matches because technically "2018-09-11 00:00:00"
-  # matches "%Y-%m-%d %H:%M:%OS", "%Y-%m-%d %H:%M", and "%Y-%m-%d"
-  # so we just need it to choose the first of these, otherwise it causes an error
-  dateformat <- dateformat[1]
-  dateseq <- as.POSIXct(unique(c(
-    format(seq(as.POSIXct(times$start, tz='UTC'), as.POSIXct(times$end, tz='UTC'), by=as.difftime(3, units='days')), dateformat),
-    times$end
-  )), tz='UTC')
-  precip_data_list <- lapply(seq_len(length(dateseq)-1), function(i) {
-    message(sprintf("pulling precip for %s to %s", dateseq[i], dateseq[i+1]))
-    # define the fabric, subset by time
-    times_subset <- if(i == length(dateseq)-1) {
-      dateseq[i:(i+1)]
-    } else {
-      as.POSIXct(
-        c(format(dateseq[i], "%Y-%m-%d %H:%M:%OS"),
-          format(dateseq[i+1]-as.difftime(1, units='mins'), "%Y-%m-%d %H:%M:%OS")),
-        tz='UTC')
-    }
-    fabric <- webdata(
-      url = 'https://cida.usgs.gov/thredds/dodsC/stageiv_combined',
-      variables = "Total_precipitation_surface_1_Hour_Accumulation",
-      times = times_subset)
+  # run the job and retrieve the results
+  job <- geoknife(stencil = stencil_pts, fabric = fabric, knife = knife)
+  nc_file <- as_data_file(ind_file)
+  download(.Object = job, destination = nc_file, overwrite = TRUE)
 
-    # run the job and retrieve the results
-    job <- geoknife(stencil = stencil_pts, fabric = fabric, knife = knife)
-    nc_file <- file.path(tempfile(fileext = '.nc'))
-    download(.Object = job, destination = nc_file, overwrite = TRUE)
-
-    # process the nc file into precipitation values
-    precip_dat <- get_precip_values(nc_file, dates = times, view_polygon = view_polygon)
-    return(precip_dat)
-  })
-  precip_values <- do.call(rbind, lapply(precip_data_list, function(pdat) { pdat$values }))
-  precip_spatial <- do.call(rbind, lapply(precip_data_list, function(pdat) { pdat$spatial }))
-  precip_data <- list(values=precip_values, spatial=precip_spatial)
-
-  data_file <- as_data_file(ind_file)
-  saveRDS(precip_data, file = data_file)
-  gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
+  gd_put(remote_ind=ind_file, local_source=nc_file, mock_get='none')
 }
