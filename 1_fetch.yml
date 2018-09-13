@@ -5,6 +5,7 @@ packages:
   - yaml
   - httr
   - sf
+  - sp
   - mapdata
   - maps
   - ncdf4
