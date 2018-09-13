@@ -5,6 +5,7 @@ packages:
   - yaml
   - httr
   - sf
+  - sp
   - mapdata
   - maps
   - ncdf4
@@ -23,7 +24,6 @@ sources:
   - 1_fetch/src/map_utils.R
   - 1_fetch/src/fetch_sites.R
   - 1_fetch/src/fetch_precip_nc.R
-  - 1_fetch/src/fetch_precip_values.R
   - 1_fetch/src/fetch_river_geometry.R
   - 1_fetch/src/fetch_precip_bins.R
   - 1_fetch/src/fetch_major_cities.R
@@ -36,7 +36,7 @@ targets:
       - 1_fetch/out/storm_track.zip.ind
       - 1_fetch/out/all_sites.rds.ind
       - 1_fetch/out/streamdata.rds.ind
-      - 1_fetch/out/precip_data.rds.ind
+      - 1_fetch/out/precip_data.nc.ind
       - 1_fetch/out/major_river_geometry.rds.ind
       - 1_fetch/out/gage_river_geometry.rds.ind
       - 1_fetch/out/waterbodies.rds.ind
@@ -123,11 +123,11 @@ targets:
     command: gd_get('1_fetch/out/streamdata.rds.ind')
 
   # -- get precip --
-  1_fetch/out/precip_data.rds.ind:
+  1_fetch/out/precip_data.nc.ind:
     command: fetch_precip_data(ind_file=target_name,
                                 view_polygon = view_polygon, times = dates)
-  1_fetch/out/precip_data.rds:
-    command: gd_get('1_fetch/out/precip_data.rds.ind')
+  1_fetch/out/precip_data.nc:
+    command: gd_get('1_fetch/out/precip_data.nc.ind')
 
   # -- get river geometry --
   fetch_streamorder:
