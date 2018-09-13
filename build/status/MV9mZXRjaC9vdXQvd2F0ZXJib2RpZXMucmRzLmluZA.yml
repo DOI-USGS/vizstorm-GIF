@@ -1,10 +1,10 @@
 version: 0.3.0
 name: 1_fetch/out/waterbodies.rds.ind
 type: file
-hash: 8777f3466e8e652f6d0fc10a8cfe0d27
-time: 2018-09-12 13:54:38 UTC
+hash: 6d2079493fd2b39984596d3436d0768d
+time: 2018-09-13 18:36:51 UTC
 depends:
-  view_polygon: 68e9c6762838bba908b7a92232936067
+  view_polygon: 963c6e035223f2e42edf28ab3dd0143d
   fetch_waterbody_areasqkm: 4334c63269de1c6f7b7e1d70b3f89f2c
 fixed: 0e19ed11fcf2446b824d44a019734de2
 code:

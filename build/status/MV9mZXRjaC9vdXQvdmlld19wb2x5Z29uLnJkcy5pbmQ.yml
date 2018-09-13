@@ -1,14 +1,14 @@
 version: 0.3.0
 name: 1_fetch/out/view_polygon.rds.ind
 type: file
-hash: d191efe949b33dbf3813469e5e9b45bf
-time: 2018-09-13 00:11:43 UTC
+hash: a2246557f63ddca405749edbe22a16bb
+time: 2018-09-13 18:20:30 UTC
 depends:
   view_config: b01239dd11221fc2b4a7cc70434d1ff5
 fixed: 844b9f5995f734b50b58b2afbd15ea5f
 code:
   functions:
-    as_view_polygon: e36ef6bc9c4e7a7dd37a258e3f268daf
-    bbox_to_polygon: 8c5a2372da7d872f17d70c39e1a4d929
+    as_view_polygon: 75c2e1adf507d6326e027229a8b8b70f
+    bbox_to_polygon: 21ab8626aa0c575eed70723c3b6eb1b4
     post_view_polygon: af2c93d884be10543e213628a10a8760
 
