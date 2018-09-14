@@ -12,7 +12,7 @@ prep_gage_sites_fun <- function(stage_data, gage_col_config, DateTime){
          pch = 21, bg = gage_col_config$gage_norm_col, col = NA, cex = 1.3)
     plot(sf::st_geometry(flood_data_sites$geometry),
          pch = 21, bg = gage_col_config$gage_norm_col, add = TRUE,
-         col = gage_col_config$gage_flood_col, lwd = 2, cex = 1.3)
+         col = gage_col_config$gage_flood_col, lwd = 3, cex = 1.4)
     plot(sf::st_geometry(missing_data_sites$geometry),
          pch = 4, bg = gage_col_config$gage_norm_col, add = TRUE,
          col = gage_col_config$gage_out_col, lwd = 4, cex = 1.3)
