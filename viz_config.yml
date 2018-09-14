@@ -1,8 +1,8 @@
 storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
 storm_name: "Florence"
 dates:
-  start: '2018-09-09 00:00:00'
-  end: '2018-09-13 12:00:00'
+  start: '2018-09-13 00:00:00'
+  end: '2018-09-14 09:00:00'
 date_display_tz: 'UTC'
 
 # view, dimensions
@@ -55,8 +55,8 @@ component_placement:
 
 ocean_name_placement:
   -
-    x1: 0.43
-    y1: 0.35
+    x1: 0.4
+    y1: 0.3
     label: 'Atlantic Ocean'
 
 focus_geoms:
@@ -80,7 +80,7 @@ cities:
     bg: "gray30"
     col: NA
     pch: 21
-    cex: 1.1
+    cex: 0.6
   text:
     col: "gray30"
     font: 1
@@ -94,7 +94,7 @@ cities:
       text_angle: 150
     -
       name: "Jacksonville FL"
-      text_angle: 250
+      text_angle: 30
     -
       name: "Raleigh NC"
       text_angle: 170
@@ -103,12 +103,12 @@ cities:
       text_angle: 120
     -
       name: "Wilmington NC"
-      dot_cex: 0.8
+      dot_cex: 0.2
       text_cex: 0.8
       text_angle: 360
     -
       name: "Charleston SC"
-      dot_cex: 0.8
+      dot_cex: 0.2
       text_cex: 0.8
       text_angle: 330
     -
@@ -116,28 +116,22 @@ cities:
       text_angle: 200    
     -
       name: "Virginia Beach VA"
-      dot_cex: 0.8
+      dot_cex: 0.2
       text_cex: 0.8
     -
       name: "Myrtle Beach SC"
       lat: 33.6917
       long: -78.8875
-      dot_cex: 0.8
+      dot_cex: 0.2
       text_cex: 0.8
       text_angle: 330
     -
       name: "Nags Head NC"
       lat: 35.9425
       long: -75.6228
-      dot_cex: 0.8
+      dot_cex: 0.2
       text_cex: 0.8
-    -
-      name: "Ocean City MD"
-      lat: 38.3362
-      long: -75.0847
-      dot_cex: 0.8
-      text_cex: 0.8
-      text_angle: 0
+
   exclude:
     - "Memphis TN"
     - "Oklahoma City OK"
