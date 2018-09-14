@@ -1,6 +1,7 @@
 
 prep_datetime_fun <- function(datetime, component_placement, date_display_tz){
-  datetime <- strftime(as.POSIXct(datetime, tz=date_display_tz), format = '%b %d %I:%M %p %Z')
+  
+  datetime <- strftime(as.POSIXct(datetime, tz=date_display_tz), format = '%b %d %I:%M %p %Z', tz = "America/New_York" )
 
   plot_fun <- function(){
     # coordinate space (edges, width, height)
