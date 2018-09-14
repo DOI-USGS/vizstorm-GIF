@@ -172,7 +172,7 @@ prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_confi
         # Add stage shapes to plot
         polygon(full_poly$x, full_poly$y, col = gage_col_config$gage_norm_col, border=NA)
         polygon(flood_poly$x, flood_poly$y, col = gage_col_config$gage_flood_col, border=NA)
-        points(hydro_line$x, hydro_line$y, col = gage_col_config$gage_flood_col, type='l', lwd=2.5)
+        points(hydro_line$x, hydro_line$y, col = gage_col_config$gage_line_col, type='l', lwd=2)
 
         # add the x and/or o
         if(num_chunks > 1) {
