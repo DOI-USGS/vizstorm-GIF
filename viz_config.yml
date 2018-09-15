@@ -2,7 +2,7 @@ storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archi
 storm_name: "Florence"
 dates:
   start: '2018-09-10 00:00:00'
-  end: '2018-09-14 06:00:00'
+  end: '2018-09-14 18:00:00'
 date_display_tz: 'UTC'
 
 # view, dimensions
