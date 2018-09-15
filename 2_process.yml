@@ -63,6 +63,15 @@ targets:
       proj_str = proj_str)
   2_process/out/gage_sites_geom.rds:
     command: gd_get('2_process/out/gage_sites_geom.rds.ind')
+  2_process/out/outro_gage_sites_geom.rds.ind:
+    command: filter_sites_geom(
+      ind_file = target_name,
+      sites_ind = '1_fetch/out/all_sites_really.rds.ind',
+      view_polygon = view_polygon,
+      focus_geoms_ind = '1_fetch/out/focus_geoms.rds.ind',
+      proj_str = proj_str)
+  2_process/out/outro_gage_sites_geom.rds:
+    command: gd_get('2_process/out/outro_gage_sites_geom.rds.ind')
   2_process/out/gage_sites_custom.rds.ind:
     command: filter_sites_custom(
       ind_file = target_name,
