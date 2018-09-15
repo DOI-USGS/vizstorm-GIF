@@ -9,12 +9,13 @@ sources:
 targets:
   6_outro_gif_frames:
     depends:
-      - rdgs_fun_1
+      - 6_visualize/tmp/gif_frame_a_outro_ltn_1.png
       - 6_visualize/tmp/gif_frame_a_outro_rdgs_1.png
+      - 6_visualize/tmp/gif_frame_a_outro_readmore_1.png
 
   ltn_fun_1:
     command: prep_outro_allsites_fun(
-      allsites_ind="2_process/out/gage_sites_geom.rds.ind",
+      allsites_ind="2_process/out/outro_gage_sites_geom.rds.ind",
       gage_color_config, outro_placement, legend_text_cfg, opacity=1)
 
   6_visualize/tmp/gif_frame_a_outro_ltn_1.png:
@@ -60,3 +61,25 @@ targets:
       watermark_fun)
       
       
+  readmore_fun_1:
+    command: prep_outro_readmore_fun(outro_placement, legend_text_cfg, opacity=1)
+  
+  6_visualize/tmp/gif_frame_a_outro_readmore_1.png:
+    command: create_animation_frame(
+      png_file=target_name,
+      config=storm_frame_config,
+      view_fun,
+      basemap_fun,
+      ocean_name_fun,
+      precip_raster_fun_a_20180915_06,
+      storm_line_fun,
+      storm_point_fun_a_20180915_06,
+      rivers_fun,
+      ltn_fun_1,
+      rdgs_fun_1,
+      readmore_fun_1,
+      gage_sites_fun_a_20180915_06,
+      legend_fun_a_20180915_06,
+      datetime_fun_a_20180915_06,
+      cities_fun,
+      watermark_fun)
