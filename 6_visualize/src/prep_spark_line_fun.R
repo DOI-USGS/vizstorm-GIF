@@ -123,7 +123,7 @@ prep_spark_funs_data <- function(stage_data, site_data, timestep_ind, spark_conf
 
 }
 
-prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_config, gage_col_config, DateTime) {
+prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_config, gage_col_config, DateTime, legend_text_cfg) {
 
   # most of the prep work happens in prep_spark_funs_data, which is shared with prep_spark_starts_fun
   spark_funs_data <- prep_spark_funs_data(stage_data, site_data, timestep_ind, spark_config, DateTime)
@@ -144,6 +144,12 @@ prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_confi
     # Ask the open device for the user coordinates
     coord_space <- par()$usr
 
+    # Plot the sparklines title
+    title_x <- coord_space[1] + mean(x_coords) * diff(coord_space[1:2])
+    title_y <- coord_space[3] + mean(c(max(y_coords$upper), 1)) * diff(coord_space[3:4])
+    text(x=title_x, y=title_y, labels="Water level at selected USGS gages", adj=c(0.5, 0.5),
+         cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
+    
     for(site in names(shapes)) {
 
       # Convert normalized plot coordinates to user coordinates
@@ -172,7 +178,7 @@ prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_confi
         # Add stage shapes to plot
         polygon(full_poly$x, full_poly$y, col = gage_col_config$gage_norm_col, border=NA)
         polygon(flood_poly$x, flood_poly$y, col = gage_col_config$gage_flood_col, border=NA)
-        points(hydro_line$x, hydro_line$y, col = gage_col_config$gage_flood_col, type='l', lwd=2.5)
+        points(hydro_line$x, hydro_line$y, col = gage_col_config$gage_line_col, type='l', lwd=2)
 
         # add the x and/or o
         if(num_chunks > 1) {

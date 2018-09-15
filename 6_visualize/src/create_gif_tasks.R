@@ -57,7 +57,8 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_track_cfg, storm
         "storm_points_sf = storm_points_sf,",
         "DateTime = I(NA),",
         "x_pos = legend_x_pos,",
-        "y_pos = legend_y_pos)"
+        "y_pos = legend_y_pos,",
+        "legend_text_cfg = legend_text_cfg)"
       )
     }
   )
@@ -79,9 +80,9 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_track_cfg, storm
         "rivers_fun,",
         "gage_sites_initial,",
         if(has_storm_track) "storm_line_fun,",
-        "cities_fun,",
         "gage2spark_fun_%s,"=cur_task$tn,
         "legend_fun_%s,"=cur_task$tn,
+        "cities_fun,",
         "watermark_fun)"
       )
     }
@@ -95,9 +96,11 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_track_cfg, storm
     ind_dir=folders$log)
 }
 
-create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders){
+create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders, frame_step = 1){
 
-  timestep <- readRDS(sc_retrieve(timestep_ind))
+  all_timestep <- readRDS(sc_retrieve(timestep_ind))
+  timestep <- all_timestep[seq(1, by = frame_step, to = length(all_timestep))]
+  
   has_storm_track <- !is.null(storm_track_cfg$storm_code)
 
   cfgs <- c('a') # for now, just use one config, since > 1 results in duplication of input files
@@ -171,7 +174,8 @@ create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders){
         "timestep_ind = '2_process/out/timesteps.rds.ind',",
         "sparkline_placement,",
         "gage_color_config,",
-        "I('%s'))"=cur_task$timestep)
+        "I('%s'),"=cur_task$timestep,
+        "legend_text_cfg = legend_text_cfg)")
     }
   )
 
@@ -203,7 +207,8 @@ create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders){
         "storm_points_sf = storm_points_sf,",
         "DateTime = I('%s')," = format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"),
         "x_pos = legend_x_pos,",
-        "y_pos = legend_y_pos)"
+        "y_pos = legend_y_pos,",
+        "legend_text_cfg = legend_text_cfg)"
       )
     }
   )
@@ -222,15 +227,15 @@ create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders){
         "view_fun,",
         "basemap_fun,",
         "ocean_name_fun,",
-        "rivers_fun,",
         "precip_raster_fun_%s,"=cur_task$tn,
-        "gage_sites_fun_%s,"=cur_task$tn,
-        "cities_fun,",
         if(has_storm_track) "storm_line_fun,",
         if(has_storm_track) c("storm_point_fun_%s,"=cur_task$tn),
         "spark_line_%s,"= cur_task$tn,
+        "rivers_fun,",
+        "gage_sites_fun_%s,"=cur_task$tn,
         "legend_fun_%s,"=cur_task$tn,
         "datetime_fun_%s,"=cur_task$tn,
+        "cities_fun,",
         "watermark_fun)",
         #"streamdata_%s,"= cur_task$tn,
         sep="\n      ")
@@ -250,12 +255,12 @@ create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders){
         "view_fun,",
         "basemap_fun,",
         "ocean_name_fun,",
-        "cities_fun,",
         if(has_storm_track) "storm_line_fun,",
         if(has_storm_track) c("storm_point_fun_%s,"=cur_task$tn),
         "legend_fun_%s,"=cur_task$tn,
         "bbox_fun,",
         "datetime_fun_%s,"=cur_task$tn,
+        "cities_fun,",
         "watermark_fun)",
         sep="\n      ")
     }

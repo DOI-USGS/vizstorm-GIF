@@ -54,9 +54,11 @@ targets:
   date_display_tz:
     command: viz_config[[I('date_display_tz')]]
   gage_color_config:
-    command: viz_config[I(c('gage_flood_col','gage_norm_col','gage_out_col'))]
+    command: viz_config[I(c('gage_flood_col','gage_norm_col','gage_out_col','gage_line_col'))]
   intro_config:
     command: viz_config[[I(c('intro'))]]
+  legend_text_cfg:
+    command: viz_config[[I("legend_text")]]
 
   # ---- location of images on figure ---- #
   component_placement:
@@ -165,12 +167,16 @@ targets:
 
   storm_frame_config:
     command: viz_config[I(c('width','height'))]
+    
+  storm_frame_step:
+    command: viz_config[[I('frame_step')]]
 
   storm_gif_tasks:
     command: create_storm_gif_tasks(
       timestep_ind = '2_process/out/timesteps.rds.ind',
       storm_track_cfg = storm_track_cfg,
-      folders = visualize_folders)
+      folders = visualize_folders, 
+      frame_step = storm_frame_step)
 
   6_storm_gif_tasks.yml:
     command: create_storm_gif_makefile(
