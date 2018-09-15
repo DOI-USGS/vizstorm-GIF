@@ -51,14 +51,10 @@ prep_major_cities_fun <- function(cities_ind){
          pos = cities$text_pos,
          col = cities$text_col,
          font = cities$text_font,
-         offset = 0.2)
+         offset = 0) # use offset = 2 if adding callout lines
     
-    for (city_name in cities$name){
-      city <- cities %>% filter(name == city_name)
-      
-      segments(city$text_x, y0 = city$text_y, x1 = city$dot_x, y1 = city$dot_y)
-    }
-    
+    # add callout lines between points and labels
+    # segments(x0=cities$text_x, y0=cities$text_y, x1=cities$dot_x, y1=cities$dot_y, col=cities$dot_col)
 
   }
   return(plot_fun)
