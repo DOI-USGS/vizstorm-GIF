@@ -5,13 +5,13 @@ dates:
   start: '2018-09-10 00:00:00'
   end: '2018-09-15 17:00:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
-frame_step: 3 # hours elapsed between GIF frames
+frame_step: 1 # hours elapsed between GIF frames
 
 # view, dimensions
 bbox: [-83, 24.4, -67, 38.5]
 projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
-height: 512
-width: 1024
+height: 600
+width: 1080
 
 # styling
 precip_cols: ["#FAFBF350", "#F0F8E380", "#D4E9CA", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
@@ -111,7 +111,7 @@ cities:
     -
       name: "Raleigh NC"
       text_angle: 170
-    - 
+    -
       name: "Charlotte NC"
       text_angle: 170
     -
@@ -157,17 +157,17 @@ cities:
     #  dot_cex: 0.8
     #  text_cex: 0.8
     # UPCOMING ALONG STORM TRACK:
-    #- 
+    #-
     #  name: "Knoxville TN"
-    #- 
+    #-
     #  name: "Columbus OH"
-    #- 
+    #-
     #  name: "Pittsburgh PA"
-    #- 
+    #-
     #  name: "New York NY"
-    #- 
+    #-
     #  name: "Boston MA"
-    
+
   exclude:
     - "Knoxville TN"
     - "Richmond VA"
