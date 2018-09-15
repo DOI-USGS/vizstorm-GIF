@@ -52,7 +52,7 @@ component_placement:
     xleft: 0.70 # as percentage of figure width
     xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
     ybottom: 0.01 # as percentage of figure height
-    ytop: 0.90 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    ytop: 0.90 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 ocean_name_placement:
   -
