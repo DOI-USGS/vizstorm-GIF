@@ -143,7 +143,7 @@ prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_confi
     
     # Ask the open device for the user coordinates
     coord_space <- par()$usr
-    
+
     # Plot the sparklines title
     title_x <- coord_space[1] + mean(x_coords) * diff(coord_space[1:2])
     title_y <- coord_space[3] + mean(c(max(y_coords$upper), 1)) * diff(coord_space[3:4])
