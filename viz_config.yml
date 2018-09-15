@@ -3,7 +3,7 @@ storm_name: "Florence"
 dates:
   start: '2018-09-10 00:00:00'
   end: '2018-09-15 06:00:00'
-date_display_tz: 'UTC'
+date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 
 # view, dimensions
 bbox: [-83, 24.4, -67, 38.5]
@@ -27,6 +27,10 @@ lake_col: "#a2c7eb"
 marsh_col: NA
 ocean_col: "#e7f1fa"
 storm_line_col: "grey70"
+legend_text:
+  cex: 1.5
+  col: "#161616"
+  family: ""
 
 # introductory animation
 intro:
@@ -52,7 +56,7 @@ component_placement:
     xleft: 0.70 # as percentage of figure width
     xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
     ybottom: 0.01 # as percentage of figure height
-    ytop: 0.90 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    ytop: 0.90 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 ocean_name_placement:
   -
