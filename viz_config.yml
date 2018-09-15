@@ -1,31 +1,37 @@
 storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
 storm_name: "Florence"
+stn_event: 283
 dates:
-  start: '2018-09-09 00:00:00'
-  end: '2018-09-12 06:00:00'
-date_display_tz: 'UTC'
+  start: '2018-09-10 00:00:00'
+  end: '2018-09-15 06:00:00'
+date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 
 # view, dimensions
-bbox: [-83, 25, -67, 39]
-projection: "+proj=lcc +lat_1=36.16666666666666 +lat_2=34.33333333333334 +lat_0=33.75 +lon_0=-79 +x_0=609601.2192024384 +y_0=0 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs"
+bbox: [-83, 24.4, -67, 38.5]
+projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
 height: 512
 width: 1024
 
 # styling
 precip_cols: ["#FAFBF3", "#F0F8E3", "#D4E9CA", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
-precip_bin: 2 # inches per bin
+precip_bin: 3 # inches per bin
 gage_flood_col: "#175676"
+gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
 gage_out_col: "white"
 hurricane_col: "orange"
-hurricane_cols: ["#71c633", "#f4f141", "#f47c41", "#f44141", "#d63995"]
-hurricane_col_names: ["Tropical Storm %s", "Hurricane %s (Cat1)", "Hurricane %s (Cat2)", "Hurricane %s (Cat3)", "Hurricane %s (Cat4)"] # If these change, legend layout may break
+hurricane_cols: ["#71c633", "#FBC195", "#FB8147", "#EF5F2C", "#C63526", "#6E1B14"]
+hurricane_col_names: ["Tropical Storm %s", "Hurricane %s (Cat1)", "Hurricane %s (Cat2)", "Hurricane %s (Cat3)", "Hurricane %s (Cat4)", "Hurricane %s (Cat5)"] # If these change, legend layout may break
 major_river_col: "#1874cd"
 gage_river_col: "#5d9ddc"
 lake_col: "#a2c7eb"
-marsh_col: "#a3b7b2"
+marsh_col: NA
 ocean_col: "#e7f1fa"
 storm_line_col: "grey70"
+legend_text:
+  cex: 1.5
+  col: "#161616"
+  family: ""
 
 # introductory animation
 intro:
@@ -51,12 +57,12 @@ component_placement:
     xleft: 0.70 # as percentage of figure width
     xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
     ybottom: 0.01 # as percentage of figure height
-    ytop: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    ytop: 0.90 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 ocean_name_placement:
   -
-    x1: 0.43
-    y1: 0.35
+    x1: 0.4
+    y1: 0.3
     label: 'Atlantic Ocean'
 
 focus_geoms:
@@ -77,68 +83,84 @@ secondary_geoms:
 
 cities:
   dot: # parameters for general coloring of the
-    bg: "gray30"
-    col: NA
-    pch: 21
-    cex: 1.1
+    bg: "gray40"
+    col: "gray40"
+    pch: 5
+    cex: 1
   text:
-    col: "gray30"
+    col: "gray40"
     font: 1
     cex: 1.1
-    angle: 30 # angle in radians for position of label relative to dot. pos is computed from angle: 225-315=1, 315-45=4, 45-135=3, 135-225=2
-    dist: 0.01 # relative (fraction of window width) distance from dot to label
+    angle: 330 # angle in radians for position of label relative to dot. pos is computed from angle: 225-315=1, 315-45=4, 45-135=3, 135-225=2
+    dist: 0.007 # relative (fraction of window width) distance from dot to label
   pop_min: 500000 # minimum population size of cities to be chosen by default; `custom` will make additions or modifications and `exclude` will make subtractions
   custom: # cities to add or modify relative to the maps::us.cities dataset. added cities can use lat/long from us.cities if they are present in us.cities, even if they don't meet the pop_min criterion
-    -
-      name: "Richmond VA"
-      text_angle: 150
-    -
-      name: "Jacksonville FL"
-      text_angle: 250
+    #-
+    #  name: "Richmond VA"
+    #  text_angle: 170
     -
       name: "Raleigh NC"
       text_angle: 170
+    - 
+      name: "Charlotte NC"
+      text_angle: 170
     -
       name: "Columbia SC"
-      text_angle: 120
+      text_angle: 170
+    #-
+    #  name: "Savannah GA"
+    #  text_angle: 170
+    #-
+    #  name: "Jacksonville FL"
+    #-
+    #  name: "Virginia Beach VA"
+    #  dot_cex: 0.8
+    #  text_cex: 0.8
+    #-
+    #  name: "Nags Head NC"
+    #  lat: 35.9425
+    #  long: -75.6228
+    #  dot_cex: 0.8
+    #  text_cex: 0.8
+    -
+      name: "New Bern NC"
+      news: "CBS"
+      dot_cex: 0.8
+      text_cex: 0.8
+      lat: 35.107686
+      long: -77.051366
     -
       name: "Wilmington NC"
-      dot_cex: 0.8
-      text_cex: 0.8
-      text_angle: 360
-    -
-      name: "Charleston SC"
-      dot_cex: 0.8
-      text_cex: 0.8
-      text_angle: 330
-    -
-      name: "Savannah GA"
-      text_angle: 200    
-    -
-      name: "Virginia Beach VA"
+      news: "CBS"
       dot_cex: 0.8
       text_cex: 0.8
     -
       name: "Myrtle Beach SC"
+      news: "CBS"
       lat: 33.6917
       long: -78.8875
       dot_cex: 0.8
       text_cex: 0.8
-      text_angle: 330
-    -
-      name: "Nags Head NC"
-      lat: 35.9425
-      long: -75.6228
-      dot_cex: 0.8
-      text_cex: 0.8
-    -
-      name: "Ocean City MD"
-      lat: 38.3362
-      long: -75.0847
-      dot_cex: 0.8
-      text_cex: 0.8
-      text_angle: 0
+    #-
+    #  name: "Charleston SC"
+    #  news: "google/crisismap"
+    #  dot_cex: 0.8
+    #  text_cex: 0.8
+    # UPCOMING ALONG STORM TRACK:
+    #- 
+    #  name: "Knoxville TN"
+    #- 
+    #  name: "Columbus OH"
+    #- 
+    #  name: "Pittsburgh PA"
+    #- 
+    #  name: "New York NY"
+    #- 
+    #  name: "Boston MA"
+    
   exclude:
+    - "Knoxville TN"
+    - "Richmond VA"
     - "Memphis TN"
     - "Oklahoma City OK"
     - "Fort Worth TX"
@@ -147,9 +169,8 @@ cities:
     - "Baltimore MD"
     - "WASHINGTON DC"
     - "Indianapolis IN"
-    - "Columbus OH"
     - "Nashville TN"
-    - "Charlotte NC"
+    - "Jacksonville FL"
 
 # Only streamorders greater than this will be fetched.
 fetch_streamorder: 5
