@@ -3,14 +3,14 @@ storm_name: "Florence"
 stn_event: 283
 dates:
   start: '2018-09-10 00:00:00'
-  end: '2018-09-15 06:00:00'
-date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
+  end: '2018-09-15 12:00:00'
+date_display_tz: "America/New_York"
 
 # view, dimensions
-bbox: [-83, 24.4, -67, 38.5]
+bbox: [-83.5, 25.5, -67, 38.5]
 projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
-height: 512
-width: 1024
+height: 1080
+width: 1080
 
 # styling
 precip_cols: ["#FAFBF350", "#F0F8E380", "#D4E9CA", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
@@ -29,7 +29,7 @@ marsh_col: NA
 ocean_col: "#e7f1fa"
 storm_line_col: "grey70"
 legend_text:
-  cex: 1.5
+  cex: 1.8
   col: "#161616"
   family: ""
 
@@ -49,20 +49,20 @@ component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "top"
   datetime: # above watermark for now
-    x1: 0.005
-    y1: 0.85
-  legend_x_pos: "left"
+    x1: 0.0045
+    y1: 0.92
+  legend_x_pos: "right"
   legend_y_pos: "bottom"
   sparks:
-    xleft: 0.70 # as percentage of figure width
+    xleft: 0.62 # as percentage of figure width
     xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-    ybottom: 0.01 # as percentage of figure height
-    ytop: 0.90 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    ybottom: 0.22 # as percentage of figure height
+    ytop: 0.93 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 ocean_name_placement:
   -
-    x1: 0.4
-    y1: 0.3
+    x1: 0.27
+    y1: 0.4
     label: 'Atlantic Ocean'
 
 focus_geoms:
@@ -90,7 +90,7 @@ cities:
   text:
     col: "gray40"
     font: 1
-    cex: 1.1
+    cex: 1.8
     angle: 330 # angle in radians for position of label relative to dot. pos is computed from angle: 225-315=1, 315-45=4, 45-135=3, 135-225=2
     dist: 0.007 # relative (fraction of window width) distance from dot to label
   pop_min: 500000 # minimum population size of cities to be chosen by default; `custom` will make additions or modifications and `exclude` will make subtractions
@@ -103,7 +103,7 @@ cities:
       text_angle: 170
     - 
       name: "Charlotte NC"
-      text_angle: 170
+      text_angle: 150
     -
       name: "Columbia SC"
       text_angle: 170
@@ -115,37 +115,37 @@ cities:
     #-
     #  name: "Virginia Beach VA"
     #  dot_cex: 0.8
-    #  text_cex: 0.8
+    #  text_cex: 1.4
     #-
     #  name: "Nags Head NC"
     #  lat: 35.9425
     #  long: -75.6228
     #  dot_cex: 0.8
-    #  text_cex: 0.8
+    #  text_cex: 1.4
     -
       name: "New Bern NC"
       news: "CBS"
       dot_cex: 0.8
-      text_cex: 0.8
+      text_cex: 1.4
       lat: 35.107686
       long: -77.051366
     -
       name: "Wilmington NC"
       news: "CBS"
       dot_cex: 0.8
-      text_cex: 0.8
+      text_cex: 1.4
     -
       name: "Myrtle Beach SC"
       news: "CBS"
       lat: 33.6917
       long: -78.8875
       dot_cex: 0.8
-      text_cex: 0.8
+      text_cex: 1.4
     #-
     #  name: "Charleston SC"
     #  news: "google/crisismap"
     #  dot_cex: 0.8
-    #  text_cex: 0.8
+    #  text_cex: 1.4
     # UPCOMING ALONG STORM TRACK:
     #- 
     #  name: "Knoxville TN"
