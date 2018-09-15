@@ -57,7 +57,8 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_track_cfg, storm
         "storm_points_sf = storm_points_sf,",
         "DateTime = I(NA),",
         "x_pos = legend_x_pos,",
-        "y_pos = legend_y_pos)"
+        "y_pos = legend_y_pos,",
+        "legend_text_cfg = legend_text_cfg)"
       )
     }
   )
@@ -171,7 +172,8 @@ create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders){
         "timestep_ind = '2_process/out/timesteps.rds.ind',",
         "sparkline_placement,",
         "gage_color_config,",
-        "I('%s'))"=cur_task$timestep)
+        "I('%s'),"=cur_task$timestep,
+        "legend_text_cfg = legend_text_cfg)")
     }
   )
 
@@ -203,7 +205,8 @@ create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders){
         "storm_points_sf = storm_points_sf,",
         "DateTime = I('%s')," = format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"),
         "x_pos = legend_x_pos,",
-        "y_pos = legend_y_pos)"
+        "y_pos = legend_y_pos,",
+        "legend_text_cfg = legend_text_cfg)"
       )
     }
   )

@@ -123,7 +123,7 @@ prep_spark_funs_data <- function(stage_data, site_data, timestep_ind, spark_conf
 
 }
 
-prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_config, gage_col_config, DateTime) {
+prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_config, gage_col_config, DateTime, legend_text_cfg) {
 
   # most of the prep work happens in prep_spark_funs_data, which is shared with prep_spark_starts_fun
   spark_funs_data <- prep_spark_funs_data(stage_data, site_data, timestep_ind, spark_config, DateTime)
