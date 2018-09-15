@@ -1,12 +1,12 @@
 prep_major_cities_fun <- function(cities_ind){
   cities <- readRDS(sc_retrieve(cities_ind))
-
+  
   if(nrow(cities) > 0) {
     # check for extreme text_angles
     if(any(cities$text_angle < -360 | cities$text_angle > 360)) {
       stop("text_angle must be between -360 and 360")
     }
-
+    
     # compute label coordinates and orientation
     cities <- cities %>%
       mutate(
@@ -23,11 +23,11 @@ prep_major_cities_fun <- function(cities_ind){
           text_angle > 45 & text_angle <= 135 ~ 3,
           text_angle > 315 | text_angle <= 45 ~ 4))
   }
-
+  
   plot_fun <- function(){
-
+    
     if(nrow(cities) == 0) return()
-
+    
     # compute text coords from angle and distance as fraction of x range of plot
     xrange <- diff(par('usr')[c(1,2)])
     cities <- cities %>%
@@ -42,7 +42,7 @@ prep_major_cities_fun <- function(cities_ind){
            bg = cities$dot_bg,
            col = cities$dot_col,
            cex = cities$dot_cex)
-
+    
     # plot the city labels
     text(x = cities$text_x,
          y = cities$text_y,
@@ -51,18 +51,13 @@ prep_major_cities_fun <- function(cities_ind){
          pos = cities$text_pos,
          col = cities$text_col,
          font = cities$text_font,
-         offset = 0.2)
+         offset = 0) # use offset = 2 if adding callout lines
     
-    for (city_name in cities$name){
-      city <- cities %>% filter(name == city_name)
-      
-      segments(city$text_x, y0 = city$text_y, x1 = city$dot_x, y1 = city$dot_y)
-    }
+    # add callout lines between points and labels
+    # segments(x0=cities$text_x, y0=cities$text_y, x1=cities$dot_x, y1=cities$dot_y, col=cities$dot_col)
     
-
   }
   return(plot_fun)
 }
-
 
 
