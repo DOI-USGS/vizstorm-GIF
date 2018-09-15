@@ -7,11 +7,6 @@ sources:
   - 6_visualize/src/prep_outro_funs.R
   
 targets:
-  6_outro_gif_frames:
-    depends:
-      - 6_visualize/tmp/gif_frame_a_outro_ltn_1.png
-      - 6_visualize/tmp/gif_frame_a_outro_rdgs_1.png
-      - 6_visualize/tmp/gif_frame_a_outro_readmore_1.png
 
   ltn_fun_1:
     command: prep_outro_allsites_fun(
@@ -83,3 +78,10 @@ targets:
       datetime_fun_a_20180915_06,
       cities_fun,
       watermark_fun)
+
+  6_outro_gif_frames:
+    depends:
+      - 6_visualize/tmp/gif_frame_a_outro_ltn_1.png
+      - 6_visualize/tmp/gif_frame_a_outro_rdgs_1.png
+      - 6_visualize/tmp/gif_frame_a_outro_readmore_1.png
+    command: sc_indicate(I('6_visualize/log/6_outro_gif_frames.ind'), hash_depends=I(TRUE), depends_target=I('6_outro_gif_frames'), depends_makefile=I('6_outro_gif_frames.yml'))

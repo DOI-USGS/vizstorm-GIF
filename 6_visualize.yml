@@ -210,6 +210,9 @@ targets:
       task_names=NULL,
       num_tries=I(1), sleep_on_error=I(0))
 
+  6_visualize/log/6_outro_gif_frames.ind:
+    command: scmake(I('6_outro_gif_frames'), '6_outro_gif_frames.yml')
+
   # Combine the png files into a gif.
   #
   # For now, call scmake('6_visualize/out/animation_a.gif', force=TRUE)
