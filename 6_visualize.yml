@@ -169,12 +169,16 @@ targets:
 
   storm_frame_config:
     command: viz_config[I(c('width','height'))]
+    
+  storm_frame_step:
+    command: viz_config[[I('frame_step')]]
 
   storm_gif_tasks:
     command: create_storm_gif_tasks(
       timestep_ind = '2_process/out/timesteps.rds.ind',
       storm_track_cfg = storm_track_cfg,
-      folders = visualize_folders)
+      folders = visualize_folders, 
+      frame_step = storm_frame_step)
 
   6_storm_gif_tasks.yml:
     command: create_storm_gif_makefile(
