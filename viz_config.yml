@@ -6,10 +6,10 @@ dates:
 date_display_tz: 'UTC'
 
 # view, dimensions
-bbox: [-83, 24.4, -67, 38.5]
+bbox: [-83.5, 25.5, -67, 38.5]
 projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
-height: 512
-width: 1024
+height: 1080
+width: 1080
 
 # styling
 precip_cols: ["#FAFBF3", "#F0F8E3", "#D4E9CA", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
@@ -44,20 +44,20 @@ component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "top"
   datetime: # above watermark for now
-    x1: 0.005
-    y1: 0.85
-  legend_x_pos: "left"
+    x1: 0.0045
+    y1: 0.92
+  legend_x_pos: "right"
   legend_y_pos: "bottom"
   sparks:
-    xleft: 0.70 # as percentage of figure width
+    xleft: 0.62 # as percentage of figure width
     xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-    ybottom: 0.01 # as percentage of figure height
-    ytop: 0.90 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    ybottom: 0.22 # as percentage of figure height
+    ytop: 0.93 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 ocean_name_placement:
   -
-    x1: 0.4
-    y1: 0.3
+    x1: 0.27
+    y1: 0.4
     label: 'Atlantic Ocean'
 
 focus_geoms:

@@ -7,7 +7,7 @@ prep_storm_point_fun <- function(storm_points_sf, DateTime, hurricane_cols){
     this_dot <- filter(storm_points_sf, DateTime == this_DateTime)
     hurricane_col <- hurricane_cols[(this_dot$SS + 1)]
     plot_fun <- function(){
-      plot(sf::st_geometry(this_dot), add = TRUE, col = hurricane_col, pch = 20, cex = 3.5) # should style args be in a config?
+      plot(sf::st_geometry(this_dot), add = TRUE, col = hurricane_col, pch = 20, cex = 4) # should style args be in a config?
     }
   }
   return(plot_fun)
