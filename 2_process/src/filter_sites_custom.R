@@ -7,12 +7,17 @@ filter_sites_custom <- function(ind_file, sites_ind) {
   # get sites data frame with NWS data
   sites_df <- readRDS(sc_retrieve(sites_ind))
 
-  ### filter sites_df here ###
-  sites_info_subset <- sites_df
-
+  ### filter sites_df here ### 
+  hand_picked_sites <- c("02037500", "02066000", "02076000", "02081000", "02084472", "0209205053", "02092554",
+                         "02081028", "02087570", "02089000", "02091500", 
+                         "02108000", "02169625", "02131000", "02093000", 
+                         "02092500", "02171700", "02105769")
+  sites_df_subset <- sites_df %>% filter(site_no %in% hand_picked_sites)
+  
+  
   # write the data file and the indicator file
   if(packageVersion('scipiper') < package_version('0.0.11')) stop('1-arg version of gd_put requires scipiper 0.0.11+')
-  saveRDS(sites_info_subset, as_data_file(ind_file))
+  saveRDS(sites_df_subset, as_data_file(ind_file))
   gd_put(ind_file)
 
 }

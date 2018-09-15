@@ -27,9 +27,9 @@ bbox_to_polygon <- function(bbox, bbox_crs = "+init=epsg:4326", return_crs = NUL
 #' @details if `projection` is missing, it is assumed to be "+init=epsg:4326"
 #' @return an sf polygon that contains the `bbox` specfied at the aspect ratio specified
 as_view_polygon <- function(view_config) {
-
+  
   # the projected polygon specified by the user
-  bbox_projected <- bbox_to_polygon(bbox = view_config$bbox, return_crs = view_config$projection)
+  bbox_projected <- bbox_to_polygon(bbox = unlist(view_config$bbox), return_crs = view_config$projection)
   poly_bbox <- as.numeric(sf::st_bbox(bbox_projected))
   aspect <- view_config$width / view_config$height
   bbox_aspect <- diff(poly_bbox[c(1,3)]) / diff(poly_bbox[c(2,4)])
