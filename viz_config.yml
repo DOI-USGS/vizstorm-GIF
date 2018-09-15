@@ -13,7 +13,7 @@ width: 1024
 
 # styling
 precip_cols: ["#FAFBF3", "#F0F8E3", "#D4E9CA", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
-precip_bin: 2 # inches per bin
+precip_bin: 3 # inches per bin
 gage_flood_col: "#175676"
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
@@ -82,62 +82,84 @@ secondary_geoms:
 
 cities:
   dot: # parameters for general coloring of the
-    bg: "gray30"
-    col: NA
-    pch: 21
-    cex: 0.6
+    bg: "gray40"
+    col: "gray40"
+    pch: 5
+    cex: 1
   text:
-    col: "gray30"
+    col: "gray40"
     font: 1
     cex: 1.1
-    angle: 30 # angle in radians for position of label relative to dot. pos is computed from angle: 225-315=1, 315-45=4, 45-135=3, 135-225=2
-    dist: 0.01 # relative (fraction of window width) distance from dot to label
+    angle: 330 # angle in radians for position of label relative to dot. pos is computed from angle: 225-315=1, 315-45=4, 45-135=3, 135-225=2
+    dist: 0.007 # relative (fraction of window width) distance from dot to label
   pop_min: 500000 # minimum population size of cities to be chosen by default; `custom` will make additions or modifications and `exclude` will make subtractions
   custom: # cities to add or modify relative to the maps::us.cities dataset. added cities can use lat/long from us.cities if they are present in us.cities, even if they don't meet the pop_min criterion
-    -
-      name: "Richmond VA"
-      text_angle: 100
-    -
-      name: "Jacksonville FL"
-      text_angle: 30
+    #-
+    #  name: "Richmond VA"
+    #  text_angle: 170
     -
       name: "Raleigh NC"
       text_angle: 170
+    - 
+      name: "Charlotte NC"
+      text_angle: 170
     -
       name: "Columbia SC"
-      text_angle: 220
+      text_angle: 170
+    #-
+    #  name: "Savannah GA"
+    #  text_angle: 170
+    #-
+    #  name: "Jacksonville FL"
+    #-
+    #  name: "Virginia Beach VA"
+    #  dot_cex: 0.8
+    #  text_cex: 0.8
+    #-
+    #  name: "Nags Head NC"
+    #  lat: 35.9425
+    #  long: -75.6228
+    #  dot_cex: 0.8
+    #  text_cex: 0.8
+    -
+      name: "New Bern NC"
+      news: "CBS"
+      dot_cex: 0.8
+      text_cex: 0.8
+      lat: 35.107686
+      long: -77.051366
     -
       name: "Wilmington NC"
-      dot_cex: 0.4
-      text_cex: 0.8
-      text_angle: 150
-    -
-      name: "Charleston SC"
-      dot_cex: 0.4
-      text_cex: 0.8
-      text_angle: 330
-    -
-      name: "Savannah GA"
-      text_angle: 200    
-    -
-      name: "Virginia Beach VA"
-      dot_cex: 0.4
+      news: "CBS"
+      dot_cex: 0.8
       text_cex: 0.8
     -
       name: "Myrtle Beach SC"
+      news: "CBS"
       lat: 33.6917
       long: -78.8875
-      dot_cex: 0.4
+      dot_cex: 0.8
       text_cex: 0.8
-      text_angle: 320
-    -
-      name: "Nags Head NC"
-      lat: 35.9425
-      long: -75.6228
-      dot_cex: 0.4
-      text_cex: 0.8
-
+    #-
+    #  name: "Charleston SC"
+    #  news: "google/crisismap"
+    #  dot_cex: 0.8
+    #  text_cex: 0.8
+    # UPCOMING ALONG STORM TRACK:
+    #- 
+    #  name: "Knoxville TN"
+    #- 
+    #  name: "Columbus OH"
+    #- 
+    #  name: "Pittsburgh PA"
+    #- 
+    #  name: "New York NY"
+    #- 
+    #  name: "Boston MA"
+    
   exclude:
+    - "Knoxville TN"
+    - "Richmond VA"
     - "Memphis TN"
     - "Oklahoma City OK"
     - "Fort Worth TX"
@@ -146,9 +168,8 @@ cities:
     - "Baltimore MD"
     - "WASHINGTON DC"
     - "Indianapolis IN"
-    - "Columbus OH"
     - "Nashville TN"
-    - "Charlotte NC"
+    - "Jacksonville FL"
 
 # Only streamorders greater than this will be fetched.
 fetch_streamorder: 5
