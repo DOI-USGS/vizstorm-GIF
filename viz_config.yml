@@ -3,8 +3,9 @@ storm_name: "Florence"
 stn_event: 283
 dates:
   start: '2018-09-10 00:00:00'
-  end: '2018-09-15 06:00:00'
+  end: '2018-09-15 17:00:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
+frame_step: 3 # hours elapsed between GIF frames
 
 # view, dimensions
 bbox: [-83, 24.4, -67, 38.5]
