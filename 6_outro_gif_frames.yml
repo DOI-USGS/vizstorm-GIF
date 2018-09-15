@@ -1,0 +1,37 @@
+target_default: 6_outro_gif_frames
+
+include: 
+  - 6_storm_gif_tasks.yml
+
+sources:
+  - 6_visualize/src/prep_outro_funs.R
+  
+targets:
+  6_outro_gif_frames:
+    depends:
+      - rdgs_fun_1
+      - 6_visualize/tmp/gif_frame_a_outro_rdgs_1.png
+
+  rdgs_fun_1:
+    command: prep_outro_rdgs_fun(
+      rdg_ind="1_fetch/out/rapid_dep_sites.rds.ind",
+      gage_color_config, outro_placement, legend_text_cfg, opacity=1)
+    
+  6_visualize/tmp/gif_frame_a_outro_rdgs_1.png:
+    command: create_animation_frame(
+      png_file=target_name,
+      config=storm_frame_config,
+      view_fun,
+      basemap_fun,
+      ocean_name_fun,
+      precip_raster_fun_a_20180915_06,
+      storm_line_fun,
+      storm_point_fun_a_20180915_06,
+      rivers_fun,
+      gage_sites_fun_a_20180915_06,
+      rdgs_fun_1,
+      legend_fun_a_20180915_06,
+      datetime_fun_a_20180915_06,
+      cities_fun,
+      watermark_fun)
+
