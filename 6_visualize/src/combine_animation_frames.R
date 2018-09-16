@@ -1,4 +1,4 @@
-combine_animation_frames <- function(gif_file, animation_cfg, task_names=NULL) {
+combine_animation_frames <- function(gif_file, animation_cfg, task_names=NULL, intro_config, n_outro) {
 
   # run imageMagick convert to build a gif
   if(is.null(task_names)) task_names <- '*'
@@ -14,6 +14,25 @@ combine_animation_frames <- function(gif_file, animation_cfg, task_names=NULL) {
   system(magick_command)
 
   # simplify the gif with gifsicle - cuts size by about 2/3
-  gifsicle_command <- sprintf('gifsicle -b -O3 %s --colors 256', gif_file)
+  stopifnot(task_names == '*')
+
+  png_dir <- dirname(png_files)
+  png_patt <- basename(png_files) %>% tools::file_path_sans_ext()
+  total_frames <- grepl(dir(png_dir), pattern = png_patt) %>% sum()
+  # how many intro frames? how many storm frames? how many outro frames?
+  intro_delay <- intro_config$frame_delay_cs
+  storm_delay <- animation_cfg$frame_delay_cs
+  outro_delay <- 340
+  # **trash code for now:
+  calc_delays <- function(delay, start_frame, end_frame){
+    paste(paste(sprintf('-d%s "#', delay), seq(start_frame-1, end_frame-1), sep = '') %>%
+            paste('"', sep = ''), collapse = " ")
+  }
+  intro_delays <- calc_delays(intro_delay, 1, intro_config$n_frames)
+  storm_delays <- calc_delays(storm_delay, intro_config$n_frames+1, total_frames-n_outro-1)
+  # freeze the last storm frame too for as long as we are showing each outro frame:
+  outro_delays <- calc_delays(outro_delay, total_frames-n_outro, total_frames)
+
+  gifsicle_command <- sprintf('gifsicle -b -O3 %s %s %s %s --colors 256', gif_file, intro_delays, storm_delays, outro_delays)
   system(gifsicle_command)
 }

@@ -1,11 +1,11 @@
 target_default: 6_outro_gif_frames
 
-include: 
+include:
   - 6_storm_gif_tasks.yml
 
 sources:
   - 6_visualize/src/prep_outro_funs.R
-  
+
 targets:
 
   ltn_fun_1:
@@ -20,22 +20,22 @@ targets:
       view_fun,
       basemap_fun,
       ocean_name_fun,
-      precip_raster_fun_a_20180915_15,
+      precip_raster_fun_a_20180916_06,
       storm_line_fun,
-      storm_point_fun_a_20180915_15,
+      storm_point_fun_a_20180916_06,
       rivers_fun,
       ltn_fun_1,
-      gage_sites_fun_a_20180915_15,
-      legend_fun_a_20180915_15,
-      datetime_fun_a_20180915_15,
+      gage_sites_fun_a_20180916_06,
+      legend_fun_a_20180916_06,
+      datetime_fun_a_20180916_06,
       cities_fun,
       watermark_fun)
-  
+
   rdgs_fun_1:
     command: prep_outro_rdgs_fun(
       rdg_ind="1_fetch/out/rapid_dep_sites.rds.ind",
       gage_color_config, outro_placement, legend_text_cfg, opacity=1)
-    
+
   6_visualize/tmp/gif_frame_a_outro_rdgs_1.png:
     command: create_animation_frame(
       png_file=target_name,
@@ -43,22 +43,22 @@ targets:
       view_fun,
       basemap_fun,
       ocean_name_fun,
-      precip_raster_fun_a_20180915_15,
+      precip_raster_fun_a_20180916_06,
       storm_line_fun,
-      storm_point_fun_a_20180915_15,
+      storm_point_fun_a_20180916_06,
       rivers_fun,
       ltn_fun_1,
       rdgs_fun_1,
-      gage_sites_fun_a_20180915_15,
-      legend_fun_a_20180915_15,
-      datetime_fun_a_20180915_15,
+      gage_sites_fun_a_20180916_06,
+      legend_fun_a_20180916_06,
+      datetime_fun_a_20180916_06,
       cities_fun,
       watermark_fun)
-      
-      
+
+
   readmore_fun_1:
     command: prep_outro_readmore_fun(outro_placement, legend_text_cfg, opacity=1)
-  
+
   6_visualize/tmp/gif_frame_a_outro_readmore_1.png:
     command: create_animation_frame(
       png_file=target_name,
@@ -66,16 +66,16 @@ targets:
       view_fun,
       basemap_fun,
       ocean_name_fun,
-      precip_raster_fun_a_20180915_15,
+      precip_raster_fun_a_20180916_06,
       storm_line_fun,
-      storm_point_fun_a_20180915_15,
+      storm_point_fun_a_20180916_06,
       rivers_fun,
       ltn_fun_1,
       rdgs_fun_1,
       readmore_fun_1,
-      gage_sites_fun_a_20180915_15,
-      legend_fun_a_20180915_15,
-      datetime_fun_a_20180915_15,
+      gage_sites_fun_a_20180916_06,
+      legend_fun_a_20180916_06,
+      datetime_fun_a_20180916_06,
       cities_fun,
       watermark_fun)
 

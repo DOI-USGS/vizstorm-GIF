@@ -169,7 +169,7 @@ targets:
 
   storm_frame_config:
     command: viz_config[I(c('width','height'))]
-    
+
   storm_frame_step:
     command: viz_config[[I('frame_step')]]
 
@@ -177,7 +177,7 @@ targets:
     command: create_storm_gif_tasks(
       timestep_ind = '2_process/out/timesteps.rds.ind',
       storm_track_cfg = storm_track_cfg,
-      folders = visualize_folders, 
+      folders = visualize_folders,
       frame_step = storm_frame_step)
 
   6_storm_gif_tasks.yml:
@@ -238,6 +238,8 @@ targets:
     command: combine_animation_frames(
       gif_file=target_name,
       animation_cfg=animation_cfg,
-      task_names=NULL)
+      task_names=NULL,
+      intro_config = intro_config,
+      n_outro = I(3))
   6_visualize/out/animation_a.gif.ind:
     command: gd_put(target_name, '6_visualize/out/animation_a.gif')
