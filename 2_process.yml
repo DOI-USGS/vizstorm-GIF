@@ -24,6 +24,7 @@ sources:
   - 2_process/src/interpolate_storm_points.R
   - 2_process/src/process_river_geoms.R
   - 2_process/src/normalize_streamdata.R
+  - 2_process/src/clean_streamdata.R
 
 targets:
 
@@ -38,6 +39,7 @@ targets:
       - 2_process/out/storm_points_interp.rds.ind
       - 2_process/out/river_geoms.rds.ind
       - 2_process/out/normalized_streamdata.rds.ind
+      - 2_process/out/cleaned_streamdata.rds.ind
 
   # -- config --
   proj_str:
@@ -150,3 +152,11 @@ targets:
       stage_gap_threshold = stage_gap_threshold)
   2_process/out/normalized_streamdata.rds:
     command: gd_get('2_process/out/normalized_streamdata.rds.ind')
+    
+  # manual filtering step to remove points we expect won't make it past Provisional
+  2_process/out/cleaned_streamdata.rds.ind:
+    command: clean_streamdata(
+      ind_file = target_name,
+      normalized_ind_file = '2_process/out/normalized_streamdata.rds.ind')
+  2_process/out/cleaned_streamdata.rds:
+    command: gd_get('2_process/out/cleaned_streamdata.rds.ind')
