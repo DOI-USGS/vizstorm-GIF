@@ -62,10 +62,10 @@ component_placement:
     ybottom: 0.01 # as percentage of figure height
     ytop: 0.90 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
   outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
-    xleft: 0.70
+    xleft: 0.55
     xright: 0.99
-    ytop_ltn: 0.9 # top y coordinate of the text and legend for the long-term network
-    ytop_stn: 0.65 # top y coordinate of the text and legend for the short-term network
+    ytop_ltn: 0.6 # top y coordinate of the text and legend for the long-term network
+    ytop_stn: 0.85 # top y coordinate of the text and legend for the short-term network
     ytop_more: 0.4 # top y coordinate of the text and URL for where to learn more
 
 

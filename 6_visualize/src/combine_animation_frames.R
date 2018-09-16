@@ -22,7 +22,9 @@ combine_animation_frames <- function(gif_file, animation_cfg, task_names=NULL, i
   # how many intro frames? how many storm frames? how many outro frames?
   intro_delay <- intro_config$frame_delay_cs
   storm_delay <- animation_cfg$frame_delay_cs
-  outro_delay <- 340
+  outro_delay <- 500
+  final_delay <- 700
+  freeze_delay <- 50
   # **trash code for now:
   calc_delays <- function(delay, start_frame, end_frame){
     paste(paste(sprintf('-d%s "#', delay), seq(start_frame-1, end_frame-1), sep = '') %>%
@@ -31,8 +33,10 @@ combine_animation_frames <- function(gif_file, animation_cfg, task_names=NULL, i
   intro_delays <- calc_delays(intro_delay, 1, intro_config$n_frames)
   storm_delays <- calc_delays(storm_delay, intro_config$n_frames+1, total_frames-n_outro-1)
   # freeze the last storm frame too for as long as we are showing each outro frame:
-  outro_delays <- calc_delays(outro_delay, total_frames-n_outro, total_frames)
+  last_storm_delay <- calc_delays(freeze_delay, total_frames-n_outro, total_frames-n_outro)
+  outro_delays <- calc_delays(outro_delay, total_frames-n_outro+1, total_frames-1)
+  final_delay <- calc_delays(final_delay, total_frames, total_frames)
 
-  gifsicle_command <- sprintf('gifsicle -b -O3 %s %s %s %s --colors 256', gif_file, intro_delays, storm_delays, outro_delays)
+  gifsicle_command <- sprintf('gifsicle -b -O3 %s %s %s %s %s %s --colors 256', gif_file, intro_delays, storm_delays, last_storm_delay, outro_delays, final_delay)
   system(gifsicle_command)
 }
