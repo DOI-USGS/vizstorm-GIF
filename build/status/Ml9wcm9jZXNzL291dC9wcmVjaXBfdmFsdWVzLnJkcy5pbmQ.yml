@@ -1,12 +1,12 @@
 version: 0.3.0
 name: 2_process/out/precip_values.rds.ind
 type: file
-hash: efaee979aa697015ce0d4b306a6e8eb5
-time: 2018-09-16 09:10:06 UTC
+hash: 90826114d0de818a44df09982db326f5
+time: 2018-09-16 14:56:37 UTC
 depends:
-  1_fetch/out/precip_data.nc.ind: f2b2453791447a0f917751edc491b0bd
+  1_fetch/out/precip_data.nc.ind: 29561462931eb21fea50ba4d1815a107
   2_process/out/precip_spatial.rds.ind: ef3d694dbe4f5c895a737f58f53ab546
-  dates: 87e0a50e73e1518685cfc7c343d47192
+  dates: f080aa6356a63e47962ea8ecd217209c
   view_polygon: c1ac09a3a4a12d188413403040d052eb
 fixed: 8ac33d36f3d3720f30b55333885ce21d
 code:
