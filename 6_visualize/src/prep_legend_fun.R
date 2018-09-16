@@ -50,8 +50,6 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
 
     # plot precip bins and precip label
     precip_txt_y <- ybottom+2*bin_h*0.8
-    text(x_edge, precip_txt_y, labels = 'NOAA total rainfall amount (inches)', pos = txt_pos,
-         cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
     text(x_edge, precip_txt_y, labels = 'NOAA total rainfall amount (inches)', pos = txt_pos, cex = leg_cex)
     if (x_pos == 'left'){
       bin_j <- 1:nrow(precip_bins)
