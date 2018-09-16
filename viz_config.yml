@@ -20,7 +20,7 @@ gage_flood_col: "#175676"
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
 gage_out_col: "white"
-gage_ltn_col: "lightblue" # for non-focal stationary gages (ltn = long-term network), to show in outro
+gage_ltn_col: "#97cbdb" # #aad4e2 # for non-focal stationary gages (ltn = long-term network), to show in outro
 gage_stn_col: "#ff7f50" # for non-focal short-term-network (rapid deployment) gages, to show in outro
 hurricane_col: "orange"
 hurricane_cols: ["#71c633", "#FBC195", "#FB8147", "#EF5F2C", "#C63526", "#6E1B14"]
@@ -66,7 +66,7 @@ component_placement:
     xright: 0.99
     ytop_ltn: 0.9 # top y coordinate of the text and legend for the long-term network
     ytop_stn: 0.65 # top y coordinate of the text and legend for the short-term network
-    ytop_more: 0.4# top y coordinate of the text and URL for where to learn more
+    ytop_more: 0.4 # top y coordinate of the text and URL for where to learn more
     
 
 ocean_name_placement:

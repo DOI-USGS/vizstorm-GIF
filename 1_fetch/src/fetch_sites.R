@@ -25,7 +25,7 @@ fetch_states_from_sf <- function(sf_ind) {
 #' @param state_cds spatial object with IDs indicating the state name
 #' @param dates object from viz_config.yaml that specifies dates as string
 #' @param stream_params pcodes to use from NWIS
-fetch_sites_from_states <- function(ind_file, state_cds, dates, stream_params) {
+fetch_sites_from_states <- function(ind_file, state_cds, dates, stream_params, require_flood_stage=TRUE) {
 
   # Cast wide net for all NWIS sites with stage data that fall within that bbox
   sites_df <- bind_rows(lapply(state_cds, function(cd) {
@@ -33,15 +33,20 @@ fetch_sites_from_states <- function(ind_file, state_cds, dates, stream_params) {
       dplyr::select(site_no, station_nm, dec_lat_va, dec_long_va, site_tp_cd, end_date, begin_date)
   }))
 
-  # Get NWS flood stage table
+  # Get and join NWS flood stage table
   nws_flood_stage_list <- jsonlite::fromJSON("https://waterwatch.usgs.gov/webservices/floodstage?format=json")
   nws_flood_stage_table <- nws_flood_stage_list[["sites"]]
-
-  # Filtering applied to every storm
+  sites_df <- sites_df %>%
+    left_join(nws_flood_stage_table, by='site_no')
+  
+  # Optionally filter out any sites that don't have flood stage data from NWS
+  if(require_flood_stage) {
+    sites_df <- sites_df %>%
+      dplyr::filter(!is.na(flood_stage))
+  }
+  
+  # Filter by site type and data availability during storm
   sites_filtered <- sites_df %>%
-    # Filter out any sites that don't have flood stage data from NWS
-    inner_join(nws_flood_stage_table, by='site_no') %>%
-    dplyr::filter(!is.na(flood_stage)) %>%
     # we only need stream sites
     dplyr::filter(site_tp_cd == "ST") %>%
     # keeps only sites that have data since the start of the storm
