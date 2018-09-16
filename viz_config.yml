@@ -42,7 +42,7 @@ intro:
   n_frames: 20 # number of frames in the intro animation linking gages to sparklines
   elbow_radius: 50000 # radius of the curvature at the elbow of the dot travel path, in 10000ths of degrees
   point_background: "#175676"
-  frame_delay_cs: 8
+  frame_delay_cs: 8 # delay between intro frames. cs = centiseconds = hundredths of a second
 
 frame_delay_cs: 14 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
 
