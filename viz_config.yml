@@ -3,7 +3,7 @@ storm_name: "Florence"
 stn_event: 283
 dates:
   start: '2018-09-10 00:00:00'
-  end: '2018-09-15 17:00:00'
+  end: '2018-09-16 09:00:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 3 # hours elapsed between GIF frames
 
@@ -42,9 +42,9 @@ intro:
   n_frames: 20 # number of frames in the intro animation linking gages to sparklines
   elbow_radius: 50000 # radius of the curvature at the elbow of the dot travel path, in 10000ths of degrees
   point_background: "#175676"
+  frame_delay_cs: 8
 
-# all animations
-frame_delay_cs: 8 # delay between frames of the gif animation. cs = centiseconds = hundredths of a second
+frame_delay_cs: 14 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
@@ -67,7 +67,7 @@ component_placement:
     ytop_ltn: 0.9 # top y coordinate of the text and legend for the long-term network
     ytop_stn: 0.65 # top y coordinate of the text and legend for the short-term network
     ytop_more: 0.4 # top y coordinate of the text and URL for where to learn more
-    
+
 
 ocean_name_placement:
   -
@@ -111,7 +111,7 @@ cities:
     -
       name: "Raleigh NC"
       text_angle: 170
-    - 
+    -
       name: "Charlotte NC"
       text_angle: 170
     -
@@ -157,17 +157,17 @@ cities:
     #  dot_cex: 0.8
     #  text_cex: 0.8
     # UPCOMING ALONG STORM TRACK:
-    #- 
+    #-
     #  name: "Knoxville TN"
-    #- 
+    #-
     #  name: "Columbus OH"
-    #- 
+    #-
     #  name: "Pittsburgh PA"
-    #- 
+    #-
     #  name: "New York NY"
-    #- 
+    #-
     #  name: "Boston MA"
-    
+
   exclude:
     - "Knoxville TN"
     - "Richmond VA"
