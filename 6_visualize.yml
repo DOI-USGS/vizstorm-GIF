@@ -106,7 +106,7 @@ targets:
     command: prep_gage_sites_fun(stage_data, gage_color_config, storm_start_date)
 
   stage_data:
-    command: fetch_read('2_process/out/normalized_streamdata.rds.ind')
+    command: fetch_read('2_process/out/cleaned_streamdata.rds.ind')
 
   storm_start_date:
     command: format_start_date(timestep_ind = '2_process/out/timesteps.rds.ind')
