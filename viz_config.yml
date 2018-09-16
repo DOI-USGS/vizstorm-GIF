@@ -5,6 +5,7 @@ dates:
   start: '2018-09-10 00:00:00'
   end: '2018-09-16 18:00:00'
 date_display_tz: "America/New_York"
+frame_step: 1 # hours elapsed between GIF frames
 
 # view, dimensions
 bbox: [-83.5, 25.5, -67, 38.5]
@@ -19,6 +20,8 @@ gage_flood_col: "#175676"
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
 gage_out_col: "white"
+gage_ltn_col: "#97cbdb" # #aad4e2 # for non-focal stationary gages (ltn = long-term network), to show in outro
+gage_stn_col: "#ff7f50" # for non-focal short-term-network (rapid deployment) gages, to show in outro
 hurricane_col: "orange"
 hurricane_cols: ["#71c633", "#FBC195", "#FB8147", "#EF5F2C", "#C63526", "#6E1B14"]
 hurricane_col_names: ["Tropical Storm %s", "Hurricane %s (Cat1)", "Hurricane %s (Cat2)", "Hurricane %s (Cat3)", "Hurricane %s (Cat4)", "Hurricane %s (Cat5)"] # If these change, legend layout may break
@@ -39,9 +42,10 @@ intro:
   n_frames: 20 # number of frames in the intro animation linking gages to sparklines
   elbow_radius: 50000 # radius of the curvature at the elbow of the dot travel path, in 10000ths of degrees
   point_background: "#175676"
+  frame_delay_cs: 8 # delay between intro frames. cs = centiseconds = hundredths of a second
 
 # all animations
-frame_delay_cs: 8 # delay between frames of the gif animation. cs = centiseconds = hundredths of a second
+frame_delay_cs: 8 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
