@@ -111,6 +111,16 @@ targets:
       stream_params = stream_params)
   1_fetch/out/all_sites.rds:
     command: gd_get('1_fetch/out/all_sites.rds.ind')
+  # all_sites is limited to sites with flood stage, but for outro we don't want that limit
+  1_fetch/out/all_sites_really.rds.ind:
+    command: fetch_sites_from_states(
+      ind_file = target_name,
+      state_cds = state_cds,
+      dates = dates,
+      stream_params = stream_params,
+      require_flood_stage = I(FALSE))
+  1_fetch/out/all_sites_really.rds:
+    command: gd_get('1_fetch/out/all_sites_really.rds.ind')
 
   # -- get streamdata --
   1_fetch/out/streamdata.rds.ind:

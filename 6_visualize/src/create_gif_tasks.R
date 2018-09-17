@@ -96,9 +96,13 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_track_cfg, storm
     ind_dir=folders$log)
 }
 
-create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders){
+create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders, frame_step = 1){
+  all_timestep <- readRDS(sc_retrieve(timestep_ind))
   
-  timestep <- readRDS(sc_retrieve(timestep_ind))
+  timestep <- all_timestep[seq(1, by = frame_step, to = length(all_timestep))] %>%
+    # ** skip the first frame! it is empty for sparks and causes a nasty blink between intro and storm frames:
+    tail(-1L)
+  
   has_storm_track <- !is.null(storm_track_cfg$storm_code)
   
   cfgs <- c('a') # for now, just use one config, since > 1 results in duplication of input files
