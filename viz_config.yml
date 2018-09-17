@@ -3,7 +3,7 @@ storm_name: "Florence"
 stn_event: 283
 dates:
   start: '2018-09-10 00:00:00'
-  end: '2018-09-16 07:00:00'
+  end: '2018-09-16 13:00:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 1 # hours elapsed between GIF frames
 
@@ -44,7 +44,7 @@ intro:
   point_background: "#175676"
   frame_delay_cs: 8 # delay between intro frames. cs = centiseconds = hundredths of a second
 
-frame_delay_cs: 14 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
+frame_delay_cs: 7 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
