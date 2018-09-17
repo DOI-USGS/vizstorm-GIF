@@ -1,0 +1,14 @@
+version: 0.3.0
+name: 1_fetch/out/all_sites_really.rds.ind
+type: file
+hash: 1f4acc179fd7ee6894110b91a3cc278a
+time: 2018-09-16 16:54:49 UTC
+depends:
+  state_cds: 8813ac3d4c0d7704dece85888836051d
+  dates: 63ac9e4bda5bcea0c767c43c48d10b11
+  stream_params: 089aebea962cdd0eb862e4ccd23302bd
+fixed: 0feaaffe9c7952bfd8c249acb57bf00c
+code:
+  functions:
+    fetch_sites_from_states: bd1ccd5d3d7aa6ce83c55d6e19f607cf
+
