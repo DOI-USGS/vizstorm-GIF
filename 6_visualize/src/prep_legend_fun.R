@@ -23,13 +23,13 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
   rm(storm_points_sf)
 
   plot_fun <- function(){
-    leg_cex <- 2.5 # normal text in the legend
-    prcp_cex <- 1.8 # text within the precip bins
-    hur_dt_cex <- 4
-    gage_dt_cex <- 3
+    leg_cex <- 2.0 # normal text in the legend
+    prcp_cex <- 1.5 # text within the precip bins
+    hur_dt_cex <- 3
+    gage_dt_cex <- 2.2
     # compute position info shared across multiple legend elements
     coord_space <- par()$usr
-    bin_w_perc <- 0.07 # percentage of X domain
+    bin_w_perc <- 0.09 # percentage of X domain
     bin_h_perc <- 0.03 # *also* percentage of X domain
     bin_w <- bin_w_perc * diff(coord_space[c(1,2)])
     bin_h <- bin_h_perc * diff(coord_space[c(1,2)])
