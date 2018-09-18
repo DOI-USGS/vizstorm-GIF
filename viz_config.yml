@@ -2,20 +2,20 @@ storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archi
 storm_name: "Florence"
 stn_event: 283
 dates:
-  start: '2018-09-10 00:00:00'
-  end: '2018-09-16 13:00:00'
+  start: '2018-09-12 00:00:00'
+  end: '2018-09-18 15:00:00'
 date_display_tz: "America/New_York"
 frame_step: 1 # hours elapsed between GIF frames
 
 # view, dimensions
-bbox: [-83.5, 25.5, -67, 38.5]
+bbox: [-82, 30.4, -70, 38.5]
 projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
-height: 1080
-width: 1080
+height: 900
+width: 720
 
 # styling
-precip_cols: ["#FAFBF350", "#F0F8E380", "#D4E9CA", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
-precip_bin: 3 # inches per bin
+precip_cols: ["#FAFBF399", "#F0F8E3CC", "#D4E9CAE6", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
+precip_bin: 4 # inches per bin
 gage_flood_col: "#175676"
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
@@ -32,7 +32,7 @@ marsh_col: NA
 ocean_col: "#e7f1fa"
 storm_line_col: "grey70"
 legend_text:
-  cex: 1.8
+  cex: 1.5
   col: "#161616"
   family: ""
 
@@ -53,20 +53,20 @@ component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "top"
   datetime: # above watermark for now
-    x1: 0.0045
-    y1: 0.92
+    x1: 0.004
+    y1: 0.935
   legend_x_pos: "right"
   legend_y_pos: "bottom"
   sparks:
-    xleft: 0.62 # as percentage of figure width
+    xleft: 0.58 # as percentage of figure width
     xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-    ybottom: 0.22 # as percentage of figure height
-    ytop: 0.93 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    ybottom: 0.18 # as percentage of figure height
+    ytop: 0.945 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
 
 ocean_name_placement:
   -
-    x1: 0.27
-    y1: 0.4
+    x1: 0.17
+    y1: 0.21
     label: 'Atlantic Ocean'
 
 focus_geoms:
@@ -104,13 +104,13 @@ cities:
     #  text_angle: 170
     -
       name: "Raleigh NC"
-      text_angle: 170
+      text_angle: 20
     - 
       name: "Charlotte NC"
-      text_angle: 150
+      text_angle: 90
     -
       name: "Columbia SC"
-      text_angle: 170
+      text_angle: 90
     #-
     #  name: "Savannah GA"
     #  text_angle: 170
@@ -175,6 +175,9 @@ cities:
     - "Indianapolis IN"
     - "Nashville TN"
     - "Jacksonville FL"
+    - "New York NY"
+    - "Philadelphia PA"
+    - "Columbus OH"
 
 # Only streamorders greater than this will be fetched.
 fetch_streamorder: 5

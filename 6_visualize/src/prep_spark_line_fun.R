@@ -183,10 +183,12 @@ prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_confi
         # add the x and/or o
         if(num_chunks > 1) {
           if(i < num_chunks) {
-            points(tail(hydro_line$x,1), tail(hydro_line$y,1), col=gage_col_config$gage_out_col, pch=4, cex=1.2, lwd=4)
+            points(tail(hydro_line$x,1), tail(hydro_line$y,1), col=gage_col_config$gage_norm_col, pch=4, cex=1.6, lwd=5) #make it stand out more, adding "outline" behind it.
+            points(tail(hydro_line$x,1), tail(hydro_line$y,1), col=gage_col_config$gage_out_col, pch=4, cex=1.6, lwd=4)
           }
           if(i > 1) {
-            points(head(hydro_line$x,1), head(hydro_line$y,1), col=gage_col_config$gage_out_col, pch=19, cex=1, lwd=4)
+            points(head(hydro_line$x,1), head(hydro_line$y,1), col=gage_col_config$gage_norm_col, pch=19, cex=1.6, lwd=5) #make it stand out more
+            points(head(hydro_line$x,1), head(hydro_line$y,1), col=gage_col_config$gage_out_col, pch=19, cex=1.6, lwd=4)
           }
         }
       }
