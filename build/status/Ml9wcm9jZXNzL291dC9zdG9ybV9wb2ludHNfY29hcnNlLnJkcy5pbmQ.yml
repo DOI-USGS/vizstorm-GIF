@@ -2,10 +2,10 @@ version: 0.3.0
 name: 2_process/out/storm_points_coarse.rds.ind
 type: file
 hash: 9f77fab77c086bb079647663db0ec996
-time: 2018-09-16 14:35:52 UTC
+time: 2018-09-17 15:10:22 UTC
 depends:
   1_fetch/out/storm_track.zip.ind: 827bacb5673fce008eff6e6637f1f007
-  view_config: 242ee681b7b7c25d2b728065eed2f92f
+  view_config: 3a9b37bca0044d7f53f22669ccc2cf25
 fixed: be918950dc993c4e2fe0866e509a92b3
 code:
   functions:
