@@ -1,10 +1,10 @@
 version: 0.3.0
 name: 2_process/out/normalized_streamdata.rds.ind
 type: file
-hash: d9927d4e24b48c488009af046b725745
-time: 2018-09-18 12:45:32 UTC
+hash: 53aaac118ae1c3e5141ec709aa037a7f
+time: 2018-09-18 15:37:04 UTC
 depends:
-  1_fetch/out/streamdata.rds.ind: 3cadf2a96865338ceafb3ca54a24db99
+  1_fetch/out/streamdata.rds.ind: fd960a1ca1f3a2d4f8a90265ce17532c
   2_process/out/gage_sites.rds.ind: 5f6a51de60f1e4ccb1d6cc6acf0e8e26
   2_process/out/timesteps.rds.ind: b7f5e7b75727771dd4ea8f37508fda3a
   stage_gap_threshold: bc79f5b76204d5c1bd0000fb4af763fc
