@@ -74,7 +74,7 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
     points(dot_x, normal_y+center_to_txt_y, pch = 21, bg = legend_styles$gage_norm_col, col = NA, cex = gage_dt_cex)
     text(dot_txt_x, normal_y, labels = 'Below flood stage', pos = txt_pos, cex = leg_cex)
     flood_y <- ybottom+3*bin_h
-    points(dot_x, flood_y+center_to_txt_y, pch = 21, bg = legend_styles$gage_norm_col, col = legend_styles$gage_flood_col, lwd = 6, cex = gage_dt_cex)
+    points(dot_x, flood_y+center_to_txt_y, pch = 21, bg = legend_styles$gage_norm_col, col = legend_styles$gage_flood_col, lwd = 5, cex = gage_dt_cex)
     text(dot_txt_x, flood_y, labels = 'Above flood stage', pos = txt_pos, cex = leg_cex)
 
     # plot storm legend

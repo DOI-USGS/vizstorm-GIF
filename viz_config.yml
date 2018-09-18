@@ -32,7 +32,7 @@ marsh_col: NA
 ocean_col: "#e7f1fa"
 storm_line_col: "grey70"
 legend_text:
-  cex: 1.8
+  cex: 1.5
   col: "#161616"
   family: ""
 
@@ -53,8 +53,8 @@ component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "top"
   datetime: # above watermark for now
-    x1: 0.0044
-    y1: 0.936
+    x1: 0.004
+    y1: 0.935
   legend_x_pos: "right"
   legend_y_pos: "bottom"
   sparks:
@@ -65,8 +65,8 @@ component_placement:
 
 ocean_name_placement:
   -
-    x1: 0.27
-    y1: 0.23
+    x1: 0.17
+    y1: 0.21
     label: 'Atlantic Ocean'
 
 focus_geoms:
