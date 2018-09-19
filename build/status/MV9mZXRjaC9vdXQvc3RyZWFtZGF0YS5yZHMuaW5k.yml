@@ -1,11 +1,11 @@
 version: 0.3.0
 name: 1_fetch/out/streamdata.rds.ind
 type: file
-hash: ae7ce0bd24d2f3393e2ccf0cbc60b1d3
-time: 2018-09-18 10:05:33 UTC
+hash: fb92d08a56dfea00762b929597934cd5
+time: 2018-09-18 23:52:48 UTC
 depends:
   2_process/out/gage_sites.rds.ind: 5f6a51de60f1e4ccb1d6cc6acf0e8e26
-  dates: ac41ef22c1f66891aeaf4aa1d1fe85d6
+  dates: 185576c5bcceeec6e103a2f359dd1b78
   stream_params: 089aebea962cdd0eb862e4ccd23302bd
   lib/cfg/gd_config.yml: 0efe12f59fc2e414573b9b19dbe4d6b0
 fixed: 730fe0a4966514866300139c5ad8f739
