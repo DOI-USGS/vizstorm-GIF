@@ -3,15 +3,15 @@ storm_name: "Florence"
 stn_event: 283
 dates:
   start: '2018-09-12 00:00:00'
-  end: '2018-09-18 21:00:00'
+  end: '2018-09-19 13:00:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
-frame_step: 1 # hours elapsed between GIF frames
+frame_step: 3 # hours elapsed between GIF frames
 
 # view, dimensions
 bbox: [-83, 30.4, -67, 38.5]
 projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
-height: 600
-width: 1080
+height: 512
+width: 1024
 
 # styling
 precip_cols: ["#FAFBF399", "#F0F8E3CC", "#D4E9CAE6", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
@@ -44,7 +44,7 @@ intro:
   point_background: "#175676"
   frame_delay_cs: 8 # delay between intro frames. cs = centiseconds = hundredths of a second
 
-frame_delay_cs: 7 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
+frame_delay_cs: 14 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
 
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
@@ -53,7 +53,7 @@ component_placement:
   watermark_y_pos: "top"
   datetime: # above watermark for now
     x1: 0.005
-    y1: 0.87
+    y1: 0.85
   legend_x_pos: "left"
   legend_y_pos: "bottom"
   sparks:
