@@ -1,11 +1,11 @@
 version: 0.3.0
 name: 1_fetch/out/precip_data.nc.ind
 type: file
-hash: 79a53bef03fa16fd706941fb9422c7d3
-time: 2018-09-18 17:24:32 UTC
+hash: c5c6fc5854feff2189134d533754a7ca
+time: 2018-09-19 10:55:48 UTC
 depends:
   view_polygon: ab7e6d35cdd57a2d4898879d7aa850d6
-  dates: 746c9796a95e12dced85811e4da46f7e
+  dates: 2e4cf6bcb549a04fc82d652b43189e11
 fixed: 66ef0dfd03ad70a70976c84b33b03433
 code:
   functions:
