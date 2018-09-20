@@ -64,8 +64,8 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
 
     # plan text and legend coordinates
     user_coords <- par()$usr
-    x_title <- user_coords[1] + 0.335 * diff(user_coords[1:2])
-    x_text <- user_coords[1] + 0.335 * diff(user_coords[1:2])
+    x_title <- user_coords[1] + 0.535 * diff(user_coords[1:2])
+    x_text <- user_coords[1] + 0.535 * diff(user_coords[1:2])
     y_title <- user_coords[3] + 0.49 * diff(user_coords[3:4])
     y_text <- user_coords[3] + 0.43 * diff(user_coords[3:4])
     x_dot <- x_text + 0.1635 * diff(user_coords[1:2])

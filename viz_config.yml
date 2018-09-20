@@ -2,20 +2,20 @@ storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archi
 storm_name: "Florence"
 stn_event: 283
 dates:
-  start: '2018-09-10 00:00:00'
-  end: '2018-09-16 13:00:00'
+  start: '2018-09-12 00:00:00'
+  end: '2018-09-19 13:00:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 1 # hours elapsed between GIF frames
 
 # view, dimensions
-bbox: [-83, 24.4, -67, 38.5]
+bbox: [-83, 30.4, -67, 38.5]
 projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
 height: 600
 width: 1080
 
 # styling
-precip_cols: ["#FAFBF350", "#F0F8E380", "#D4E9CA", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
-precip_bin: 3 # inches per bin
+precip_cols: ["#FAFBF399", "#F0F8E3CC", "#D4E9CAE6", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
+precip_bin: 4 # inches per bin
 gage_flood_col: "#175676"
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
@@ -60,7 +60,7 @@ component_placement:
     xleft: 0.70 # as percentage of figure width
     xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
     ybottom: 0.01 # as percentage of figure height
-    ytop: 0.90 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    ytop: 0.93 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
   outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
     xleft: 0.70
     xright: 0.99
