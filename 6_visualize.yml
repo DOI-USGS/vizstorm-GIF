@@ -6,6 +6,7 @@ include:
 packages:
   - dplyr
   - tidyr
+  - showtext
 
 file_extensions:
   - feather

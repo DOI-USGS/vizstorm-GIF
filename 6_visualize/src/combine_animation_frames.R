@@ -22,9 +22,9 @@ combine_animation_frames <- function(gif_file, animation_cfg, task_names=NULL, i
   # how many intro frames? how many storm frames? how many outro frames?
   intro_delay <- intro_config$frame_delay_cs
   storm_delay <- animation_cfg$frame_delay_cs
-  outro_delay <- 500
+  outro_delay <- 200
   final_delay <- 700
-  freeze_delay <- 50
+  freeze_delay <- 150
   # **trash code for now:
   calc_delays <- function(delay, start_frame, end_frame){
     paste(paste(sprintf('-d%s "#', delay), seq(start_frame-1, end_frame-1), sep = '') %>%
