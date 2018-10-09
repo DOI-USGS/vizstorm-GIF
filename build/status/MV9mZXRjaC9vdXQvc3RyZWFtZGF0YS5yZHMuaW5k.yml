@@ -11,5 +11,5 @@ depends:
 fixed: 730fe0a4966514866300139c5ad8f739
 code:
   functions:
-    fetch_streamdata: 063c5a5cbc0f159c4a1d7b6256376f89
+    fetch_streamdata: 535857362de396570c8b92ad95f7336a
 
