@@ -15,6 +15,9 @@ fetch_streamdata <- function(ind_file, sites_ind, dates, stream_params, gd_confi
   data <- readNWISuv(
     siteNumbers=sites$site_no, parameterCd=stream_params$stage,
     startDate=dates_with_buffer$start, endDate=dates_with_buffer$end)
+  data_filt <- data %>%
+    filter(dateTime >= as.POSIXct(dates$start, tz='UTC'),
+           dateTime <= as.POSIXct(dates$end, tz='UTC'))
 
   data_file <- as_data_file(ind_file)
   saveRDS(data, data_file)
