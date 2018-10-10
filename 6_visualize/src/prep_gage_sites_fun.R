@@ -9,12 +9,15 @@ prep_gage_sites_fun <- function(stage_data, gage_col_config, DateTime){
   plot_fun <- function(){
 
     plot(sf::st_geometry(norm_data_sites$geometry), add = TRUE,
-         pch = 21, bg = gage_col_config$gage_norm_col, col = NA, cex = 1.3)
+         pch = 21, bg = gage_col_config$gage_norm_col, col = NA, cex = 1.5)
     plot(sf::st_geometry(flood_data_sites$geometry),
          pch = 21, bg = gage_col_config$gage_norm_col, add = TRUE,
-         col = gage_col_config$gage_flood_col, lwd = 2, cex = 1.3)
+         col = gage_col_config$gage_flood_col, lwd = 4, cex = 1.7)
     plot(sf::st_geometry(missing_data_sites$geometry),
-         pch = 4, bg = gage_col_config$gage_norm_col, add = TRUE,
+         pch = 4, add = TRUE,
+         col = gage_col_config$gage_norm_col, lwd = 5, cex = 1.3)
+    plot(sf::st_geometry(missing_data_sites$geometry),
+         pch = 4, add = TRUE,
          col = gage_col_config$gage_out_col, lwd = 4, cex = 1.3)
 
   }

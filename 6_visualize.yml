@@ -6,6 +6,7 @@ include:
 packages:
   - dplyr
   - tidyr
+  - showtext
 
 file_extensions:
   - feather
@@ -54,9 +55,11 @@ targets:
   date_display_tz:
     command: viz_config[[I('date_display_tz')]]
   gage_color_config:
-    command: viz_config[I(c('gage_flood_col','gage_norm_col','gage_out_col'))]
+    command: viz_config[I(c('gage_flood_col','gage_norm_col','gage_out_col','gage_line_col','gage_ltn_col','gage_stn_col'))]
   intro_config:
     command: viz_config[[I(c('intro'))]]
+  legend_text_cfg:
+    command: viz_config[[I("legend_text")]]
 
   # ---- location of images on figure ---- #
   component_placement:
@@ -73,6 +76,8 @@ targets:
     command: component_placement[[I('legend_y_pos')]]
   sparkline_placement:
     command: component_placement[[I('sparks')]]
+  outro_placement:
+    command: component_placement[[I('outro')]]
 
   # ---- location of labels on figure ---- #
   ocean_name_placement:
@@ -102,7 +107,7 @@ targets:
     command: prep_gage_sites_fun(stage_data, gage_color_config, storm_start_date)
 
   stage_data:
-    command: fetch_read('2_process/out/normalized_streamdata.rds.ind')
+    command: fetch_read('2_process/out/cleaned_streamdata.rds.ind')
 
   storm_start_date:
     command: format_start_date(timestep_ind = '2_process/out/timesteps.rds.ind')
@@ -166,11 +171,15 @@ targets:
   storm_frame_config:
     command: viz_config[I(c('width','height'))]
 
+  storm_frame_step:
+    command: viz_config[[I('frame_step')]]
+
   storm_gif_tasks:
     command: create_storm_gif_tasks(
       timestep_ind = '2_process/out/timesteps.rds.ind',
       storm_track_cfg = storm_track_cfg,
-      folders = visualize_folders)
+      folders = visualize_folders,
+      frame_step = storm_frame_step)
 
   6_storm_gif_tasks.yml:
     command: create_storm_gif_makefile(
@@ -202,6 +211,9 @@ targets:
       task_names=NULL,
       num_tries=I(1), sleep_on_error=I(0))
 
+  6_visualize/log/6_outro_gif_frames.ind:
+    command: scmake(I('6_outro_gif_frames'), '6_outro_gif_frames.yml')
+
   # Combine the png files into a gif.
   #
   # For now, call scmake('6_visualize/out/animation_a.gif', force=TRUE)
@@ -227,6 +239,8 @@ targets:
     command: combine_animation_frames(
       gif_file=target_name,
       animation_cfg=animation_cfg,
-      task_names=NULL)
+      task_names=NULL,
+      intro_config = intro_config,
+      n_outro = I(3))
   6_visualize/out/animation_a.gif.ind:
     command: gd_put(target_name, '6_visualize/out/animation_a.gif')
