@@ -17,8 +17,8 @@ build/status/Nl92aXN1YWxpemUvbG9n*
 docker-compose.yml
 
 # storm-specific files (un-ignore these on storm branches)
-*.ind
-build/*
-viz_config.yml
-lib/cfg/gd_config.yml
-2_process/src/filter_sites_custom.R
+#*.ind
+#build/*
+#viz_config.yml
+#lib/cfg/gd_config.yml
+#2_process/src/filter_sites_custom.R

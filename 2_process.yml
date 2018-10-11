@@ -72,12 +72,15 @@ targets:
       view_polygon = view_polygon,
       focus_geoms_ind = '1_fetch/out/focus_geoms.rds.ind',
       proj_str = proj_str)
+  2_process/in/shiny_sites.rds:
+    command: gd_get('2_process/in/shiny_sites.rds.ind')
   2_process/out/outro_gage_sites_geom.rds:
     command: gd_get('2_process/out/outro_gage_sites_geom.rds.ind')
   2_process/out/gage_sites_custom.rds.ind:
     command: filter_sites_custom(
       ind_file = target_name,
-      sites_ind = '2_process/out/gage_sites_geom.rds.ind')
+      sites_ind = '2_process/out/gage_sites_geom.rds.ind',
+      selection_ind = '2_process/in/shiny_sites.rds.ind')
   2_process/out/gage_sites_custom.rds:
     command: gd_get('2_process/out/gage_sites_custom.rds.ind')
   2_process/out/gage_sites.rds.ind:
@@ -152,7 +155,7 @@ targets:
       stage_gap_threshold = stage_gap_threshold)
   2_process/out/normalized_streamdata.rds:
     command: gd_get('2_process/out/normalized_streamdata.rds.ind')
-    
+
   # manual filtering step to remove points we expect won't make it past Provisional
   2_process/out/cleaned_streamdata.rds.ind:
     command: clean_streamdata(
