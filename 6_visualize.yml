@@ -195,20 +195,12 @@ targets:
   # then you can call scmake('6_visualize/log/6_storm_gif_tasks.ind') repeatedly.
   # Once the .ind file exists, you'll need to call scmake('6_visualize/log/6_storm_gif_tasks.ind', force=TRUE)
   # to iterate on all frames at once.
-  trial_storm_frames_01:
-    command: sprintf(I('a_201708%02d_01'), I(25:31))
-  trial_storm_frames_07:
-    command: sprintf(I('a_201708%02d_07'), I(25:31))
-  trial_storm_frames_13:
-    command: sprintf(I('a_201708%02d_13'), I(25:31))
-  trial_storm_frames_19:
-    command: sprintf(I('a_201708%02d_19'), I(25:31))
   trial_storm_frames:
-    command: c(trial_storm_frames_01, trial_storm_frames_07, trial_storm_frames_13, trial_storm_frames_19)
+    command: c(I('a_20181009_15'))
   6_visualize/log/6_storm_gif_tasks.ind:
     command: loop_tasks(
       task_plan=storm_gif_tasks, task_makefile='6_storm_gif_tasks.yml',
-      task_names=NULL,
+      task_names=trial_storm_frames,
       num_tries=I(1), sleep_on_error=I(0))
 
   6_visualize/log/6_outro_gif_frames.ind:
