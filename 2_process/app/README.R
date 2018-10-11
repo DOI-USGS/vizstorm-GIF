@@ -3,7 +3,7 @@
 # and run the fetch_sites_from_states() function.
 source('2_process/app/get_raw_data.R')
 fetch_sites_from_states(
-  state_cds = c("FL","GA","AL","SC"),
+  state_cds = c("FL","GA","AL","SC","NC","TN","VA","WV","MD","DC","DE","NJ","PA"),
   dates = list(start = "2018-10-09 12:00:00"),
   path_to_save = "2_process/in",
   pCodes = c("00065"))
@@ -26,7 +26,7 @@ shiny::runApp("2_process/app", launch.browser = TRUE)
 library(scipiper)
 gd_put(as_ind_file('2_process/in/shiny_sites.rds'))
 
-# Step 4: From here, anybody should be able to pull and use all_sites.rds (and
+# Step 4: From here, anybody should be able to pull and use shiny_sites.rds (and
 # the picked_sites column) to apply in filter_sites_custom
 sc_retrieve('2_process/in/shiny_sites.rds.ind')
 sc_retrieve('2_process/in/shiny_flow.rds.ind')
