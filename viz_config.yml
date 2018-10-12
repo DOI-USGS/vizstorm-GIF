@@ -97,6 +97,9 @@ secondary_geoms:
   - # Mexico
     database: "mapdata::worldHires"
     regions: "Mexico"
+  - # Canada
+    database: "mapdata::worldHires"
+    regions: "Canada"
 
 cities:
   dot: # parameters for general coloring of the
