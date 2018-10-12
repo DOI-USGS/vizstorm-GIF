@@ -55,7 +55,7 @@ component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "top"
   datetime: # above watermark for now
-    x1: 0.001
+    x1: 0.0005
     y1: 0.93
   legend_x_pos: "left"
   legend_y_pos: "bottom"
@@ -75,7 +75,7 @@ component_placement:
 ocean_name_placement:
   -
     label: 'Atlantic Ocean'
-    x1: 0.52
+    x1: 0.51
     y1: 0.38
   -
     label: 'Gulf of Mexico'
@@ -154,6 +154,7 @@ cities:
     - "Nashville TN"
     - "Columbus OH"
     - "Detroit MI"
+    - "Milwaukee WI"
 
 # Only streamorders greater than this will be fetched.
 fetch_streamorder: 5
