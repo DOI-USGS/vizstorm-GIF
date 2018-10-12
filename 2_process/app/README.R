@@ -27,8 +27,10 @@ shiny::runApp("2_process/app", launch.browser = TRUE)
 library(scipiper)
 gd_put(as_ind_file('2_process/in/shiny_sites.rds'))
 
+
 # Step 4: From here, anybody should be able to pull and use shiny_sites.rds (and
 # the picked_sites column) to apply in filter_sites_custom
+gd_get('2_process/in/shiny_flow.rds.ind')
 sc_retrieve('2_process/in/shiny_sites.rds.ind')
 sc_retrieve('2_process/in/shiny_flow.rds.ind')
 # then go to step 5
