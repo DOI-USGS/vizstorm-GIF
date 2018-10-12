@@ -79,8 +79,8 @@ ocean_name_placement:
     y1: 0.38
   -
     label: 'Gulf of Mexico'
-    x1: 0.05
-    y1: 0.15
+    x1: 0.00001
+    y1: 0.14
 
 focus_geoms:
   - # U.S. counties
