@@ -100,7 +100,7 @@ prep_outro_readmore_fun <- function(outro_placement, legend_text_cfg, opacity=1)
     # plot text and legend
     text(x=x_title, y=y_title, labels="STAY SAFE DURING FLOODS", adj=c(0, 1),
          cex=2.2, col=legend_text_cfg$col, family = 'Oswald')
-    text_chars <- "Learn more about USGS response to Florence at www.usgs.gov/florence"
+    text_chars <- "Learn more about USGS response to Michael at www.usgs.gov/michael"
     text(x=x_text, y=y_text, labels=text_chars, adj=c(0, 1),
          cex=1.5, col=legend_text_cfg$col, family = 'abel')
   }
