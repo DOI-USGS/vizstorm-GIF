@@ -6,6 +6,7 @@ fetch_sites_from_states(
   state_cds = c("FL","GA","AL","SC","NC","TN","VA","WV","MD","DC","DE","NJ","PA"),
   dates = list(start = "2018-10-09 12:00:00"),
   path_to_save = "2_process/in",
+  previous_site_file = NA,
   pCodes = c("00065"))
 # push the flow data to Drive
 library(scipiper)
@@ -34,4 +35,12 @@ sc_retrieve('2_process/in/shiny_flow.rds.ind')
 
 # Step 5 = 1+2+3: Now anybody should be able to redo steps 2-3 (and update with
 # step 1 if needed), git commit and PR, and share those results with everyone
-# else
+# else. When repeating step 1, add the current shiny_sites.rds as the
+# previous_selection
+source('2_process/app/get_raw_data.R')
+fetch_sites_from_states(
+  state_cds = c("FL","GA","AL","SC","NC","TN","VA","WV","MD","DC","DE","NJ","PA","NY"),
+  dates = list(start = "2018-10-09 12:00:00"),
+  path_to_save = "2_process/in",
+  previous_site_file = "2_process/in/shiny_sites.rds",
+  pCodes = c("00065"))

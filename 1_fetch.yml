@@ -52,10 +52,10 @@ targets:
   stream_params:
     command: yaml.load_file('1_fetch/cfg/stream_params.yml')
   precip_config:
-    command: viz_config[I(c('precip_cols', 'precip_bin'))]
+    command: viz_config[I(c('precip_cols', 'precip_breaks'))]
 
   legend_styles:
-    command: viz_config[I(c('gage_flood_col','gage_norm_col','hurricane_cols','hurricane_col_names','storm_name','storm_line_col'))]
+    command: viz_config[I(c('gage_flood_col','gage_norm_col','hurricane_cols','hurricane_col_names','storm_name','storm_line_col','precip_key_width'))]
 
   hurricane_cols:
     command: viz_config[[I('hurricane_cols')]]
