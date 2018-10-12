@@ -26,7 +26,7 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
 
     # compute position info shared across multiple legend elements
     coord_space <- par()$usr
-    bin_w_perc <- 0.05 # percentage of X domain
+    bin_w_perc <- legend_styles$precip_key_width # percentage of X domain
     bin_h_perc <- 0.02 # *also* percentage of X domain
     bin_w <- bin_w_perc * diff(coord_space[c(1,2)])
     bin_h <- bin_h_perc * diff(coord_space[c(1,2)])
@@ -46,6 +46,7 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
     center_to_txt_y <- strheight("A")/3 # height of character divided by three seems to do the trick
 
     # plot precip bins and precip label
+    precip_bins <- precip_bins[-1, ] # we don't want a key element for the first precip bin, which is transparent
     precip_txt_y <- ybottom+2*bin_h*0.8
     text(x_edge, precip_txt_y, labels = 'NOAA total rainfall amount (inches)', pos = txt_pos,
          cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
@@ -60,7 +61,7 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
       col <- as.character(precip_bins$col[j])
       text_col <- ifelse(any(col2rgb(col) < 130), 'white','black')
       rect(xleft = xright-bin_w, ybottom = ybottom, xright = xright, ytop = ybottom+bin_h, col = col, border = NA)
-      text_char <- as.character(precip_bins$break_factor[j]) %>% gsub(pattern = ',', replacement = '-') %>% gsub(pattern = '-Inf', replacement = '+') %>% gsub(pattern = "\\(|\\]", replacement = '')
+      text_char <- precip_bins$label[j]
       text(xright-bin_w/2, ybottom+bin_h/2, text_char, col = text_col, cex = 1.3)
       xright <- xright+bin_w*shift_dir
     }

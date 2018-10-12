@@ -11,7 +11,7 @@ prep_spark_funs_data <- function(stage_data, site_data, timestep_ind, spark_conf
   sites <- site_data %>%
     bind_cols(., as_data_frame(sf::st_coordinates(.))) %>%
     sf::st_set_geometry(NULL) %>%
-    arrange(desc(Y)) %>%
+    arrange(desc(Y)) %>% # north to south
     pull(site_no)
 
   # Filter timeseries gage data

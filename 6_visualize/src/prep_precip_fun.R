@@ -1,14 +1,12 @@
 
 prep_precip_fun <- function(precip_rasters, precip_bins, timestep){
 
-  breaks <- unique(c(precip_bins$left_break,
-                     precip_bins$right_break))
-  breaks[which(breaks == Inf)] <- 100000 # Just quiets an error
-  breaks <- c(0, 1, breaks[2:length(breaks)]) # Add a tiny break for alpha
+  breaks <- c(precip_bins$left_break[1], precip_bins$right_break)
+  colors <- precip_bins$col
 
-  colors <- as.character(precip_bins$col)
-  colors <- c(paste0(substr(colors[1], 1, 7), "00"), colors)
-
+  if(!(timestep %in% names(precip_rasters))) {
+    stop(sprintf("precip_raster for timestep %s is unavailable", timestep))
+  } # missing timesteps can give a cryptic error later, so catch it now
   one_precip_raster <- precip_rasters[[timestep]]
 
   # clean up the environment to keep the closure small
