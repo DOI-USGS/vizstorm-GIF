@@ -55,8 +55,8 @@ component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "top"
   datetime: # above watermark for now
-    x1: 0.005
-    y1: 0.85
+    x1: 0.001
+    y1: 0.93
   legend_x_pos: "left"
   legend_y_pos: "bottom"
   sparks:
@@ -75,8 +75,8 @@ component_placement:
 ocean_name_placement:
   -
     label: 'Atlantic Ocean'
-    x1: 0.6
-    y1: 0.4
+    x1: 0.52
+    y1: 0.38
   -
     label: 'Gulf of Mexico'
     x1: 0.05
