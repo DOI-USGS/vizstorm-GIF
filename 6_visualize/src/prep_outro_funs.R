@@ -24,16 +24,18 @@ prep_outro_rdgs_fun <- function(rdg_ind="1_fetch/out/rapid_dep_sites.rds.ind", g
     line_spacing_vert <- strheight("A", cex=legend_text_cfg$cex, family=legend_text_cfg$family)
     dot_spacing_vert <- line_spacing_vert / 3
 
-    x_title <- user_coords[1] + 0.5 * diff(user_coords[1:2])
-    x_text <- user_coords[1] + 0.5 * diff(user_coords[1:2])
-    y_title <- user_coords[3] + 0.88 * diff(user_coords[3:4])
-    y_text <- user_coords[3] + 0.82 * diff(user_coords[3:4])
-    x_dot <- x_text + 0.104 * diff(user_coords[1:2])
-    y_dot <- y_text - 0.061 * diff(user_coords[3:4])
+    x_title <- user_coords[1] + 0.57 * diff(user_coords[1:2])
+    x_text <- user_coords[1] + 0.57 * diff(user_coords[1:2])
+    y_title <- user_coords[3] + 0.33 * diff(user_coords[3:4])
+    y_text <- user_coords[3] + 0.29 * diff(user_coords[3:4])
+    x_dot <- x_text + 0.297 * diff(user_coords[1:2])
+    y_dot <- y_text - 0.038 * diff(user_coords[3:4])
     # plot text and legend
     text(x=x_title, y=y_title, labels="RAPID RESPONSE TO FLOODS", adj=c(0, 1),
          cex=2.2, col=legend_text_cfg$col, family = 'Oswald')
-    text_chars <- "During floods, USGS rapidly deploys extra gages\n(orange dots   ) to help protect life and property."
+    text_chars <- "During floods, USGS rapidly deploys
+extra gages (orange dots   ) to
+help protect life and property."
     text(x=x_text, y=y_text, labels=text_chars, adj=c(0, 1),
          cex=1.8, col=legend_text_cfg$col, family = 'abel')
     points(x=x_dot, y=y_dot, pch = stn_pch, col = stn_col, cex = stn_cex)
@@ -64,18 +66,20 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
 
     # plan text and legend coordinates
     user_coords <- par()$usr
-    x_title <- user_coords[1] + 0.535 * diff(user_coords[1:2])
-    x_text <- user_coords[1] + 0.535 * diff(user_coords[1:2])
-    y_title <- user_coords[3] + 0.49 * diff(user_coords[3:4])
-    y_text <- user_coords[3] + 0.43 * diff(user_coords[3:4])
-    x_dot <- x_text + 0.1635 * diff(user_coords[1:2])
-    y_dot <- y_text - 0.061 * diff(user_coords[3:4])
+    x_title <- user_coords[1] + 0.67 * diff(user_coords[1:2])
+    x_text <- user_coords[1] + 0.57 * diff(user_coords[1:2])
+    y_title <- user_coords[3] + 0.58 * diff(user_coords[3:4])
+    y_text <- user_coords[3] + 0.51 * diff(user_coords[3:4])
+    x_dot <- x_text + 0.128 * diff(user_coords[1:2])
+    y_dot <- y_text - 0.067 * diff(user_coords[3:4])
     # plot text and legend
-    text(x=x_title, y=y_title, labels="NATIONAL SCALE OBSERVING NETWORK", adj=c(0, 1),
+    text(x=x_title, y=y_title, labels="        NATIONAL SCALE\nOBSERVING NETWORK", adj=c(0, 1),
          cex=2.2, col=legend_text_cfg$col, family = 'Oswald')
-    text_chars <- "USGS monitors water levels at thousands of gages
-nationally (blue dots   ). Long-term USGS gages across
-the southeastern US are shown on the map."
+    text_chars <- "           USGS monitors water levels
+at thousands of gages nationally
+(blue dots   ). Long-term USGS gages
+across the southeastern US are
+shown on the map."
     text(x=x_text, y=y_text, labels=text_chars, adj=c(0, 1),
          cex=1.8, col=legend_text_cfg$col, family = 'abel')
 
@@ -92,15 +96,15 @@ prep_outro_readmore_fun <- function(outro_placement, legend_text_cfg, opacity=1)
 
     # plan text coordinates
     user_coords <- par()$usr
-    x_title <- user_coords[1] + 0.52 * diff(user_coords[1:2])
-    x_text <- user_coords[1] + 0.43 * diff(user_coords[1:2])
-    y_title <- user_coords[3] + 0.17 * diff(user_coords[3:4])
+    x_title <- user_coords[1] + 0.57 * diff(user_coords[1:2])
+    x_text <- user_coords[1] + 0.57 * diff(user_coords[1:2])
+    y_title <- user_coords[3] + 0.15 * diff(user_coords[3:4])
     y_text <- user_coords[3] + 0.11 * diff(user_coords[3:4])
 
     # plot text and legend
     text(x=x_title, y=y_title, labels="STAY SAFE DURING FLOODS", adj=c(0, 1),
          cex=2.2, col=legend_text_cfg$col, family = 'Oswald')
-    text_chars <- "Learn more about USGS response to Florence at www.usgs.gov/florence"
+    text_chars <- "Learn more about USGS response to Michael\nat www.usgs.gov/michael"
     text(x=x_text, y=y_text, labels=text_chars, adj=c(0, 1),
          cex=1.5, col=legend_text_cfg$col, family = 'abel')
   }

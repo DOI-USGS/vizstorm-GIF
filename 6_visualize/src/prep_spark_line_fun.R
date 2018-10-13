@@ -147,7 +147,7 @@ prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_confi
     # Plot the sparklines title
     title_x <- coord_space[1] + mean(x_coords) * diff(coord_space[1:2])
     title_y <- coord_space[3] + mean(c(max(y_coords$upper), 1)) * diff(coord_space[3:4])
-    text(x=title_x, y=title_y, labels="Water level at selected USGS gages", adj=c(0.5, 0.5),
+    text(x=title_x, y=title_y, labels="Water level at\nselected USGS gages", adj=c(0.53, 0.55),
          cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
 
     for(site in names(shapes)) {
