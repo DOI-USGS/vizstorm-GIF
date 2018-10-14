@@ -1,0 +1,11 @@
+version: 0.3.0
+name: 6_visualize/out/animation_a.gif.ind
+type: file
+hash: e8e053eb47491e73dc6aca3fc0a239d6
+time: 2018-10-14 12:39:04 UTC
+depends:
+  6_visualize/out/animation_a.gif: f80e01197ada53009b9126e18834b21b
+fixed: b125b0bf925d0c6b35a036a2042d89b2
+code:
+  functions: {}
+
