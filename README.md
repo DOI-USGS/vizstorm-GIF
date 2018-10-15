@@ -51,6 +51,41 @@ Setup to work on the master branch:
 1. Create or update your lib/cfg/gd_config.yml file by calling `scipiper::gd_config(config_file="lib/cfg/gd_config.yml", folder="drivefolderid")` with the new drivefolderid value from the Drive folder you just created.
 1. The first time you build a target or run a function that uses `gd_put()` or `gd_get()`, you'll be prompted in a browser to log in to your Google Account. This will create a an .httr-oauth file locally, which should continue to be .gitignored.
 
+## Building a video (preferred for instagram)
+**currently just mac**
+
+```
+convert -coalesce  6_visualize/out/animation_a.gif 6_visualize/tmp/vid_frames%04d.png
+```
+I've copied frames that should show up longer and renamed to keep the sequential ordering. This kind of thing works:
+```r
+file.copy('6_visualize/tmp/vid_frames0121.png','6_visualize/tmp/vid_frames0133.png')
+file.remove('6_visualize/tmp/vid_frames0121.png')
+file.copy('6_visualize/tmp/vid_frames0122.png','6_visualize/tmp/vid_frames0146.png')
+file.remove('6_visualize/tmp/vid_frames0122.png')
+file.copy('6_visualize/tmp/vid_frames0123.png','6_visualize/tmp/vid_frames0159.png')
+file.remove('6_visualize/tmp/vid_frames0123.png')
+
+sapply(21:32, FUN = function(x) {
+    file.copy('6_visualize/tmp/vid_frames0120.png', sprintf('6_visualize/tmp/vid_frames01%s.png',x))
+})
+sapply(34:45, FUN = function(x) {
+    file.copy('6_visualize/tmp/vid_frames0133.png', sprintf('6_visualize/tmp/vid_frames01%s.png',x))
+})
+sapply(47:58, FUN = function(x) {
+    file.copy('6_visualize/tmp/vid_frames0146.png', sprintf('6_visualize/tmp/vid_frames01%s.png',x))
+})
+sapply(60:85, FUN = function(x) {
+    file.copy('6_visualize/tmp/vid_frames0159.png', sprintf('6_visualize/tmp/vid_frames01%s.png',x))
+})
+```
+
+
+then from command line: 
+```
+ffmpeg -r 10 -i 6_visualize/tmp/vid_frames%04d.png -vcodec h264 -y -pix_fmt yuv420p 6_visualize/out/vizstorm-vid.mp4
+```
+to generate a video
 
 ## Docker
 
