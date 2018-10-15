@@ -4,7 +4,7 @@ prep_precip_fun <- function(precip_rasters, precip_bins, timestep){
   breaks <- unique(c(precip_bins$left_break,
                      precip_bins$right_break))
   breaks[which(breaks == Inf)] <- 100000 # Just quiets an error
-  breaks <- c(0, 1, breaks[2:length(breaks)]) # Add a tiny break for alpha
+  breaks <- c(0, 0.001, breaks[2:length(breaks)]) # Add a tiny break for alpha
 
   rgb_ramp <- col2rgb(precip_bins$col, alpha = TRUE)
   rgb_ramp <- cbind(rgb_ramp[,1],rgb_ramp)

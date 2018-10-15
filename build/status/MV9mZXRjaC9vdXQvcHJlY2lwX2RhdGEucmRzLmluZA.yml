@@ -1,0 +1,16 @@
+version: 0.3.0
+name: 1_fetch/out/precip_data.rds.ind
+type: file
+hash: deb1e6af31546bff563b5f4ae93a222b
+time: 2018-09-10 14:48:23 UTC
+depends:
+  view_polygon: 43075bd9d6c201365dd5d44ca55a0ad1
+  dates: 2f19811ac1ccd244558540962a2b92ca
+fixed: 677de7d642f5c54ce209836e9bab6824
+code:
+  functions:
+    fetch_precip_data: 1f69d0287839cccb5da5f04ab0733102
+    get_precip_values: 7c1408421e234aeacc563955e75944a2
+    get_time_nc: 6864db2f8952c6ce587661e9915cbb3a
+    precip_spatial: bb3efc52a426d58d055d33a03af82ab1
+

@@ -6,6 +6,11 @@ normalize_streamdata <- function(ind_file, raw_ind_file, sites_ind_file, timeste
   gage_sites <- readRDS(sc_retrieve(sites_ind_file))
   timesteps <- readRDS(sc_retrieve(timesteps_ind_file))
 
+  # remove duplicated columns
+  if(any(duplicated(names(streamdata)))) {
+    streamdata <- streamdata[,-which(duplicated(names(streamdata)))]
+  }
+
   # make sure every site's timeseries has at least the standard timesteps
   complete_streamdata <- streamdata %>%
     expand(site_no, dateTime = timesteps) %>%
