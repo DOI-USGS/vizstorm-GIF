@@ -42,16 +42,20 @@ process_snow_raster <- function(ind_file, snow_data_ind, snow_data_yml, crop_ext
 
 interpolate_snow_raster_layers <- function(timestep_in_hours, ...) {
 
-  snow_raster_rds_inds <- c(...)
+  snow_raster_rds_inds <- c(...) #would be either passing in dates or files here?
+  rasters_list <- list()
   #need to get a list of rasters read in from .RDS files
+  for(i in seq_along(snow_raster_rds_inds)) {
+    rasters_list[[i]] <- readRDS(as_data_file(snow_raster_rds_inds[i]))
+  }
   raster_stack <- raster::stack(x = rasters_list)
-  #insert all NA layers, then na.spline interpolates NA values
+
   daily_rasters <- raster::nlayers(raster_stack)
   hours_covered <- (daily_rasters - 1)*24 #since we aren't extrapolating
   steps <- seq(from = 0, by = timestep_in_hours,
                length.out = (hours_covered/timestep_in_hours)+1)
   have_data <- which(steps %% 24 == 0) #these are the steps to interpolate between
-
+  #insert all NA layers, then na.spline interpolates NA values
   empty <- rep(NA, length(steps))
   fun <- function(y) {
     if(all(is.na(y))) {
@@ -61,6 +65,9 @@ interpolate_snow_raster_layers <- function(timestep_in_hours, ...) {
     }
   }
   interp_raster_stack <- calc(raster_stack,  fun)
+  #could create raster timeseries here for referencing to timestep
+  #https://rdrr.io/cran/rts/man/rts.html
+
   #TODO: write out indicator and data files
   #use raster::subset to get  individual layers
 }
