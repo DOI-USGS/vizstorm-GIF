@@ -117,11 +117,6 @@ targets:
 
   precip_rasters:
     command: fetch_read('2_process/out/precip_rasters.rds.ind')
-  
-  snow_cfg:
-    command: viz_config[[I('snow_cfg')]]
-  snow_rasters:
-    command: fetch_read('2_process/out/snow_rasters.rds.ind')
 
   rivers_cfg:
     command: viz_config[I(c('major_river_col','gage_river_col','lake_col','marsh_col'))]
@@ -141,14 +136,14 @@ targets:
 
   intro_frame_config:
     command: viz_config[I(c('width','height'))]
-  
+
   intro_gif_tasks:
     command: create_intro_gif_tasks(
       intro_config = intro_config,
       folders = visualize_folders,
       storm_track_cfg = storm_track_cfg,
       storm_start_date = storm_start_date)
-  
+
   6_intro_gif_tasks.yml:
     command: create_intro_gif_makefile(
       makefile = target_name,
@@ -184,7 +179,6 @@ targets:
       timestep_ind = '2_process/out/timesteps.rds.ind',
       storm_track_cfg = storm_track_cfg,
       folders = visualize_folders,
-      snow_data_yml_name = I('1_fetch_snow_tasks.yml'),
       frame_step = storm_frame_step)
 
   6_storm_gif_tasks.yml:
@@ -247,6 +241,6 @@ targets:
       animation_cfg=animation_cfg,
       task_names=NULL,
       intro_config = intro_config,
-      n_outro = I(0))
+      n_outro = I(3))
   6_visualize/out/animation_a.gif.ind:
     command: gd_put(target_name, '6_visualize/out/animation_a.gif')

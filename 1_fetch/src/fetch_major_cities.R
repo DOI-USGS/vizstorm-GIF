@@ -4,11 +4,10 @@ fetch_major_cities <- function(ind_file, city_config, within = NULL, crs = sf::s
   # cities should be a combo of maps::us.cities data (selected based on pop_min)
   # and custom config cities (with their lat/long drawn from maps::us.cities
   # unless specified)
-  
   custom_cities <- vapply(city_config$custom, `[[`, 'name', FUN.VALUE='')
   cities_df <- maps::us.cities %>%
     dplyr::filter(pop >= city_config$pop_min | name %in% custom_cities) %>%
-    dplyr::select(name, pop, lat, long)
+    select(name, pop, lat, long)
   cities_df <- cities_df %>%
     # add any cities that weren't listed above
     bind_rows(data_frame(name=setdiff(custom_cities, cities_df$name))) %>%
