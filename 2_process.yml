@@ -43,10 +43,6 @@ targets:
       - 2_process/out/normalized_streamdata.rds.ind
       - 2_process/out/cleaned_streamdata.rds.ind
 
-  # -- config --
-  proj_str:
-    command: viz_config[[I('projection')]]
-
   2_process/out/timesteps.rds.ind:
     command: choose_timesteps(target_name, dates = dates)
   2_process/out/timesteps.rds:

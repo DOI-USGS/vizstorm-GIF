@@ -48,6 +48,8 @@ targets:
   viz_config:
     command: yaml.load_file('viz_config.yml')
 
+  proj_str:
+    command: viz_config[[I('projection')]]
   dates:
     command: viz_config[[I('dates')]]
   stream_params:

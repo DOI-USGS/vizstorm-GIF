@@ -31,11 +31,28 @@ create_fetch_snow_tasks <- function(snow_data_tmp_dir, dates){
     }
   )
   
+  process <- scipiper::create_task_step(
+    step_name = 'process_raster',
+    target_name = function(task_name, step_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf('2_process/out/raster_%s.rds.ind', task_name)
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      psprintf(
+        "process_snow_raster(",
+        "ind_file = target_name,",
+        sprintf("snow_data_ind = I('1_fetch/out/%s.dat.ind'),", task_name),
+        "proj_str = proj_str)"
+      )
+    }
+  )
+  
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
-    task_steps=list(download),
+    task_steps=list(download, process),
     add_complete=FALSE,
-    final_steps='download',
+    final_steps='process_raster',
     ind_dir='1_fetch/log')
 }
 
@@ -45,9 +62,10 @@ create_fetch_snow_makefile <- function(makefile, task_plan, remake_file) {
   scipiper::create_task_makefile(
     makefile=makefile, task_plan=task_plan,
     include=remake_file,
-    packages=c('dplyr', 'scipiper'),
+    packages=c('dplyr', 'scipiper', 'raster'),
     sources=c(
-      '1_fetch/src/fetch_snow_data.R'),
+      '1_fetch/src/fetch_snow_data.R',
+      '2_process/src/process_snow_rasters.R'),
     file_extensions=c('dat', 'ind'),
     ind_complete=TRUE)
 }
