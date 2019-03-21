@@ -20,7 +20,6 @@ sources:
   - 2_process/src/filter_sites_geom.R
   - 2_process/src/filter_using_custom.R
   - 2_process/src/process_precip.R
-  - 2_process/src/process_snow_rasters.R
   - 2_process/src/extract_storm_points.R
   - 2_process/src/interpolate_storm_points.R
   - 2_process/src/process_river_geoms.R
@@ -37,11 +36,14 @@ targets:
       - 2_process/out/precip_spatial.rds.ind
       - 2_process/out/precip_values.rds.ind
       - 2_process/out/precip_rasters.rds.ind
-      - 2_process/out/snow_rasters.rds.ind
       - 2_process/out/storm_points_interp.rds.ind
       - 2_process/out/river_geoms.rds.ind
       - 2_process/out/normalized_streamdata.rds.ind
       - 2_process/out/cleaned_streamdata.rds.ind
+
+  # -- config --
+  proj_str:
+    command: viz_config[[I('projection')]]
 
   2_process/out/timesteps.rds.ind:
     command: choose_timesteps(target_name, dates = dates)
@@ -109,16 +111,6 @@ targets:
       view_polygon = view_polygon,
       view_config = view_config)
   2_process/out/precip_rasters.rds:
-    command: gd_get('2_process/out/precip_rasters.rds.ind')
-
-  # This changes the binary files into raster
-  # The reprojection part is a bit slow (~17 min)
-  2_process/out/snow_rasters.rds.ind:
-    command: process_snow_rasters(
-      ind_file = target_name,
-      snow_data_ind = '1_fetch/log/1_fetch_snow_tasks.ind',
-      proj_str = proj_str)
-  2_process/out/snow_rasters.rds:
     command: gd_get('2_process/out/precip_rasters.rds.ind')
 
   2_process/out/storm_points_coarse.rds.ind:
