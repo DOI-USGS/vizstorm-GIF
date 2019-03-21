@@ -1,0 +1,53 @@
+create_fetch_snow_tasks <- function(snow_data_tmp_dir, dates){
+  
+  # viz_config <- yaml::yaml.load_file('viz_config.yml')
+  # dates <- viz_config[["dates"]]
+  
+  dates_to_fetch <- seq.Date(from = as.Date(dates$start, tz = 'UTC'), 
+                             to = as.Date(dates$end, tz = 'UTC'), by = "days")
+  years <- unique(format(dates_to_fetch, "%Y"))
+  months <- unique(format(dates_to_fetch, "%m"))
+  months_str <- month.abb[as.numeric(months)]
+  
+  # new set of instructions per month/year combination
+  tasks <- data.frame(ymd_str = format(dates_to_fetch, "%Y%m%d"), 
+                      stringsAsFactors = FALSE) %>% 
+    mutate(task_name = sprintf("snow_%s", ymd_str))
+  
+  download <- scipiper::create_task_step(
+    step_name = 'download',
+    target_name = function(task_name, step_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf('1_fetch/out/%s.dat.ind', task_name)
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      psprintf(
+        "fetch_snow_data(",
+        "ind_file = target_name,",
+        sprintf("ymd_str = I('%s'),", cur_task$ymd_str),
+        sprintf("tmp_dir = I('%s'))", snow_data_tmp_dir)
+        )
+    }
+  )
+  
+  gif_task_plan <- scipiper::create_task_plan(
+    task_names=tasks$task_name,
+    task_steps=list(download),
+    add_complete=FALSE,
+    final_steps='download',
+    ind_dir='1_fetch/log')
+}
+
+
+
+create_fetch_snow_makefile <- function(makefile, task_plan, remake_file) {
+  scipiper::create_task_makefile(
+    makefile=makefile, task_plan=task_plan,
+    include=remake_file,
+    packages=c('dplyr', 'scipiper'),
+    sources=c(
+      '1_fetch/src/fetch_snow_data.R'),
+    file_extensions=c('dat', 'ind'),
+    ind_complete=TRUE)
+}

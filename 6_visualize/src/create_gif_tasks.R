@@ -161,6 +161,18 @@ create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders, frame
        sprintf("prep_precip_fun(precip_rasters, precip_bins, I('%s'))", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
      }
    )
+   
+   snow_frame <- scipiper::create_task_step( # not sure why this is called "frame".
+     step_name = 'snow_frame',
+     target_name = function(task_name, step_name, ...){
+       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+       sprintf('snow_raster_fun_%s', task_name)
+     },
+     command = function(task_name, ...){
+       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+       sprintf("prep_snow_fun(snow_rasters, snow_cfg, I('%s'))", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+     }
+   )
 
   # spark_frame <- scipiper::create_task_step(
   #   step_name = 'spark_frame',
@@ -230,7 +242,8 @@ create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders, frame
         "view_fun,",
         "basemap_fun,",
         "ocean_name_fun,",
-        "precip_raster_fun_%s,"=cur_task$tn,
+        #"precip_raster_fun_%s,"=cur_task$tn,
+        "snow_raster_fun_%s,"=cur_task$tn,
         if(has_storm_track) "storm_line_fun,",
         if(has_storm_track) c("storm_point_fun_%s,"=cur_task$tn),
         #"spark_line_%s,"= cur_task$tn,
@@ -271,7 +284,8 @@ create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders, frame
 
   step_list <- list(
     sites_frame, if(has_storm_track) storm_point_frame, 
-    precip_frame,
+    #precip_frame,
+    snow_frame,
     #spark_frame, 
     datetime_frame, legend_frame, gif_frame, gif_test_frame)
   step_list <- step_list[!sapply(step_list, is.null)]

@@ -117,6 +117,11 @@ targets:
 
   precip_rasters:
     command: fetch_read('2_process/out/precip_rasters.rds.ind')
+  
+  snow_cfg:
+    command: viz_config[[I('snow_cfg')]]
+  snow_rasters:
+    command: fetch_read('2_process/out/snow_rasters.rds.ind')
 
   rivers_cfg:
     command: viz_config[I(c('major_river_col','gage_river_col','lake_col','marsh_col'))]
