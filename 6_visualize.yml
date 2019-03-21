@@ -184,6 +184,7 @@ targets:
       timestep_ind = '2_process/out/timesteps.rds.ind',
       storm_track_cfg = storm_track_cfg,
       folders = visualize_folders,
+      snow_data_yml_name = I('1_fetch_snow_tasks.yml'),
       frame_step = storm_frame_step)
 
   6_storm_gif_tasks.yml:

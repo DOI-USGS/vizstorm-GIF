@@ -96,7 +96,7 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_track_cfg, storm
     ind_dir=folders$log)
 }
 
-create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders, frame_step = 1){
+create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders, snow_data_yml_name, frame_step = 1){
 
   all_timestep <- readRDS(sc_retrieve(timestep_ind))
 
@@ -170,7 +170,13 @@ create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders, frame
      },
      command = function(task_name, ...){
        cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
-       sprintf("prep_snow_fun(snow_rasters, snow_cfg, I('%s'))", format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"))
+       psprintf(
+         "prep_snow_fun(",
+         "snow_raster_ind = I('2_process/out/raster_snow_%s.rds.ind')," = format(cur_task$timestep, "%Y%m%d"),
+         "snow_data_yml = I('%s')," = snow_data_yml_name,
+         "snow_cfg = snow_cfg,",
+         "timestep = I('%s'))" = format(cur_task$timestep, "%Y-%m-%d %H:%M:%S")
+       )
      }
    )
 

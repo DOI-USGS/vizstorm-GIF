@@ -8,7 +8,7 @@ date_display_tz: "America/New_York" # UTC is assumed for all input and intermedi
 frame_step: 3 # hours elapsed between GIF frames
 
 # view, dimensions
-bbox: [-99.72, 37.00, -86.05, 49.00]
+bbox: [-99.72, 33.00, -86.05, 46.48]
 projection: "+proj=lcc +lat_1=43.26666666666667 +lat_2=42.06666666666667 +lat_0=41.5 +lon_0=-93.5 +x_0=1500000 +y_0=1000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
 height: 900
 width: 720
@@ -106,7 +106,7 @@ cities:
     cex: 1.1
     angle: 330 # angle in radians for position of label relative to dot. pos is computed from angle: 225-315=1, 315-45=4, 45-135=3, 135-225=2
     dist: 0.007 # relative (fraction of window width) distance from dot to label
-  pop_min: 500000 # minimum population size of cities to be chosen by default; `custom` will make additions or modifications and `exclude` will make subtractions
+  pop_min: 400000 # minimum population size of cities to be chosen by default; `custom` will make additions or modifications and `exclude` will make subtractions
   custom: # cities to add or modify relative to the maps::us.cities dataset. added cities can use lat/long from us.cities if they are present in us.cities, even if they don't meet the pop_min criterion
     #-
     #  name: "Richmond VA"
@@ -137,17 +137,10 @@ cities:
 
   exclude:
     - "Knoxville TN"
-    - "Richmond VA"
     - "Memphis TN"
     - "Oklahoma City OK"
-    - "Fort Worth TX"
-    - "Dallas TX"
-    - "Chicago IL"
-    - "Baltimore MD"
-    - "WASHINGTON DC"
     - "Indianapolis IN"
     - "Nashville TN"
-    - "Jacksonville FL"
 
 # Only streamorders greater than this will be fetched.
 fetch_streamorder: 5
