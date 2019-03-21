@@ -63,9 +63,21 @@ create_fetch_snow_tasks <- function(snow_data_yml_name, snow_data_tmp_dir, crop_
     }
   )
   
+  get_raster_as_target <- scipiper::create_task_step(
+    step_name = 'get_raster',
+    target_name = function(task_name, step_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf('2_process/out/raster_%s.rds', task_name)
+    },
+    command = function(task_name, ...){
+      cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+      sprintf("gd_get('2_process/out/raster_%s.rds.ind')", task_name)
+    }
+  )
+  
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
-    task_steps=list(download, get_data_as_target, process_rasterize),
+    task_steps=list(download, get_data_as_target, process_rasterize, get_raster_as_target),
     add_complete=FALSE,
     final_steps='process_rasterize',
     ind_dir='1_fetch/log')
