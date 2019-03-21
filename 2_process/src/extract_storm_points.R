@@ -56,7 +56,7 @@ extract_storm_points <- function(ind_file, storm_shp_ind, cfg){
     }
 
     # select just the columns we need
-    points_simpler <- points_parsed %>% select(
+    points_simpler <- points_parsed %>% dplyr::select(
       DateTime,
       MSLP,
       # MSLP: the estimated sea level pressure at the center of a tropical cyclone
