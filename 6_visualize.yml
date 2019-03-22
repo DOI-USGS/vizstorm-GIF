@@ -95,6 +95,9 @@ targets:
   basemap_fun:
     command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind')
 
+  state_outline_fun:
+    command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind', outline_only = TRUE)
+
   storm_line_cfg:
     command: viz_config[I('storm_line_col')]
   storm_line_fun:

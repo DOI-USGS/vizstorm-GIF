@@ -250,6 +250,7 @@ create_storm_gif_tasks <- function(timestep_ind, storm_track_cfg, folders, snow_
         "ocean_name_fun,",
         #"precip_raster_fun_%s,"=cur_task$tn,
         "snow_raster_fun_%s,"=cur_task$tn,
+        "state_outline_fun,", #state outline on top of snow
         if(has_storm_track) "storm_line_fun,",
         if(has_storm_track) c("storm_point_fun_%s,"=cur_task$tn),
         #"spark_line_%s,"= cur_task$tn,
