@@ -63,7 +63,7 @@ interpolate_snow_raster_layers <- function(ind_file, timestep_in_hours, fetch_sn
     if(all(is.na(y))) {
       empty
     } else {
-      zoo::na.interp((empty[have_data] <- y), xout=1:length(steps))
+      zoo::na.approx((empty[have_data] <- y), xout=1:length(steps))
     }
   }
   interp_raster_stack <- calc(raster_stack,  fun)
