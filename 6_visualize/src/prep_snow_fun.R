@@ -2,7 +2,9 @@
 prep_snow_fun <- function(snow_raster_ind, snow_data_yml, snow_cfg, timestep) {
   
   # timestep is at finer resolution than ymd_str
-  snow_raster <- readRDS(sc_retrieve(snow_raster_ind, snow_data_yml))
+  snow_raster <- raster::raster(sc_retrieve(snow_raster_ind, snow_data_yml))
+  
+  browser()
   snow_raster_timestep <- raster::subset(snow_raster, timestep)
   
   # remove NAs here for now
