@@ -14,35 +14,21 @@ height: 900
 width: 720
 
 # styling
-precip_cols: ["#FAFBF399", "#F0F8E3CC", "#D4E9CAE6", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
-precip_bin: 0.5 # inches per bin
 gage_flood_col: "#175676"
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
 gage_out_col: "white"
 gage_ltn_col: "#97cbdb" # #aad4e2 # for non-focal stationary gages (ltn = long-term network), to show in outro
 gage_stn_col: "#ff7f50" # for non-focal short-term-network (rapid deployment) gages, to show in outro
-hurricane_col: "orange"
-hurricane_cols: ["#71c633", "#FBC195", "#FB8147", "#EF5F2C", "#C63526", "#6E1B14"]
-hurricane_col_names: ["Tropical Storm %s", "Hurricane %s (Cat1)", "Hurricane %s (Cat2)", "Hurricane %s (Cat3)", "Hurricane %s (Cat4)", "Hurricane %s (Cat5)"] # If these change, legend layout may break
 major_river_col: "#1874cd"
 gage_river_col: "#5d9ddc"
 lake_col: "#a2c7eb"
 marsh_col: NA
 ocean_col: "#e7f1fa"
-storm_line_col: "grey70"
 legend_text:
   cex: 1.5
   col: "#161616"
   family: ""
-
-# introductory animation
-intro:
-  t_last_start: 5 # last frame in the intro animation when a site should leave its lat/lon (they're staggered)
-  n_frames: 20 # number of frames in the intro animation linking gages to sparklines
-  elbow_radius: 50000 # radius of the curvature at the elbow of the dot travel path, in 10000ths of degrees
-  point_background: "#175676"
-  frame_delay_cs: 8 # delay between intro frames. cs = centiseconds = hundredths of a second
 
 video_cfg:
   frame_delay_cs: 14 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
@@ -58,18 +44,6 @@ component_placement:
     y1: 0.95
   legend_x_pos: "left"
   legend_y_pos: "bottom"
-  sparks:
-    xleft: 0.70 # as percentage of figure width
-    xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-    ybottom: 0.01 # as percentage of figure height
-    ytop: 0.93 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-  outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
-    xleft: 0.55
-    xright: 0.99
-    ytop_ltn: 0.6 # top y coordinate of the text and legend for the long-term network
-    ytop_stn: 0.85 # top y coordinate of the text and legend for the short-term network
-    ytop_more: 0.4 # top y coordinate of the text and URL for where to learn more
-
 
 ocean_name_placement:
   #-
