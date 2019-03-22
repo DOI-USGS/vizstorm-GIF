@@ -47,8 +47,9 @@ targets:
     command: interpolate_snow_raster_layers(
       ind_file = target_name,
       timestep_in_hours = timestep,
-      fetch_snow_tasks_ind = '1_fetch/log/1_fetch_snow_tasks.ind'
-      )
+      fetch_snow_tasks_ind = '1_fetch/log/1_fetch_snow_tasks.ind')
+  2_process/out/snow_raster_interp.nc:
+    command: gd_get('2_process/out/snow_raster_interp.nc.ind')
 
   2_process/out/timesteps.rds.ind:
     command: choose_timesteps(target_name, dates = dates)
