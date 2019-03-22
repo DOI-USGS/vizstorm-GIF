@@ -149,8 +149,8 @@ create_storm_gif_tasks <- function(timestep_ind, folders, snow_data_yml_name, fr
        cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
        psprintf(
          "prep_snow_fun(",
-         "snow_raster_ind = I('2_process/out/raster_snow_%s.rds.ind')," = format(cur_task$timestep, "%Y%m%d"),
-         "snow_data_yml = I('%s')," = snow_data_yml_name,
+         "snow_raster_ind = I('2_process/out/snow_raster_interp.rds.ind'),",
+         "snow_data_yml = I('2_process.yml'),",
          "snow_cfg = snow_cfg,",
          "timestep = I('%s'))" = format(cur_task$timestep, "%Y-%m-%d %H:%M:%S")
        )
