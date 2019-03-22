@@ -1,0 +1,13 @@
+version: 0.3.0
+name: 2_process/out/area_weights.rds.ind
+type: file
+hash: 5317661b1a36a4d706defd017a90e267
+time: 2019-03-21 21:22:50 UTC
+depends:
+  1_fetch/out/gridmet_pr.nc.ind: 625e883e2bfd6d3fab2877dd30a43209
+  1_fetch/out/fetch_viz_cells.rds.ind: a61103d537f797ed2aee3fd7da3497f0
+fixed: 13ffd042f95b65efc7a3ccb9bf839e26
+code:
+  functions:
+    process_area_weights: 2331c10e4428c1ea3422b62f52090884
+

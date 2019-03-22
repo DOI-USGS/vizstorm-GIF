@@ -29,6 +29,7 @@ sources:
   - 1_fetch/src/fetch_major_cities.R
   - 1_fetch/src/fetch_snow_tasks_helpers.R
   - 2_process/src/process_snow_rasters.R
+  - 1_fetch/src/fetch_gridmet_nc.R
 
 targets:
 
@@ -215,3 +216,25 @@ targets:
       event = stn_event)
   1_fetch/out/rapid_dep_sites.rds:
     command: gd_get('1_fetch/out/rapid_dep_sites.rds.ind')
+
+  1_fetch/out/gridmet_pr.nc.ind:
+    command: fetch_gridmet_data(
+      ind_file = target_name,
+      gridmet_file = I("pr_2019.nc"))
+  1_fetch/out/gridmet_pr.nc:
+    command: gd_get('1_fetch/out/gridmet_pr.nc.ind')
+
+  1_fetch/out/gridmet_tmmn.nc.ind:
+    command: fetch_gridmet_data(
+      ind_file = target_name,
+      gridmet_file = I("tmmn_2019.nc"))
+  1_fetch/out/gridmet_tmmn.nc:
+    command: gd_get('1_fetch/out/gridmet_tmmn.nc.ind')
+
+  1_fetch/out/fetch_viz_cells.rds.ind:
+    command: fetch_viz_cells(
+      ind_file = target_name,
+      view_polygon = view_polygon,
+      viz_cell_size_meters = I(200000))
+  1_fetch/out/fetch_viz_cells.rds:
+    command: gd_get('1_fetch/out/fetch_viz_cells.rds.ind')

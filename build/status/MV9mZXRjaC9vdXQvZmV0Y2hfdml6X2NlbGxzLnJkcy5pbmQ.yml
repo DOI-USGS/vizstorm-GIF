@@ -1,0 +1,12 @@
+version: 0.3.0
+name: 1_fetch/out/fetch_viz_cells.rds.ind
+type: file
+hash: a61103d537f797ed2aee3fd7da3497f0
+time: 2019-03-21 21:07:49 UTC
+depends:
+  view_polygon: 0d4164ebef3ff3d7b9223e4c82122d56
+fixed: 21e4d266c9999846227179f79d758348
+code:
+  functions:
+    fetch_viz_cells: 4f18a1487289a6cfaca37542d5c21c01
+
