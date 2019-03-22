@@ -28,6 +28,7 @@ sources:
   - 1_fetch/src/fetch_precip_bins.R
   - 1_fetch/src/fetch_major_cities.R
   - 1_fetch/src/fetch_snow_tasks_helpers.R
+  - 2_process/src/process_snow_rasters.R
   - 1_fetch/src/fetch_gridmet_nc.R
 
 targets:
@@ -44,6 +45,7 @@ targets:
       - 1_fetch/out/waterbodies.rds.ind
       - 1_fetch/out/major_cities.rds.ind
       - 1_fetch/out/rapid_dep_sites.rds.ind
+
 
   # -- read config --
   viz_config:
