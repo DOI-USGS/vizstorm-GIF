@@ -15,6 +15,16 @@ width: 720
 
 # styling
 gage_flood_col: "#175676"
+bg_geom_cfg:
+  focus_geom:
+    col: "#d5dfc6"
+    border: 'grey65'
+  secondary_geom:
+    col: 'grey80'
+    border: 'grey75'
+  detail_geom:
+    col: NA
+    border: 'grey95'
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
 gage_out_col: "white"

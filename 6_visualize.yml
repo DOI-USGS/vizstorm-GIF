@@ -88,11 +88,13 @@ targets:
   bbox_fun:
     command: prep_bbox_fun(view_config)
 
+  bg_geom_cfg:
+    command: viz_config[[I('bg_geom_cfg')]]
   basemap_fun:
-    command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind')
+    command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind', bg_geom_cfg = bg_geom_cfg)
 
   state_outline_fun:
-    command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind', outline_only = TRUE)
+    command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind', bg_geom_cfg = bg_geom_cfg, outline_only = TRUE)
 
   gage_sites_initial:
     command: prep_gage_sites_fun(stage_data, gage_color_config, storm_start_date)
