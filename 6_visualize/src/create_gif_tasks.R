@@ -179,6 +179,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders, snow_data_yml_name, fr
       cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
       psprintf(
         "prep_legend_fun(",
+        "snow_cfg = snow_cfg,",
         "legend_styles = legend_styles,",
         "timesteps_ind = '2_process/out/timesteps.rds.ind',",
         "DateTime = I('%s')," = format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"),

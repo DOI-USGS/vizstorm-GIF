@@ -25,6 +25,10 @@ bg_geom_cfg:
   detail_geom:
     col: NA
     border: 'grey95'
+snow_cfg:
+  snow_cols: ["#a5a59c", "#ffffff"]
+  snow_bins: ["SHALLOW", "DEEP"]
+  snow_breaks: [1, 50, 1500]
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
 gage_out_col: "white"
