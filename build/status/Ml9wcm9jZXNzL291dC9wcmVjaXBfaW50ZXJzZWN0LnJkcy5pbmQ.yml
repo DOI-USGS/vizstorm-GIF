@@ -1,0 +1,14 @@
+version: 0.3.0
+name: 2_process/out/precip_intersect.rds.ind
+type: file
+hash: 7dfddd547f47ceb1e7628597b0efd814
+time: 2019-03-21 21:23:05 UTC
+depends:
+  1_fetch/out/gridmet_pr.nc.ind: 625e883e2bfd6d3fab2877dd30a43209
+  2_process/out/area_weights.rds.ind: 5317661b1a36a4d706defd017a90e267
+  dates: 52c3ded1500d5d1a706c7c75442aacac
+fixed: 8f9c89fbd8b3a15ce2908309039e2b70
+code:
+  functions:
+    process_intersectr: 1b366c95bb9bbc83c3047dcf9bf8a274
+
