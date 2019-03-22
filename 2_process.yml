@@ -38,6 +38,15 @@ targets:
       - 2_process/out/river_geoms.rds.ind
       - 2_process/out/normalized_streamdata.rds.ind
       - 2_process/out/cleaned_streamdata.rds.ind
+  timestep:
+    command: viz_config[[I('frame_step')]]
+
+  2_process/out/snow_raster_interp.rds.ind:
+    command: interpolate_snow_raster_layers(
+      ind_file = target_name,
+      timestep_in_hours = timestep,
+      fetch_snow_tasks_ind = '1_fetch/log/1_fetch_snow_tasks.ind'
+      )
 
   2_process/out/timesteps.rds.ind:
     command: choose_timesteps(target_name, dates = dates)

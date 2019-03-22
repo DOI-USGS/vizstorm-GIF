@@ -1,0 +1,13 @@
+version: 0.3.0
+name: 1_fetch/out/snow_raster_interp.rds.ind
+type: file
+hash: a31daf83eb8729783575def3c9c0dc3a
+time: 2019-03-22 17:11:15 UTC
+depends:
+  timestep: 11946e7a3ed5e1776e81c0f0ecd383d0
+  1_fetch/log/1_fetch_snow_tasks.ind: 8cd8b0f2ba0999adf560ff281933462f
+fixed: c874972700ab6f74119bd28f8081da07
+code:
+  functions:
+    interpolate_snow_raster_layers: b9e6d1c3814e5b84fa542af3406d870a
+
