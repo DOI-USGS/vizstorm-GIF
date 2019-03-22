@@ -112,16 +112,6 @@ targets:
   2_process/out/precip_rasters.rds:
     command: gd_get('2_process/out/precip_rasters.rds.ind')
 
-  # This changes the binary files into raster
-  # The reprojection part is a bit slow (~17 min)
-  2_process/out/snow_rasters.rds.ind:
-    command: process_snow_rasters(
-      ind_file = target_name,
-      snow_data_ind = '1_fetch/log/1_fetch_snow_tasks.ind',
-      proj_str = proj_str)
-  2_process/out/snow_rasters.rds:
-    command: gd_get('2_process/out/precip_rasters.rds.ind')
-
   2_process/out/storm_points_coarse.rds.ind:
     command: extract_storm_points(
       ind_file=target_name, storm_shp_ind='1_fetch/out/storm_track.zip.ind', cfg=view_config)
