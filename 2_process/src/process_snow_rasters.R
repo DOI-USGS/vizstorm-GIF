@@ -42,27 +42,29 @@ process_snow_raster <- function(ind_file, snow_data_ind, snow_data_yml, crop_ext
 
 interpolate_snow_raster_layers <- function(ind_file, timestep_in_hours, fetch_snow_tasks_ind, snow_tasks_yml) {
 
-  snow_raster_rds_inds_all <- names(yaml::yaml_load_file(sc_retrieve(fetch_snow_tasks_ind, snow_tasks_yml)))
-  snow_raster_rds_inds <- snow_raster_rds_inds_all[!grep("interp", snow_raster_rds_inds_all)]
+  snow_raster_rds_inds <- names(yaml::yaml.load_file(fetch_snow_tasks_ind))
+
   rasters_list <- list()
   #need to get a list of rasters read in from .RDS files
   for(i in seq_along(snow_raster_rds_inds)) {
+    gd_get(snow_raster_rds_inds[i])
     rasters_list[[i]] <- readRDS(as_data_file(snow_raster_rds_inds[i]))
   }
   raster_stack <- raster::stack(x = rasters_list)
-
+  message(nlayers(raster_stack), " Rasters read in, starting interpolation")
   daily_rasters <- raster::nlayers(raster_stack)
   hours_covered <- (daily_rasters - 1)*24 #since we aren't extrapolating
   steps <- seq(from = 0, by = timestep_in_hours,
                length.out = (hours_covered/timestep_in_hours)+1)
   have_data <- which(steps %% 24 == 0) #these are the steps to interpolate between
   #insert all NA layers, then na.spline interpolates NA values
+  browser()
   empty <- rep(NA, length(steps))
   fun <- function(y) {
     if(all(is.na(y))) {
       empty
     } else {
-      zoo::na.approx((empty[have_data] <- y), xout=1:length(steps))
+      zoo::na.interp((empty[have_data] <- y), xout=1:length(steps))
     }
   }
   interp_raster_stack <- calc(raster_stack,  fun)
@@ -71,18 +73,18 @@ interpolate_snow_raster_layers <- function(ind_file, timestep_in_hours, fetch_sn
 
   data_file <- as_data_file(ind_file)
   saveRDS(interp_raster_stack, data_file)
-  gd_put(remote_ind = ind_file, local_source = data_file, config_file = gd_config)
+  gd_put(remote_ind = ind_file)
   #use raster::subset to get  individual layers
 }
 
 raster_subset_timesteps <- function(ind_file, raster_all_ind, ymd_str) {
   interp_raster_stack <- readRDS(sc_retrieve(raster_all_ind))
-  
+
   # something with raster::subset??
   # match names in raster stack to the corresponding ymd
   interp_raster_day <- raster::subset(interp_raster_stack, subset = "")
-  
+
   data_file <- as_data_file(ind_file)
   saveRDS(interp_raster_stack, data_file)
-  gd_put(remote_ind = ind_file, local_source = data_file, config_file = gd_config)
+  gd_put(remote_ind = ind_file)
 }
