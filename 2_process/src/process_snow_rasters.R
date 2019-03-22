@@ -16,7 +16,7 @@ process_snow_raster <- function(ind_file, snow_data_ind, snow_data_yml, crop_ext
   
   snow_depth <- readBin(snow_data_fn, integer(), 
                         n=n_row*n_col, size=2, signed=TRUE, endian='big')
-  snow_depth[snow_depth <= 0] <- as.numeric(NA)
+  snow_depth[snow_depth <= 0] <- 0
   snow_depth_mat <- matrix(snow_depth, nrow = n_col)
   
   # Convert to raster

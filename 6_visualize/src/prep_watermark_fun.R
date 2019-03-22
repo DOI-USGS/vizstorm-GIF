@@ -8,7 +8,7 @@ prep_watermark_fun <- function(watermark_file, x_pos = c('left','right'), y_pos 
     watermark_bump_frac <- 0.01
     coord_space <- par()$usr
 
-    watermark_alpha <- 0.7
+    watermark_alpha <- 0.3
     d <- png::readPNG(watermark_file)
     
     which_image <- d[,,4] != 0 # transparency

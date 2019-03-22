@@ -95,6 +95,9 @@ targets:
   basemap_fun:
     command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind')
 
+  state_outline_fun:
+    command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind', outline_only = TRUE)
+
   storm_line_cfg:
     command: viz_config[I('storm_line_col')]
   storm_line_fun:
@@ -240,13 +243,13 @@ targets:
   final_frames:
     command: c(I('a_20170825_01'), final_intro_frames, final_storm_frames)
   animation_cfg:
-    command: viz_config[I('frame_delay_cs')]
-  6_visualize/out/animation_a.gif:
+    command: viz_config[I('video_cfg')]
+  6_visualize/out/animation_a.mp4:
     command: combine_animation_frames(
-      gif_file=target_name,
+      out_file=target_name,
       animation_cfg=animation_cfg,
       task_names=NULL,
       intro_config = intro_config,
       n_outro = I(0))
-  6_visualize/out/animation_a.gif.ind:
-    command: gd_put(target_name, '6_visualize/out/animation_a.gif')
+  6_visualize/out/animation_a.mp4.ind:
+    command: gd_put(target_name, '6_visualize/out/animation_a.mp4')

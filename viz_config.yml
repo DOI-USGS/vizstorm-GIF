@@ -8,7 +8,7 @@ date_display_tz: "America/New_York" # UTC is assumed for all input and intermedi
 frame_step: 3 # hours elapsed between GIF frames
 
 # view, dimensions
-bbox: [-99.72, 33.00, -86.05, 46.48]
+bbox: [-99.72, 33.00, -86.05, 45.50]
 projection: "+proj=lcc +lat_1=43.26666666666667 +lat_2=42.06666666666667 +lat_0=41.5 +lon_0=-93.5 +x_0=1500000 +y_0=1000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
 height: 900
 width: 720
@@ -44,16 +44,18 @@ intro:
   point_background: "#175676"
   frame_delay_cs: 8 # delay between intro frames. cs = centiseconds = hundredths of a second
 
-frame_delay_cs: 14 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
-
+video_cfg:
+  frame_delay_cs: 14 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
+  frame_rate: 4 # used for videos
+  
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
 component_placement:
-  watermark_x_pos: "left"
-  watermark_y_pos: "top"
+  watermark_x_pos: "right"
+  watermark_y_pos: "bottom"
   datetime: # above watermark for now
     x1: 0.005
-    y1: 0.85
+    y1: 0.95
   legend_x_pos: "left"
   legend_y_pos: "bottom"
   sparks:
@@ -76,8 +78,6 @@ ocean_name_placement:
   #  label: 'Atlantic Ocean'
 
 focus_geoms:
-  - # U.S. counties
-    database: county
   - # U.S. states
     database: state
 
