@@ -25,7 +25,7 @@ fetch_snow_data <- function(ind_file, ymd_str, tmp_dir) {
   fn_snow_dat <- fn_snow[grep(".dat", fn_snow)]
   fn_zip <- fn_snow_dat[grep(ymd_str, fn_snow_dat)]
   fn_out <- as_data_file(ind_file)
-  R.utils::gunzip(fn_zip, destname = fn_out)
+  R.utils::gunzip(fn_zip, destname = fn_out, overwrite = TRUE)
   
   gd_put(remote_ind=ind_file, local_source=fn_out, mock_get='none')
 }

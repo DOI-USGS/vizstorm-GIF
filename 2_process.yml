@@ -24,10 +24,7 @@ sources:
   - 2_process/src/filter_sites_custom.R
   - 2_process/src/filter_sites_geom.R
   - 2_process/src/filter_using_custom.R
-  - 2_process/src/process_precip.R
   - 2_process/src/process_snow_rasters.R
-  - 2_process/src/extract_storm_points.R
-  - 2_process/src/interpolate_storm_points.R
   - 2_process/src/process_river_geoms.R
   - 2_process/src/normalize_streamdata.R
   - 2_process/src/clean_streamdata.R
@@ -38,13 +35,8 @@ targets:
   2_process:
     depends:
       - 2_process/out/timesteps.rds.ind
-      - 2_process/out/storm_line.rds.ind
       - 2_process/out/gage_sites.rds.ind
-      - 2_process/out/precip_spatial.rds.ind
-      - 2_process/out/precip_values.rds.ind
-      - 2_process/out/precip_rasters.rds.ind
       - 2_process/out/snow_rasters.rds.ind
-      - 2_process/out/storm_points_interp.rds.ind
       - 2_process/out/river_geoms.rds.ind
       - 2_process/out/normalized_streamdata.rds.ind
       - 2_process/out/cleaned_streamdata.rds.ind
@@ -55,19 +47,14 @@ targets:
     command: interpolate_snow_raster_layers(
       ind_file = target_name,
       timestep_in_hours = timestep,
-      fetch_snow_tasks_ind = '1_fetch/log/1_fetch_snow_tasks.ind'
-      )
+      fetch_snow_tasks_ind = '1_fetch/log/1_fetch_snow_tasks.ind')
+  2_process/out/snow_raster_interp.nc:
+    command: gd_get('2_process/out/snow_raster_interp.nc.ind')
 
   2_process/out/timesteps.rds.ind:
     command: choose_timesteps(target_name, dates = dates)
   2_process/out/timesteps.rds:
     command: gd_get('2_process/out/timesteps.rds.ind')
-
-  2_process/out/storm_line.rds.ind:
-    command: extract_storm_line(
-      ind_file=target_name, storm_shp_ind='1_fetch/out/storm_track.zip.ind', cfg=view_config)
-  2_process/out/storm_line.rds:
-    command: gd_get('2_process/out/storm_line.rds.ind')
 
   2_process/out/gage_sites_geom.rds.ind:
     command: filter_sites_geom(
@@ -127,54 +114,6 @@ targets:
       dates = dates)
   2_process/out/tmin_intersect.rds:
     command: gd_get('2_process/out/tmin_intersect.rds.ind')
-
-  2_process/out/precip_spatial.rds.ind:
-    command: process_precip_spatial(ind_file = target_name,
-      precip_data_nc_ind='1_fetch/out/precip_data.nc.ind',
-      view_polygon = view_polygon)
-  2_process/out/precip_spatial.rds:
-    command: gd_get('2_process/out/precip_spatial.rds.ind')
-
-  2_process/out/precip_values.rds.ind:
-    command: process_precip_values(ind_file = target_name,
-      precip_data_nc_ind='1_fetch/out/precip_data.nc.ind',
-      precip_spatial_ind='2_process/out/precip_spatial.rds.ind',
-      dates = dates,
-      view_polygon = view_polygon)
-  2_process/out/precip_values.rds:
-    command: gd_get('2_process/out/precip_values.rds.ind')
-
-  2_process/out/precip_rasters.rds.ind:
-    command: process_precip_rasters(ind_file = target_name,
-      precip_spatial_ind='2_process/out/precip_spatial.rds.ind',
-      precip_values_ind='2_process/out/precip_values.rds.ind',
-      view_polygon = view_polygon,
-      view_config = view_config)
-  2_process/out/precip_rasters.rds:
-    command: gd_get('2_process/out/precip_rasters.rds.ind')
-
-  # This changes the binary files into raster
-  # The reprojection part is a bit slow (~17 min)
-  2_process/out/snow_rasters.rds.ind:
-    command: process_snow_rasters(
-      ind_file = target_name,
-      snow_data_ind = '1_fetch/log/1_fetch_snow_tasks.ind',
-      proj_str = proj_str)
-  2_process/out/snow_rasters.rds:
-    command: gd_get('2_process/out/precip_rasters.rds.ind')
-
-  2_process/out/storm_points_coarse.rds.ind:
-    command: extract_storm_points(
-      ind_file=target_name, storm_shp_ind='1_fetch/out/storm_track.zip.ind', cfg=view_config)
-  2_process/out/storm_points_coarse.rds:
-    command: gd_get('2_process/out/storm_points_coarse.rds.ind')
-
-  2_process/out/storm_points_interp.rds.ind:
-    command: interpolate_storm_points(
-      ind_file=target_name, timesteps_ind='2_process/out/timesteps.rds.ind',
-      coarse_points_ind='2_process/out/storm_points_coarse.rds.ind')
-  2_process/out/storm_points_interp.rds:
-    command: gd_get('2_process/out/storm_points_interp.rds.ind')
 
   river_geom_config:
     command: viz_config[I(c('coastal_threshold_sqkm',

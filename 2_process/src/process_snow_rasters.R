@@ -63,7 +63,7 @@ interpolate_snow_raster_layers <- function(ind_file, timestep_in_hours, fetch_sn
     if(all(is.na(y))) {
       empty
     } else {
-      zoo::na.approx((empty[have_data] <- y), xout=1:length(steps))
+      zoo::na.spline((empty[have_data] <- y), xout=1:length(steps))
     }
   }
   interp_raster_stack <- calc(raster_stack,  fun)
@@ -72,7 +72,7 @@ interpolate_snow_raster_layers <- function(ind_file, timestep_in_hours, fetch_sn
   #https://rdrr.io/cran/rts/man/rts.html
 
   data_file <- as_data_file(ind_file)
-  raster::writeRaster(interp_raster_stack_NA, data_file)
+  raster::writeRaster(interp_raster_stack_NA, data_file, overwrite=TRUE)
   gd_put(remote_ind = ind_file)
   #use raster::subset to get  individual layers
 }
