@@ -129,6 +129,8 @@ cities:
     - "Oklahoma City OK"
     - "Indianapolis IN"
     - "Nashville TN"
+    - "Fort Worth TX"
+    - "Dallas TX"
 
 # Only streamorders greater than this will be fetched.
 fetch_streamorder: 5
