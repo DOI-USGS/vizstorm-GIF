@@ -28,6 +28,7 @@ sources:
   - 1_fetch/src/fetch_precip_bins.R
   - 1_fetch/src/fetch_major_cities.R
   - 1_fetch/src/fetch_snow_tasks_helpers.R
+  - 2_process/src/process_snow_rasters.R
 
 targets:
 
@@ -44,6 +45,7 @@ targets:
       - 1_fetch/out/major_cities.rds.ind
       - 1_fetch/out/rapid_dep_sites.rds.ind
 
+
   # -- read config --
   viz_config:
     command: yaml.load_file('viz_config.yml')
@@ -52,8 +54,6 @@ targets:
     command: viz_config[[I('projection')]]
   dates:
     command: viz_config[[I('dates')]]
-  timestep:
-    command: viz_config[[I('frame_step')]]
   stream_params:
     command: yaml.load_file('1_fetch/cfg/stream_params.yml')
   precip_config:
@@ -160,18 +160,10 @@ targets:
       remake_file = I('1_fetch.yml'))
   1_fetch/log/1_fetch_snow_tasks.ind:
     command: loop_tasks(
-      task_plan=fetch_snow_tasks, 
+      task_plan=fetch_snow_tasks,
       task_makefile=I('1_fetch_snow_tasks.yml'),
       task_names=NULL,
       num_tries=I(1), sleep_on_error=I(0))
-
-  1_fetch/out/snow_raster_interp.rds.ind:
-    command: interpolate_snow_raster_layers(
-      ind_file - target_name,
-      timestep_in_hours = timestep,
-      fetch_snow_tasks_ind = I('1_fetch/log/1_fetch_snow_tasks.ind'),
-      snow_tasks_yml = I('1_fetch_snow_tasks.yml')
-    )
 
   # -- get river geometry --
   fetch_streamorder:
