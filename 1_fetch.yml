@@ -52,6 +52,8 @@ targets:
     command: viz_config[[I('projection')]]
   dates:
     command: viz_config[[I('dates')]]
+  timestep:
+    command: viz_config[[I('frame_step')]]
   stream_params:
     command: yaml.load_file('1_fetch/cfg/stream_params.yml')
   precip_config:
@@ -162,6 +164,14 @@ targets:
       task_makefile=I('1_fetch_snow_tasks.yml'),
       task_names=NULL,
       num_tries=I(1), sleep_on_error=I(0))
+
+  1_fetch/out/snow_raster_interp.rds.ind:
+    command: interpolate_snow_raster_layers(
+      ind_file - target_name,
+      timestep_in_hours = timestep,
+      fetch_snow_tasks_ind = I('1_fetch/log/1_fetch_snow_tasks.ind'),
+      snow_tasks_yml = I('1_fetch_snow_tasks.yml')
+    )
 
   # -- get river geometry --
   fetch_streamorder:
