@@ -1,0 +1,11 @@
+version: 0.3.0
+name: 1_fetch/out/gridmet_tmmn.nc.ind
+type: file
+hash: fc488d5aa45c7c2050e894a75ec584ef
+time: 2019-03-22 01:55:50 UTC
+depends: {}
+fixed: 476fd6bf52f3d084d53207e68923854c
+code:
+  functions:
+    fetch_gridmet_data: 712abf7f053f0fc2265e21ef10bfc6e7
+
