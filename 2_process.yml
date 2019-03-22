@@ -8,6 +8,9 @@ packages:
   - dplyr
   - fasterize
   - snow
+  - RNetCDF
+  - ncmeta
+  - intersectr
 
 file_extensions:
   - feather
@@ -23,6 +26,7 @@ sources:
   - 2_process/src/process_river_geoms.R
   - 2_process/src/normalize_streamdata.R
   - 2_process/src/clean_streamdata.R
+  - 2_process/src/process_area_weights.R
 
 targets:
 
@@ -73,6 +77,32 @@ targets:
   2_process/out/gage_sites.rds:
     command: gd_get('2_process/out/gage_sites.rds.ind')
 
+  2_process/out/area_weights.rds.ind:
+    command: process_area_weights(ind_file = target_name,
+      nc_ind='1_fetch/out/gridmet_pr.nc.ind',
+      nc_var = I("precipitation_amount"),
+      viz_polys_ind = '1_fetch/out/fetch_viz_cells.rds.ind')
+  2_process/out/area_weights.rds:
+    command: gd_get('2_process/out/area_weights.rds.ind')
+
+  2_process/out/precip_intersect.rds.ind:
+    command: process_intersectr(ind_file = target_name,
+      nc_ind='1_fetch/out/gridmet_pr.nc.ind',
+      nc_var = I("precipitation_amount"),
+      area_weights_ind = '2_process/out/area_weights.rds.ind',
+      dates = dates)
+  2_process/out/precip_intersect.rds:
+    command: gd_get('2_process/out/precip_intersect.rds.ind')
+
+  2_process/out/tmin_intersect.rds.ind:
+    command: process_intersectr(ind_file = target_name,
+      nc_ind='1_fetch/out/gridmet_tmmn.nc.ind',
+      nc_var = I("air_temperature"),
+      area_weights_ind = '2_process/out/area_weights.rds.ind',
+      dates = dates)
+  2_process/out/tmin_intersect.rds:
+    command: gd_get('2_process/out/tmin_intersect.rds.ind')
+
   river_geom_config:
     command: viz_config[I(c('coastal_threshold_sqkm',
                           'inland_threshold_sqkm',
@@ -99,7 +129,7 @@ targets:
       stage_gap_threshold = stage_gap_threshold)
   2_process/out/normalized_streamdata.rds:
     command: gd_get('2_process/out/normalized_streamdata.rds.ind')
-    
+
   # manual filtering step to remove points we expect won't make it past Provisional
   2_process/out/cleaned_streamdata.rds.ind:
     command: clean_streamdata(
