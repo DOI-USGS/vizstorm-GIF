@@ -67,11 +67,12 @@ interpolate_snow_raster_layers <- function(ind_file, timestep_in_hours, fetch_sn
     }
   }
   interp_raster_stack <- calc(raster_stack,  fun)
+  interp_raster_stack_NA <- reclassify(interp_raster_stack, cbind(0, NA), right=TRUE)
   #could create raster timeseries here for referencing to timestep
   #https://rdrr.io/cran/rts/man/rts.html
 
   data_file <- as_data_file(ind_file)
-  saveRDS(interp_raster_stack, data_file)
+  raster::writeRaster(interp_raster_stack_NA, data_file)
   gd_put(remote_ind = ind_file)
   #use raster::subset to get  individual layers
 }
