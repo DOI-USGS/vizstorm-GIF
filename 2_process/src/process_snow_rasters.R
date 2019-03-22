@@ -16,7 +16,7 @@ process_snow_raster <- function(ind_file, snow_data_ind, snow_data_yml, crop_ext
 
   snow_depth <- readBin(snow_data_fn, integer(),
                         n=n_row*n_col, size=2, signed=TRUE, endian='big')
-  snow_depth[snow_depth <= 0] <- as.numeric(NA)
+  snow_depth[snow_depth <= 0] <- 0
   snow_depth_mat <- matrix(snow_depth, nrow = n_col)
 
   # Convert to raster
@@ -40,9 +40,10 @@ process_snow_raster <- function(ind_file, snow_data_ind, snow_data_yml, crop_ext
 
 }
 
-interpolate_snow_raster_layers <- function(timestep_in_hours, ...) {
+interpolate_snow_raster_layers <- function(ind_file, timestep_in_hours, fetch_snow_tasks_ind, snow_tasks_yml) {
 
-  snow_raster_rds_inds <- c(...) #would be either passing in dates or files here?
+  snow_raster_rds_inds_all <- names(yaml::yaml_load_file(sc_retrieve(fetch_snow_tasks_ind, snow_tasks_yml)))
+  snow_raster_rds_inds <- snow_raster_rds_inds_all[!grep("interp", snow_raster_rds_inds_all)]
   rasters_list <- list()
   #need to get a list of rasters read in from .RDS files
   for(i in seq_along(snow_raster_rds_inds)) {
@@ -68,6 +69,20 @@ interpolate_snow_raster_layers <- function(timestep_in_hours, ...) {
   #could create raster timeseries here for referencing to timestep
   #https://rdrr.io/cran/rts/man/rts.html
 
-  #TODO: write out indicator and data files
+  data_file <- as_data_file(ind_file)
+  saveRDS(interp_raster_stack, data_file)
+  gd_put(remote_ind = ind_file, local_source = data_file, config_file = gd_config)
   #use raster::subset to get  individual layers
+}
+
+raster_subset_timesteps <- function(ind_file, raster_all_ind, ymd_str) {
+  interp_raster_stack <- readRDS(sc_retrieve(raster_all_ind))
+  
+  # something with raster::subset??
+  # match names in raster stack to the corresponding ymd
+  interp_raster_day <- raster::subset(interp_raster_stack, subset = "")
+  
+  data_file <- as_data_file(ind_file)
+  saveRDS(interp_raster_stack, data_file)
+  gd_put(remote_ind = ind_file, local_source = data_file, config_file = gd_config)
 }
