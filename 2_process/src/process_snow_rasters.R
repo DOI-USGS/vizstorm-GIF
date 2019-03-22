@@ -58,7 +58,6 @@ interpolate_snow_raster_layers <- function(ind_file, timestep_in_hours, fetch_sn
                length.out = (hours_covered/timestep_in_hours)+1)
   have_data <- which(steps %% 24 == 0) #these are the steps to interpolate between
   #insert all NA layers, then na.spline interpolates NA values
-  browser()
   empty <- rep(NA, length(steps))
   fun <- function(y) {
     if(all(is.na(y))) {
