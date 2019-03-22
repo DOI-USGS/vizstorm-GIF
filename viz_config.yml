@@ -78,8 +78,6 @@ ocean_name_placement:
   #  label: 'Atlantic Ocean'
 
 focus_geoms:
-  - # U.S. counties
-    database: county
   - # U.S. states
     database: state
 
