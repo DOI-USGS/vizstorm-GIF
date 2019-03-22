@@ -44,8 +44,10 @@ intro:
   point_background: "#175676"
   frame_delay_cs: 8 # delay between intro frames. cs = centiseconds = hundredths of a second
 
-frame_delay_cs: 14 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
-
+video_cfg:
+  frame_delay_cs: 14 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
+  frame_rate: 4 # used for videos
+  
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
 component_placement:
