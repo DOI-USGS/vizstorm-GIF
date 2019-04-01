@@ -98,9 +98,7 @@ create_storm_gif_tasks <- function(timestep_ind, folders, snow_data_yml_name, fr
 
   all_timestep <- readRDS(sc_retrieve(timestep_ind))
 
-  timestep <- all_timestep[seq(1, by = frame_step, to = length(all_timestep))] %>%
-    # ** skip the first frame! it is empty for sparks and causes a nasty blink between intro and storm frames:
-    tail(-1L)
+  timestep <- all_timestep[seq(1, by = frame_step, to = length(all_timestep))] 
 
   cfgs <- c('a') # for now, just use one config, since > 1 results in duplication of input files
   #,'b') # dummy placement for different configurations; will eventually be configurations that hold information about size, aspect, ect...
@@ -149,10 +147,12 @@ create_storm_gif_tasks <- function(timestep_ind, folders, snow_data_yml_name, fr
        cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
        psprintf(
          "prep_snow_fun(",
-         "snow_raster_ind = I('2_process/out/snow_raster_interp.rds.ind'),",
+         "snow_raster_ind = I('2_process/out/snow_raster_interp.nc.ind'),",
          "snow_data_yml = I('2_process.yml'),",
          "snow_cfg = snow_cfg,",
-         "timestep = I('%s'))" = format(cur_task$timestep, "%Y-%m-%d %H:%M:%S")
+         "timestep = I('%s')," = format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"),
+         "timesteps_all_ind = I('%s')," = timestep_ind,
+         "frame_step = %s)" = frame_step
        )
      }
    )
