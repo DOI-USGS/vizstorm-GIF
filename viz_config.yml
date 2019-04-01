@@ -45,8 +45,8 @@ legend_text:
   family: ""
 
 video_cfg:
-  frame_delay_cs: 14 # delay between frames of the gif animation DURING storm frames. cs = centiseconds = hundredths of a second
-  frame_rate: 4 # used for videos
+  frame_rate: 10 # input
+  output_frame_rate: 10
   
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
