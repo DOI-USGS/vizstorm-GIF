@@ -40,51 +40,66 @@ process_snow_raster <- function(ind_file, snow_data_ind, snow_data_yml, crop_ext
 
 }
 
-interpolate_snow_raster_layers <- function(ind_file, timestep_in_hours, fetch_snow_tasks_ind, snow_tasks_yml) {
+interpolate_snow_raster_layers <- function(ind_file, timestep_ind, frame_step, fetch_snow_tasks_ind) {
 
   snow_raster_rds_inds <- names(yaml::yaml.load_file(fetch_snow_tasks_ind))
-
-  rasters_list <- list()
-  #need to get a list of rasters read in from .RDS files
-  for(i in seq_along(snow_raster_rds_inds)) {
-    gd_get(snow_raster_rds_inds[i])
-    rasters_list[[i]] <- readRDS(as_data_file(snow_raster_rds_inds[i]))
-  }
-  raster_stack <- raster::stack(x = rasters_list)
-  message(nlayers(raster_stack), " Rasters read in, starting interpolation")
-  daily_rasters <- raster::nlayers(raster_stack)
-  hours_covered <- (daily_rasters - 1)*24 #since we aren't extrapolating
-  steps <- seq(from = 0, by = timestep_in_hours,
-               length.out = (hours_covered/timestep_in_hours)+1)
-  have_data <- which(steps %% 24 == 0) #these are the steps to interpolate between
-  #insert all NA layers, then na.spline interpolates NA values
-  empty <- rep(NA, length(steps))
-  fun <- function(y) {
-    if(all(is.na(y))) {
-      empty
+  all_timestep <- readRDS(sc_retrieve(timestep_ind))
+  
+  timesteps <- all_timestep[seq(1, by = frame_step, to = length(all_timestep))] 
+  
+  # Expect one snow raster per day
+  daily_timesteps <- unique(as.Date(timesteps))
+  stopifnot(length(daily_timesteps) == length(snow_raster_rds_inds))
+  
+  # Get RDS daily raster files read in to list first
+  daily_rasters <- lapply(snow_raster_rds_inds, function(snow_ind) readRDS(as_data_file(snow_ind)))
+  
+  message(length(daily_rasters), " Rasters read in, starting interpolation")
+  
+  # Loop through rasters and interpolate
+  rasters_interp_list <- list()
+  n_interp <- seq_along(daily_timesteps) 
+  for(day in n_interp) {
+    snow_depth0 <- daily_rasters[[day]]
+    
+    # Interpolate the final day using only itself at 00
+    if(day == length(n_interp)) {
+      # Only loops through hour=0 for the final day
+      hourly_timesteps <- 0
+      snow_depth1 <- NULL
     } else {
-      zoo::na.spline((empty[have_data] <- y), xout=1:length(steps))
+      hourly_timesteps <- seq(0, 23, by = frame_step)
+      snow_depth1 <- daily_rasters[[day+1]]
+    }
+    
+    for(hour in hourly_timesteps) {
+      
+      if(hour == 0) {
+        # no interpolation for the daily steps (causes NA issues)
+        snow_depth_interp <- snow_depth0
+      } else {
+        # interpolate between the daily rasters
+        snow_depth_interp <- 
+          (snow_depth0 * (1 / hour) + snow_depth1 * (1 / (24-hour))) / 
+          (( 1 / hour) + (1 / (24-hour)))
+      }
+      
+      # Change 0s & less than 0s to NAs for plotting
+      snow_depth_interp[snow_depth_interp <= 0] <- NA
+      
+      # build name of current timestep
+      cur_timestep <- paste(strftime(daily_timesteps[day], format = '%Y%m%d', tz = 'UTC'), sprintf("%02d", hour), sep = "_")
+      
+      # Add interpolation to the list
+      rasters_interp_list[[cur_timestep]] <- snow_depth_interp
     }
   }
-  interp_raster_stack <- calc(raster_stack,  fun)
-  interp_raster_stack_NA <- reclassify(interp_raster_stack, cbind(0, NA), right=TRUE)
-  #could create raster timeseries here for referencing to timestep
-  #https://rdrr.io/cran/rts/man/rts.html
-
+  
+  raster_stack <- raster::stack(x = rasters_interp_list)
+  
   data_file <- as_data_file(ind_file)
-  raster::writeRaster(interp_raster_stack_NA, data_file, overwrite=TRUE)
-  gd_put(remote_ind = ind_file)
-  #use raster::subset to get  individual layers
-}
-
-raster_subset_timesteps <- function(ind_file, raster_all_ind, ymd_str) {
-  interp_raster_stack <- readRDS(sc_retrieve(raster_all_ind))
-
-  # something with raster::subset??
-  # match names in raster stack to the corresponding ymd
-  interp_raster_day <- raster::subset(interp_raster_stack, subset = "")
-
-  data_file <- as_data_file(ind_file)
-  saveRDS(interp_raster_stack, data_file)
-  gd_put(remote_ind = ind_file)
+  raster::writeRaster(raster_stack, data_file, overwrite=TRUE)
+  
+  # It is quicker to build locally, then push + pull a file of this size (~700 MB for 8 days)
+  gd_put(remote_ind = ind_file, dry_put = TRUE) 
 }

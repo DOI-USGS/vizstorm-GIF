@@ -43,10 +43,12 @@ targets:
   timestep:
     command: viz_config[[I('frame_step')]]
 
+  # Takes ~ 1.5 minutes to run for 8 days
   2_process/out/snow_raster_interp.nc.ind:
     command: interpolate_snow_raster_layers(
       ind_file = target_name,
-      timestep_in_hours = timestep,
+      timestep_ind = '2_process/out/timesteps.rds.ind',
+      frame_step = timestep,
       fetch_snow_tasks_ind = '1_fetch/log/1_fetch_snow_tasks.ind')
   2_process/out/snow_raster_interp.nc:
     command: gd_get('2_process/out/snow_raster_interp.nc.ind')
