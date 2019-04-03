@@ -36,14 +36,14 @@ targets:
     depends:
       - 2_process/out/timesteps.rds.ind
       - 2_process/out/gage_sites.rds.ind
-      - 2_process/out/snow_rasters.rds.ind
+      - 2_process/out/snow_raster_interp.nc.ind
       - 2_process/out/river_geoms.rds.ind
       - 2_process/out/normalized_streamdata.rds.ind
       - 2_process/out/cleaned_streamdata.rds.ind
   timestep:
     command: viz_config[[I('frame_step')]]
 
-  # Takes ~ 1.5 minutes to run for 8 days
+  # Takes ~ 5 minutes to run for 28 days
   2_process/out/snow_raster_interp.nc.ind:
     command: interpolate_snow_raster_layers(
       ind_file = target_name,
