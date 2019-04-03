@@ -42,7 +42,6 @@ targets:
       - 1_fetch/out/gage_river_geometry.rds.ind
       - 1_fetch/out/waterbodies.rds.ind
       - 1_fetch/out/major_cities.rds.ind
-      #- 1_fetch/out/rapid_dep_sites.rds.ind
 
 
   # -- read config --
@@ -190,16 +189,6 @@ targets:
       within = view_polygon)
   1_fetch/out/major_cities.rds:
     command: gd_get('1_fetch/out/major_cities.rds.ind')
-
-  # -- get additional gage sites for outtro -- #
-  stn_event:
-    command: viz_config[[I('stn_event')]]
-  #1_fetch/out/rapid_dep_sites.rds.ind:
-  #  command: fetch_rapid_dep_sites(
-  #    ind_file = target_name,
-  #    event = stn_event)
-  #1_fetch/out/rapid_dep_sites.rds:
-  #  command: gd_get('1_fetch/out/rapid_dep_sites.rds.ind')
 
   1_fetch/out/gridmet_pr.nc.ind:
     command: fetch_gridmet_data(
