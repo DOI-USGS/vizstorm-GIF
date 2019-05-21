@@ -32,10 +32,7 @@ targets:
   6_visualize:
     depends:
       - 6_storm_gif_tasks.yml
-      - 6_visualize/log/6_storm_gif_tasks.ind
-      - 6_intro_gif_tasks.yml
-      - 6_visualize/log/6_intro_gif_tasks.ind
-      - 6_visualize/out/animation_a.gif
+      - 6_visualize/out/animation_a.mp4
 
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
   # adn storm_line. each of these components doesn't change over time. each
@@ -166,11 +163,10 @@ targets:
     command: sprintf(I('a_201708%02d_19'), I(25:31))
   trial_storm_frames:
     command: c(trial_storm_frames_01, trial_storm_frames_07, trial_storm_frames_13, trial_storm_frames_19)
-  6_visualize/log/6_storm_gif_tasks.ind:
-    command: loop_tasks(
-      task_plan=storm_gif_tasks, task_makefile='6_storm_gif_tasks.yml',
-      task_names=NULL,
-      num_tries=I(1), sleep_on_error=I(0))
+  storm_gif_tasks_executed:
+    command: scmake(
+      target_names = I('6_visualize/log/6_storm_gif_tasks.ind'), 
+      remake_file = '6_storm_gif_tasks.yml')
 
   # Combine the png files into a video.
   #
@@ -188,6 +184,8 @@ targets:
     command: combine_animation_frames(
       out_file=target_name,
       animation_cfg=animation_cfg,
-      gif_tasks_ind='6_visualize/log/6_storm_gif_tasks.ind')
+      gif_tasks_ind=I('6_visualize/log/6_storm_gif_tasks.ind'))
+    depends: 
+      - storm_gif_tasks_executed
   6_visualize/out/animation_a.mp4.ind:
     command: gd_put(target_name, '6_visualize/out/animation_a.mp4')

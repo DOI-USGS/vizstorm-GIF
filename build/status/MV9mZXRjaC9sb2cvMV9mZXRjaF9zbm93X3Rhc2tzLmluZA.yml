@@ -1,10 +1,10 @@
 version: 0.3.0
 name: 1_fetch/log/1_fetch_snow_tasks.ind
 type: file
-hash: 8cd8b0f2ba0999adf560ff281933462f
-time: 2019-03-21 19:51:21 UTC
+hash: 3addcc06abab8e8c5b54e6d769182468
+time: 2019-04-02 19:54:44 UTC
 depends:
-  fetch_snow_tasks: bf741caf783a5d2e9c9fae2cdacf2426
+  fetch_snow_tasks: eb3ffae78cf56ddf5e9082b6df20c01c
 fixed: b8d3e2fab75b29c8f27759ce3b2a6240
 code:
   functions: {}

@@ -6,12 +6,11 @@ prep_snow_fun <- function(snow_raster_ind, snow_data_yml, snow_cfg, timestep, ti
   timesteps_corrected <- timesteps_all[seq(1, by = frame_step, to = length(timesteps_all))] 
   
   band_i <- which(timesteps_corrected == as.POSIXct(timestep, tz="UTC"))
-  # snow_raster <- raster::raster(sc_retrieve(snow_raster_ind, snow_data_yml), band=band_i)
-  snow_raster <- raster::raster("test_raster.nc", band=band_i)
+  snow_raster <- raster::raster(sc_retrieve(snow_raster_ind, snow_data_yml), band=band_i)
   
   # clean up the environment to keep the closure small
-  rm(snow_raster_ind, snow_data_yml, timestep, 
-     timesteps_all_ind, timesteps_all, timesteps_corrected_band_i)
+  rm(snow_raster_ind, snow_data_yml, timestep, timesteps_all_ind, 
+     frame_step, timesteps_all, timesteps_corrected, band_i)
   
   plot_fun <- function(){
     plot(snow_raster, 
