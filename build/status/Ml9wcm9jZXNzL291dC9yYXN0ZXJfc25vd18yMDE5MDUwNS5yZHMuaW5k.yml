@@ -1,0 +1,12 @@
+version: 0.3.0
+name: 2_process/out/raster_snow_20190505.rds.ind
+type: file
+hash: 41d059aafc2b4c5aa7a0101a606a248c
+time: 2019-05-22 14:54:35 UTC
+depends:
+  proj_str: 18e3a6e79a675a20c81783119ee91c32
+fixed: 32e9b73413e259232244277c6d428100
+code:
+  functions:
+    process_snow_raster: 7e44c2ad8370db2eec9d1977b836f3db
+

@@ -1,0 +1,11 @@
+version: 0.3.0
+name: 1_fetch/out/snow_20190407.dat.ind
+type: file
+hash: e98ee6d94ef0529bb17f2b58f15fb8ad
+time: 2019-05-21 21:12:59 UTC
+depends: {}
+fixed: 20697b210273b40bd6b5d8b6b7c73101
+code:
+  functions:
+    fetch_snow_data: 100f3edc8349ba67e438d17d9a21dcd5
+
