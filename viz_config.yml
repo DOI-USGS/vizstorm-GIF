@@ -2,9 +2,9 @@ storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archi
 storm_name: "MidwestFlood"
 dates:
   start: '2019-03-05 05:00:00' # add 5hrs to get UTC time
-  end: '2019-04-01 05:00:00' # add 5hrs to get UTC time
+  end: '2019-05-20 05:00:00' # add 5hrs to get UTC time
 date_display_tz: "America/Chicago" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
-frame_step: 3 # hours elapsed between GIF frames
+frame_step: 4 # hours elapsed between GIF frames
 
 # view, dimensions
 bbox: [-99.72, 33.00, -86.05, 45.50]

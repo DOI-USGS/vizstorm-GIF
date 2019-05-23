@@ -1,4 +1,4 @@
-fetch_streamdata <- function(ind_file, sites_ind, dates, stream_params, gd_config) {
+fetch_streamdata <- function(ind_file, sites_ind, dates, stream_params) {
 
   sites <- readRDS(scipiper::sc_retrieve(sites_ind))
 
@@ -21,5 +21,5 @@ fetch_streamdata <- function(ind_file, sites_ind, dates, stream_params, gd_confi
 
   data_file <- as_data_file(ind_file)
   saveRDS(data, data_file)
-  gd_put(remote_ind = ind_file, local_source = data_file, config_file = gd_config)
+  gd_put(ind_file, data_file)
 }

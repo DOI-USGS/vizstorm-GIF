@@ -117,8 +117,7 @@ targets:
       ind_file = target_name,
       sites_ind = '2_process/out/gage_sites.rds.ind',
       dates = dates,
-      stream_params = stream_params,
-      gd_config = 'lib/cfg/gd_config.yml')
+      stream_params = stream_params)
   1_fetch/out/streamdata.rds:
     command: gd_get('1_fetch/out/streamdata.rds.ind')
 
