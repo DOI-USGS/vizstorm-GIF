@@ -79,3 +79,29 @@ fetch_rapid_dep_sites <- function(ind_file, event) {
   saveRDS(rdgs, as_data_file(ind_file))
   gd_put(ind_file)
 }
+
+fetch_pkq_sites <- function(ind_file, dates, view_config) {
+  
+  # This requires manual interaction with WaterWatch.
+  sw_coord <- paste(view_config[["bbox"]][c(2,1)], collapse=",")
+  ne_coord <- paste(view_config[["bbox"]][c(4,3)], collapse=",")
+  
+  message(paste0("\n\nPlease go to https://waterwatch.usgs.gov/index.php?id=wwdp2 and enter the following:\n\n",
+                 sprintf("SW (lat,lng) = %s \n", sw_coord),
+                 sprintf("NE (lat,lng) = %s \n", ne_coord),
+                 sprintf("Begin Date = %s \n", as.Date(dates[["start"]])),
+                 sprintf("End Date = %s \n", as.Date(dates[["end"]])),
+                 "Output: CSV \n\n",
+                 "Press GO and save the file as `1_fetch/in/peak_sites.csv`"))
+  
+  # Wait for user input before continuing
+  invisible(readline(prompt="Once your file is saved in the right location, press [ENTER]"))
+  
+  # read the sites with peak flows during this time period
+  pkqs <- read.csv("1_fetch/in/peak_sites.csv") %>%
+    filter(flow_va > peak_max)
+  
+  # Write the data file and the indicator file
+  saveRDS(pkqs, as_data_file(ind_file))
+  gd_put(ind_file)
+}

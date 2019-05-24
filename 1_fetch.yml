@@ -49,6 +49,7 @@ targets:
 
   dates:
     command: viz_config[[I('dates')]]
+  
   stream_params:
     command: yaml.load_file('1_fetch/cfg/stream_params.yml')
   precip_config:
@@ -190,3 +191,10 @@ targets:
       event = stn_event)
   1_fetch/out/rapid_dep_sites.rds:
     command: gd_get('1_fetch/out/rapid_dep_sites.rds.ind')
+  1_fetch/out/pkq_sites.rds.ind:
+    command: fetch_pkq_sites(
+      ind_file = target_name,
+      dates = dates,
+      view_config = view_config)
+  1_fetch/out/pkq_sites.rds:
+    command: gd_get('1_fetch/out/pkq_sites.rds.ind')

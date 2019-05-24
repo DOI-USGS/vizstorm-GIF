@@ -1,0 +1,13 @@
+version: 0.3.0
+name: 1_fetch/out/pkq_sites.rds.ind
+type: file
+hash: be0ebbdfe645796d24f1d222946b626f
+time: 2019-05-24 19:20:54 UTC
+depends:
+  dates: 3c6ecb49965ab0706ab7963ff1da73ab
+  view_config: 003a6a70a0eed242f78b907b5e6a21c5
+fixed: e47e3c76b8f130b02c9bb9da20780c95
+code:
+  functions:
+    fetch_pkq_sites: b5b84b70601b9be5286e34f247db4777
+

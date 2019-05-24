@@ -36,7 +36,7 @@ fetch_major_river_geoms <- function(ind_file, view_polygon, fetch_streamorder) {
 }
 
 fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasqkm) {
-
+  
   bbox <- st_bbox(st_transform(view_polygon, 4326))
 
   postURL <- "https://cida.usgs.gov/nwc/geoserver/nhdplus/ows"
@@ -63,9 +63,15 @@ fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasq
                       '</wfs:GetFeature>')
 
   out <- httr::POST(postURL, body = filterXML)
-
-  sf_waterbodies <- read_sf(rawToChar(out$content)) %>%
-    st_transform(st_crs(view_polygon))
+  
+  sf_waterbodies <- read_sf(rawToChar(out$content))
+  
+  if(length(sf_waterbodies$geometry) > 0) {
+    sf_waterbodies <- sf_waterbodies %>%
+      st_transform(st_crs(view_polygon))
+  } else {
+    message("Note: No waterbodies were returned. Geom has 0 features.")
+  }
 
   data_file <- as_data_file(ind_file)
   saveRDS(sf_waterbodies, data_file)
