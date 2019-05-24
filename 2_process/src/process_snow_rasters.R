@@ -40,7 +40,7 @@ process_snow_raster <- function(ind_file, snow_data_ind, snow_data_yml, crop_ext
 
 }
 
-interpolate_snow_raster_layers <- function(ind_file, timestep_ind, frame_step, fetch_snow_tasks_ind) {
+interpolate_snow_raster_layers <- function(ind_file, raster_out_str, timestep_ind, frame_step, fetch_snow_tasks_ind) {
 
   snow_raster_rds_inds <- names(yaml::yaml.load_file(fetch_snow_tasks_ind))
   all_timestep <- readRDS(sc_retrieve(timestep_ind))
@@ -95,11 +95,29 @@ interpolate_snow_raster_layers <- function(ind_file, timestep_ind, frame_step, f
     }
   }
   
-  raster_stack <- raster::stack(x = rasters_interp_list)
+  # Raster stack was too big for writeRaster, so we have
+  # split into multiple rasters
+  n <- length(rasters_interp_list)
+  n1 <- head(1:n, ceiling(n/2))
+  n2 <- tail(1:n, n-ceiling(n/2))
   
-  data_file <- as_data_file(ind_file)
-  raster::writeRaster(raster_stack, data_file, overwrite=TRUE)
+  raster_stack1 <- raster::stack(x = rasters_interp_list[n1])
+  raster_stack2 <- raster::stack(x = rasters_interp_list[n2])
+  
+  # Remove other objects that are taking up a lot of memory but are no
+  # longer needed in order to allow `writeRaster` to have enough space
+  rm(daily_rasters, snow_depth0, snow_depth1, snow_depth_interp, rasters_interp_list)
+  
+  raster_file1 <- sprintf(raster_out_str, "1")
+  raster_file2 <- sprintf(raster_out_str, "2")
+  raster::writeRaster(raster_stack1, raster_file1, overwrite=TRUE)
+  raster::writeRaster(raster_stack2, raster_file2, overwrite=TRUE)
   
   # It is quicker to build locally, then push + pull a file of this size (~700 MB for 8 days)
+  data_file <- as_data_file(ind_file)
+  raster_file_info <- rbind(
+    data.frame(band = n1, raster_count = 1:length(n1), file = raster_file1, stringsAsFactors = F),
+    data.frame(band = n2, raster_count = 1:length(n2), file = raster_file2, stringsAsFactors = F))
+  saveRDS(raster_file_info, data_file)
   gd_put(remote_ind = ind_file, dry_put = TRUE) 
 }

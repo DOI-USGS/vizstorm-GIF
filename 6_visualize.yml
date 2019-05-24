@@ -165,7 +165,7 @@ targets:
     command: c(trial_storm_frames_01, trial_storm_frames_07, trial_storm_frames_13, trial_storm_frames_19)
   storm_gif_tasks_executed:
     command: scmake(
-      target_names = I('6_visualize/log/6_storm_gif_tasks.ind'), 
+      target_names = I('6_storm_gif_tasks'), 
       remake_file = '6_storm_gif_tasks.yml')
 
   # Combine the png files into a video.
