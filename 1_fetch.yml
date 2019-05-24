@@ -20,7 +20,7 @@ file_extensions:
 
 sources:
   - 1_fetch/src/fetch_streamdata.R
-  - 1_fetch/src/fetch_storm_track.R
+  #- 1_fetch/src/fetch_storm_track.R
   - 1_fetch/src/map_utils.R
   - 1_fetch/src/fetch_sites.R
   - 1_fetch/src/fetch_precip_nc.R
@@ -33,7 +33,7 @@ targets:
   1_fetch:
     depends:
       - view_polygon
-      - 1_fetch/out/storm_track.zip.ind
+      #- 1_fetch/out/storm_track.zip.ind
       - 1_fetch/out/all_sites.rds.ind
       - 1_fetch/out/streamdata.rds.ind
       - 1_fetch/out/precip_data.nc.ind
@@ -94,11 +94,11 @@ targets:
 
   # -- download stormtrack --
   storm_track_cfg:
-    command: viz_config[I('storm_code')]
-  1_fetch/out/storm_track.zip.ind:
-    command: fetch_storm_track(ind_file=target_name, cfg=storm_track_cfg)
-  1_fetch/out/storm_track.zip:
-    command: gd_get('1_fetch/out/storm_track.zip.ind')
+   command: viz_config[I('storm_code')]
+  #1_fetch/out/storm_track.zip.ind:
+  #  command: fetch_storm_track(ind_file=target_name, cfg=storm_track_cfg)
+  #1_fetch/out/storm_track.zip:
+  #  command: gd_get('1_fetch/out/storm_track.zip.ind')
 
   # -- get sites and site info --
   state_cds:

@@ -9,7 +9,7 @@ fetch_precip_data <- function(ind_file, view_polygon, times) {
 
   knife <- webprocess(algorithm = list('OPeNDAP Subset' = "gov.usgs.cida.gdp.wps.algorithm.FeatureCoverageOPeNDAPIntersectionAlgorithm"),
                       REQUIRE_FULL_COVERAGE = FALSE, wait = TRUE, OUTPUT_TYPE = 'netcdf')
-
+  
   # create the stencil from the bbox of the view_polygon
   crs <- st_crs(view_polygon)
   bbox <- st_bbox(view_polygon)
