@@ -69,11 +69,6 @@ fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasq
   if(length(sf_waterbodies$geometry) > 0) {
     sf_waterbodies <- sf_waterbodies %>%
       st_transform(st_crs(view_polygon))
-    browser()
-    canada <- st_sfc(st_point(c(41.685, -82.684)))
-    st_crs(canada) <- "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs"
-    canada_proj <- st_transform(canada, "+proj=lcc +lat_1=43.26666666666667 +lat_2=42.06666666666667 +lat_0=41.5 +lon_0=-93.5 +x_0=1500000 +y_0=1000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
-    filter(sf_waterbodies)
   } else {
     message("Note: No waterbodies were returned. Geom has 0 features.")
   }
