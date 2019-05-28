@@ -31,25 +31,53 @@ targets:
       datetime_fun_a_20190524_12,
       watermark_fun)
   6_visualize/tmp/gif_frame_a_z001_outro_pkqs_2.png:
-    command: file.copy(
-      from = I("6_visualize/tmp/gif_frame_a_z001_outro_pkqs_1.png"),
-      to = I("6_visualize/tmp/gif_frame_a_z001_outro_pkqs_2.png"), 
-      overwrite = TRUE)
+    command: create_animation_frame(
+      png_file=target_name,
+      config=storm_frame_config,
+      view_fun,
+      basemap_fun,
+      ocean_name_fun,
+      rivers_fun,
+      pkqs_fun_1,
+      legend_fun_a_20190524_12,
+      datetime_fun_a_20190524_12,
+      watermark_fun)
   6_visualize/tmp/gif_frame_a_z001_outro_pkqs_3.png:
-    command: file.copy(
-      from = I("6_visualize/tmp/gif_frame_a_z001_outro_pkqs_1.png"),
-      to = I("6_visualize/tmp/gif_frame_a_z001_outro_pkqs_3.png"), 
-      overwrite = TRUE)
+    command: create_animation_frame(
+      png_file=target_name,
+      config=storm_frame_config,
+      view_fun,
+      basemap_fun,
+      ocean_name_fun,
+      rivers_fun,
+      pkqs_fun_1,
+      legend_fun_a_20190524_12,
+      datetime_fun_a_20190524_12,
+      watermark_fun)
   6_visualize/tmp/gif_frame_a_z001_outro_pkqs_4.png:
-    command: file.copy(
-      from = I("6_visualize/tmp/gif_frame_a_z001_outro_pkqs_1.png"),
-      to = I("6_visualize/tmp/gif_frame_a_z001_outro_pkqs_4.png"), 
-      overwrite = TRUE)
+    command: create_animation_frame(
+      png_file=target_name,
+      config=storm_frame_config,
+      view_fun,
+      basemap_fun,
+      ocean_name_fun,
+      rivers_fun,
+      pkqs_fun_1,
+      legend_fun_a_20190524_12,
+      datetime_fun_a_20190524_12,
+      watermark_fun)
   6_visualize/tmp/gif_frame_a_z001_outro_pkqs_5.png:
-    command: file.copy(
-      from = I("6_visualize/tmp/gif_frame_a_z001_outro_pkqs_1.png"),
-      to = I("6_visualize/tmp/gif_frame_a_z001_outro_pkqs_5.png"), 
-      overwrite = TRUE)
+    command: create_animation_frame(
+      png_file=target_name,
+      config=storm_frame_config,
+      view_fun,
+      basemap_fun,
+      ocean_name_fun,
+      rivers_fun,
+      pkqs_fun_1,
+      legend_fun_a_20190524_12,
+      datetime_fun_a_20190524_12,
+      watermark_fun)
   
   rdgs_fun_1:
     command: prep_outro_rdgs_fun(
