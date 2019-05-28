@@ -59,3 +59,61 @@ fetch_precip_data <- function(ind_file, view_polygon, times) {
 # bsimp <- st_transform(st_simplify(st_transform(boundary, 5070), dTolerance = 10000),4269)
 # st_as_text(bsimp)
 
+fetch_precip_notGDP <- function(ind_file, view_polygon, times) {
+  
+  library(ncmeta)
+  library(intersectr)
+  
+  nc_url <- "https://cida.usgs.gov/thredds/dodsC/stageiv_combined"
+  
+  #################
+  # NEED TO GET NetCDF file download happening.
+  #################
+  
+  # nc_var <- nc_vars(nc_file)
+  # variable_name <- nc_var$name[1]
+  # 
+  # nc_coord_vars <- nc_coord_var(nc_file, variable_name)
+  # 
+  # x_var <- nc_coord_vars$X
+  # y_var <- nc_coord_vars$Y
+  # t_var <- nc_coord_vars$T
+  # 
+  # nc <- RNetCDF::open.nc(nc_file)
+  # 
+  # x <- RNetCDF::var.get.nc(nc, x_var, unpack = TRUE)
+  # y <- RNetCDF::var.get.nc(nc, y_var, unpack = TRUE)
+  
+  # geom <- view_polygon %>%
+  #   st_transform(5070)
+  # 
+  # geom <- geom[5, ]
+  # 
+  # in_prj <- "+init=epsg:4326"
+  # 
+  # cell_geometry <- suppressWarnings(
+  #   create_cell_geometry(x, y, in_prj, geom))
+  # 
+  # expect(nrow(cell_geometry) == 340)
+  # 
+  # cell_geometry <- suppressWarnings(
+  #   create_cell_geometry(x, y, in_prj, geom, 10000))
+  # 
+  # expect(nrow(cell_geometry) == 700)
+  # 
+  # data_source_cells <- st_sf(select(cell_geometry, grid_ids))
+  # target_polygons <- st_sf(select(geom, CNTY_ID))
+  # 
+  # sf::st_agr(data_source_cells) <- "constant"
+  # sf::st_agr(target_polygons) <- "constant"
+  # 
+  # area_weights <- calculate_area_intersection_weights(
+  #   data_source_cells,
+  #   target_polygons)
+  # 
+  # suppressWarnings(intersected <- execute_intersection(nc_file, variable_name, area_weights,
+  #                                                      cell_geometry, x_var, y_var, t_var))
+  
+  nc_file <- as_data_file(ind_file)
+  gd_put(remote_ind=ind_file, local_source=nc_file, mock_get='none')
+}

@@ -136,8 +136,10 @@ targets:
 
   # -- get precip --
   1_fetch/out/precip_data.nc.ind:
-    command: fetch_precip_data(ind_file=target_name,
-                                view_polygon = view_polygon, times = dates)
+    command: fetch_precip_notGDP(
+      ind_file=target_name,
+      view_polygon = view_polygon, 
+      times = dates)
   1_fetch/out/precip_data.nc:
     command: gd_get('1_fetch/out/precip_data.nc.ind')
 
