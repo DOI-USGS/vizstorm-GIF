@@ -29,8 +29,18 @@ prep_outro_rdgs_fun <- function(rdg_ind="1_fetch/out/rapid_dep_sites.rds.ind", g
     x_text <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
     y_title <- user_coords[3] + outro_placement$ytop_stn * diff(user_coords[3:4])
     y_text <- user_coords[3] + (outro_placement$ytop_stn-0.08) * diff(user_coords[3:4])
-    x_dot <- x_text + 0.104 * diff(user_coords[1:2])
-    y_dot <- y_text - 0.061 * diff(user_coords[3:4])
+    x_dot <- x_text + 0.101 * diff(user_coords[1:2])
+    y_dot <- y_text - 0.052 * diff(user_coords[3:4])
+    
+    # plan bg rectangle
+    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.02) * diff(user_coords[1:2])
+    bg_x_right <- user_coords[1] + (outro_placement$xright+0.005) * diff(user_coords[1:2])
+    bg_y_top <- user_coords[3] + outro_placement$ytop_stn * diff(user_coords[3:4]) + line_spacing_vert * 0.5
+    bg_y_bottom <- user_coords[3] + outro_placement$ytop_stn * diff(user_coords[3:4]) - line_spacing_vert * 5
+    
+    # plot bg rectangle
+    rect(bg_x_left, bg_y_bottom, bg_x_right, bg_y_top, col = "#ffffffB3", border = "transparent")
+    
     # plot text and legend
     text(x=x_title, y=y_title, labels="RAPID RESPONSE TO FLOODS", adj=c(0, 1),
          cex=stn_title_cex, col=legend_text_cfg$col, family = 'Oswald')
@@ -66,12 +76,23 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
 
     # plan text and legend coordinates
     user_coords <- par()$usr
+    line_spacing_vert <- strheight("A", cex=legend_text_cfg$cex, family=legend_text_cfg$family)
     x_title <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
     x_text <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
     y_title <- user_coords[3] + outro_placement$ytop_ltn * diff(user_coords[3:4])
     y_text <- user_coords[3] + (outro_placement$ytop_ltn-0.08) * diff(user_coords[3:4])
-    x_dot <- x_text + 0.1635 * diff(user_coords[1:2])
-    y_dot <- y_text - 0.061 * diff(user_coords[3:4])
+    x_dot <- x_text + 0.155 * diff(user_coords[1:2])
+    y_dot <- y_text - 0.051 * diff(user_coords[3:4])
+    
+    # plan bg rectangle
+    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.02) * diff(user_coords[1:2])
+    bg_x_right <- user_coords[1] + (outro_placement$xright+0.005) * diff(user_coords[1:2])
+    bg_y_top <- user_coords[3] + outro_placement$ytop_ltn * diff(user_coords[3:4]) + line_spacing_vert * 0.5
+    bg_y_bottom <- user_coords[3] + outro_placement$ytop_ltn * diff(user_coords[3:4]) - line_spacing_vert * 6
+    
+    # plot bg rectangle
+    rect(bg_x_left, bg_y_bottom, bg_x_right, bg_y_top, col = "#ffffffB3", border = "transparent")
+    
     # plot text and legend
     text(x=x_title, y=y_title, labels="NATIONAL SCALE OBSERVING NETWORK", adj=c(0, 1),
          cex=ltn_title_cex, col=legend_text_cfg$col, family = 'Oswald')
@@ -80,7 +101,6 @@ nationally (blue dots   ). Long-term USGS gages across
 the southeastern US are shown on the map."
     text(x=x_text, y=y_text, labels=text_chars, adj=c(0, 1),
          cex=ltn_text_cex, col=legend_text_cfg$col, family = 'abel')
-
     points(x=x_dot, y=y_dot, pch = ltn_pch, col = ltn_col, cex = ltn_text_cex)
   }
   return(plot_fun)
@@ -94,17 +114,27 @@ prep_outro_readmore_fun <- function(outro_placement, legend_text_cfg, opacity=1)
 
     # plan text coordinates
     user_coords <- par()$usr
+    line_spacing_vert <- strheight("A", cex=legend_text_cfg$cex, family=legend_text_cfg$family)
     x_title <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
     x_text <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
     y_title <- user_coords[3] + outro_placement$ytop_more * diff(user_coords[3:4])
     y_text <- user_coords[3] + (outro_placement$ytop_more-0.08) * diff(user_coords[3:4])
-
+    
+    # plan bg rectangle
+    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.02) * diff(user_coords[1:2])
+    bg_x_right <- user_coords[1] + (outro_placement$xright+0.005) * diff(user_coords[1:2])
+    bg_y_top <- user_coords[3] + outro_placement$ytop_more * diff(user_coords[3:4]) + line_spacing_vert * 0.5
+    bg_y_bottom <- user_coords[3] + outro_placement$ytop_more * diff(user_coords[3:4]) - line_spacing_vert * 5.5
+    
+    # plot bg rectangle
+    rect(bg_x_left, bg_y_bottom, bg_x_right, bg_y_top, col = "#ffffffB3", border = "transparent")
+    
     # plot text and legend
     text(x=x_title, y=y_title, labels="STAY SAFE DURING FLOODS", adj=c(0, 1),
-         cex=2.2, col=legend_text_cfg$col, family = 'Oswald')
+         cex=2.5, col=legend_text_cfg$col, family = 'Oswald')
     text_chars <- "Learn more about USGS response to \nfloods at www.water.usgs.gov/floods"
     text(x=x_text, y=y_text, labels=text_chars, adj=c(0, 1),
-         cex=1.5, col=legend_text_cfg$col, family = 'abel')
+         cex=1.8, col=legend_text_cfg$col, family = 'abel')
   }
   return(plot_fun)
 }
@@ -137,16 +167,47 @@ prep_outro_pkqs_fun <- function(pkq_ind="1_fetch/out/pkq_sites.rds.ind", gage_co
     x_text <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
     y_title <- user_coords[3] + outro_placement$ytop_pkq * diff(user_coords[3:4])
     y_text <- user_coords[3] + (outro_placement$ytop_pkq-0.08) * diff(user_coords[3:4])
-    x_dot <- x_text + 0.104 * diff(user_coords[1:2])
-    y_dot <- y_text - 0.061 * diff(user_coords[3:4])
+    x_dot <- x_text + 0.193 * diff(user_coords[1:2])
+    y_dot <- y_text - 0.052 * diff(user_coords[3:4])
+    
+    # plan bg rectangle
+    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.02) * diff(user_coords[1:2])
+    bg_x_right <- user_coords[1] + (outro_placement$xright+0.005) * diff(user_coords[1:2])
+    bg_y_top <- user_coords[3] + outro_placement$ytop_pkq * diff(user_coords[3:4]) + line_spacing_vert * 0.5
+    bg_y_bottom <- user_coords[3] + outro_placement$ytop_pkq * diff(user_coords[3:4]) - line_spacing_vert * 5
+    
+    # plot bg rectangle
+    rect(bg_x_left, bg_y_bottom, bg_x_right, bg_y_top, col = "#ffffffB3", border = "transparent")
+    
     # plot text and legend
     text(x=x_title, y=y_title, labels="RECORD PEAK FLOWS", adj=c(0, 1),
          cex=pkq_title_cex, col=legend_text_cfg$col, family = 'Oswald')
-    text_chars <- sprintf("USGS recorded %s locations with record high stream flow\n(orange dots   ) during this event.",
+    text_chars <- sprintf("USGS recorded %s locations with record high\nstream flow (red triangles   ) during this event.",
                           nrow(pkqs))
     text(x=x_text, y=y_text, labels=text_chars, adj=c(0, 1),
          cex=pkq_text_cex, col=legend_text_cfg$col, family = 'abel')
-    points(x=x_dot, y=y_dot, pch = pkq_pch, col = pkq_col, cex = pkq_text_cex)
+    points(x=x_dot, y=y_dot, pch = pkq_pch, col = pkq_col, cex = pkq_text_cex, lwd = 2)
+  }
+  return(plot_fun)
+}
+
+prep_outro_bg_fun <- function(outro_placement, y_cfg = "ytop_pkq") {
+  
+  # y_cfg = last text placement to use for the bottom of the rect for the frame
+  
+  plot_fun <- function(){
+    
+    # plan text and legend coordinates
+    user_coords <- par()$usr
+    
+    bg_x_left <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
+    bg_x_right <- user_coords[1] + outro_placement$xright * diff(user_coords[1:2])
+    bg_y_top <- user_coords[3] + outro_placement$ytop_pkq * diff(user_coords[3:4])
+    bg_y_bottom <- user_coords[3] + (outro_placement[[y_cfg]]-0.20) * diff(user_coords[3:4])
+
+    # plot text and legend
+    rect(bg_x_left, bg_y_bottom, bg_x_right, bg_y_top, col = "#ffffffB3", border = "transparent")
+      
   }
   return(plot_fun)
 }
