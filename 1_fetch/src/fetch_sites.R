@@ -68,14 +68,45 @@ fetch_sites_from_states <- function(ind_file, state_cds, dates, stream_params, r
 fetch_rapid_dep_sites <- function(ind_file, event) {
   # fetch the rapid deployment gages (RDGs) from the STN web services
   url <- sprintf('https://stn.wim.usgs.gov/STNServices/Instruments/FilteredInstruments.json?Event=%d&EventType=&EventStatus=&States=&County=&CurrentStatus=&CollectionCondition=&SensorType=5&DeploymentType=', event)
-  rdgs <- jsonlite::fromJSON(url) %>%
-    select(sensorType, eventName, timeStamp, site_no, latitude, longitude, siteDescription)
   
+  rdgs <- jsonlite::fromJSON(url)
+  if(length(rdgs) > 0) {
+   rdgs <- rdgs %>% select(sensorType, eventName, timeStamp, site_no, latitude, longitude, siteDescription) 
+  } else {
+    message(sprintf("No rapid deployment gages found at \n %s", url))
+  }
+    
   # if we wanted to look up data for these sites, we could go to NWIS by using
   # this sites table to map the RDG ID (site_no) to an NWIS id (usgs_sid):
-  # https://stn.wim.usgs.gov/STNServices/Events/283/sites
+  # https://stn.wim.usgs.gov/STNServices/Events/288/sites
   
   # Write the data file and the indicator file
   saveRDS(rdgs, as_data_file(ind_file))
+  gd_put(ind_file)
+}
+
+fetch_pkq_sites <- function(ind_file, dates, view_config) {
+  
+  # This requires manual interaction with WaterWatch.
+  sw_coord <- paste(view_config[["bbox"]][c(2,1)], collapse=",")
+  ne_coord <- paste(view_config[["bbox"]][c(4,3)], collapse=",")
+  
+  message(paste0("\n\nPlease go to https://waterwatch.usgs.gov/index.php?id=wwdp2 and enter the following:\n\n",
+                 sprintf("SW (lat,lng) = %s \n", sw_coord),
+                 sprintf("NE (lat,lng) = %s \n", ne_coord),
+                 sprintf("Begin Date = %s \n", as.Date(dates[["start"]])),
+                 sprintf("End Date = %s \n", as.Date(dates[["end"]])),
+                 "Output: CSV \n\n",
+                 "Press GO and save the file as `1_fetch/in/peak_sites.csv`"))
+  
+  # Wait for user input before continuing
+  invisible(readline(prompt="Once your file is saved in the right location, press [ENTER]"))
+  
+  # read the sites with peak flows during this time period
+  pkqs <- read.csv("1_fetch/in/peak_sites.csv") %>%
+    filter(flow_va > peak_max)
+  
+  # Write the data file and the indicator file
+  saveRDS(pkqs, as_data_file(ind_file))
   gd_put(ind_file)
 }

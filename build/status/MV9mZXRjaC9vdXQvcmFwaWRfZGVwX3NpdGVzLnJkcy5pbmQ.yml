@@ -1,0 +1,12 @@
+version: 0.3.0
+name: 1_fetch/out/rapid_dep_sites.rds.ind
+type: file
+hash: 0c60e34c2cd5ea01f4b520c7d4dd9bde
+time: 2019-05-28 18:59:33 UTC
+depends:
+  stn_event: fdf6fa3c76dbe4f1284ce4f08e00924c
+fixed: 941db97b668c57b0d3a4f80db80ef42e
+code:
+  functions:
+    fetch_rapid_dep_sites: 3b88180ada589b6cf15e98c1ff7a6da7
+

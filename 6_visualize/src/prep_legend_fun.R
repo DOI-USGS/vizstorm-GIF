@@ -1,5 +1,5 @@
 
-prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_points_sf, DateTime=NA, x_pos = c('left', 'right'), y_pos = c('bottom','top'), legend_text_cfg){
+prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_points_sf=NULL, DateTime=NA, x_pos = c('left', 'right'), y_pos = c('bottom','top'), legend_text_cfg){
 
   x_pos <- match.arg(x_pos)
   y_pos <- match.arg(y_pos)

@@ -55,7 +55,7 @@ targets:
   date_display_tz:
     command: viz_config[[I('date_display_tz')]]
   gage_color_config:
-    command: viz_config[I(c('gage_flood_col','gage_norm_col','gage_out_col','gage_line_col','gage_ltn_col','gage_stn_col'))]
+    command: viz_config[I(c('gage_flood_col','gage_norm_col','gage_out_col','gage_line_col','gage_ltn_col','gage_stn_col', 'gage_pkq_col'))]
   intro_config:
     command: viz_config[[I(c('intro'))]]
   legend_text_cfg:
@@ -97,11 +97,11 @@ targets:
 
   storm_line_cfg:
     command: viz_config[I('storm_line_col')]
-  storm_line_fun:
-    command: prep_storm_line_fun("2_process/out/storm_line.rds.ind", storm_line_cfg)
-
-  storm_points_sf:
-    command: fetch_read('2_process/out/storm_points_interp.rds.ind')
+  #storm_line_fun:
+  #  command: prep_storm_line_fun("2_process/out/storm_line.rds.ind", storm_line_cfg)
+  #
+  #storm_points_sf:
+  #  command: fetch_read('2_process/out/storm_points_interp.rds.ind')
 
   gage_sites_initial:
     command: prep_gage_sites_fun(stage_data, gage_color_config, storm_start_date)
@@ -179,7 +179,8 @@ targets:
       timestep_ind = '2_process/out/timesteps.rds.ind',
       storm_track_cfg = storm_track_cfg,
       folders = visualize_folders,
-      frame_step = storm_frame_step)
+      frame_step = storm_frame_step,
+      skip_precip = TRUE)
 
   6_storm_gif_tasks.yml:
     command: create_storm_gif_makefile(

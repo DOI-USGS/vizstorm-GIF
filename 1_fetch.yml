@@ -20,7 +20,7 @@ file_extensions:
 
 sources:
   - 1_fetch/src/fetch_streamdata.R
-  - 1_fetch/src/fetch_storm_track.R
+  #- 1_fetch/src/fetch_storm_track.R
   - 1_fetch/src/map_utils.R
   - 1_fetch/src/fetch_sites.R
   - 1_fetch/src/fetch_precip_nc.R
@@ -33,7 +33,7 @@ targets:
   1_fetch:
     depends:
       - view_polygon
-      - 1_fetch/out/storm_track.zip.ind
+      #- 1_fetch/out/storm_track.zip.ind
       - 1_fetch/out/all_sites.rds.ind
       - 1_fetch/out/streamdata.rds.ind
       - 1_fetch/out/precip_data.nc.ind
@@ -49,6 +49,7 @@ targets:
 
   dates:
     command: viz_config[[I('dates')]]
+  
   stream_params:
     command: yaml.load_file('1_fetch/cfg/stream_params.yml')
   precip_config:
@@ -94,11 +95,11 @@ targets:
 
   # -- download stormtrack --
   storm_track_cfg:
-    command: viz_config[I('storm_code')]
-  1_fetch/out/storm_track.zip.ind:
-    command: fetch_storm_track(ind_file=target_name, cfg=storm_track_cfg)
-  1_fetch/out/storm_track.zip:
-    command: gd_get('1_fetch/out/storm_track.zip.ind')
+   command: viz_config[I('storm_code')]
+  #1_fetch/out/storm_track.zip.ind:
+  #  command: fetch_storm_track(ind_file=target_name, cfg=storm_track_cfg)
+  #1_fetch/out/storm_track.zip:
+  #  command: gd_get('1_fetch/out/storm_track.zip.ind')
 
   # -- get sites and site info --
   state_cds:
@@ -135,8 +136,10 @@ targets:
 
   # -- get precip --
   1_fetch/out/precip_data.nc.ind:
-    command: fetch_precip_data(ind_file=target_name,
-                                view_polygon = view_polygon, times = dates)
+    command: fetch_precip_notGDP(
+      ind_file=target_name,
+      view_polygon = view_polygon, 
+      times = dates)
   1_fetch/out/precip_data.nc:
     command: gd_get('1_fetch/out/precip_data.nc.ind')
 
@@ -190,3 +193,10 @@ targets:
       event = stn_event)
   1_fetch/out/rapid_dep_sites.rds:
     command: gd_get('1_fetch/out/rapid_dep_sites.rds.ind')
+  1_fetch/out/pkq_sites.rds.ind:
+    command: fetch_pkq_sites(
+      ind_file = target_name,
+      dates = dates,
+      view_config = view_config)
+  1_fetch/out/pkq_sites.rds:
+    command: gd_get('1_fetch/out/pkq_sites.rds.ind')
