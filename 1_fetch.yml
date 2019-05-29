@@ -14,6 +14,11 @@ packages:
   - dplyr
   - xml2
   - jsonlite
+  - googledrive
+  - ncmeta
+  - intersectr
+  - RNetCDF
+
 
 file_extensions:
   - ind
@@ -49,7 +54,7 @@ targets:
 
   dates:
     command: viz_config[[I('dates')]]
-  
+
   stream_params:
     command: yaml.load_file('1_fetch/cfg/stream_params.yml')
   precip_config:
@@ -138,7 +143,7 @@ targets:
   1_fetch/out/precip_data.nc.ind:
     command: fetch_precip_notGDP(
       ind_file=target_name,
-      view_polygon = view_polygon, 
+      view_polygon = view_polygon,
       times = dates)
   1_fetch/out/precip_data.nc:
     command: gd_get('1_fetch/out/precip_data.nc.ind')
