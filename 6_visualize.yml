@@ -180,7 +180,7 @@ targets:
       storm_track_cfg = storm_track_cfg,
       folders = visualize_folders,
       frame_step = storm_frame_step,
-      skip_precip = TRUE)
+      skip_precip = FALSE)
 
   6_storm_gif_tasks.yml:
     command: create_storm_gif_makefile(

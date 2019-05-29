@@ -22,10 +22,10 @@ prep_outro_rdgs_fun <- function(rdg_ind="1_fetch/out/rapid_dep_sites.rds.ind", g
     stn_col <- gage_col_config$gage_stn_col
     stn_text_cex <- 1.2
     stn_title_cex <- 1.8
-    font_add_google('Abel', "abel")
-    font_add_google('Oswald', "Oswald")
     
     plot_fun <- function(){
+      font_add_google('Abel', "abel")
+      
       # plot the gage points
       plot(sf::st_geometry(rdgs$geometry), add = TRUE,
            pch = stn_pch, col = stn_col, cex = stn_text_cex*0.75)
@@ -76,11 +76,9 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
   ltn_text_cex <- 1.2
   ltn_title_cex <- 1.8
 
-  font_add_google('Abel', "abel")
-  font_add_google('Oswald', "Oswald")
-
   plot_fun <- function(){
-
+    font_add_google('Abel', "abel")
+    
     # plot the gage points
     plot(sf::st_geometry(allsites$geometry), add = TRUE,
          pch = ltn_pch, col = ltn_col, cex = ltn_text_cex*0.5)
@@ -122,7 +120,8 @@ prep_outro_readmore_fun <- function(outro_placement, legend_text_cfg, opacity=1)
   if(opacity != 1) stop("opacity other than 1 not yet supported")
 
   plot_fun <- function(){
-
+    font_add_google('Abel', "abel")
+    
     # plan text coordinates
     user_coords <- par()$usr
     line_spacing_vert <- strheight("A", cex=legend_text_cfg$cex, family=legend_text_cfg$family)
@@ -161,10 +160,10 @@ prep_outro_pkqs_fun <- function(pkq_ind="1_fetch/out/pkq_sites.rds.ind", gage_co
   pkq_col <- gage_col_config$gage_pkq_col
   pkq_text_cex <- 1.2
   pkq_title_cex <- 1.8
-  font_add_google('Abel', "abel")
-  font_add_google('Oswald', "Oswald")
   
   plot_fun <- function(){
+    font_add_google('Abel', "abel")
+    
     # plot the gage points
     plot(pkqs$geometry, add = TRUE,
          pch = pkq_pch, col = pkq_col, lwd = 2, cex = pkq_text_cex*0.75)
