@@ -156,7 +156,7 @@ prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_confi
       x_user <- coord_space[1] + x_coords * diff(coord_space[1:2])
       y_coords_site <- y_coords %>% filter(site_no==site) %>% {c(.$lower, .$upper)}
       y_user <- coord_space[3] + y_coords_site * diff(coord_space[3:4])
-
+      
       num_chunks <- length(shapes[[site]])
       for(i in seq_len(num_chunks)) {
         chunk <- shapes[[site]][[i]]
@@ -179,7 +179,7 @@ prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_confi
         polygon(full_poly$x, full_poly$y, col = gage_col_config$gage_norm_col, border=NA)
         polygon(flood_poly$x, flood_poly$y, col = gage_col_config$gage_flood_col, border=NA)
         points(hydro_line$x, hydro_line$y, col = gage_col_config$gage_line_col, type='l', lwd=2)
-
+        
         # add the x and/or o
         if(num_chunks > 1) {
           if(i < num_chunks) {
@@ -192,6 +192,10 @@ prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_confi
           }
         }
       }
+      #####
+      # Trick to see site numbers next to their hydrograph in order to eliminate or keep
+      #####
+      # text(min(hydro_line$x), min(hydro_line$y), labels=site, pos = 3, cex=1)
     }
   }
 
