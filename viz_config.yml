@@ -137,6 +137,7 @@ cities:
     - "San Antonio TX"
     - "Houston TX"
     - "Austin TX"
+    - "El Paso TX"
 
 # Only streamorders greater than this will be fetched.
 fetch_streamorder: 5
