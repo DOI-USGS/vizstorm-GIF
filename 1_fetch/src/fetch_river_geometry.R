@@ -38,7 +38,12 @@ fetch_major_river_geoms <- function(ind_file, view_polygon, fetch_streamorder) {
 fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasqkm) {
   
   bbox <- st_bbox(st_transform(view_polygon, 4326))
-
+  
+  # Lowest point in Canada to use as cutoff for great lakes
+  canada <- st_sfc(st_point(c(-82.684, 41.685)))
+  st_crs(canada) <- st_crs("+init=epsg:4326")
+  canada_proj <- st_transform(canada, st_crs(view_polygon))
+  
   postURL <- "https://cida.usgs.gov/nwc/geoserver/nhdplus/ows"
 
   filterXML <- paste0('<?xml version="1.0"?>',
@@ -69,6 +74,18 @@ fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasq
   if(length(sf_waterbodies$geometry) > 0) {
     sf_waterbodies <- sf_waterbodies %>%
       st_transform(st_crs(view_polygon))
+    
+    if(st_bbox(view_polygon)$ymax > st_bbox(canada_proj)$ymin) {
+      # Remove the Great Lakes from this lake layer
+      # because they get cutoff at the Canadian/US border
+      sf_waterbodies <- sf_waterbodies %>%
+        filter(!gnis_name %in% c("Lake Ontario",
+                                 "Lake Huron",
+                                 "Lake Michigan",
+                                 "Lake Erie",
+                                 "Lake Superior"))
+    }
+
   } else {
     message("Note: No waterbodies were returned. Geom has 0 features.")
   }

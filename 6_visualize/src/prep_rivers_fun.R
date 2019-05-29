@@ -3,7 +3,7 @@ prep_rivers_fun <- function(river_ind, rivers_cfg){
 
   sf_rivers <- readRDS(sc_retrieve(river_ind))
   marsh_fcodes <- c(46600, 44601, 44602)
-
+  
   plot_fun <- function(){
     plot(st_geometry(sf_rivers$sf_gage_rivers), col = rivers_cfg$gage_river_col, lwd = 0.3, add = TRUE)
     plot(st_geometry(sf_rivers$sf_major_rivers), col = rivers_cfg$major_river_col, lwd = 0.4, add = TRUE)
