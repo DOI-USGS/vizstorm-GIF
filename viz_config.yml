@@ -33,7 +33,7 @@ marsh_col: NA
 ocean_col: "#e7f1fa"
 storm_line_col: "grey70"
 legend_text:
-  cex: 1.5
+  cex: 1.2
   col: "#161616"
   family: ""
 
