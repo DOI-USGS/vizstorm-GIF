@@ -68,9 +68,9 @@ component_placement:
     xright: 0.98
     ytop_pkq: 0.95 # top y coordinate of the text and legend for the peak flow gages
     xleft_pkq: 0.57 # left x coordinate of the text and legend for the peak flow gages
-    ytop_ltn: 0.55 # top y coordinate of the text and legend for the long-term network
+    ytop_ltn: 0.75 # top y coordinate of the text and legend for the long-term network
     ytop_stn: 0.75 # top y coordinate of the text and legend for the short-term network
-    ytop_more: 0.315 # top y coordinate of the text and URL for where to learn more
+    ytop_more: 0.52 # top y coordinate of the text and URL for where to learn more
 
 
 ocean_name_placement:

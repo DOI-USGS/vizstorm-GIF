@@ -28,7 +28,6 @@ targets:
       rivers_fun,
       pkqs_fun_1,
       legend_fun_a_20190524_12,
-      datetime_fun_a_20190524_12,
       watermark_fun)
   6_visualize/tmp/gif_frame_a_z001_outro_pkqs_2.png:
     command: create_animation_frame(
@@ -40,7 +39,6 @@ targets:
       rivers_fun,
       pkqs_fun_1,
       legend_fun_a_20190524_12,
-      datetime_fun_a_20190524_12,
       watermark_fun)
   6_visualize/tmp/gif_frame_a_z001_outro_pkqs_3.png:
     command: create_animation_frame(
@@ -52,7 +50,6 @@ targets:
       rivers_fun,
       pkqs_fun_1,
       legend_fun_a_20190524_12,
-      datetime_fun_a_20190524_12,
       watermark_fun)
   6_visualize/tmp/gif_frame_a_z001_outro_pkqs_4.png:
     command: create_animation_frame(
@@ -64,7 +61,6 @@ targets:
       rivers_fun,
       pkqs_fun_1,
       legend_fun_a_20190524_12,
-      datetime_fun_a_20190524_12,
       watermark_fun)
   6_visualize/tmp/gif_frame_a_z001_outro_pkqs_5.png:
     command: create_animation_frame(
@@ -76,7 +72,6 @@ targets:
       rivers_fun,
       pkqs_fun_1,
       legend_fun_a_20190524_12,
-      datetime_fun_a_20190524_12,
       watermark_fun)
   
   rdgs_fun_1:
@@ -97,7 +92,6 @@ targets:
       pkqs_fun_1,
       rdgs_fun_1,
       legend_fun_a_20190524_12,
-      datetime_fun_a_20190524_12,
       watermark_fun)
 
   ltn_fun_1:
@@ -119,7 +113,6 @@ targets:
       pkqs_fun_1, 
       rdgs_fun_1,
       legend_fun_a_20190524_12,
-      datetime_fun_a_20190524_12,
       watermark_fun)
 
   readmore_fun_1:
@@ -139,7 +132,6 @@ targets:
       rdgs_fun_1,
       readmore_fun_1,
       legend_fun_a_20190524_12,
-      datetime_fun_a_20190524_12,
       watermark_fun)
 
   6_outro_gif_frames:
