@@ -37,6 +37,10 @@ combine_animation_frames <- function(gif_file, animation_cfg, task_names=NULL, i
   outro_delays <- calc_delays(outro_delay, total_frames-n_outro+1, total_frames)
   final_delay <- calc_delays(final_delay, total_frames-1, total_frames)
 
-  gifsicle_command <- sprintf('gifsicle -b -O3 %s %s %s %s %s %s --colors 256', gif_file, intro_delays, storm_delays, last_storm_delay, outro_delays, final_delay)
+  # A few extra tweaks to bring gif below 5 MB
+  # decreasing colors (tried 150, but too low and missing final purple for precip)
+  # ended up just scaling down slightly (keeps aspect ratio)
+  # this gets it to 4.8 MB
+  gifsicle_command <- sprintf('gifsicle -b -O3 %s %s %s %s %s %s --colors 150 --scale 0.9', gif_file, intro_delays, storm_delays, last_storm_delay, outro_delays, final_delay)
   system(gifsicle_command)
 }
