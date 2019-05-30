@@ -242,6 +242,6 @@ targets:
       animation_cfg=animation_cfg,
       task_names=NULL,
       intro_config = intro_config,
-      n_outro = I(3))
+      n_outro = I(5))
   6_visualize/out/animation_a.gif.ind:
     command: gd_put(target_name, '6_visualize/out/animation_a.gif')

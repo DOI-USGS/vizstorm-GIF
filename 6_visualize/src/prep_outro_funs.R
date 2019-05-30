@@ -33,7 +33,7 @@ prep_outro_rdgs_fun <- function(rdg_ind="1_fetch/out/rapid_dep_sites.rds.ind", g
       
       # plan text and legend coordinates
       user_coords <- par()$usr
-      line_spacing_vert <- strheight("A", cex=legend_text_cfg$cex, family="Oswald")
+      line_spacing_vert <- strheight("A", cex=stn_text_cex, family="Oswald")
       dot_spacing_vert <- line_spacing_vert / 3
       
       x_title <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
@@ -44,7 +44,7 @@ prep_outro_rdgs_fun <- function(rdg_ind="1_fetch/out/rapid_dep_sites.rds.ind", g
       y_dot <- y_text - 0.052 * diff(user_coords[3:4])
       
       # plan bg rectangle
-      bg_x_left <- user_coords[1] + (outro_placement$xleft-0.02) * diff(user_coords[1:2])
+      bg_x_left <- user_coords[1] + (outro_placement$xleft-0.01) * diff(user_coords[1:2])
       bg_x_right <- user_coords[1] + (outro_placement$xright+0.005) * diff(user_coords[1:2])
       bg_y_top <- user_coords[3] + outro_placement$ytop_stn * diff(user_coords[3:4]) + line_spacing_vert * 0.5
       bg_y_bottom <- user_coords[3] + outro_placement$ytop_stn * diff(user_coords[3:4]) - line_spacing_vert * 5
@@ -87,7 +87,7 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
 
     # plan text and legend coordinates
     user_coords <- par()$usr
-    line_spacing_vert <- strheight("A", cex=legend_text_cfg$cex, family="Oswald")
+    line_spacing_vert <- strheight("A", cex=ltn_text_cex, family="Oswald")
     x_title <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
     x_text <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
     y_title <- user_coords[3] + outro_placement$ytop_ltn * diff(user_coords[3:4])
@@ -96,7 +96,7 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
     y_dot <- y_text - 0.051 * diff(user_coords[3:4])
     
     # plan bg rectangle
-    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.02) * diff(user_coords[1:2])
+    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.01) * diff(user_coords[1:2])
     bg_x_right <- user_coords[1] + (outro_placement$xright+0.005) * diff(user_coords[1:2])
     bg_y_top <- user_coords[3] + outro_placement$ytop_ltn * diff(user_coords[3:4]) + line_spacing_vert * 0.5
     bg_y_bottom <- user_coords[3] + outro_placement$ytop_ltn * diff(user_coords[3:4]) - line_spacing_vert * 6
@@ -127,14 +127,14 @@ prep_outro_readmore_fun <- function(outro_placement, legend_text_cfg, opacity=1)
     
     # plan text coordinates
     user_coords <- par()$usr
-    line_spacing_vert <- strheight("A", cex=legend_text_cfg$cex, family=legend_text_cfg$family)
+    line_spacing_vert <- strheight("A", cex=1.2, family=legend_text_cfg$family)
     x_title <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
     x_text <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
     y_title <- user_coords[3] + outro_placement$ytop_more * diff(user_coords[3:4])
     y_text <- user_coords[3] + (outro_placement$ytop_more-0.08) * diff(user_coords[3:4])
     
     # plan bg rectangle
-    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.02) * diff(user_coords[1:2])
+    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.01) * diff(user_coords[1:2])
     bg_x_right <- user_coords[1] + (outro_placement$xright+0.005) * diff(user_coords[1:2])
     bg_y_top <- user_coords[3] + outro_placement$ytop_more * diff(user_coords[3:4]) + line_spacing_vert * 0.5
     bg_y_bottom <- user_coords[3] + (outro_placement$ytop_more-0.04) * diff(user_coords[3:4]) - line_spacing_vert * 5.5
@@ -174,7 +174,7 @@ prep_outro_pkqs_fun <- function(pkq_ind="1_fetch/out/pkq_sites.rds.ind", gage_co
     
     # plan text and legend coordinates
     user_coords <- par()$usr
-    line_spacing_vert <- strheight("A", cex=legend_text_cfg$cex, family="Oswald")
+    line_spacing_vert <- strheight("A", cex=pkq_text_cex, family="Oswald")
     dot_spacing_vert <- line_spacing_vert / 3
     
     x_title <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
@@ -185,7 +185,7 @@ prep_outro_pkqs_fun <- function(pkq_ind="1_fetch/out/pkq_sites.rds.ind", gage_co
     y_dot <- y_text - 0.052 * diff(user_coords[3:4])
     
     # plan bg rectangle
-    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.02) * diff(user_coords[1:2])
+    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.01) * diff(user_coords[1:2])
     bg_x_right <- user_coords[1] + (outro_placement$xright+0.005) * diff(user_coords[1:2])
     bg_y_top <- user_coords[3] + outro_placement$ytop_pkq * diff(user_coords[3:4]) + line_spacing_vert * 0.5
     bg_y_bottom <- user_coords[3] + outro_placement$ytop_pkq * diff(user_coords[3:4]) - line_spacing_vert * 5

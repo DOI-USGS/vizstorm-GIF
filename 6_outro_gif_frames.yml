@@ -11,58 +11,32 @@ packages:
 
 targets:
   
+  ###### Pause the final frame before switching
+  6_visualize/tmp/gif_frame_a_z000_outro_pause1.png:
+    command: create_animation_frame(
+      png_file=target_name,
+      config=storm_frame_config,
+      view_fun,
+      basemap_fun,
+      ocean_name_fun,
+      precip_raster_fun_a_20190527_12,
+      spark_line_a_20190527_12,
+      rivers_fun,
+      gage_sites_fun_a_20190527_12,
+      legend_fun_a_20190527_12,
+      datetime_fun_a_20190527_12,
+      cities_fun,
+      watermark_fun)
+  
+  ### Information frames
+  
   pkqs_fun_1:
     command: prep_outro_pkqs_fun(
       pkq_ind="2_process/out/pkq_sites_geom.rds.ind",
       gage_color_config, outro_placement, legend_text_cfg, opacity=1)
-  #TOOK OUT PRECIP FOR NOW (goes below ocean_name) precip_raster_fun_a_20190524_12
   # Took out cities_fun (below date time)
   # Took out selected gages, gage_sites_fun_a_20190524_12 (below rivers_fun)
   6_visualize/tmp/gif_frame_a_z001_outro_pkqs_1.png:
-    command: create_animation_frame(
-      png_file=target_name,
-      config=storm_frame_config,
-      view_fun,
-      basemap_fun,
-      ocean_name_fun,
-      rivers_fun,
-      pkqs_fun_1,
-      legend_fun_a_20190524_12,
-      watermark_fun)
-  6_visualize/tmp/gif_frame_a_z001_outro_pkqs_2.png:
-    command: create_animation_frame(
-      png_file=target_name,
-      config=storm_frame_config,
-      view_fun,
-      basemap_fun,
-      ocean_name_fun,
-      rivers_fun,
-      pkqs_fun_1,
-      legend_fun_a_20190524_12,
-      watermark_fun)
-  6_visualize/tmp/gif_frame_a_z001_outro_pkqs_3.png:
-    command: create_animation_frame(
-      png_file=target_name,
-      config=storm_frame_config,
-      view_fun,
-      basemap_fun,
-      ocean_name_fun,
-      rivers_fun,
-      pkqs_fun_1,
-      legend_fun_a_20190524_12,
-      watermark_fun)
-  6_visualize/tmp/gif_frame_a_z001_outro_pkqs_4.png:
-    command: create_animation_frame(
-      png_file=target_name,
-      config=storm_frame_config,
-      view_fun,
-      basemap_fun,
-      ocean_name_fun,
-      rivers_fun,
-      pkqs_fun_1,
-      legend_fun_a_20190524_12,
-      watermark_fun)
-  6_visualize/tmp/gif_frame_a_z001_outro_pkqs_5.png:
     command: create_animation_frame(
       png_file=target_name,
       config=storm_frame_config,
@@ -78,7 +52,6 @@ targets:
     command: prep_outro_rdgs_fun(
       rdg_ind="1_fetch/out/rapid_dep_sites.rds.ind",
       gage_color_config, outro_placement, legend_text_cfg, opacity=1)
-  #TOOK OUT PRECIP FOR NOW (goes below ocean_name) precip_raster_fun_a_20190524_12
   # Took out cities_fun (below date time)
   # Took out selected gages, gage_sites_fun_a_20190524_12 (below rivers_fun)
   6_visualize/tmp/gif_frame_a_z002_outro_rdgs_1.png:
@@ -98,8 +71,7 @@ targets:
     command: prep_outro_allsites_fun(
       allsites_ind="2_process/out/outro_gage_sites_geom.rds.ind",
       gage_color_config, outro_placement, legend_text_cfg, opacity=1)
-  #TOOK OUT PRECIP FOR NOW (goes below ocean_name) precip_raster_fun_a_20190524_12
-  # Took out cities_fun (below date time)
+ # Took out cities_fun (below date time)
   # Took out selected gages, gage_sites_fun_a_20190524_12 (below rivers_fun)
   # pkq_fun_1 needs to come before rdgs because one site would sit on top of rdg text
   6_visualize/tmp/gif_frame_a_z003_outro_ltn_1.png:
@@ -108,6 +80,7 @@ targets:
       config=storm_frame_config,
       view_fun,
       basemap_fun,
+      ocean_name_fun,
       rivers_fun,
       ltn_fun_1,
       pkqs_fun_1, 
@@ -117,8 +90,7 @@ targets:
 
   readmore_fun_1:
     command: prep_outro_readmore_fun(outro_placement, legend_text_cfg, opacity=1)
-  ##TOOK OUT PRECIP FOR NOW (goes below ocean_name) precip_raster_fun_a_20190524_12
-  # Took out cities_fun (below date time)
+ # Took out cities_fun (below date time)
   # Took out selected gages, gage_sites_fun_a_20190524_12 (below rivers_fun)
   6_visualize/tmp/gif_frame_a_z004_outro_readmore_1.png:
     command: create_animation_frame(
@@ -127,6 +99,7 @@ targets:
       view_fun,
       basemap_fun,
       rivers_fun,
+      ocean_name_fun,
       ltn_fun_1,
       pkqs_fun_1,
       rdgs_fun_1,
@@ -136,11 +109,8 @@ targets:
 
   6_outro_gif_frames:
     depends:
+      - 6_visualize/tmp/gif_frame_a_z000_outro_pause1.png
       - 6_visualize/tmp/gif_frame_a_z001_outro_pkqs_1.png
-      - 6_visualize/tmp/gif_frame_a_z001_outro_pkqs_2.png
-      - 6_visualize/tmp/gif_frame_a_z001_outro_pkqs_3.png
-      - 6_visualize/tmp/gif_frame_a_z001_outro_pkqs_4.png
-      - 6_visualize/tmp/gif_frame_a_z001_outro_pkqs_5.png
       - 6_visualize/tmp/gif_frame_a_z002_outro_rdgs_1.png
       - 6_visualize/tmp/gif_frame_a_z003_outro_ltn_1.png
       - 6_visualize/tmp/gif_frame_a_z004_outro_readmore_1.png
