@@ -22,9 +22,9 @@ combine_animation_frames <- function(gif_file, animation_cfg, task_names=NULL, i
   # how many intro frames? how many storm frames? how many outro frames?
   intro_delay <- intro_config$frame_delay_cs
   storm_delay <- animation_cfg$frame_delay_cs
-  outro_delay <- 275
-  final_delay <- 700
-  freeze_delay <- 300
+  outro_delay <- 300
+  final_delay <- 600
+  freeze_delay <- 250
   # **trash code for now:
   calc_delays <- function(delay, start_frame, end_frame){
     paste(paste(sprintf('-d%s "#', delay), seq(start_frame-1, end_frame-1), sep = '') %>%
@@ -35,7 +35,7 @@ combine_animation_frames <- function(gif_file, animation_cfg, task_names=NULL, i
   # freeze the last storm frame too for as long as we are showing each outro frame:
   last_storm_delay <- calc_delays(freeze_delay, total_frames-n_outro-1, total_frames-n_outro)
   outro_delays <- calc_delays(outro_delay, total_frames-n_outro+1, total_frames)
-  final_delay <- calc_delays(final_delay, total_frames-1, total_frames)
+  final_delay <- calc_delays(final_delay, total_frames-2, total_frames)
 
   # A few extra tweaks to bring gif below 5 MB
   # decreasing colors (tried 150, but too low and missing final purple for precip)

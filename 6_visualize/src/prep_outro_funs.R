@@ -99,7 +99,7 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
     bg_x_left <- user_coords[1] + (outro_placement$xleft-0.01) * diff(user_coords[1:2])
     bg_x_right <- user_coords[1] + (outro_placement$xright+0.005) * diff(user_coords[1:2])
     bg_y_top <- user_coords[3] + outro_placement$ytop_ltn * diff(user_coords[3:4]) + line_spacing_vert * 0.5
-    bg_y_bottom <- user_coords[3] + outro_placement$ytop_ltn * diff(user_coords[3:4]) - line_spacing_vert * 6
+    bg_y_bottom <- user_coords[3] + outro_placement$ytop_ltn * diff(user_coords[3:4]) - line_spacing_vert * 5.5
     
     # plot bg rectangle
     rect(bg_x_left, bg_y_bottom, bg_x_right, bg_y_top, col = "#ffffffB3", border = "transparent")
@@ -108,8 +108,7 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
     text(x=x_title, y=y_title, labels="NATIONAL SCALE OBSERVING NETWORK", adj=c(0, 1),
          cex=ltn_title_cex, col=legend_text_cfg$col, family = 'Oswald')
     text_chars <- "USGS monitors water levels at thousands of gages
-nationally (blue dots   ). Long-term USGS gages across
-the southeastern US are shown on the map."
+nationally (blue dots   )."
     text(x=x_text, y=y_text, labels=text_chars, adj=c(0, 1),
          cex=ltn_text_cex, col=legend_text_cfg$col, family = 'abel')
     points(x=x_dot, y=y_dot, pch = ltn_pch, col = ltn_col, cex = ltn_text_cex)
