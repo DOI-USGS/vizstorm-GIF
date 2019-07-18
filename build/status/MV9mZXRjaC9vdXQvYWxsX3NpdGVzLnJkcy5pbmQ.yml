@@ -1,0 +1,14 @@
+version: 0.3.0
+name: 1_fetch/out/all_sites.rds.ind
+type: file
+hash: 073be50829bd0aa4ae300c8db5edb8e8
+time: 2019-07-18 16:27:40 UTC
+depends:
+  state_cds: f3846c282bb303415ea7e737f161be87
+  dates: aabcc8c887c73d9c6c04f964346c6884
+  stream_params: 089aebea962cdd0eb862e4ccd23302bd
+fixed: 7a8a5e2410f97f8c9bc1ebe4fbc32d84
+code:
+  functions:
+    fetch_sites_from_states: bd1ccd5d3d7aa6ce83c55d6e19f607cf
+

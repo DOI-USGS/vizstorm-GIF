@@ -1,0 +1,15 @@
+version: 0.3.0
+name: 2_process/out/precip_rasters.rds.ind
+type: file
+hash: a17a69a80bb298e81edbb399c2b9ca4b
+time: 2019-07-18 17:53:47 UTC
+depends:
+  2_process/out/precip_spatial.rds.ind: 22db4a546b447e32581e77e0597cdc92
+  2_process/out/precip_values.rds.ind: 11d27ad52ed6e90df4fcbe797f084221
+  view_polygon: 8bca7b5b07163f454dd51a468639134e
+  view_config: baeb15603746d6ac4d7b769595efa28b
+fixed: b2933ef8f2cc67c1beee836159cf072a
+code:
+  functions:
+    process_precip_rasters: 86105d00c0c5822f5f2ac571199407f6
+
