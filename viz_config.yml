@@ -1,15 +1,15 @@
-storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
-storm_name: "Florence"
-stn_event: 283
+storm_code: al022019 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
+storm_name: "2019 Hurricane Barry"
+stn_event: 290
 dates:
-  start: '2018-09-12 00:00:00'
-  end: '2018-09-19 13:00:00'
+  start: '2019-07-14 06:00:00'
+  end: '2019-07-15 12:00:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 3 # hours elapsed between GIF frames
 
 # view, dimensions
-bbox: [-83, 30.4, -67, 38.5]
-projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
+bbox: [-100, 25, -80, 36]
+projection: "+proj=lcc +lat_1=30.7 +lat_2=29.3 +lat_0=28.5 +lon_0=-91.33333333333333 +x_0=999999.9999898402 +y_0=0 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs"
 height: 512
 width: 1024
 
@@ -68,12 +68,11 @@ component_placement:
     ytop_stn: 0.85 # top y coordinate of the text and legend for the short-term network
     ytop_more: 0.4 # top y coordinate of the text and URL for where to learn more
 
-
 ocean_name_placement:
   -
-    x1: 0.4
-    y1: 0.3
-    label: 'Atlantic Ocean'
+    x1: 0.5
+    y1: 0.15
+    label: 'Gulf of Mexico'
 
 focus_geoms:
   - # U.S. counties
@@ -105,82 +104,20 @@ cities:
     dist: 0.007 # relative (fraction of window width) distance from dot to label
   pop_min: 500000 # minimum population size of cities to be chosen by default; `custom` will make additions or modifications and `exclude` will make subtractions
   custom: # cities to add or modify relative to the maps::us.cities dataset. added cities can use lat/long from us.cities if they are present in us.cities, even if they don't meet the pop_min criterion
-    #-
-    #  name: "Richmond VA"
-    #  text_angle: 170
     -
-      name: "Raleigh NC"
-      text_angle: 170
+      name: "Houston TX"
     -
-      name: "Charlotte NC"
-      text_angle: 170
-    -
-      name: "Columbia SC"
-      text_angle: 170
-    #-
-    #  name: "Savannah GA"
-    #  text_angle: 170
-    #-
-    #  name: "Jacksonville FL"
-    #-
-    #  name: "Virginia Beach VA"
-    #  dot_cex: 0.8
-    #  text_cex: 0.8
-    #-
-    #  name: "Nags Head NC"
-    #  lat: 35.9425
-    #  long: -75.6228
-    #  dot_cex: 0.8
-    #  text_cex: 0.8
-    -
-      name: "New Bern NC"
-      news: "CBS"
-      dot_cex: 0.8
-      text_cex: 0.8
-      lat: 35.107686
-      long: -77.051366
-    -
-      name: "Wilmington NC"
-      news: "CBS"
-      dot_cex: 0.8
-      text_cex: 0.8
-    -
-      name: "Myrtle Beach SC"
-      news: "CBS"
-      lat: 33.6917
-      long: -78.8875
-      dot_cex: 0.8
-      text_cex: 0.8
-    #-
-    #  name: "Charleston SC"
-    #  news: "google/crisismap"
-    #  dot_cex: 0.8
-    #  text_cex: 0.8
-    # UPCOMING ALONG STORM TRACK:
-    #-
-    #  name: "Knoxville TN"
-    #-
-    #  name: "Columbus OH"
-    #-
-    #  name: "Pittsburgh PA"
-    #-
-    #  name: "New York NY"
-    #-
-    #  name: "Boston MA"
-
+      name: "New Orleans LA"
   exclude:
-    - "Knoxville TN"
-    - "Richmond VA"
-    - "Memphis TN"
-    - "Oklahoma City OK"
-    - "Fort Worth TX"
     - "Dallas TX"
-    - "Chicago IL"
-    - "Baltimore MD"
-    - "WASHINGTON DC"
-    - "Indianapolis IN"
     - "Nashville TN"
+    - "Charlotte NC"
+    - "Fort Worth TX"
+    - "Memphis TN"
+    - "Austin TX"
+    - "San Antonio TX"
     - "Jacksonville FL"
+    - "Oklahoma City OK"
 
 # Only streamorders greater than this will be fetched.
 fetch_streamorder: 5
