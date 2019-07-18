@@ -8,7 +8,8 @@ filter_sites_custom <- function(ind_file, sites_ind) {
   sites_df <- readRDS(sc_retrieve(sites_ind))
 
   ### filter sites_df here ###
-  sites_info_subset <- sites_df
+  set.seed(19)
+  sites_info_subset <- dplyr::sample_n(sites_df, 15)
 
   # write the data file and the indicator file
   if(packageVersion('scipiper') < package_version('0.0.11')) stop('1-arg version of gd_put requires scipiper 0.0.11+')
