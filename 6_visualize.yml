@@ -186,7 +186,7 @@ targets:
       makefile = target_name,
       task_plan = storm_gif_tasks,
       remake_file = I('6_visualize.yml'),
-      final_targets = I('6_visualize/log/6_storm_gif_tasks.ind'))
+      final_targets = I('6_visualize/log/6_storm_gif_tasks.rds.ind'))
 
   # Build the timestep-specific functions and png files.
   # When we like how this is looking, we can set task_names=NULL to build all frames.
@@ -206,7 +206,7 @@ targets:
     command: sprintf(I('a_201708%02d_19'), I(25:31))
   trial_storm_frames:
     command: c(trial_storm_frames_01, trial_storm_frames_07, trial_storm_frames_13, trial_storm_frames_19)
-  6_visualize/log/6_storm_gif_tasks.ind:
+  6_visualize/log/6_storm_gif_tasks.rds.ind:
     command: loop_tasks(
       task_plan=storm_gif_tasks, task_makefile='6_storm_gif_tasks.yml',
       task_names=NULL,
@@ -240,7 +240,8 @@ targets:
     command: combine_animation_frames(
       gif_file=target_name,
       animation_cfg=animation_cfg,
-      task_names=NULL,
+      frame_file_inds="6_visualize/log/6_storm_gif_tasks.rds.ind",
+      frame_file_makefiles= I("6_storm_gif_tasks.yml"),
       intro_config = intro_config,
       n_outro = I(3))
   6_visualize/out/animation_a.gif.ind:

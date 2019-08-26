@@ -1,8 +1,14 @@
-combine_animation_frames <- function(gif_file, animation_cfg, task_names=NULL, intro_config, n_outro) {
-
+combine_animation_frames <- function(gif_file, animation_cfg, frame_file_inds=NULL, frame_file_makefiles=NULL, intro_config, n_outro) {
   # run imageMagick convert to build a gif
-  if(is.null(task_names)) task_names <- '*'
-  png_files <- paste(sprintf('6_visualize/tmp/gif_frame_%s.png', task_names), collapse=' ')
+  if(is.null(task_names)) {
+    task_names <- '*'
+    png_files <- paste(sprintf('6_visualize/tmp/gif_frame_%s.png', task_names), collapse=' ')
+  } else {
+    #this only works for length 1 right now
+      # Check to make sure that makefiles matchs inds
+      # stopifnot(length(frame_file_makefiles) %in% c(1, length(frame_file_inds)))
+    png_files <- readRDS(sc_retrieve(frame_file_inds, remake_file = frame_file_makefiles))
+  }
   tmp_dir <- './6_visualize/tmp/magick'
   if(!dir.exists(tmp_dir)) dir.create(tmp_dir)
   magick_command <- sprintf(
@@ -39,4 +45,14 @@ combine_animation_frames <- function(gif_file, animation_cfg, task_names=NULL, i
 
   gifsicle_command <- sprintf('gifsicle -b -O3 %s %s %s %s %s %s --colors 256', gif_file, intro_delays, storm_delays, last_storm_delay, outro_delays, final_delay)
   system(gifsicle_command)
+}
+
+
+combine_frames_into_list <- function(ind_file, ...){
+
+  png_files <- c(...)
+
+  data_file <- scipiper::as_data_file(ind_file)
+  saveRDS(png_files, data_file)
+  gd_put(ind_file, data_file)
 }
