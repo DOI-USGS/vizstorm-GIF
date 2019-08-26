@@ -11,7 +11,7 @@ create_intro_gif_makefile <- function(makefile, task_plan, remake_file) {
     ind_complete=TRUE)
 }
 
-create_storm_gif_makefile <- function(makefile, task_plan, remake_file) {
+create_storm_gif_makefile <- function(makefile, task_plan, remake_file, final_targets) {
   scipiper::create_task_makefile(
     makefile=makefile, task_plan=task_plan,
     include=remake_file,
@@ -22,7 +22,10 @@ create_storm_gif_makefile <- function(makefile, task_plan, remake_file) {
       '6_visualize/src/prep_gage_sites_fun.R',
       '6_visualize/src/prep_storm_point_fun.R',
       '6_visualize/src/prep_precip_fun.R',
-      '6_visualize/src/prep_spark_line_fun.R'),
+      '6_visualize/src/prep_spark_line_fun.R',
+      '6_visualize/src/combine_animation_frames.R'),
     file_extensions=c('feather','ind'),
-    ind_complete=TRUE)
+    final_targets,
+    finalize_funs = "combine_animation_frames"
+    )
 }
