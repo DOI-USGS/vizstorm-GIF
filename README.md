@@ -1,5 +1,9 @@
 # vizstorm-GIF
 
+# This needs scipiper task combiners
+
+This branch requires scipiper with task combiners!
+
 ## How to work on this project
 
 This repository has a master branch with all the important code, and it has a flood-specific branch containing the .ind and build/status files for each flood. The naming convention for flood branches is `Stormname-year`, e.g., `Matthew-2016`.
