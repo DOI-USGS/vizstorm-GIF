@@ -239,8 +239,9 @@ targets:
     command: combine_animation_frames(
       gif_file=target_name,
       animation_cfg=animation_cfg,
-      task_names=NULL,
-      intro_config = intro_config,
-      n_outro = I(3))
+      frame_ind_intro = "6_visualize/log/6_intro_gif_tasks.ind",
+      frame_ind_storm = "6_visualize/log/6_storm_gif_tasks.ind",
+      frame_ind_outro = "6_visualize/log/6_outro_gif_frames.ind",
+      intro_config = intro_config)
   6_visualize/out/animation_a.gif.ind:
     command: gd_put(target_name, '6_visualize/out/animation_a.gif')
