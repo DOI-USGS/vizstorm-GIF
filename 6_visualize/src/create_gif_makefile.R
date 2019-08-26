@@ -25,7 +25,7 @@ create_storm_gif_makefile <- function(makefile, task_plan, remake_file, final_ta
       '6_visualize/src/prep_spark_line_fun.R',
       '6_visualize/src/combine_animation_frames.R'),
     file_extensions=c('feather','ind'),
-    final_targets,
+    final_targets = final_targets,
     finalize_funs = "combine_animation_frames"
     )
 }
