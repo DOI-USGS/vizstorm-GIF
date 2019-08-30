@@ -51,8 +51,6 @@ combine_animation_frames <- function(gif_file, animation_cfg, frame_ind_intro=NU
 
 extract_filenames_from_ind <- function(ind_file) {
   filename_hash_list <- readLines(ind_file)
-  only_names <- lapply(filename_hash_list, function(fn) {
-    head(unlist(strsplit(fn, split = ":")), 1)
-  })
-  return(unlist(only_names))
+  only_names <- unlist(lapply(strsplit(filename_hash_list, ":"), `[`, 1))
+  return(only_names)
 }
