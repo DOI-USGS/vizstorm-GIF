@@ -241,7 +241,7 @@ targets:
       animation_cfg=animation_cfg,
       frame_ind_intro = "6_visualize/log/6_intro_gif_tasks.ind",
       frame_ind_storm = "6_visualize/log/6_storm_gif_tasks.ind",
-      frame_ind_outro = "6_visualize/log/6_outro_gif_frames.ind",
       intro_config = intro_config)
+#frame_ind_outro = "6_visualize/log/6_outro_gif_frames.ind",
   6_visualize/out/animation_a.gif.ind:
     command: gd_put(target_name, '6_visualize/out/animation_a.gif')

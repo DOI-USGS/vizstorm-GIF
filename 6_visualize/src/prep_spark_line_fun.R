@@ -2,6 +2,7 @@
 # site as much as is possible without yet knowing the final plot view
 # coordinates. This function is called from both prep_spark_lines_fun and
 # prep_spark_starts_fun.
+#modified to disregard stage data for road salt viz
 prep_spark_funs_data <- function(stage_data, site_data, timestep_ind, spark_config, DateTime) {
   # Compute the full x limits for all datetimes
   storm_timesteps <- fetch_read(timestep_ind)
@@ -92,17 +93,17 @@ prep_spark_funs_data <- function(stage_data, site_data, timestep_ind, spark_conf
 
       # Replace values lower than flood stage with the stage & then create a polygon out of it
       flood_stage_va <- unique(na.omit(data_chunk$flood_stage_normalized))
-      flood_stage_line <- hydro_line %>%
-        mutate(stage_normalized = pmax(stage_normalized, flood_stage_va))
-      flood_poly <- bind_rows(
-        data_frame(dateTime = head(flood_stage_line$dateTime, 1), stage_normalized = flood_stage_va),
-        flood_stage_line %>% select(dateTime, stage_normalized),
-        data.frame(dateTime = tail(flood_stage_line$dateTime, 1), stage_normalized = flood_stage_va))
+      #flood_stage_line <- hydro_line %>%
+      #  mutate(stage_normalized = pmax(stage_normalized, flood_stage_va))
+      # flood_poly <- bind_rows(
+      #   data_frame(dateTime = head(flood_stage_line$dateTime, 1), stage_normalized = flood_stage_va),
+      #   flood_stage_line %>% select(dateTime, stage_normalized),
+      #   data.frame(dateTime = tail(flood_stage_line$dateTime, 1), stage_normalized = flood_stage_va))
 
       # add to any previous chunks of those geometry datasets
       shapes[[site]][[j]] <- list(
         full_poly=full_poly,
-        flood_poly=flood_poly,
+        #flood_poly=flood_poly,
         hydro_line=hydro_line)
       j <- j + 1
     }
@@ -147,7 +148,7 @@ prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_confi
     # Plot the sparklines title
     title_x <- coord_space[1] + mean(x_coords) * diff(coord_space[1:2])
     title_y <- coord_space[3] + mean(c(max(y_coords$upper), 1)) * diff(coord_space[3:4])
-    text(x=title_x, y=title_y, labels="Water level at selected USGS gages", adj=c(0.5, 0.5),
+    text(x=title_x, y=title_y, labels="Specific conductance at selected USGS gages", adj=c(0.5, 0.5),
          cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
 
     for(site in names(shapes)) {
@@ -168,16 +169,16 @@ prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_confi
         full_poly <- chunk$full_poly %>% mutate(
           x = dateTime_to_x(dateTime, x_user),
           y = stage_to_y(stage_normalized, y_user))
-        flood_poly <- chunk$flood_poly %>% mutate(
-          x = dateTime_to_x(dateTime, x_user),
-          y = stage_to_y(stage_normalized, y_user))
+        # flood_poly <- chunk$flood_poly %>% mutate(
+        #   x = dateTime_to_x(dateTime, x_user),
+        #   y = stage_to_y(stage_normalized, y_user))
         hydro_line <- chunk$hydro_line %>% mutate(
           x = dateTime_to_x(dateTime, x_user),
           y = stage_to_y(stage_normalized, y_user))
 
         # Add stage shapes to plot
         polygon(full_poly$x, full_poly$y, col = gage_col_config$gage_norm_col, border=NA)
-        polygon(flood_poly$x, flood_poly$y, col = gage_col_config$gage_flood_col, border=NA)
+        #polygon(flood_poly$x, flood_poly$y, col = gage_col_config$gage_flood_col, border=NA)
         points(hydro_line$x, hydro_line$y, col = gage_col_config$gage_line_col, type='l', lwd=2)
 
         # add the x and/or o

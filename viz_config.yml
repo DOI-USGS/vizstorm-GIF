@@ -1,21 +1,21 @@
-storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
-storm_name: "Florence"
-stn_event: 283
+storm_code: NULL # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
+storm_name: "DRB Salt"
+#stn_event: 283
 dates:
-  start: '2018-09-12 00:00:00'
-  end: '2018-09-19 13:00:00'
+  start: '2020-01-18 00:00:00'
+  end: '2020-02-01 00:00:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 3 # hours elapsed between GIF frames
 
 # view, dimensions
-bbox: [-83, 30.4, -67, 38.5]
+bbox: [-76, 38.8, -72, 41.2]
 projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
-height: 512
+height: 768
 width: 1024
 
 # styling
 precip_cols: ["#FAFBF399", "#F0F8E3CC", "#D4E9CAE6", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
-precip_bin: 4 # inches per bin
+precip_bin: 0.2 # inches per bin
 gage_flood_col: "#175676"
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
