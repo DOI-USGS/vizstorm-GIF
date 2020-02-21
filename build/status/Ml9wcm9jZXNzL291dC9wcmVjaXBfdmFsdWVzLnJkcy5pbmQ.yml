@@ -1,0 +1,16 @@
+version: 0.3.0
+name: 2_process/out/precip_values.rds.ind
+type: file
+hash: 76504711d10ed41bcfbb0a6bb645c264
+time: 2020-02-19 19:16:53 UTC
+depends:
+  1_fetch/out/precip_data.nc.ind: abd1ea8f72e55ac7ba09f3ac14a4ea6c
+  2_process/out/precip_spatial.rds.ind: cff4b1e005bef435f8315b842d84517a
+  dates: 9345c4dae20adbffc89a03d63e8f5328
+  view_polygon: 1db2ee7c878130e27966d677085d65b1
+fixed: 8ac33d36f3d3720f30b55333885ce21d
+code:
+  functions:
+    get_time_nc: 6864db2f8952c6ce587661e9915cbb3a
+    process_precip_values: c36eb5ecfe099554279a75792cc97326
+

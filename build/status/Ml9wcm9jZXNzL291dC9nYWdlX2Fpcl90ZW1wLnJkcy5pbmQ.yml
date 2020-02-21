@@ -1,0 +1,13 @@
+version: 0.3.0
+name: 2_process/out/gage_air_temp.rds.ind
+type: file
+hash: 3fd14a6ee5c2be7776f5ad8793a0ef14
+time: 2020-02-19 19:04:39 UTC
+depends:
+  dates: 9345c4dae20adbffc89a03d63e8f5328
+  2_process/out/gage_sites_custom.rds.ind: 046dcb9f52ba8d70ad57e4ca3a8becad
+fixed: bec934f6f75562e2079572a80cdb395e
+code:
+  functions:
+    get_gage_nldas_temperature: 38ece36b9083869e49627063388e5b18
+
