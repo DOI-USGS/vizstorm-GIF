@@ -7,8 +7,8 @@ combine_animation_frames <- function(gif_file, animation_cfg, frame_ind_intro=NU
   # Gather appropriate file names (not just whatever is in the directory)
   png_files_intro <- extract_filenames_from_ind(frame_ind_intro)
   png_files_storm <- extract_filenames_from_ind(frame_ind_storm)
-  png_files_outro <- extract_filenames_from_ind(frame_ind_outro)
-  png_files <- c(png_files_intro, png_files_storm, png_files_outro)
+  #png_files_outro <- extract_filenames_from_ind(frame_ind_outro)
+  png_files <- c(png_files_intro, png_files_storm) #, png_files_outro)
   png_files_string <- paste(png_files, collapse=' ')
 
   tmp_dir <- './6_visualize/tmp/magick'
@@ -26,7 +26,8 @@ combine_animation_frames <- function(gif_file, animation_cfg, frame_ind_intro=NU
   # how many intro frames? how many storm frames? how many outro frames?
   total_frames <- length(png_files)
   n_intro <- length(png_files_intro)
-  n_outro <- length(png_files_outro)
+  #n_outro <- length(png_files_outro)
+  n_outro <- 0
 
   intro_delay <- intro_config$frame_delay_cs
   storm_delay <- animation_cfg$frame_delay_cs

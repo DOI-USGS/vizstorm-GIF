@@ -25,6 +25,7 @@ sources:
   - 2_process/src/process_river_geoms.R
   - 2_process/src/normalize_streamdata.R
   - 2_process/src/clean_streamdata.R
+  - 2_process/src/gage_nldas_temperature.R
 
 targets:
 
@@ -87,6 +88,15 @@ targets:
       sites_custom_ind = '2_process/out/gage_sites_custom.rds.ind')
   2_process/out/gage_sites.rds:
     command: gd_get('2_process/out/gage_sites.rds.ind')
+
+  # --- get air temperature at gages from NLDAS data rods --- #
+  2_process/out/gage_air_temp.rds.ind:
+    command: get_gage_nldas_temperature(
+      ind_file = target_name, dates = dates,
+      filtered_sites_ind = '2_process/out/gage_sites_custom.rds.ind')
+  2_process/out/gage_air_temp.rds:
+    command: gd_get('2_process/out/gage_air_temp.rds.ind')
+
 
   2_process/out/precip_spatial.rds.ind:
     command: process_precip_spatial(ind_file = target_name,
@@ -152,11 +162,12 @@ targets:
       stage_gap_threshold = stage_gap_threshold)
   2_process/out/normalized_streamdata.rds:
     command: gd_get('2_process/out/normalized_streamdata.rds.ind')
-    
+
   # manual filtering step to remove points we expect won't make it past Provisional
   2_process/out/cleaned_streamdata.rds.ind:
     command: clean_streamdata(
       ind_file = target_name,
-      normalized_ind_file = '2_process/out/normalized_streamdata.rds.ind')
+      normalized_ind_file = '2_process/out/normalized_streamdata.rds.ind',
+      gage_temp_ind = '2_process/out/gage_air_temp.rds.ind')
   2_process/out/cleaned_streamdata.rds:
     command: gd_get('2_process/out/cleaned_streamdata.rds.ind')
