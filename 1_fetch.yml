@@ -28,6 +28,8 @@ sources:
   - 1_fetch/src/fetch_river_geometry.R
   - 1_fetch/src/fetch_precip_bins.R
   - 1_fetch/src/fetch_major_cities.R
+  - 1_fetch/src/fetch_snow.R
+  - 1_fetch/src/fetch_snow_helpers.R
 
 targets:
 
@@ -141,6 +143,27 @@ targets:
                                 view_polygon = view_polygon, times = dates)
   1_fetch/out/precip_data.nc:
     command: gd_get('1_fetch/out/precip_data.nc.ind')
+
+
+# -- download snow data --
+  # expects "1_fetch/tmp" to exist
+  fetch_snow_tasks:
+    command: create_fetch_snow_tasks(
+      snow_data_yml_name = I('1_fetch_snow_tasks.yml'),
+      snow_data_tmp_dir = "1_fetch/tmp",
+      crop_extent_raster_ind = '1_fetch/out/view_polygon.rds.ind',
+      dates = dates)
+  1_fetch_snow_tasks.yml:
+    command: create_fetch_snow_makefile(
+      makefile = target_name,
+      task_plan = fetch_snow_tasks,
+      remake_file = I('1_fetch.yml'))
+  1_fetch/log/1_fetch_snow_tasks.ind:
+    command: loop_tasks(
+      task_plan=fetch_snow_tasks,
+      task_makefile=I('1_fetch_snow_tasks.yml'),
+      task_names=NULL,
+      num_tries=I(1), sleep_on_error=I(0))
 
   # -- get river geometry --
   fetch_streamorder:
