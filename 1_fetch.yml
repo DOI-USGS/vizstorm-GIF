@@ -150,7 +150,7 @@ targets:
   fetch_snow_tasks:
     command: create_fetch_snow_tasks(
       snow_data_yml_name = I('1_fetch_snow_tasks.yml'),
-      snow_data_tmp_dir = "1_fetch/tmp",
+      snow_data_tmp_dir = I("1_fetch/tmp"),
       crop_extent_raster_ind = '1_fetch/out/view_polygon.rds.ind',
       dates = dates)
   1_fetch_snow_tasks.yml:

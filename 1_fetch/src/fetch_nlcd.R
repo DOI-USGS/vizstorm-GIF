@@ -1,4 +1,4 @@
-#just testing for now
+#This code could be used for a fetch step to pull NLDI data
 
 library(jsonlite)
 library(dplyr)

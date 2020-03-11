@@ -68,18 +68,9 @@ prep_spark_funs_data <- function(stage_data, site_data, timestep_ind, spark_conf
         is_gap=FALSE,
         duration_hr=as.numeric(stage_data_i$dateTime[end] - stage_data_i$dateTime[start], units='hours'))
     }
-    #look at gaps: do they overlap with any below freezing chunks?
-    #if yes, overwrite that part with a gap
-    if(length(rle_gaps$lengths) > 1) {
-      below_freezing_indices <- which(stage_data_i$temp_f <= 32)
-      gap_indices <- which(is.na(stage_data_i$stage_normalized))
-      overlap <- which(below_freezing_indices %in% gap_indices)
-      if(length(overlap > 0)) {
-        #only one gap in this data, at end; hacky solution for now to just create gap at end
-        # this won't generalize to gaps that start and end
-        browser()
-      }
-    }
+    #NOTE: look at gaps in data: do they overlap with any below freezing chunks?
+    #if so, will need to account for this
+
 
 
     # Package each chunk of lines/polygons into a list within the shapes list

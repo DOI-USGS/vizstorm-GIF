@@ -1,6 +1,6 @@
 # this function contains hard-coded, ~manual removal of specific points that we don't believe
-clean_streamdata <- function(ind_file, normalized_ind_file = '2_process/out/normalized_streamdata.rds.ind',
-                             gage_temp_ind = '2_process/out/gage_air_temp.rds.ind') {
+clean_streamdata <- function(ind_file, normalized_ind_file,
+                             gage_temp_ind) {
 
   normalized <- readRDS(sc_retrieve(normalized_ind_file))
   gage_air_temp <- readRDS(sc_retrieve(gage_temp_ind))

@@ -55,9 +55,9 @@ create_fetch_snow_tasks <- function(snow_data_yml_name, snow_data_tmp_dir, crop_
       psprintf(
         "process_snow_raster(",
         "ind_file = target_name,",
-        sprintf("snow_data_ind = I('1_fetch/out/%s.dat.ind'),", task_name),
+        sprintf("snow_data_ind = '1_fetch/out/%s.dat.ind',", task_name),
         sprintf("snow_data_yml = I('%s'),", snow_data_yml_name),
-        sprintf("crop_extent_raster_ind = I('%s'),", crop_extent_raster_ind),
+        sprintf("crop_extent_raster_ind = '%s',", crop_extent_raster_ind),
         "proj_str = proj_str)"
       )
     }

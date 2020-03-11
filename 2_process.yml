@@ -78,7 +78,8 @@ targets:
   2_process/out/gage_sites_custom.rds.ind:
     command: filter_sites_custom(
       ind_file = target_name,
-      sites_ind = '2_process/out/gage_sites_geom.rds.ind')
+      sites_ind = '2_process/out/gage_sites_geom.rds.ind',
+      custom_sites_file = 'drb_salt_sites.rds')
   2_process/out/gage_sites_custom.rds:
     command: gd_get('2_process/out/gage_sites_custom.rds.ind')
   2_process/out/gage_sites.rds.ind:
