@@ -1,8 +1,11 @@
 # this function contains hard-coded, ~manual removal of specific points that we don't believe
-clean_streamdata <- function(ind_file, normalized_ind_file = '2_process/out/normalized_streamdata.rds.ind') {
+clean_streamdata <- function(ind_file, normalized_ind_file,
+                             gage_temp_ind) {
 
   normalized <- readRDS(sc_retrieve(normalized_ind_file))
-  cleaned <- normalized
+  gage_air_temp <- readRDS(sc_retrieve(gage_temp_ind))
+  assertthat::assert_that(attr(normalized$dateTime, 'tzone') == attr(gage_air_temp$dateTime, 'tzone'))
+  cleaned <- normalized %>% left_join(gage_air_temp, by = c("site_no", "dateTime"))
   # cleaned <- mutate(
   #   normalized,
   #   stage_normalized = ifelse(
@@ -13,6 +16,6 @@ clean_streamdata <- function(ind_file, normalized_ind_file = '2_process/out/norm
   # )
 
   # save and push to Drive
-  saveRDS(normalized, as_data_file(ind_file))
+  saveRDS(cleaned, as_data_file(ind_file))
   gd_put(ind_file)
 }

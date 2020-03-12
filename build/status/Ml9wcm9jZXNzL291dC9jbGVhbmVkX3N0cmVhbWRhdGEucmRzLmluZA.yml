@@ -1,0 +1,13 @@
+version: 0.3.0
+name: 2_process/out/cleaned_streamdata.rds.ind
+type: file
+hash: 9b42374567a4f048b2ec6c5fc533ceef
+time: 2020-02-19 19:04:57 UTC
+depends:
+  2_process/out/normalized_streamdata.rds.ind: 6a9f143f4c1ba7a459d8ffe0f501bf32
+  2_process/out/gage_air_temp.rds.ind: 3fd14a6ee5c2be7776f5ad8793a0ef14
+fixed: eb85d649e0a9a5a42a6670a45a3a4e04
+code:
+  functions:
+    clean_streamdata: 9650cd90d260660e839754d443420ab6
+

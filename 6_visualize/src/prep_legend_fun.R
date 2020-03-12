@@ -47,7 +47,7 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
 
     # plot precip bins and precip label
     precip_txt_y <- ybottom+2*bin_h*0.8
-    text(x_edge, precip_txt_y, labels = 'NOAA total rainfall amount (inches)', pos = txt_pos,
+    text(x_edge, precip_txt_y, labels = 'NOAA total precipitation amount (inches)', pos = txt_pos,
          cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
     if (x_pos == 'left'){
       bin_j <- 1:nrow(precip_bins)
@@ -71,11 +71,15 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
          cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
     normal_y <- ybottom+4*bin_h
     points(dot_x, normal_y+center_to_txt_y, pch = 21, bg = legend_styles$gage_norm_col, col = NA, cex = 2)
-    text(dot_txt_x, normal_y, labels = 'Below flood stage', pos = txt_pos,
+    text(dot_txt_x, normal_y, labels = 'Air temperature above 32 degrees F', pos = txt_pos,
          cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
     flood_y <- ybottom+3*bin_h
-    points(dot_x, flood_y+center_to_txt_y, pch = 21, bg = legend_styles$gage_norm_col, col = legend_styles$gage_flood_col, lwd = 4, cex = 2)
-    text(dot_txt_x, flood_y, labels = 'Above flood stage', pos = txt_pos,
+    points(dot_x, flood_y+center_to_txt_y, pch = 18,
+           bg = legend_styles$gage_below_freezing_col, cex = 5,
+           col = legend_styles$gage_below_freezing_border)
+    points(dot_x, flood_y+center_to_txt_y, pch = 21, bg = legend_styles$gage_norm_col, col = NA, lwd = 4, cex = 2)
+
+    text(dot_txt_x, flood_y, labels = 'Air temperature below 32 degrees F', pos = txt_pos,
          cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
 
     # plot storm legend

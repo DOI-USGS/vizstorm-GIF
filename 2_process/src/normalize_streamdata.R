@@ -23,7 +23,7 @@ normalize_streamdata <- function(ind_file, raw_ind_file, sites_ind_file, timeste
   # "normalized" stage is between 0 and 1 if that changes, see
   # 6_visualize/src/prep_spark_line_fun.R
   norm_stream <- site_stage_data %>%
-    rename(stage = X_00065_00000, stage_cd = X_00065_00000_cd) %>%
+    rename(stage = X_00095_00000, stage_cd = X_00095_00000_cd) %>%
     select(site_no, dateTime, stage, flood_stage, geometry) %>%
     group_by(site_no) %>%
     # normalize stage and flood_stage to min & max ignoring missing data

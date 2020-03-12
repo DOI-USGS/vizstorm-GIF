@@ -2,6 +2,7 @@
 # site as much as is possible without yet knowing the final plot view
 # coordinates. This function is called from both prep_spark_lines_fun and
 # prep_spark_starts_fun.
+#modified to disregard stage data for road salt viz
 prep_spark_funs_data <- function(stage_data, site_data, timestep_ind, spark_config, DateTime) {
   # Compute the full x limits for all datetimes
   storm_timesteps <- fetch_read(timestep_ind)
@@ -43,7 +44,7 @@ prep_spark_funs_data <- function(stage_data, site_data, timestep_ind, spark_conf
   for(site in sites) {
 
     # Filter data to just one site & create polygon out of it
-    stage_data_i <- filter(this_spark, site_no == site) %>%
+    stage_data_i <- filter(this_spark, site_no == site & lubridate::minute(dateTime) == 0) %>%
       arrange(dateTime) %>%
       sf::st_set_geometry(NULL)
 
@@ -54,17 +55,23 @@ prep_spark_funs_data <- function(stage_data, site_data, timestep_ind, spark_conf
       shapes[[site]] <- list(list())
       next
     }
-
-    # look for gaps so we can break lines/polygons into chunks
-    data_chunks_meta <- rle(is.na(stage_data_i$stage_normalized)) %>% {
-      data_frame(
-        is_gap=.$values,
+    # look for gaps and going above/below freezing so we can break lines/polygons into chunks
+    rle_gaps <- rle(is.na(stage_data_i$stage_normalized))
+    rle_freezing <- rle(stage_data_i$temp_f <= 32)
+    #need to only set is_gap to true if
+    data_chunks_meta <- rle_freezing %>% {
+      tibble(
         end=cumsum(.$lengths),
         start=end - .$lengths + 1,
         before=ifelse(start-1==0, NA, start-1),
         after=ifelse(end+1>nrow(stage_data_i), NA, end+1),
+        is_gap=FALSE,
         duration_hr=as.numeric(stage_data_i$dateTime[end] - stage_data_i$dateTime[start], units='hours'))
     }
+    #NOTE: look at gaps in data: do they overlap with any below freezing chunks?
+    #if so, will need to account for this
+
+
 
     # Package each chunk of lines/polygons into a list within the shapes list
     # for this site
@@ -77,12 +84,12 @@ prep_spark_funs_data <- function(stage_data, site_data, timestep_ind, spark_conf
       j <- j + 1
     }
     for(i in which(!data_chunks_meta$is_gap)) {
-      # Pick out one continuous chunk of data
+      # Pick out one continuous chunk of data that is above or below freezing
       data_chunk_meta <- data_chunks_meta[i,]
       data_chunk <- stage_data_i[data_chunk_meta$start : data_chunk_meta$end, ]
 
       # Create a hydrograph line
-      hydro_line <- data_chunk %>% select(dateTime, stage_normalized)
+      hydro_line <- data_chunk %>% select(dateTime, stage_normalized, temp_f)
 
       # Create a polygon for the full background polygon for the sparkline
       full_poly <- bind_rows(
@@ -92,17 +99,25 @@ prep_spark_funs_data <- function(stage_data, site_data, timestep_ind, spark_conf
 
       # Replace values lower than flood stage with the stage & then create a polygon out of it
       flood_stage_va <- unique(na.omit(data_chunk$flood_stage_normalized))
-      flood_stage_line <- hydro_line %>%
-        mutate(stage_normalized = pmax(stage_normalized, flood_stage_va))
-      flood_poly <- bind_rows(
-        data_frame(dateTime = head(flood_stage_line$dateTime, 1), stage_normalized = flood_stage_va),
-        flood_stage_line %>% select(dateTime, stage_normalized),
-        data.frame(dateTime = tail(flood_stage_line$dateTime, 1), stage_normalized = flood_stage_va))
+      #flood_stage_line <- hydro_line %>%
+      #  mutate(stage_normalized = pmax(stage_normalized, flood_stage_va))
+      #need to filter dates to below freezing only
+      hydro_line_freezing <- filter(hydro_line, temp_f <= 32)
+      hydro_line_freezing_start0 <- head(hydro_line_freezing, 1) %>%
+        mutate(stage_normalized = 0)
+      hydro_line_freezing_end0 <- tail(hydro_line_freezing, 1) %>%
+        mutate(stage_normalized = 0)
+      freeze_poly <- bind_rows(
+         head(hydro_line_freezing, 1),
+         hydro_line_freezing %>% select(dateTime, stage_normalized),
+         tail(hydro_line_freezing, 1),
+         hydro_line_freezing_end0,
+         hydro_line_freezing_start0)
 
       # add to any previous chunks of those geometry datasets
       shapes[[site]][[j]] <- list(
         full_poly=full_poly,
-        flood_poly=flood_poly,
+        freeze_poly=freeze_poly,
         hydro_line=hydro_line)
       j <- j + 1
     }
@@ -124,7 +139,6 @@ prep_spark_funs_data <- function(stage_data, site_data, timestep_ind, spark_conf
 }
 
 prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_config, gage_col_config, DateTime, legend_text_cfg) {
-
   # most of the prep work happens in prep_spark_funs_data, which is shared with prep_spark_starts_fun
   spark_funs_data <- prep_spark_funs_data(stage_data, site_data, timestep_ind, spark_config, DateTime)
   rm(stage_data, site_data, timestep_ind, spark_config, DateTime) # clean up to keep closure small
@@ -144,10 +158,17 @@ prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_confi
     # Ask the open device for the user coordinates
     coord_space <- par()$usr
 
+
+
     # Plot the sparklines title
     title_x <- coord_space[1] + mean(x_coords) * diff(coord_space[1:2])
     title_y <- coord_space[3] + mean(c(max(y_coords$upper), 1)) * diff(coord_space[3:4])
-    text(x=title_x, y=title_y, labels="Water level at selected USGS gages", adj=c(0.5, 0.5),
+    #plot box behind sparks
+    # polygon(x = c(rep(coord_space[1] + x_coords[1]* diff(coord_space[1:2]), 2),
+    #               coord_space[2], coord_space[2]),
+    #         y = c(coord_space[3], coord_space[4], coord_space[4], coord_space[3]),
+    #         col = gage_col_config$spark_background, border=NA)
+    text(x=title_x, y=title_y, labels="Salinity at\nselected USGS gages", adj=c(0.5, 0.5),
          cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
 
     for(site in names(shapes)) {
@@ -168,29 +189,29 @@ prep_spark_line_fun <- function(stage_data, site_data, timestep_ind, spark_confi
         full_poly <- chunk$full_poly %>% mutate(
           x = dateTime_to_x(dateTime, x_user),
           y = stage_to_y(stage_normalized, y_user))
-        flood_poly <- chunk$flood_poly %>% mutate(
-          x = dateTime_to_x(dateTime, x_user),
-          y = stage_to_y(stage_normalized, y_user))
+        freeze_poly <- chunk$freeze_poly %>% mutate(
+           x = dateTime_to_x(dateTime, x_user),
+           y = stage_to_y(stage_normalized, y_user))
         hydro_line <- chunk$hydro_line %>% mutate(
           x = dateTime_to_x(dateTime, x_user),
           y = stage_to_y(stage_normalized, y_user))
 
         # Add stage shapes to plot
         polygon(full_poly$x, full_poly$y, col = gage_col_config$gage_norm_col, border=NA)
-        polygon(flood_poly$x, flood_poly$y, col = gage_col_config$gage_flood_col, border=NA)
+        polygon(freeze_poly$x, freeze_poly$y, col = gage_col_config$gage_flood_col, border=NA)
         points(hydro_line$x, hydro_line$y, col = gage_col_config$gage_line_col, type='l', lwd=2)
 
         # add the x and/or o
-        if(num_chunks > 1) {
-          if(i < num_chunks) {
-            points(tail(hydro_line$x,1), tail(hydro_line$y,1), col=gage_col_config$gage_norm_col, pch=4, cex=1.2, lwd=5) #make it stand out more, adding "outline" behind it.
-            points(tail(hydro_line$x,1), tail(hydro_line$y,1), col=gage_col_config$gage_out_col, pch=4, cex=1.2, lwd=4)
-          }
-          if(i > 1) {
-            points(head(hydro_line$x,1), head(hydro_line$y,1), col=gage_col_config$gage_norm_col, pch=19, cex=1, lwd=5) #make it stand out more
-            points(head(hydro_line$x,1), head(hydro_line$y,1), col=gage_col_config$gage_out_col, pch=19, cex=1, lwd=4)
-          }
-        }
+        # if(num_chunks > 1) {
+        #   if(i < num_chunks) {
+        #     points(tail(hydro_line$x,1), tail(hydro_line$y,1), col=gage_col_config$gage_norm_col, pch=4, cex=1.2, lwd=5) #make it stand out more, adding "outline" behind it.
+        #     points(tail(hydro_line$x,1), tail(hydro_line$y,1), col=gage_col_config$gage_out_col, pch=4, cex=1.2, lwd=4)
+        #   }
+        #   if(i > 1) {
+        #     points(head(hydro_line$x,1), head(hydro_line$y,1), col=gage_col_config$gage_norm_col, pch=19, cex=1, lwd=5) #make it stand out more
+        #     points(head(hydro_line$x,1), head(hydro_line$y,1), col=gage_col_config$gage_out_col, pch=19, cex=1, lwd=4)
+        #   }
+        # }
       }
     }
   }

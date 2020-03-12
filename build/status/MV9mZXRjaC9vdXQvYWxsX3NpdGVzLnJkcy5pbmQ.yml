@@ -1,0 +1,14 @@
+version: 0.3.0
+name: 1_fetch/out/all_sites.rds.ind
+type: file
+hash: 91c5e6d0e34f288a62ddf7800757e181
+time: 2020-02-19 19:03:07 UTC
+depends:
+  state_cds: bf0670e328fb370c05b75796b1a2d059
+  dates: 9345c4dae20adbffc89a03d63e8f5328
+  stream_params: d144f72aa12f5a89adedb1aacd5fab0c
+fixed: 003982d292c08205d7aa149a93ea5f90
+code:
+  functions:
+    fetch_sites_from_states: bd1ccd5d3d7aa6ce83c55d6e19f607cf
+

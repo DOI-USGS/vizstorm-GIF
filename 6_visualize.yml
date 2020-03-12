@@ -55,7 +55,7 @@ targets:
   date_display_tz:
     command: viz_config[[I('date_display_tz')]]
   gage_color_config:
-    command: viz_config[I(c('gage_flood_col','gage_norm_col','gage_out_col','gage_line_col','gage_ltn_col','gage_stn_col'))]
+    command: viz_config[I(c('gage_flood_col','gage_norm_col','gage_out_col','gage_line_col','gage_ltn_col','gage_stn_col', 'gage_below_freezing_col', 'gage_below_freezing_border', 'spark_background'))]
   intro_config:
     command: viz_config[[I(c('intro'))]]
   legend_text_cfg:
@@ -241,7 +241,7 @@ targets:
       animation_cfg=animation_cfg,
       frame_ind_intro = "6_visualize/log/6_intro_gif_tasks.ind",
       frame_ind_storm = "6_visualize/log/6_storm_gif_tasks.ind",
-      frame_ind_outro = "6_visualize/log/6_outro_gif_frames.ind",
       intro_config = intro_config)
+#frame_ind_outro = "6_visualize/log/6_outro_gif_frames.ind",
   6_visualize/out/animation_a.gif.ind:
     command: gd_put(target_name, '6_visualize/out/animation_a.gif')
