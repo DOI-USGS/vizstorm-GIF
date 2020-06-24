@@ -33,7 +33,7 @@ marsh_col: NA
 ocean_col: "#e7f1fa"
 storm_line_col: "grey70"
 legend_text:
-  cex: 1.5
+  cex: 0.9
   col: "#161616"
   family: ""
 
@@ -59,24 +59,23 @@ component_placement:
   legend_y_pos: "bottom"
   sparks:
     xleft: 0.70 # as percentage of figure width
-    xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    xright: 0.94 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
     ybottom: 0.01 # as percentage of figure height
     ytop: 0.93 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
   outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
-    
-    xleft: 0.57
-    xright: 0.98
+    xleft: 0.535
+    xright: 0.95
     ytop_pkq: 0.95 # top y coordinate of the text and legend for the peak flow gages
-    xleft_pkq: 0.57 # left x coordinate of the text and legend for the peak flow gages
-    ytop_ltn: 0.55 # top y coordinate of the text and legend for the long-term network
+    xleft_pkq: 0.54 # left x coordinate of the text and legend for the peak flow gages
+    ytop_ltn: 0.75 # top y coordinate of the text and legend for the long-term network
     ytop_stn: 0.75 # top y coordinate of the text and legend for the short-term network
-    ytop_more: 0.315 # top y coordinate of the text and URL for where to learn more
+    ytop_more: 0.52 # top y coordinate of the text and URL for where to learn more
 
 
 ocean_name_placement:
   -
-    x1: 0.8
-    y1: 0.2
+    x1: 0.78
+    y1: 0.18
     label: 'Atlantic Ocean'
 
 focus_geoms:
@@ -137,6 +136,7 @@ cities:
     - "San Antonio TX"
     - "Houston TX"
     - "Austin TX"
+    - "El Paso TX"
 
 # Only streamorders greater than this will be fetched.
 fetch_streamorder: 5

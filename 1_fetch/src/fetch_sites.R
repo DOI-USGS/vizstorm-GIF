@@ -104,7 +104,10 @@ fetch_pkq_sites <- function(ind_file, dates, view_config) {
   
   # read the sites with peak flows during this time period
   pkqs <- read.csv("1_fetch/in/peak_sites.csv") %>%
-    filter(flow_va > peak_max)
+    filter(flow_va > peak_max) %>% 
+    # Remove single site east of Missippi 
+    # just to get OK flood one working
+    filter(dec_long_va < -86)
   
   # Write the data file and the indicator file
   saveRDS(pkqs, as_data_file(ind_file))

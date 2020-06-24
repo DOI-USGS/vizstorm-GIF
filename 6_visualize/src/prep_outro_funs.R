@@ -25,6 +25,7 @@ prep_outro_rdgs_fun <- function(rdg_ind="1_fetch/out/rapid_dep_sites.rds.ind", g
     
     plot_fun <- function(){
       font_add_google('Abel', "abel")
+      font_add_google('Oswald', "Oswald")
       
       # plot the gage points
       plot(sf::st_geometry(rdgs$geometry), add = TRUE,
@@ -32,7 +33,7 @@ prep_outro_rdgs_fun <- function(rdg_ind="1_fetch/out/rapid_dep_sites.rds.ind", g
       
       # plan text and legend coordinates
       user_coords <- par()$usr
-      line_spacing_vert <- strheight("A", cex=legend_text_cfg$cex, family=legend_text_cfg$family)
+      line_spacing_vert <- strheight("A", cex=stn_text_cex, family="Oswald")
       dot_spacing_vert <- line_spacing_vert / 3
       
       x_title <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
@@ -43,7 +44,7 @@ prep_outro_rdgs_fun <- function(rdg_ind="1_fetch/out/rapid_dep_sites.rds.ind", g
       y_dot <- y_text - 0.052 * diff(user_coords[3:4])
       
       # plan bg rectangle
-      bg_x_left <- user_coords[1] + (outro_placement$xleft-0.02) * diff(user_coords[1:2])
+      bg_x_left <- user_coords[1] + (outro_placement$xleft-0.01) * diff(user_coords[1:2])
       bg_x_right <- user_coords[1] + (outro_placement$xright+0.005) * diff(user_coords[1:2])
       bg_y_top <- user_coords[3] + outro_placement$ytop_stn * diff(user_coords[3:4]) + line_spacing_vert * 0.5
       bg_y_bottom <- user_coords[3] + outro_placement$ytop_stn * diff(user_coords[3:4]) - line_spacing_vert * 5
@@ -78,6 +79,7 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
 
   plot_fun <- function(){
     font_add_google('Abel', "abel")
+    font_add_google('Oswald', "Oswald")
     
     # plot the gage points
     plot(sf::st_geometry(allsites$geometry), add = TRUE,
@@ -85,7 +87,7 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
 
     # plan text and legend coordinates
     user_coords <- par()$usr
-    line_spacing_vert <- strheight("A", cex=legend_text_cfg$cex, family=legend_text_cfg$family)
+    line_spacing_vert <- strheight("A", cex=ltn_text_cex, family="Oswald")
     x_title <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
     x_text <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
     y_title <- user_coords[3] + outro_placement$ytop_ltn * diff(user_coords[3:4])
@@ -94,10 +96,10 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
     y_dot <- y_text - 0.051 * diff(user_coords[3:4])
     
     # plan bg rectangle
-    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.02) * diff(user_coords[1:2])
+    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.01) * diff(user_coords[1:2])
     bg_x_right <- user_coords[1] + (outro_placement$xright+0.005) * diff(user_coords[1:2])
     bg_y_top <- user_coords[3] + outro_placement$ytop_ltn * diff(user_coords[3:4]) + line_spacing_vert * 0.5
-    bg_y_bottom <- user_coords[3] + outro_placement$ytop_ltn * diff(user_coords[3:4]) - line_spacing_vert * 6
+    bg_y_bottom <- user_coords[3] + outro_placement$ytop_ltn * diff(user_coords[3:4]) - line_spacing_vert * 5.5
     
     # plot bg rectangle
     rect(bg_x_left, bg_y_bottom, bg_x_right, bg_y_top, col = "#ffffffB3", border = "transparent")
@@ -106,8 +108,7 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
     text(x=x_title, y=y_title, labels="NATIONAL SCALE OBSERVING NETWORK", adj=c(0, 1),
          cex=ltn_title_cex, col=legend_text_cfg$col, family = 'Oswald')
     text_chars <- "USGS monitors water levels at thousands of gages
-nationally (blue dots   ). Long-term USGS gages across
-the southeastern US are shown on the map."
+nationally (blue dots   )."
     text(x=x_text, y=y_text, labels=text_chars, adj=c(0, 1),
          cex=ltn_text_cex, col=legend_text_cfg$col, family = 'abel')
     points(x=x_dot, y=y_dot, pch = ltn_pch, col = ltn_col, cex = ltn_text_cex)
@@ -121,20 +122,21 @@ prep_outro_readmore_fun <- function(outro_placement, legend_text_cfg, opacity=1)
 
   plot_fun <- function(){
     font_add_google('Abel', "abel")
+    font_add_google('Oswald', "Oswald")
     
     # plan text coordinates
     user_coords <- par()$usr
-    line_spacing_vert <- strheight("A", cex=legend_text_cfg$cex, family=legend_text_cfg$family)
+    line_spacing_vert <- strheight("A", cex=1.2, family=legend_text_cfg$family)
     x_title <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
     x_text <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
     y_title <- user_coords[3] + outro_placement$ytop_more * diff(user_coords[3:4])
     y_text <- user_coords[3] + (outro_placement$ytop_more-0.08) * diff(user_coords[3:4])
     
     # plan bg rectangle
-    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.02) * diff(user_coords[1:2])
+    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.01) * diff(user_coords[1:2])
     bg_x_right <- user_coords[1] + (outro_placement$xright+0.005) * diff(user_coords[1:2])
     bg_y_top <- user_coords[3] + outro_placement$ytop_more * diff(user_coords[3:4]) + line_spacing_vert * 0.5
-    bg_y_bottom <- user_coords[3] + outro_placement$ytop_more * diff(user_coords[3:4]) - line_spacing_vert * 5.5
+    bg_y_bottom <- user_coords[3] + (outro_placement$ytop_more-0.04) * diff(user_coords[3:4]) - line_spacing_vert * 5.5
     
     # plot bg rectangle
     rect(bg_x_left, bg_y_bottom, bg_x_right, bg_y_top, col = "#ffffffB3", border = "transparent")
@@ -163,6 +165,7 @@ prep_outro_pkqs_fun <- function(pkq_ind="1_fetch/out/pkq_sites.rds.ind", gage_co
   
   plot_fun <- function(){
     font_add_google('Abel', "abel")
+    font_add_google('Oswald', "Oswald")
     
     # plot the gage points
     plot(pkqs$geometry, add = TRUE,
@@ -170,7 +173,7 @@ prep_outro_pkqs_fun <- function(pkq_ind="1_fetch/out/pkq_sites.rds.ind", gage_co
     
     # plan text and legend coordinates
     user_coords <- par()$usr
-    line_spacing_vert <- strheight("A", cex=legend_text_cfg$cex, family=legend_text_cfg$family)
+    line_spacing_vert <- strheight("A", cex=pkq_text_cex, family="Oswald")
     dot_spacing_vert <- line_spacing_vert / 3
     
     x_title <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
@@ -181,7 +184,7 @@ prep_outro_pkqs_fun <- function(pkq_ind="1_fetch/out/pkq_sites.rds.ind", gage_co
     y_dot <- y_text - 0.052 * diff(user_coords[3:4])
     
     # plan bg rectangle
-    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.02) * diff(user_coords[1:2])
+    bg_x_left <- user_coords[1] + (outro_placement$xleft-0.01) * diff(user_coords[1:2])
     bg_x_right <- user_coords[1] + (outro_placement$xright+0.005) * diff(user_coords[1:2])
     bg_y_top <- user_coords[3] + outro_placement$ytop_pkq * diff(user_coords[3:4]) + line_spacing_vert * 0.5
     bg_y_bottom <- user_coords[3] + outro_placement$ytop_pkq * diff(user_coords[3:4]) - line_spacing_vert * 5
@@ -197,27 +200,6 @@ prep_outro_pkqs_fun <- function(pkq_ind="1_fetch/out/pkq_sites.rds.ind", gage_co
     text(x=x_text, y=y_text, labels=text_chars, adj=c(0, 1),
          cex=pkq_text_cex, col=legend_text_cfg$col, family = 'abel')
     points(x=x_dot, y=y_dot, pch = pkq_pch, col = pkq_col, cex = pkq_text_cex, lwd = 2)
-  }
-  return(plot_fun)
-}
-
-prep_outro_bg_fun <- function(outro_placement, y_cfg = "ytop_pkq") {
-  
-  # y_cfg = last text placement to use for the bottom of the rect for the frame
-  
-  plot_fun <- function(){
-    
-    # plan text and legend coordinates
-    user_coords <- par()$usr
-    
-    bg_x_left <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
-    bg_x_right <- user_coords[1] + outro_placement$xright * diff(user_coords[1:2])
-    bg_y_top <- user_coords[3] + outro_placement$ytop_pkq * diff(user_coords[3:4])
-    bg_y_bottom <- user_coords[3] + (outro_placement[[y_cfg]]-0.20) * diff(user_coords[3:4])
-
-    # plot text and legend
-    rect(bg_x_left, bg_y_bottom, bg_x_right, bg_y_top, col = "#ffffffB3", border = "transparent")
-      
   }
   return(plot_fun)
 }
