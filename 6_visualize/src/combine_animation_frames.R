@@ -1,9 +1,10 @@
 combine_animation_frames <- function(gif_file, animation_cfg, frame_ind_intro=NULL, frame_ind_storm=NULL, frame_ind_outro=NULL, intro_config) {
+
   # run imageMagick convert to build a gif
 
   # TO DO: situation where any of the frame inds are NULL
 
-  # Get file names ready
+  # Gather appropriate file names (not just whatever is in the directory)
   png_files_intro <- extract_filenames_from_ind(frame_ind_intro)
   png_files_storm <- extract_filenames_from_ind(frame_ind_storm)
   png_files_outro <- extract_filenames_from_ind(frame_ind_outro)
@@ -50,8 +51,6 @@ combine_animation_frames <- function(gif_file, animation_cfg, frame_ind_intro=NU
 
 extract_filenames_from_ind <- function(ind_file) {
   filename_hash_list <- readLines(ind_file)
-  only_names <- lapply(filename_hash_list, function(fn) {
-    head(unlist(strsplit(fn, split = ":")), 1)
-  })
-  return(unlist(only_names))
+  only_names <- unlist(lapply(strsplit(filename_hash_list, ":"), `[`, 1))
+  return(only_names)
 }
