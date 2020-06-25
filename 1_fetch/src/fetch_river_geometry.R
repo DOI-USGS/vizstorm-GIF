@@ -114,7 +114,7 @@ sf_converter <- function(x)
 navigate_nldi <- function(f_id, f_source, mode = "UM",
                           d_source = NULL, distance = NULL) {
 
-  url <- paste("https://cida.usgs.gov/nldi", f_source, f_id, "navigate", mode, d_source,
+  url <- paste("https://labs.waterdata.usgs.gov/api/nldi/linked-data", f_source, f_id, "navigate", mode, d_source,
                sep = "/")
 
   if(!is.null(distance)) {
