@@ -10,7 +10,7 @@ create_intro_gif_makefile <- function(makefile, task_plan, remake_file) {
     file_extensions=c('feather','ind'))
 }
 
-create_storm_gif_makefile <- function(makefile, task_plan, remake_file, final_targets) {
+create_storm_gif_makefile <- function(makefile, task_plan, remake_file) {
   scipiper::create_task_makefile(
     makefile=makefile, task_plan=task_plan,
     include=remake_file,

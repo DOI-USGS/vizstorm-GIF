@@ -185,8 +185,7 @@ targets:
     command: create_storm_gif_makefile(
       makefile = target_name,
       task_plan = storm_gif_tasks,
-      remake_file = I('6_visualize.yml'),
-      final_targets = I('6_visualize/log/6_storm_gif_tasks.ind'))
+      remake_file = I('6_visualize.yml'))
 
   # Build the timestep-specific functions and png files.
   # When we like how this is looking, we can set task_names=NULL to build all frames.
