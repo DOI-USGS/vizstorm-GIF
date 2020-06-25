@@ -1,7 +1,6 @@
 target_default: 6_visualize
 
 include:
-  - 2_process.yml
 
 packages:
   - dplyr
