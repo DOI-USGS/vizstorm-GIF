@@ -38,13 +38,13 @@ fetch_sites_from_states <- function(ind_file, state_cds, dates, stream_params, r
   nws_flood_stage_table <- nws_flood_stage_list[["sites"]]
   sites_df <- sites_df %>%
     left_join(nws_flood_stage_table, by='site_no')
-  
+
   # Optionally filter out any sites that don't have flood stage data from NWS
   if(require_flood_stage) {
     sites_df <- sites_df %>%
       dplyr::filter(!is.na(flood_stage))
   }
-  
+
   # Filter by site type and data availability during storm
   sites_filtered <- sites_df %>%
     # we only need stream sites
@@ -68,13 +68,17 @@ fetch_sites_from_states <- function(ind_file, state_cds, dates, stream_params, r
 fetch_rapid_dep_sites <- function(ind_file, event) {
   # fetch the rapid deployment gages (RDGs) from the STN web services
   url <- sprintf('https://stn.wim.usgs.gov/STNServices/Instruments/FilteredInstruments.json?Event=%d&EventType=&EventStatus=&States=&County=&CurrentStatus=&CollectionCondition=&SensorType=5&DeploymentType=', event)
-  rdgs <- jsonlite::fromJSON(url) %>%
-    select(sensorType, eventName, timeStamp, site_no, latitude, longitude, siteDescription)
-  
+
+  rdgs <- jsonlite::fromJSON(url)
+  if(length(rdgs) > 0) {
+    rdgs <- rdgs %>%
+      select(sensorType, eventName, timeStamp, site_no, latitude, longitude, siteDescription)
+  }
+
   # if we wanted to look up data for these sites, we could go to NWIS by using
   # this sites table to map the RDG ID (site_no) to an NWIS id (usgs_sid):
   # https://stn.wim.usgs.gov/STNServices/Events/283/sites
-  
+
   # Write the data file and the indicator file
   saveRDS(rdgs, as_data_file(ind_file))
   gd_put(ind_file)
