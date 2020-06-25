@@ -8,14 +8,14 @@ date_display_tz: "America/New_York" # UTC is assumed for all input and intermedi
 frame_step: 3 # hours elapsed between GIF frames
 
 # view, dimensions
-bbox: [-94, 25, -89, 36]
+bbox: [-100, 25, -80, 36]
 projection: "+proj=lcc +lat_1=30.7 +lat_2=29.3 +lat_0=28.5 +lon_0=-91.33333333333333 +x_0=999999.9999898402 +y_0=0 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs"
 height: 512
 width: 1024
 
 # styling
 precip_cols: ["#FAFBF399", "#F0F8E3CC", "#D4E9CAE6", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
-precip_bin: 2 # inches per bin
+precip_bin: 4 # inches per bin
 gage_flood_col: "#175676"
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
