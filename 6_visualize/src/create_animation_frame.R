@@ -8,7 +8,7 @@ create_animation_frame <- function(png_file, config, ...) {
   png(filename=png_file, width=config$width, height=config$height, units='px', type = plot_type)
 
   # begin using google fonts
-  par(family = 'abel') # may need to install from Google Fonts
+  par(family = 'abel') # may need to install from Google Fonts using `sysfonts::font_add_google('Abel','abel')`
   showtext_begin()
 
   # plot the pieces in order, passing through data files or R objects from the
