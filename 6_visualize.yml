@@ -60,6 +60,8 @@ targets:
     command: viz_config[[I(c('intro'))]]
   legend_text_cfg:
     command: viz_config[[I("legend_text")]]
+  timeline_cfg:
+    command: viz_config[[I("timeline_style")]]
 
   # ---- location of images on figure ---- #
   component_placement:
