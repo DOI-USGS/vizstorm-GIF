@@ -35,6 +35,16 @@ legend_text:
   cex: 1.5
   col: "#161616"
   family: ""
+timeline_style:
+  pt_cex: 3.5
+  pt_col: "gray40"
+  pt_pch: 20
+  line_cex: 1
+  line_lwd: 0.7
+  line_lty: 3
+  line_col: "gray45"
+  font_cex: 1
+  font_col: "gray30"
 
 # introductory animation
 intro:
@@ -60,9 +70,12 @@ component_placement:
   sparks:
     xleft: 0.70 # as percentage of figure width
     xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-    ybottom: 0.01 # as percentage of figure height
+    ybottom: 0.30 # as percentage of figure height
     ytop: 0.93 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-  outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
+    ytimeline: 0.25 # y location of timeline; this will use xright and xleft from sparks
+    ytimeline_text: 0.22 # y location of timeline dates (0.02 below is good)
+  outro:
+    # outro text & legend roughly, but not exactly, fit where the sparklines were
     xleft: 0.55
     xright: 0.99
     ytop_ltn: 0.6 # top y coordinate of the text and legend for the long-term network
