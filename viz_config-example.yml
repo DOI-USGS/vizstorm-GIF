@@ -51,7 +51,8 @@ frame_delay_cs: 14 # delay between frames of the gif animation DURING storm fram
 component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "top"
-  datetime: # above watermark for now
+  datetime:
+    # above watermark for now
     x1: 0.005
     y1: 0.85
   legend_x_pos: "left"
@@ -76,23 +77,28 @@ ocean_name_placement:
     label: 'Atlantic Ocean'
 
 focus_geoms:
-  - # U.S. counties
+  -
+    # U.S. counties
     database: county
-  - # U.S. states
+  -
+    # U.S. states
     database: state
 
 secondary_geoms:
-  - # non-U.S. islands
+  -
+    # non-U.S. islands
     database: "mapdata::world2Hires"
     regions: "(?!USA)"
     xlim: [275, 300]
     ylim: [16, 30]
-  - # Mexico
+  -
+    # Mexico
     database: "mapdata::worldHires"
     regions: "Mexico"
 
 cities:
-  dot: # parameters for general coloring of the
+  # parameters for general coloring of the cities
+  dot:
     bg: "gray40"
     col: "gray40"
     pch: 5
@@ -104,7 +110,8 @@ cities:
     angle: 330 # angle in radians for position of label relative to dot. pos is computed from angle: 225-315=1, 315-45=4, 45-135=3, 135-225=2
     dist: 0.007 # relative (fraction of window width) distance from dot to label
   pop_min: 500000 # minimum population size of cities to be chosen by default; `custom` will make additions or modifications and `exclude` will make subtractions
-  custom: # cities to add or modify relative to the maps::us.cities dataset. added cities can use lat/long from us.cities if they are present in us.cities, even if they don't meet the pop_min criterion
+  custom:
+    # cities to add or modify relative to the maps::us.cities dataset. added cities can use lat/long from us.cities if they are present in us.cities, even if they don't meet the pop_min criterion
     #-
     #  name: "Richmond VA"
     #  text_angle: 170
