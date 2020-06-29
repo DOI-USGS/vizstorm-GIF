@@ -34,7 +34,7 @@ targets:
       - 6_visualize/log/6_storm_gif_tasks.ind
       - 6_intro_gif_tasks.yml
       - 6_visualize/log/6_intro_gif_tasks.ind
-      - 6_visualize/log/6_outro_gif_frames.ind
+      - 6_visualize/log/6_outro_gif_tasks.ind
       - 6_visualize/out/animation_a.gif
 
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
@@ -214,13 +214,13 @@ targets:
       task_names=NULL,
       num_tries=I(1), sleep_on_error=I(0))
 
-  6_outro_gif_frames.yml:
+  6_outro_gif_tasks.yml:
     command: create_outro_gif_makefile(
-      target_name = '6_outro_gif_frames.yml',
+      target_name = target_name,
       template_fn = '6_visualize/in/6_outro_gif_tasks_template.mustache',
       timesteps)
-  6_visualize/log/6_outro_gif_frames.ind:
-    command: scmake(I('6_outro_gif_frames'), '6_outro_gif_frames.yml')
+  6_visualize/log/6_outro_gif_tasks.ind:
+    command: scmake(I('6_outro_gif_tasks'), '6_outro_gif_tasks.yml')
 
   # Combine the png files into a gif.
   #
@@ -249,7 +249,7 @@ targets:
       animation_cfg=animation_cfg,
       frame_ind_intro = "6_visualize/log/6_intro_gif_tasks.ind",
       frame_ind_storm = "6_visualize/log/6_storm_gif_tasks.ind",
-      frame_ind_outro = "6_visualize/log/6_outro_gif_frames.ind",
+      frame_ind_outro = "6_visualize/log/6_outro_gif_tasks.ind",
       intro_config = intro_config)
   6_visualize/out/animation_a.gif.ind:
     command: gd_put(target_name, '6_visualize/out/animation_a.gif')

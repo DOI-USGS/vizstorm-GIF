@@ -1,4 +1,4 @@
-target_default: 6_outro_gif_frames
+target_default: 6_outro_gif_tasks
 
 include:
   - 6_storm_gif_tasks.yml
@@ -79,9 +79,9 @@ targets:
       cities_fun,
       watermark_fun)
 
-  6_outro_gif_frames:
+  6_outro_gif_tasks:
     depends:
       - 6_visualize/tmp/gif_frame_a_z001_outro_rdgs_1.png
       - 6_visualize/tmp/gif_frame_a_z002_outro_ltn_1.png
       - 6_visualize/tmp/gif_frame_a_z003_outro_readmore_1.png
-    command: sc_indicate(I('6_visualize/log/6_outro_gif_frames.ind'), hash_depends=I(TRUE), depends_target=I('6_outro_gif_frames'), depends_makefile=I('6_outro_gif_frames.yml'))
+    command: sc_indicate(I('6_visualize/log/6_outro_gif_tasks.ind'), hash_depends=I(TRUE), depends_target=I('6_outro_gif_tasks'), depends_makefile=I('6_outro_gif_tasks.yml'))
