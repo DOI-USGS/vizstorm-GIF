@@ -36,9 +36,9 @@ legend_text:
   col: "#161616"
   family: ""
 timeline_style:
-  pt_cex: 3.5
+  pt_cex: 1.5
   pt_col: "gray40"
-  pt_pch: 20
+  pt_pch: 25
   line_cex: 1
   line_lwd: 0.7
   line_lty: 3
@@ -69,11 +69,11 @@ component_placement:
   legend_y_pos: "bottom"
   sparks:
     xleft: 0.70 # as percentage of figure width
-    xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    xright: 0.98 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
     ybottom: 0.30 # as percentage of figure height
     ytop: 0.93 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-    ytimeline: 0.25 # y location of timeline; this will use xright and xleft from sparks
-    ytimeline_text: 0.22 # y location of timeline dates (0.02 below is good)
+    ytimeline: 0.24 # y location of timeline; this will use xright and xleft from sparks
+    ytimeline_text: 0.205 # y location of timeline dates (0.035 below line has worked well)
   outro:
     # outro text & legend roughly, but not exactly, fit where the sparklines were
     xleft: 0.55
