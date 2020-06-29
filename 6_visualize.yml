@@ -34,6 +34,7 @@ targets:
       - 6_visualize/log/6_storm_gif_tasks.ind
       - 6_intro_gif_tasks.yml
       - 6_visualize/log/6_intro_gif_tasks.ind
+      - 6_visualize/log/6_outro_gif_frames.ind
       - 6_visualize/out/animation_a.gif
 
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
@@ -131,6 +132,10 @@ targets:
   cities_fun:
     command: prep_major_cities_fun('1_fetch/out/major_cities.rds.ind')
 
+  # Use timesteps but change to match the frames desires
+  timesteps:
+    command: timesteps_to_build('2_process/out/timesteps.rds.ind', storm_frame_step)
+
   #### intro frames - animating the link between gages and sparklines ####
 
   intro_frame_config:
@@ -175,10 +180,9 @@ targets:
 
   storm_gif_tasks:
     command: create_storm_gif_tasks(
-      timestep_ind = '2_process/out/timesteps.rds.ind',
+      timesteps,
       storm_track_cfg = storm_track_cfg,
-      folders = visualize_folders,
-      frame_step = storm_frame_step)
+      folders = visualize_folders)
 
   6_storm_gif_tasks.yml:
     command: create_storm_gif_makefile(
@@ -210,6 +214,11 @@ targets:
       task_names=NULL,
       num_tries=I(1), sleep_on_error=I(0))
 
+  6_outro_gif_frames.yml:
+    command: create_outro_gif_makefile(
+      target_name = '6_outro_gif_frames.yml',
+      template_fn = '6_visualize/in/6_outro_gif_tasks_template.mustache',
+      timesteps)
   6_visualize/log/6_outro_gif_frames.ind:
     command: scmake(I('6_outro_gif_frames'), '6_outro_gif_frames.yml')
 
