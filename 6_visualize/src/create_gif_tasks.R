@@ -187,10 +187,11 @@ create_storm_gif_tasks <- function(timestep, storm_track_cfg, folders){
       psprintf(
         "prep_timeline_fun(",
         "DateTime = I('%s'),"=cur_task$timestep,
-        "timestep_ind = '2_process/out/timesteps.rds.ind',",
+        "date_lims = storm_date_limits_local,",
         "timeline_config = timeline_cfg,",
         "spark_config = sparkline_placement,",
-        "legend_text_cfg = legend_text_cfg)")
+        "legend_text_cfg = legend_text_cfg,",
+        "local_tz = date_display_tz)")
     }
   )
 

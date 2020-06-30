@@ -1,10 +1,6 @@
-prep_timeline_fun <- function(DateTime, timestep_ind, timeline_config, spark_config, legend_text_cfg) {
+prep_timeline_fun <- function(DateTime, date_lims, timeline_config, spark_config, legend_text_cfg, local_tz) {
 
-  this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
-
-  # Compute the full x limits for all datetimes
-  storm_timesteps <- fetch_read(timestep_ind)
-  date_lims <- as.POSIXct(range(storm_timesteps), tz = "UTC")
+  this_DateTime <- convert_to_local_tz(as.POSIXct(DateTime, tz = "UTC"), local_tz)
 
   # Define functions that will convert each site's shapes to user coordinates
   dateTime_to_x <- function(dateTime, x_user) {

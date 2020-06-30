@@ -106,8 +106,12 @@ targets:
   stage_data:
     command: fetch_read('2_process/out/cleaned_streamdata.rds.ind')
 
+  storm_date_limits:
+    command: get_date_limits(timestep_ind = '2_process/out/timesteps.rds.ind')
+  storm_date_limits_local:
+    command: convert_to_local_tz(storm_date_limits, date_display_tz)
   storm_start_date:
-    command: format_start_date(timestep_ind = '2_process/out/timesteps.rds.ind')
+    command: storm_date_limits[1]
 
   site_data:
     command: fetch_read('2_process/out/gage_sites.rds.ind')
