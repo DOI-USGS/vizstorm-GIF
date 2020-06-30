@@ -1,7 +1,6 @@
 target_default: 6_visualize
 
 include:
-  - 2_process.yml
 
 packages:
   - dplyr
@@ -31,10 +30,6 @@ targets:
 
   6_visualize:
     depends:
-      - 6_storm_gif_tasks.yml
-      - 6_visualize/log/6_storm_gif_tasks.ind
-      - 6_intro_gif_tasks.yml
-      - 6_visualize/log/6_intro_gif_tasks.ind
       - 6_visualize/out/animation_a.gif
 
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
@@ -134,6 +129,10 @@ targets:
   cities_fun:
     command: prep_major_cities_fun('1_fetch/out/major_cities.rds.ind')
 
+  # Use timesteps but change to match the frames desires
+  timesteps:
+    command: timesteps_to_build('2_process/out/timesteps.rds.ind', storm_frame_step)
+
   #### intro frames - animating the link between gages and sparklines ####
 
   intro_frame_config:
@@ -150,7 +149,7 @@ targets:
     command: create_intro_gif_makefile(
       makefile = target_name,
       task_plan = intro_gif_tasks,
-      remake_file = I('6_visualize.yml'))
+      remake_file = I('remake.yml'))
 
   # Build the timestep-specific functions and png files.
   # When we like how this is looking, we can set task_names=NULL to build all frames.
@@ -178,16 +177,15 @@ targets:
 
   storm_gif_tasks:
     command: create_storm_gif_tasks(
-      timestep_ind = '2_process/out/timesteps.rds.ind',
+      timesteps,
       storm_track_cfg = storm_track_cfg,
-      folders = visualize_folders,
-      frame_step = storm_frame_step)
+      folders = visualize_folders)
 
   6_storm_gif_tasks.yml:
     command: create_storm_gif_makefile(
       makefile = target_name,
       task_plan = storm_gif_tasks,
-      remake_file = I('6_visualize.yml'))
+      remake_file = I('remake.yml'))
 
   # Build the timestep-specific functions and png files.
   # When we like how this is looking, we can set task_names=NULL to build all frames.
@@ -213,8 +211,13 @@ targets:
       task_names=NULL,
       num_tries=I(1), sleep_on_error=I(0))
 
-  6_visualize/log/6_outro_gif_frames.ind:
-    command: scmake(I('6_outro_gif_frames'), '6_outro_gif_frames.yml')
+  6_outro_gif_tasks.yml:
+    command: create_outro_gif_makefile(
+      target_name = target_name,
+      template_fn = '6_visualize/in/6_outro_gif_tasks_template.mustache',
+      timesteps)
+  6_visualize/log/6_outro_gif_tasks.ind:
+    command: scmake(I('6_outro_gif_tasks'), '6_outro_gif_tasks.yml')
 
   # Combine the png files into a gif.
   #
@@ -243,7 +246,7 @@ targets:
       animation_cfg=animation_cfg,
       frame_ind_intro = "6_visualize/log/6_intro_gif_tasks.ind",
       frame_ind_storm = "6_visualize/log/6_storm_gif_tasks.ind",
-      frame_ind_outro = "6_visualize/log/6_outro_gif_frames.ind",
+      frame_ind_outro = "6_visualize/log/6_outro_gif_tasks.ind",
       intro_config = intro_config)
   6_visualize/out/animation_a.gif.ind:
     command: gd_put(target_name, '6_visualize/out/animation_a.gif')

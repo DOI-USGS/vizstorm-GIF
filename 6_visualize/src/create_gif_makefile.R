@@ -25,3 +25,12 @@ create_storm_gif_makefile <- function(makefile, task_plan, remake_file) {
       '6_visualize/src/combine_animation_frames.R'),
     file_extensions=c('feather','ind'))
 }
+
+# Outro makefile is weird because the only change needed is using
+# the functions from the last frame. Don't need a whole task table
+create_outro_gif_makefile <- function(target_name, template_fn, timesteps) {
+  last_task <- strftime(tail(timesteps, 1), format = '%Y%m%d_%H', tz = 'UTC')
+  readLines(template_fn) %>%
+    whisker::whisker.render(data = list(last_task = last_task)) %>%
+    writeLines(con = target_name)
+}
