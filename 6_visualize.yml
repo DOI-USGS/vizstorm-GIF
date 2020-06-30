@@ -30,11 +30,6 @@ targets:
 
   6_visualize:
     depends:
-      - 6_storm_gif_tasks.yml
-      - 6_visualize/log/6_storm_gif_tasks.ind
-      - 6_intro_gif_tasks.yml
-      - 6_visualize/log/6_intro_gif_tasks.ind
-      - 6_visualize/log/6_outro_gif_tasks.ind
       - 6_visualize/out/animation_a.gif
 
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
