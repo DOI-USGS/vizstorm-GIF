@@ -5,6 +5,9 @@ include:
   - 2_process.yml
   - 6_visualize.yml
 
+packages:
+  - scipiper
+
 targets:
   everything:
     depends:
