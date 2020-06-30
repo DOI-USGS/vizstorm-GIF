@@ -1,8 +1,5 @@
 target_default: 2_process
 
-include:
-  - 1_fetch.yml
-
 packages:
   - sf
   - dplyr
@@ -152,7 +149,7 @@ targets:
       stage_gap_threshold = stage_gap_threshold)
   2_process/out/normalized_streamdata.rds:
     command: gd_get('2_process/out/normalized_streamdata.rds.ind')
-    
+
   # manual filtering step to remove points we expect won't make it past Provisional
   2_process/out/cleaned_streamdata.rds.ind:
     command: clean_streamdata(
