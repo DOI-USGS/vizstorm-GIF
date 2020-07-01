@@ -36,9 +36,9 @@ legend_text:
   col: "#161616"
   family: ""
 timeline_style:
-  pt_cex: 1.5
-  pt_col: "gray40"
-  pt_pch: 25
+  pt_cex: 0.5
+  pt_col: "gray30"
+  pt_pch: "|"
   line_cex: 1
   line_lwd: 0.7
   line_lty: 3

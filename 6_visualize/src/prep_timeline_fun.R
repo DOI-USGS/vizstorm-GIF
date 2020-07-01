@@ -38,7 +38,7 @@ prep_timeline_fun <- function(DateTime, date_lims, timeline_config, spark_config
          col = timeline_config$line_col)
 
     # Add current date tracking symbol just above line
-    points(loc_date_x, loc_y*1.15,
+    points(loc_date_x, loc_y,
            col = timeline_config$pt_col, bg = timeline_config$pt_col,
            cex=timeline_config$pt_cex, pch = timeline_config$pt_pch)
 
