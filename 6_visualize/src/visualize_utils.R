@@ -1,9 +1,17 @@
 
 fetch_read <- function(ind_file) readRDS(sc_retrieve(ind_file))
 
-format_start_date <- function(timestep_ind) {
-  timesteps <- fetch_read(timestep_ind)
-  return(timesteps[1])
+get_date_limits <- function(timestep_ind) {
+  timesteps_utc <- fetch_read(timestep_ind)
+  return(range(timesteps_utc))
+}
+
+convert_to_local_tz <- function(date, local_tz = "") {
+  # Convert to the correct timezone (must change to string to do that)
+  date_str <- strftime(date, format = '%Y-%m-%d %H:%M:%S %Z', tz = local_tz)
+  # Convert string back into POSIXct using local tz
+  date_local <- as.POSIXct(date_str, tz = local_tz)
+  return(date_local)
 }
 
 existing_png_tasks <- function(path='6_visualize/tmp', pattern='a_[[:digit:]]{8}_[[:digit:]]{2}') {
