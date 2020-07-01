@@ -1,11 +1,17 @@
-
-prep_storm_line_fun <- function(storm_line_ind_file, storm_line_cfg){
-  storm_line_sf <- readRDS(sc_retrieve(storm_line_ind_file))
-  plot_fun <- if(is.null(storm_line_sf)) {
+prep_storm_line_fun <- function(storm_points_sf, DateTime, storm_line_cfg){
+  this_DateTime <- as.POSIXct(DateTime, tz = "UTC")
+  colfunc <- colorRampPalette(c(storm_line_cfg$light_col, storm_line_cfg$dark_col))
+  plot_fun <- if(is.null(storm_points_sf)) {
     function() {} # storms are optional
   } else {
+    before_this_dot <- filter(storm_points_sf, DateTime <= this_DateTime)
+    tail_lengths <- seq(storm_line_cfg$tail_length, storm_line_cfg$fade_i, by = -storm_line_cfg$fade_i)
+    cols <- colfunc(length(tail_lengths))
     function(){
-      plot(sf::st_geometry(storm_line_sf), add = TRUE, col = storm_line_cfg$storm_line_col, lwd = 2)
+      for(i in 1:length(tail_lengths)) {
+        plot(st_geometry(tail(before_this_dot, tail_lengths[i])), add=TRUE,
+             col=cols[i], type = 'l', lty="dotted", lwd = 2)
+      }
     }
   }
   return(plot_fun)
