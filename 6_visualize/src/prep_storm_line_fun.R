@@ -1,12 +1,38 @@
-prep_storm_line_fun <- function(storm_points_sf, DateTime, storm_line_cfg){
+prep_storm_line_fun <- function(storm_points_sf, DateTime, storm_line_cfg, timesteps){
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC")
   colfunc <- colorRampPalette(c(storm_line_cfg$light_col, storm_line_cfg$dark_col))
   plot_fun <- if(is.null(storm_points_sf)) {
     function() {} # storms are optional
   } else {
+
     before_this_dot <- filter(storm_points_sf, DateTime <= this_DateTime)
-    tail_lengths <- seq(storm_line_cfg$tail_length, storm_line_cfg$fade_i, by = -storm_line_cfg$fade_i)
-    cols <- colfunc(length(tail_lengths))
+    last_storm_pt_date <- tail(before_this_dot, 1) %>% pull(DateTime)
+
+    # If it is the very last frame, force the line to be the faint shade at the end
+    # Otherwise, keep doing the fading tail that looks like a comet
+    if(this_DateTime == tail(timesteps, 1)) {
+      tail_lengths <- c()
+      cols <- c()
+    } else {
+
+      tail_lengths <- seq(storm_line_cfg$tail_length, storm_line_cfg$fade_i, by = -storm_line_cfg$fade_i)
+      cols <- colfunc(length(tail_lengths))
+
+      # If we are past the storm dates, we need to still fade the line out
+      if(this_DateTime > last_storm_pt_date) {
+        storm_pt_time_diff <- tail(before_this_dot, 2) %>% pull(DateTime) %>% diff()
+        times_since_storm_end <- seq(last_storm_pt_date, this_DateTime, by = storm_pt_time_diff)
+
+        sorted_tails <- sort(tail_lengths) # bc findInterval needs sorted
+        i <- findInterval(length(times_since_storm_end), sorted_tails)
+        if(i > 1) {
+          # If the first tail should be included (i==1), you can't use `head(..., -(1-0))` so just keep tail_lengths as-is
+          # Keep only i and after i (but use neg since i is based on sorted vals)
+          tail_lengths <- head(tail_lengths, -(i-1))
+        }
+
+      }
+    }
 
     # Keep a faint line to show where the hurricane has been
     tail_lengths <- c(nrow(before_this_dot), tail_lengths)
