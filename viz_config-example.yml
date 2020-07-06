@@ -37,6 +37,23 @@ legend_text:
   col: "#161616"
   family: ""
 
+timeline_style:
+  pt_cex: 0.5
+  pt_col: "gray30"
+  pt_pch: "|"
+  line_cex: 1
+  line_lwd: 0.7
+  line_lty: 3
+  line_col: "gray45"
+  font_cex: 1
+  font_col: "gray30"
+
+storm_line:
+  dark_col: "grey10"
+  light_col: "grey60"
+  tail_length: 25 # n storm point locations behind the current date time to show the tail
+  fade_i: 3 # n storm points between the next colored storm points (smaller fade_i = smoother fade)
+
 # introductory animation
 intro:
   t_last_start: 5 # last frame in the intro animation when a site should leave its lat/lon (they're staggered)
@@ -52,17 +69,21 @@ frame_delay_cs: 14 # delay between frames of the gif animation DURING storm fram
 component_placement:
   watermark_x_pos: "left"
   watermark_y_pos: "top"
-  datetime: # above watermark for now
+  datetime:
+    # above watermark for now
     x1: 0.005
     y1: 0.85
   legend_x_pos: "left"
   legend_y_pos: "bottom"
   sparks:
     xleft: 0.70 # as percentage of figure width
-    xright: 0.99 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-    ybottom: 0.01 # as percentage of figure height
+    xright: 0.98 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    ybottom: 0.30 # as percentage of figure height
     ytop: 0.93 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-  outro: # outro text & legend roughly, but not exactly, fit where the sparklines were
+    ytimeline: 0.24 # y location of timeline; this will use xright and xleft from sparks
+    ytimeline_text: 0.205 # y location of timeline dates (0.035 below line has worked well)
+  outro:
+    # outro text & legend roughly, but not exactly, fit where the sparklines were
     xleft: 0.55
     xright: 0.99
     ytop_ltn: 0.6 # top y coordinate of the text and legend for the long-term network
@@ -77,23 +98,28 @@ ocean_name_placement:
     label: 'Atlantic Ocean'
 
 focus_geoms:
-  - # U.S. counties
+  -
+    # U.S. counties
     database: county
-  - # U.S. states
+  -
+    # U.S. states
     database: state
 
 secondary_geoms:
-  - # non-U.S. islands
+  -
+    # non-U.S. islands
     database: "mapdata::world2Hires"
     regions: "(?!USA)"
     xlim: [275, 300]
     ylim: [16, 30]
-  - # Mexico
+  -
+    # Mexico
     database: "mapdata::worldHires"
     regions: "Mexico"
 
 cities:
-  dot: # parameters for general coloring of the
+  # parameters for general coloring of the cities
+  dot:
     bg: "gray40"
     col: "gray40"
     pch: 5
@@ -105,7 +131,8 @@ cities:
     angle: 330 # angle in radians for position of label relative to dot. pos is computed from angle: 225-315=1, 315-45=4, 45-135=3, 135-225=2
     dist: 0.007 # relative (fraction of window width) distance from dot to label
   pop_min: 500000 # minimum population size of cities to be chosen by default; `custom` will make additions or modifications and `exclude` will make subtractions
-  custom: # cities to add or modify relative to the maps::us.cities dataset. added cities can use lat/long from us.cities if they are present in us.cities, even if they don't meet the pop_min criterion
+  custom:
+    # cities to add or modify relative to the maps::us.cities dataset. added cities can use lat/long from us.cities if they are present in us.cities, even if they don't meet the pop_min criterion
     #-
     #  name: "Richmond VA"
     #  text_angle: 170
