@@ -25,6 +25,7 @@ gage_stn_col: "#ff7f50" # for non-focal short-term-network (rapid deployment) ga
 hurricane_col: "orange"
 hurricane_cols: ["#71c633", "#FBC195", "#FB8147", "#EF5F2C", "#C63526", "#6E1B14"]
 hurricane_col_names: ["Tropical Storm %s", "Hurricane %s (Cat1)", "Hurricane %s (Cat2)", "Hurricane %s (Cat3)", "Hurricane %s (Cat4)", "Hurricane %s (Cat5)"] # If these change, legend layout may break
+storm_line_col: "grey30"
 major_river_col: "#1874cd"
 gage_river_col: "#5d9ddc"
 lake_col: "#a2c7eb"

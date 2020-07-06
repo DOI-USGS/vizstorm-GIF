@@ -81,9 +81,10 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
     # plot storm legend
     hurricane_y <- ybottom+6*bin_h*1.05
     if(is.na(hurricane_col)) {
-      text(dot_txt_x, hurricane_y, labels = legend_styles$storm_name, pos = txt_pos,
+      text(dot_txt_x, hurricane_y, labels = paste("Path of", legend_styles$storm_name), pos = txt_pos,
            cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
-      segments(seg_x, hurricane_y+center_to_txt_y, dot_txt_x, col = legend_styles$storm_line_col, lwd = 2)
+      segments(seg_x, hurricane_y+center_to_txt_y, dot_txt_x, lty = "dotted",
+               col = legend_styles$storm_line_col, lwd = 2)
     } else {
       text(dot_txt_x, hurricane_y, labels = sprintf(hurricane_cat, legend_styles$storm_name), pos = txt_pos,
            cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
