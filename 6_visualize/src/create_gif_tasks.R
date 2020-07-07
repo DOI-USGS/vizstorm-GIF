@@ -288,7 +288,7 @@ create_storm_gif_tasks <- function(timestep, storm_track_cfg, folders){
   step_list <- list(
     sites_frame, if(has_storm_track) storm_line_frame,
     if(has_storm_track) storm_point_frame, precip_frame,
-    spark_frame, datetime_frame, legend_frame, gif_frame, gif_test_frame)
+    spark_frame, timeline_frame, legend_frame, gif_frame, gif_test_frame)
   step_list <- step_list[!sapply(step_list, is.null)]
   gif_task_plan <- scipiper::create_task_plan(
     task_names=tasks$task_name,
