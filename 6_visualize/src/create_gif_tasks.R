@@ -137,7 +137,8 @@ create_storm_gif_tasks <- function(timestep, storm_track_cfg, folders){
           "prep_storm_line_fun(",
           "storm_points_sf = storm_points_sf,",
           "DateTime = I('%s'),"=format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"),
-          "storm_line_cfg = storm_line_cfg)"
+          "storm_line_cfg = storm_line_cfg,",
+          "timesteps = timesteps)"
         )
       }
     )
