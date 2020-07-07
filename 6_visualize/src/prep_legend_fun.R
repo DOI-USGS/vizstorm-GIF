@@ -12,7 +12,8 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC") # WARNING, IF WE EVER MOVE FROM UTC elsewhere, this will be fragile/bad.
 
   hurricane_col <- NA
-  if(!is.null(storm_points_sf)) {
+  has_storm_track <- !is.null(storm_points_sf)
+  if(has_storm_track) {
     this_dot <- filter(storm_points_sf, DateTime == this_DateTime)
     if(nrow(this_dot) > 0) {
       hurricane_col <- legend_styles$hurricane_cols[(this_dot$SS + 1)]
@@ -80,15 +81,18 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
 
     # plot storm legend
     hurricane_y <- ybottom+6*bin_h*1.05
-    if(is.na(hurricane_col)) {
-      text(dot_txt_x, hurricane_y, labels = paste("Path of", legend_styles$storm_name), pos = txt_pos,
-           cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
-      segments(seg_x, hurricane_y+center_to_txt_y, dot_txt_x, lty = "dotted",
-               col = legend_styles$storm_line_col, lwd = 2)
-    } else {
-      text(dot_txt_x, hurricane_y, labels = sprintf(hurricane_cat, legend_styles$storm_name), pos = txt_pos,
-           cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
-      points(dot_x, hurricane_y+center_to_txt_y, pch = 21, bg = hurricane_col, col = NA, cex = 3)
+    if(has_storm_track) {
+      if(is.na(hurricane_col)) {
+        # When the hurricane dot is no longer visible, switch to showing just the path
+        text(dot_txt_x, hurricane_y, labels = paste("Path of", legend_styles$storm_name), pos = txt_pos,
+             cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
+        segments(seg_x, hurricane_y+center_to_txt_y, dot_txt_x, lty = "dotted",
+                 col = legend_styles$storm_line_col, lwd = 2)
+      } else {
+        text(dot_txt_x, hurricane_y, labels = sprintf(hurricane_cat, legend_styles$storm_name), pos = txt_pos,
+             cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
+        points(dot_x, hurricane_y+center_to_txt_y, pch = 21, bg = hurricane_col, col = NA, cex = 3)
+      }
     }
 
   }
