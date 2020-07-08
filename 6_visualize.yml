@@ -93,9 +93,7 @@ targets:
     command: prep_basemap_fun('1_fetch/out/focus_geoms.rds.ind', '1_fetch/out/secondary_geoms.rds.ind')
 
   storm_line_cfg:
-    command: viz_config[I('storm_line_col')]
-  storm_line_fun:
-    command: prep_storm_line_fun("2_process/out/storm_line.rds.ind", storm_line_cfg)
+    command: viz_config[[I("storm_line")]]
 
   storm_points_sf:
     command: fetch_read('2_process/out/storm_points_interp.rds.ind')

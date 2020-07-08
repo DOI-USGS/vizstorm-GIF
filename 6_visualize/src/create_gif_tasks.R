@@ -79,7 +79,6 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_track_cfg, storm
         "ocean_name_fun,",
         "rivers_fun,",
         "gage_sites_initial,",
-        if(has_storm_track) "storm_line_fun,",
         "gage2spark_fun_%s,"=cur_task$tn,
         "legend_fun_%s,"=cur_task$tn,
         "cities_fun,",
@@ -126,6 +125,23 @@ create_storm_gif_tasks <- function(timestep, storm_track_cfg, folders){
   )
 
   if(has_storm_track) {
+    storm_line_frame <- scipiper::create_task_step(
+      step_name = 'storm_line_frame',
+      target_name = function(task_name, step_name, ...){
+        cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+        sprintf('storm_line_fun_%s', task_name)
+      },
+      command = function(task_name, ...){
+        cur_task <- dplyr::filter(rename(tasks, tn=task_name), tn==task_name)
+        psprintf(
+          "prep_storm_line_fun(",
+          "storm_points_sf = storm_points_sf,",
+          "DateTime = I('%s'),"=format(cur_task$timestep, "%Y-%m-%d %H:%M:%S"),
+          "storm_line_cfg = storm_line_cfg,",
+          "timesteps = timesteps)"
+        )
+      }
+    )
     storm_point_frame <- scipiper::create_task_step(
       step_name = 'storm_point_frame',
       target_name = function(task_name, step_name, ...){
@@ -232,7 +248,7 @@ create_storm_gif_tasks <- function(timestep, storm_track_cfg, folders){
         "basemap_fun,",
         "ocean_name_fun,",
         "precip_raster_fun_%s,"=cur_task$tn,
-        if(has_storm_track) "storm_line_fun,",
+        if(has_storm_track) c("storm_line_fun_%s,"=cur_task$tn),
         if(has_storm_track) c("storm_point_fun_%s,"=cur_task$tn),
         "spark_line_%s,"= cur_task$tn,
         "rivers_fun,",
@@ -259,7 +275,7 @@ create_storm_gif_tasks <- function(timestep, storm_track_cfg, folders){
         "view_fun,",
         "basemap_fun,",
         "ocean_name_fun,",
-        if(has_storm_track) "storm_line_fun,",
+        if(has_storm_track) c("storm_line_fun_%s,"=cur_task$tn),
         if(has_storm_track) c("storm_point_fun_%s,"=cur_task$tn),
         "legend_fun_%s,"=cur_task$tn,
         "bbox_fun,",
@@ -270,7 +286,8 @@ create_storm_gif_tasks <- function(timestep, storm_track_cfg, folders){
   )
 
   step_list <- list(
-    sites_frame, if(has_storm_track) storm_point_frame, precip_frame,
+    sites_frame, if(has_storm_track) storm_line_frame,
+    if(has_storm_track) storm_point_frame, precip_frame,
     spark_frame, timeline_frame, legend_frame, gif_frame, gif_test_frame)
   step_list <- step_list[!sapply(step_list, is.null)]
   gif_task_plan <- scipiper::create_task_plan(

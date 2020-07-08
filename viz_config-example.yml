@@ -1,5 +1,6 @@
-storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
 storm_name: "Florence"
+# `storm_code` and `stn_event` can be commented out or deleted if there is not a storm track
+storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
 stn_event: 283
 dates:
   start: '2018-09-12 00:00:00'
@@ -25,6 +26,7 @@ gage_stn_col: "#ff7f50" # for non-focal short-term-network (rapid deployment) ga
 hurricane_col: "orange"
 hurricane_cols: ["#71c633", "#FBC195", "#FB8147", "#EF5F2C", "#C63526", "#6E1B14"]
 hurricane_col_names: ["Tropical Storm %s", "Hurricane %s (Cat1)", "Hurricane %s (Cat2)", "Hurricane %s (Cat3)", "Hurricane %s (Cat4)", "Hurricane %s (Cat5)"] # If these change, legend layout may break
+storm_line_col: "grey30"
 major_river_col: "#1874cd"
 gage_river_col: "#5d9ddc"
 lake_col: "#a2c7eb"
@@ -35,6 +37,7 @@ legend_text:
   cex: 1.5
   col: "#161616"
   family: ""
+
 timeline_style:
   pt_cex: 0.5
   pt_col: "gray30"
@@ -45,6 +48,12 @@ timeline_style:
   line_col: "gray45"
   font_cex: 1
   font_col: "gray30"
+
+storm_line:
+  dark_col: "grey10"
+  light_col: "grey60"
+  tail_length: 25 # n storm point locations behind the current date time to show the tail
+  fade_i: 3 # n storm points between the next colored storm points (smaller fade_i = smoother fade)
 
 # introductory animation
 intro:

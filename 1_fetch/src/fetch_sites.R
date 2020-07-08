@@ -66,13 +66,18 @@ fetch_sites_from_states <- function(ind_file, state_cds, dates, stream_params, r
 }
 
 fetch_rapid_dep_sites <- function(ind_file, event) {
-  # fetch the rapid deployment gages (RDGs) from the STN web services
-  url <- sprintf('https://stn.wim.usgs.gov/STNServices/Instruments/FilteredInstruments.json?Event=%d&EventType=&EventStatus=&States=&County=&CurrentStatus=&CollectionCondition=&SensorType=5&DeploymentType=', event)
 
-  rdgs <- jsonlite::fromJSON(url)
-  if(length(rdgs) > 0) {
-    rdgs <- rdgs %>%
-      select(sensorType, eventName, timeStamp, site_no, latitude, longitude, siteDescription)
+  if(is.null(event)) {
+    rdgs <- data.frame()
+  } else {
+    # fetch the rapid deployment gages (RDGs) from the STN web services
+    url <- sprintf('https://stn.wim.usgs.gov/STNServices/Instruments/FilteredInstruments.json?Event=%d&EventType=&EventStatus=&States=&County=&CurrentStatus=&CollectionCondition=&SensorType=5&DeploymentType=', event)
+
+    rdgs <- jsonlite::fromJSON(url)
+    if(length(rdgs) > 0) {
+      rdgs <- rdgs %>%
+        select(sensorType, eventName, timeStamp, site_no, latitude, longitude, siteDescription)
+    }
   }
 
   # if we wanted to look up data for these sites, we could go to NWIS by using
