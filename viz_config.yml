@@ -16,7 +16,7 @@ width: 1200
 
 # styling
 precip_cols: ["#FAFBF399", "#F0F8E3CC", "#D4E9CAE6", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
-precip_bin: 4 # inches per bin
+precip_bin: 3 # inches per bin
 gage_flood_col: "#175676"
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
@@ -32,7 +32,6 @@ gage_river_col: "#5d9ddc"
 lake_col: "#a2c7eb"
 marsh_col: NA
 ocean_col: "#e7f1fa"
-storm_line_col: "grey70"
 legend_text:
   cex: 1.5
   col: "#161616"
