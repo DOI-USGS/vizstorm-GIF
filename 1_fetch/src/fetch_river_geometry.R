@@ -35,6 +35,27 @@ fetch_major_river_geoms <- function(ind_file, view_polygon, fetch_streamorder) {
   gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
 }
 
+which_nwm_files_to_use <- function(file_names, fetch_streamorder) {
+  file_orders <- stringr::str_extract_all(basename(file_names), "[0-9]") %>% unlist() %>% as.numeric()
+  files_to_keep <- file_names[which(file_orders >= fetch_streamorder[[1]])]
+  return(files_to_keep)
+}
+
+fetch_major_river_geoms_from_in <- function(ind_file, view_polygon, conus_nwm_files) {
+
+  nwm_sf_list <- lapply(conus_nwm_files, function(fn) {
+    readRDS(fn) %>% st_as_sf()
+  })
+
+  sf_major_rivers <- do.call(rbind, nwm_sf_list) %>%
+    st_transform(st_crs(view_polygon)) %>%
+    st_crop(view_polygon)
+
+  data_file <- as_data_file(ind_file)
+  saveRDS(sf_major_rivers, data_file)
+  gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
+}
+
 fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasqkm) {
 
   bbox <- st_bbox(st_transform(view_polygon, 4326))
