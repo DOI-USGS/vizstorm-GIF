@@ -211,7 +211,7 @@ cities:
     - "Jacksonville FL"
 
 # Only streamorders greater than this will be fetched.
-fetch_streamorder: 5
+fetch_streamorder: 6
 
 # Only waterbodies greater than this area will be fetched.
 fetch_waterbody_areasqkm: 1000
