@@ -12,23 +12,23 @@ process_river_geoms <- function(ind_file,
   sf_gage_rivers <- readRDS(sc_retrieve(gage_river_geoms_ind))
   sf_waterbodies <- readRDS(sc_retrieve(waterbody_geoms_ind))
 
-  outlets <- filter(sf_major_rivers,
-                    (terminalfl == 1 &
-                       divdasqkm > coastal_threshold_sqkm))$levelpathi
-
-  inland <- filter(sf_major_rivers,
-                   divdasqkm > inland_threshold_sqkm)$levelpathi
-
-  sf_major_rivers <- filter(sf_major_rivers,
-                            levelpathi %in% c(outlets, inland)) %>%
-    group_by(levelpathi) %>%
-    summarise() %>%
-    st_cast("MULTILINESTRING") %>%
-    ungroup() %>%
-    st_zm() %>%
-    st_line_merge() %>%
-    st_cast("LINESTRING") %>%
-    st_simplify(dTolerance = simplification_tolerance_m)
+  # outlets <- filter(sf_major_rivers,
+  #                   (terminalfl == 1 &
+  #                      divdasqkm > coastal_threshold_sqkm))$levelpathi
+  #
+  # inland <- filter(sf_major_rivers,
+  #                  divdasqkm > inland_threshold_sqkm)$levelpathi
+  #
+  # sf_major_rivers <- filter(sf_major_rivers,
+  #                           levelpathi %in% c(outlets, inland)) %>%
+  #   group_by(levelpathi) %>%
+  #   summarise() %>%
+  #   st_cast("MULTILINESTRING") %>%
+  #   ungroup() %>%
+  #   st_zm() %>%
+  #   st_line_merge() %>%
+  #   st_cast("LINESTRING") %>%
+  #   st_simplify(dTolerance = simplification_tolerance_m)
 
   sf_gage_rivers <- sf_gage_rivers %>%
     group_by(site_id, up_down) %>%
