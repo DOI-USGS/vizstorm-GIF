@@ -1,11 +1,11 @@
 version: 0.3.0
 name: 1_fetch/out/major_river_geometry.rds.ind
 type: file
-hash: 193b812404bf273eef9fcd05bb98a26c
-time: 2020-09-16 16:48:06 UTC
+hash: 8d931a58248053c7ccfa4b7c281b2a6f
+time: 2020-09-16 18:19:12 UTC
 depends:
   view_polygon: 15f1fba457c89d4204419099c716ae1a
-  conus_nwm_files_to_use: e7f1cf16af0daf9463bb7b569ca32760
+  conus_nwm_files_to_use: ec2cfa858f8c4db0d93290b2642d9f46
   1_fetch/in/CONUS_NWM_order_3_streams_sp.rds: f2ec8626b5c37c7528bc6c3900f56c8d
   1_fetch/in/CONUS_NWM_order_4_streams_sp.rds: 5c077aa0ae8ca934f7b03f7ea5cfb2b9
   1_fetch/in/CONUS_NWM_order_5_streams_sp.rds: efed5f618498a0bfa008f7c51c23ddad
