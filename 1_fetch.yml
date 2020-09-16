@@ -141,13 +141,42 @@ targets:
     command: gd_get('1_fetch/out/precip_data.nc.ind')
 
   # -- get river geometry --
+
   fetch_streamorder:
     command: viz_config[I('fetch_streamorder')]
 
+  # Sep 2020: had errors with the regular NWC service to get major river
+  #   geometries. So, JRead uploaded locally dataset and we used the
+  #   `gd_confirm_posted` process to manually include these in the pipeline.
+  1_fetch/in/CONUS_NWM_order_3_streams_sp.rds:
+    command: gd_get('1_fetch/in/CONUS_NWM_order_3_streams_sp.rds.ind')
+  1_fetch/in/CONUS_NWM_order_4_streams_sp.rds:
+    command: gd_get('1_fetch/in/CONUS_NWM_order_4_streams_sp.rds.ind')
+  1_fetch/in/CONUS_NWM_order_5_streams_sp.rds:
+    command: gd_get('1_fetch/in/CONUS_NWM_order_5_streams_sp.rds.ind')
+  1_fetch/in/CONUS_NWM_order_6_streams_sp.rds:
+    command: gd_get('1_fetch/in/CONUS_NWM_order_6_streams_sp.rds.ind')
+
+  conus_nwm_files:
+    command: c(
+      "1_fetch/in/CONUS_NWM_order_3_streams_sp.rds",
+      "1_fetch/in/CONUS_NWM_order_4_streams_sp.rds",
+      "1_fetch/in/CONUS_NWM_order_5_streams_sp.rds",
+      "1_fetch/in/CONUS_NWM_order_6_streams_sp.rds")
+  conus_nwm_files_to_use:
+    command: which_nwm_files_to_use(conus_nwm_files, fetch_streamorder)
+
   1_fetch/out/major_river_geometry.rds.ind:
-    command: fetch_major_river_geoms(ind_file=target_name,
-                               view_polygon=view_polygon,
-                               fetch_streamorder=fetch_streamorder)
+    command: fetch_major_river_geoms_from_in(
+      ind_file=target_name,
+      view_polygon=view_polygon,
+      conus_nwm_files=conus_nwm_files_to_use)
+    depends:
+      - '1_fetch/in/CONUS_NWM_order_3_streams_sp.rds'
+      - '1_fetch/in/CONUS_NWM_order_4_streams_sp.rds'
+      - '1_fetch/in/CONUS_NWM_order_5_streams_sp.rds'
+      - '1_fetch/in/CONUS_NWM_order_6_streams_sp.rds'
+
   1_fetch/out/major_river_geometry.rds:
     command: gd_get('1_fetch/out/major_river_geometry.rds.ind')
 
