@@ -134,21 +134,22 @@ process_precip_rasters <- function(ind_file, precip_spatial_ind,
                                    view_polygon,
                                    view_config) {
 
-  precip <- readRDS(sc_retrieve(precip_values_ind))
-
+  precip <- readRDS(sc_retrieve(precip_values_ind)) %>%
+    mutate(time_chr = as.character(time)) %>%
+    select(-time)
 
   precip_spatial <- readRDS(sc_retrieve(precip_spatial_ind)) %>%
     dplyr::select(-x, -y)
 
-  time <- dplyr::select(precip, time) %>%
+  time <- dplyr::select(precip, time_chr) %>%
     distinct() %>%
     arrange() %>%
     mutate(time_id = 1:n())
 
   in_per_mm <- 0.0393700787
 
-  precip <- left_join(precip, time, by = "time") %>%
-    dplyr::select(-time) %>%
+  precip <- left_join(precip, time_df, by = "time_chr") %>%
+    dplyr::select(-time_chr) %>%
     group_by(id) %>%
     arrange(time_id, .by_group = TRUE) %>%
     mutate(precip = cumsum(precip) * in_per_mm) %>%
@@ -176,12 +177,11 @@ process_precip_rasters <- function(ind_file, precip_spatial_ind,
       p_poly <- left_join(precip_spatial, filter(precip, fil), by = "id")
       return(list(fasterize(p_poly, raster_template, field = "precip", fun = r_fun)))},
       silent = TRUE)
-    return(t_step)
   }
 
   cl <- parallel::makeCluster(rep("localhost", 4), type = "SOCK")
 
-  rasters <- snow::parSapply(cl, setNames(as.list(time$time_id), time$time),
+  rasters <- snow::parSapply(cl, setNames(as.list(time_df$time_id), time_df$time_chr),
                              rasterize_precip,
                              precip_spatial = precip_spatial,
                              precip = precip,
