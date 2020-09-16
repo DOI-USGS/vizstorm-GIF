@@ -1,0 +1,12 @@
+version: 0.3.0
+name: 2_process/out/cleaned_streamdata.rds.ind
+type: file
+hash: 0444e6716975f1314a1543030814ea9b
+time: 2020-09-16 16:49:27 UTC
+depends:
+  2_process/out/normalized_streamdata.rds.ind: 0444e6716975f1314a1543030814ea9b
+fixed: eb85d649e0a9a5a42a6670a45a3a4e04
+code:
+  functions:
+    clean_streamdata: 3f8fd8b764b5c379a241118b49ed55ad
+
