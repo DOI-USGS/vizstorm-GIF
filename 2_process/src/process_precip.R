@@ -141,7 +141,7 @@ process_precip_rasters <- function(ind_file, precip_spatial_ind,
   precip_spatial <- readRDS(sc_retrieve(precip_spatial_ind)) %>%
     dplyr::select(-x, -y)
 
-  time <- dplyr::select(precip, time_chr) %>%
+  time_df <- dplyr::select(precip, time_chr) %>%
     distinct() %>%
     arrange() %>%
     mutate(time_id = 1:n())
