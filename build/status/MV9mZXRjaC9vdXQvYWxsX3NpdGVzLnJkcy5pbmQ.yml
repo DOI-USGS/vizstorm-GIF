@@ -1,19 +1,11 @@
 version: 0.3.0
 name: 1_fetch/out/all_sites.rds.ind
 type: file
-<<<<<<< HEAD
-hash: 81b03d120a20d97028cd24f62b9276cd
-time: 2020-09-16 20:38:48 UTC
-depends:
-  state_cds: 42f88802d1c1ff0ae3039d270024d5e3
-  dates: d4e1fd90add342981e3bc7c146000936
-=======
 hash: 49906b086ec6020d33344049994ab653
 time: 2020-09-17 12:19:52 UTC
 depends:
   state_cds: fe2a1323054a66f75eb1801e99b19538
   dates: fa9cf3f7fc6717386e90ecca6fda3e3d
->>>>>>> 235623e9d64cef7dd17f1226d7bf0a97fa116374
   stream_params: 089aebea962cdd0eb862e4ccd23302bd
 fixed: 7a8a5e2410f97f8c9bc1ebe4fbc32d84
 code:

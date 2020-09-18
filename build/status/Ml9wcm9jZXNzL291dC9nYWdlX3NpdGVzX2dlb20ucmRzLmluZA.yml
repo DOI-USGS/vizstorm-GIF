@@ -1,21 +1,12 @@
 version: 0.3.0
 name: 2_process/out/gage_sites_geom.rds.ind
 type: file
-<<<<<<< HEAD
-hash: 8a091ebac67ba16e16dca431016f0d5d
-time: 2020-09-16 20:46:03 UTC
-depends:
-  1_fetch/out/all_sites.rds.ind: 81b03d120a20d97028cd24f62b9276cd
-  view_polygon: 15f1fba457c89d4204419099c716ae1a
-  1_fetch/out/focus_geoms.rds.ind: e144142ac89264e0c781f846f49efe5d
-=======
 hash: de65bb92d01c3e8903d5389aa8ed1974
 time: 2020-09-17 12:20:09 UTC
 depends:
   1_fetch/out/all_sites.rds.ind: 49906b086ec6020d33344049994ab653
   view_polygon: 0ab1b0449882ced8e7633bc4bcc93e07
   1_fetch/out/focus_geoms.rds.ind: 8cc07e325dc508f1d537d258887d7804
->>>>>>> 235623e9d64cef7dd17f1226d7bf0a97fa116374
   proj_str: 5f87666bc5fbab654b4b356d59d9f9be
 fixed: f6e6abc523c78969b6d22ebc1a7d99eb
 code:
