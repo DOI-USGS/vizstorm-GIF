@@ -13,6 +13,6 @@ clean_streamdata <- function(ind_file, normalized_ind_file = '2_process/out/norm
   # )
 
   # save and push to Drive
-  saveRDS(normalized, as_data_file(ind_file))
+  saveRDS(cleaned, as_data_file(ind_file))
   gd_put(ind_file)
 }
