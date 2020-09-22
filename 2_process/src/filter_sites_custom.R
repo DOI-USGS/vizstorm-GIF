@@ -43,7 +43,10 @@ filter_sites_custom <- function(ind_file, sites_ind, dates) {
   # sites_info_subset <- sites_info_to_choose_from %>%
   #   sample_n(ifelse(nrow(sites_info_to_choose_from) >= 6, 6, nrow(sites_info_to_choose_from)))
 
-  sites_info_subset <- filter(sites_df, site_no %in% c('02378780','02378790','02362000','02374250', '02363000', '02370000', '02365470', '02359000', '02329600'))
+  sites_info_subset <- filter(sites_df, site_no %in%
+                                c('02378780','02378790','02362000','02374250', '02363000', '02370000',
+                                  '02365470', '02359000', '02329600', '02327100', '02365200', '02363000', '02374250',
+                                  '02351890'))
 
   # write the data file and the indicator file
   if(packageVersion('scipiper') < package_version('0.0.11')) stop('1-arg version of gd_put requires scipiper 0.0.11+')
