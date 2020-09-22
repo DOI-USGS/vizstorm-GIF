@@ -4,7 +4,7 @@ storm_code: al192020 # find the right code at https://www.nhc.noaa.gov/gis/archi
 stn_event: 304 # Can find code by looking at REST URLs here: https://stn.wim.usgs.gov/STNDataPortal/#
 dates:
   start: '2020-09-14 00:00:00'
-  end: '2020-09-18 12:00:00'
+  end: '2020-09-21 04:00:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 4 # hours elapsed between GIF frames
 
