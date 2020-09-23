@@ -45,7 +45,7 @@ timeline_style:
   line_lwd: 0.7
   line_lty: 3
   line_col: "gray45"
-  font_cex: 1.5
+  font_cex: 1.3
   font_col: "gray30"
 
 storm_line:
