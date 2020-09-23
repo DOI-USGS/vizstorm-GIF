@@ -1,10 +1,10 @@
 version: 0.3.0
 name: 1_fetch/out/major_cities.rds.ind
 type: file
-hash: e5bba9b09e0905a769561e8e467a0fc0
-time: 2020-09-17 04:23:33 UTC
+hash: e365f4661f2d06a13245381d3cd3a4f0
+time: 2020-09-23 13:31:35 UTC
 depends:
-  city_config: 92b72395dfbc8c8ac3a1aaa4bd066718
+  city_config: ab1c82c7cb8f7c5985aedf9f9c608ead
   view_polygon: 0ab1b0449882ced8e7633bc4bcc93e07
 fixed: 01bf7c791ffe6029df4bca9d98e9ce7b
 code:

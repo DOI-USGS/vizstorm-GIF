@@ -31,10 +31,10 @@ prep_timeline_fun <- function(DateTime, date_lims, timeline_config, spark_config
     points(loc_x, rep(loc_y, length(loc_x)), type = 'l', col = timeline_config$line_col,
            lwd = timeline_config$line_lwd, lty = timeline_config$line_lty)
 
-    # Add start/end date labels that are 2/3 the size of the moving date
+    # Add start/end date labels that are 80% the size of the moving date
     text(x=c(loc_start_x, loc_end_x), y=rep(loc_date_y, 2),
          labels=format(date_lims, "%b %d"), adj=c(0.5, 0), #pos = 1,
-         family=legend_text_cfg$family, cex = timeline_config$font_cex*0.66,
+         family=legend_text_cfg$family, cex = timeline_config$font_cex*0.8,
          col = timeline_config$line_col)
 
     # Add current date tracking symbol just above line
