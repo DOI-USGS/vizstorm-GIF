@@ -1,11 +1,11 @@
 version: 0.3.0
 name: 1_fetch/out/all_sites_really.rds.ind
 type: file
-hash: ad2d6579c96b53a1ad65f6c777a5bb1c
-time: 2020-09-18 19:48:50 UTC
+hash: 8d7cc0978d857771c0a01c3e7e494a42
+time: 2020-09-22 23:18:37 UTC
 depends:
   state_cds: fe2a1323054a66f75eb1801e99b19538
-  dates: 800b998fd5753745ed4cd29f74f84ae7
+  dates: 6a4fb8d7e4c9fe5969497ec6da4fcceb
   stream_params: 089aebea962cdd0eb862e4ccd23302bd
 fixed: 0feaaffe9c7952bfd8c249acb57bf00c
 code:
