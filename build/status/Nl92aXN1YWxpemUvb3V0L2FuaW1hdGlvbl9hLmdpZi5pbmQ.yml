@@ -1,0 +1,11 @@
+version: 0.3.0
+name: 6_visualize/out/animation_a.gif.ind
+type: file
+hash: b6be83b649de4df6f8c08afb6c89ea27
+time: 2020-09-23 18:29:59 UTC
+depends:
+  6_visualize/out/animation_a.gif: 8c21fdb1326e21fe229a399b8feca170
+fixed: b125b0bf925d0c6b35a036a2042d89b2
+code:
+  functions: {}
+

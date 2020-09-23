@@ -65,12 +65,12 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
 
     # plan text and legend coordinates
     user_coords <- par()$usr
-    x_title <- user_coords[1] + 0.535 * diff(user_coords[1:2])
-    x_text <- user_coords[1] + 0.535 * diff(user_coords[1:2])
-    y_title <- user_coords[3] + 0.49 * diff(user_coords[3:4])
-    y_text <- user_coords[3] + 0.43 * diff(user_coords[3:4])
-    x_dot <- x_text + 0.1635 * diff(user_coords[1:2])
-    y_dot <- y_text - 0.061 * diff(user_coords[3:4])
+    x_title <- user_coords[1] + 0.495 * diff(user_coords[1:2])
+    x_text <- user_coords[1] + 0.495 * diff(user_coords[1:2])
+    y_title <- user_coords[3] + 0.80 * diff(user_coords[3:4])
+    y_text <- user_coords[3] + 0.74 * diff(user_coords[3:4])
+    x_dot <- x_text + 0.1930 * diff(user_coords[1:2])
+    y_dot <- y_text - 0.055 * diff(user_coords[3:4])
     # plot text and legend
     text(x=x_title, y=y_title, labels="NATIONAL SCALE OBSERVING NETWORK", adj=c(0, 1),
          cex=2.2, col=legend_text_cfg$col, family = 'Oswald')
@@ -80,7 +80,7 @@ the southeastern US are shown on the map."
     text(x=x_text, y=y_text, labels=text_chars, adj=c(0, 1),
          cex=1.8, col=legend_text_cfg$col, family = 'abel')
 
-    points(x=x_dot, y=y_dot, pch = ltn_pch, col = ltn_col, cex = ltn_cex)
+    points(x=x_dot, y=y_dot, pch = ltn_pch, col = ltn_col, cex = ltn_cex*2.0)
   }
   return(plot_fun)
 }
@@ -93,15 +93,15 @@ prep_outro_readmore_fun <- function(outro_placement, legend_text_cfg, opacity=1)
 
     # plan text coordinates
     user_coords <- par()$usr
-    x_title <- user_coords[1] + 0.52 * diff(user_coords[1:2])
-    x_text <- user_coords[1] + 0.43 * diff(user_coords[1:2])
-    y_title <- user_coords[3] + 0.17 * diff(user_coords[3:4])
-    y_text <- user_coords[3] + 0.11 * diff(user_coords[3:4])
+    x_title <- user_coords[1] + 0.59 * diff(user_coords[1:2])
+    x_text <- user_coords[1] + 0.49 * diff(user_coords[1:2])
+    y_title <- user_coords[3] + 0.35 * diff(user_coords[3:4])
+    y_text <- user_coords[3] + 0.29 * diff(user_coords[3:4])
 
     # plot text and legend
     text(x=x_title, y=y_title, labels="STAY SAFE DURING FLOODS", adj=c(0, 1),
          cex=2.2, col=legend_text_cfg$col, family = 'Oswald')
-    text_chars <- "Learn more about USGS response to Florence at www.usgs.gov/florence"
+    text_chars <- "Learn more about USGS response to Sally at www.usgs.gov/sally"
     text(x=x_text, y=y_text, labels=text_chars, adj=c(0, 1),
          cex=1.5, col=legend_text_cfg$col, family = 'abel')
   }

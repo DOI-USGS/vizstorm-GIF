@@ -10,28 +10,6 @@ packages:
   - showtext
 
 targets:
-  rdgs_fun_1:
-    command: prep_outro_rdgs_fun(
-      rdg_ind="2_process/out/rapid_dep_sites_proj.rds.ind",
-      gage_color_config, outro_placement, legend_text_cfg, opacity=1)
-
-  6_visualize/tmp/gif_frame_a_z001_outro_rdgs_1.png:
-    command: create_animation_frame(
-      png_file=target_name,
-      config=storm_frame_config,
-      view_fun,
-      basemap_fun,
-      ocean_name_fun,
-      precip_raster_fun_a_{{last_task}},
-      storm_line_fun_a_{{last_task}},
-      storm_point_fun_a_{{last_task}},
-      rivers_fun,
-      gage_sites_fun_a_{{last_task}},
-      rdgs_fun_1,
-      legend_fun_a_{{last_task}},
-      timeline_fun_a_{{last_task}},
-      cities_fun,
-      watermark_fun)
 
   ltn_fun_1:
     command: prep_outro_allsites_fun(
@@ -50,11 +28,8 @@ targets:
       rivers_fun,
       ltn_fun_1,
       gage_sites_fun_a_{{last_task}},
-      rdgs_fun_1,
       legend_fun_a_{{last_task}},
-      timeline_fun_a_{{last_task}},
-      cities_fun,
-      watermark_fun)
+      cities_fun)
 
 
   readmore_fun_1:
@@ -73,15 +48,11 @@ targets:
       ltn_fun_1,
       readmore_fun_1,
       gage_sites_fun_a_{{last_task}},
-      rdgs_fun_1,
       legend_fun_a_{{last_task}},
-      timeline_fun_a_{{last_task}},
-      cities_fun,
-      watermark_fun)
+      cities_fun)
 
   6_outro_gif_tasks:
     depends:
-      - 6_visualize/tmp/gif_frame_a_z001_outro_rdgs_1.png
       - 6_visualize/tmp/gif_frame_a_z002_outro_ltn_1.png
       - 6_visualize/tmp/gif_frame_a_z003_outro_readmore_1.png
     command: sc_indicate(I('6_visualize/log/6_outro_gif_tasks.ind'), hash_depends=I(TRUE), depends_target=I('6_outro_gif_tasks'), depends_makefile=I('6_outro_gif_tasks.yml'))
