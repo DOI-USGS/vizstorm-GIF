@@ -22,6 +22,7 @@ sources:
   - 2_process/src/process_river_geoms.R
   - 2_process/src/normalize_streamdata.R
   - 2_process/src/clean_streamdata.R
+  - 2_process/src/reproject_rdgs.R
 
 targets:
 
@@ -37,6 +38,7 @@ targets:
       - 2_process/out/river_geoms.rds.ind
       - 2_process/out/normalized_streamdata.rds.ind
       - 2_process/out/cleaned_streamdata.rds.ind
+      - 2_process/out/rapid_dep_sites_proj.rds.ind
 
   # -- config --
   proj_str:
@@ -157,3 +159,12 @@ targets:
       normalized_ind_file = '2_process/out/normalized_streamdata.rds.ind')
   2_process/out/cleaned_streamdata.rds:
     command: gd_get('2_process/out/cleaned_streamdata.rds.ind')
+
+  # Project RDGs appropriately based on viz_config
+  2_process/out/rapid_dep_sites_proj.rds.ind:
+    command: reproject_rdgs(
+      ind_file = target_name,
+      rdg_ind_file = '1_fetch/out/rapid_dep_sites.rds.ind',
+      proj_str = proj_str)
+  2_process/out/rapid_dep_sites_proj.rds:
+    command: gd_get('2_process/out/rapid_dep_sites_proj.rds.ind')
