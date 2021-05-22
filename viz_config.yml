@@ -1,10 +1,10 @@
-storm_name: "Andres"
+storm_name: "Ana"
 # `storm_code` and `stn_event` can be commented out or deleted if there is not a storm track
-storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=20
+storm_code: al012021 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=20
 stn_event: 283
 dates:
-  start: '2018-09-12 00:00:00'
-  end: '2018-09-19 13:00:00'
+  start: '2021-05-21 00:00:00'
+  end: '2021-05-22 10:00:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 3 # hours elapsed between GIF frames
 
