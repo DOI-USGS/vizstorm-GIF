@@ -17,7 +17,7 @@ To set up the branch:
 1. Add a lib/cfg/gd_config.yml. See other storm branches and lib/cfg/gd_config-example.yml for examples.
 1. Add a viz_config.yml. See other storm branches and viz_config-example.yml for examples.
 1. Add a 2_process/src/filter_sites_custom.R file and function. See other storm branches and 2_process/src/filter_sites_custom-example.R for examples.
-1. Create a shared Google Drive folder for the cache in https://drive.google.com/drive/u/1/folders/169KSGMULk6eJxBTsIDQ0l9z65CueZEbF.
+1. Create a shared Google Drive folder for the cache in https://drive.google.com/drive/u/3/folders/1dOxz5NWbRizK9KgKDGjVlN3XZtutSOz4.
 1. Create or update your lib/cfg/gd_config.yml file by calling `scipiper::gd_config(config_file="lib/cfg/gd_config.yml", folder="drivefolderid")` with the new drivefolderid value from the Drive folder you just created. Note that there is an existing `gd_config-example.yml` at that location. You could choose to copy that and use it to create the `lib/cfg/gd_config.yml` instead of the function above.
 1. The first time you build a target or run a function that uses `gd_put()` or `gd_get()`, you'll be prompted in a browser to log in to your Google Account. This will create a an .httr-oauth file locally, which should continue to be .gitignored.
 
