@@ -1,6 +1,6 @@
 process_precip_spatial <- function(ind_file, precip_data_nc_ind, view_polygon) {
 
-  nc <- ncdf4::nc_open(sc_retrieve(precip_data_nc_ind))
+  nc <- ncdf4::nc_open(sc_retrieve(precip_data_nc_ind, remake_file = getOption("scipiper.remake_file")))
 
   lon <- ncdf4::ncvar_get(nc, "lon")
   lat <- ncdf4::ncvar_get(nc, "lat")
@@ -48,9 +48,9 @@ process_precip_spatial <- function(ind_file, precip_data_nc_ind, view_polygon) {
 process_precip_values <- function(ind_file, precip_data_nc_ind,
                                   precip_spatial_ind, dates, view_polygon) {
 
-  nc <- ncdf4::nc_open(sc_retrieve(precip_data_nc_ind))
+  nc <- ncdf4::nc_open(sc_retrieve(precip_data_nc_ind, remake_file = getOption("scipiper.remake_file")))
 
-  precip_spatial <- readRDS(sc_retrieve(precip_spatial_ind))
+  precip_spatial <- readRDS(sc_retrieve(precip_spatial_ind, remake_file = getOption("scipiper.remake_file")))
 
   t_vals <- get_time_nc(nc$dim$time)
 
@@ -134,10 +134,10 @@ process_precip_rasters <- function(ind_file, precip_spatial_ind,
                                    view_polygon,
                                    view_config) {
 
-  precip <- readRDS(sc_retrieve(precip_values_ind))
+  precip <- readRDS(sc_retrieve(precip_values_ind, remake_file = getOption("scipiper.remake_file")))
 
 
-  precip_spatial <- readRDS(sc_retrieve(precip_spatial_ind)) %>%
+  precip_spatial <- readRDS(sc_retrieve(precip_spatial_ind, remake_file = getOption("scipiper.remake_file"))) %>%
     dplyr::select(-x, -y)
 
   time <- dplyr::select(precip, time) %>%

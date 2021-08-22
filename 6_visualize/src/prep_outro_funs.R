@@ -2,7 +2,7 @@ prep_outro_rdgs_fun <- function(rdg_ind="1_fetch/out/rapid_dep_sites.rds.ind", g
   # project from lat/lon to plot coordinates. . this properly belongs in a 2_process step, but we're releasing tomorrow
   proj_str <- "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
 
-  rdgs <- readRDS(sc_retrieve(rdg_ind))
+  rdgs <- readRDS(sc_retrieve(rdg_ind, remake_file = getOption("scipiper.remake_file")))
 
   if(length(rdgs) ==  0) {
     plot_fun <- function(){ return() }
@@ -53,7 +53,7 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
                                     gage_col_config, outro_placement, legend_text_cfg, opacity=1) {
 
   # gage_sites_geom.rds.ind is already projected for us
-  allsites <- readRDS(sc_retrieve(allsites_ind))
+  allsites <- readRDS(sc_retrieve(allsites_ind, remake_file = getOption("scipiper.remake_file")))
 
   if(opacity != 1) stop("opacity other than 1 not yet supported")
 

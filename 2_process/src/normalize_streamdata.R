@@ -2,9 +2,9 @@
 
 normalize_streamdata <- function(ind_file, raw_ind_file, sites_ind_file, timesteps_ind_file, stage_gap_threshold=3){
 
-  streamdata <- readRDS(sc_retrieve(raw_ind_file)) # NWIS raw data
-  gage_sites <- readRDS(sc_retrieve(sites_ind_file))
-  timesteps <- readRDS(sc_retrieve(timesteps_ind_file))
+  streamdata <- readRDS(sc_retrieve(raw_ind_file, remake_file = getOption("scipiper.remake_file"))) # NWIS raw data
+  gage_sites <- readRDS(sc_retrieve(sites_ind_file, remake_file = getOption("scipiper.remake_file")))
+  timesteps <- readRDS(sc_retrieve(timesteps_ind_file, remake_file = getOption("scipiper.remake_file")))
 
   # remove duplicated columns
   if(any(duplicated(names(streamdata)))) {

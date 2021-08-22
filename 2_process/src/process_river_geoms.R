@@ -8,9 +8,9 @@ process_river_geoms <- function(ind_file,
   inland_threshold_sqkm <- river_geom_config$inland_threshold_sqkm
   simplification_tolerance_m <- river_geom_config$simplification_tolerance_m
 
-  sf_major_rivers <- readRDS(sc_retrieve(major_river_geoms_ind))
-  sf_gage_rivers <- readRDS(sc_retrieve(gage_river_geoms_ind))
-  sf_waterbodies <- readRDS(sc_retrieve(waterbody_geoms_ind))
+  sf_major_rivers <- readRDS(sc_retrieve(major_river_geoms_ind, remake_file = getOption("scipiper.remake_file")))
+  sf_gage_rivers <- readRDS(sc_retrieve(gage_river_geoms_ind, remake_file = getOption("scipiper.remake_file")))
+  sf_waterbodies <- readRDS(sc_retrieve(waterbody_geoms_ind, remake_file = getOption("scipiper.remake_file")))
 
   outlets <- filter(sf_major_rivers,
                     (terminalfl == 1 &
