@@ -134,14 +134,13 @@ process_precip_rasters <- function(ind_file, precip_spatial_ind,
                                    view_polygon,
                                    view_config) {
 
-  precip <- readRDS(sc_retrieve(precip_values_ind, remake_file = getOption("scipiper.remake_file"))) %>%
-    mutate(date_time = as.POSIXct(as.numeric(time), tz = "GMT", origin = "1970-01-01 00:00:00"))
+  precip <- readRDS(sc_retrieve(precip_values_ind, remake_file = getOption("scipiper.remake_file")))
 
 
   precip_spatial <- readRDS(sc_retrieve(precip_spatial_ind, remake_file = getOption("scipiper.remake_file"))) %>%
     dplyr::select(-x, -y)
 
-  time <- dplyr::select(precip, date_time) %>%
+  time <- dplyr::select(precip, time) %>%
     distinct() %>%
     arrange() %>%
     mutate(time_id = 1:n())
@@ -149,8 +148,8 @@ process_precip_rasters <- function(ind_file, precip_spatial_ind,
   in_per_mm <- 0.0393700787
 
   precip <- precip %>%
-    left_join(time, by = "date_time") %>%
-    dplyr::select(-time, -date_time) %>%
+    left_join(time, by = "time") %>%
+    dplyr::select(-time) %>%
     group_by(id) %>%
     arrange(time_id, .by_group = TRUE) %>%
     mutate(precip = cumsum(precip) * in_per_mm) %>%
