@@ -4,10 +4,7 @@ fetch_major_river_geoms <- function(ind_file, view_polygon, fetch_streamorder) {
 
   sf_major_rivers <- get_nhdplus(AOI = bbox_sf,
                            realization = "flowline",
-                           streamorder = fetch_streamorder$fetch_streamorder) %>%
-    group_by(gnis_id, streamorde) %>%
-    summarize() %>%
-    ms_simplify()
+                           streamorder = fetch_streamorder$fetch_streamorder)
 
   data_file <- as_data_file(ind_file)
   saveRDS(sf_major_rivers, data_file)
