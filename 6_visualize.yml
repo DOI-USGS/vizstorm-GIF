@@ -16,6 +16,7 @@ sources:
   - 6_visualize/src/create_gif_makefile.R
   - 6_visualize/src/prep_watermark_fun.R
   - 6_visualize/src/prep_basemap_fun.R
+  - 6_visualize/src/prep_precip_fun.R
   - 6_visualize/src/prep_view_fun.R
   - 6_visualize/src/prep_storm_line_fun.R
   - 6_visualize/src/prep_gage_sites_fun.R
@@ -209,9 +210,9 @@ targets:
     command: c(trial_storm_frames_01, trial_storm_frames_07, trial_storm_frames_13, trial_storm_frames_19)
   6_visualize/log/6_storm_gif_tasks.ind:
     command: loop_tasks(
-      task_plan=storm_gif_tasks, task_makefile='6_storm_gif_tasks.yml',
-      task_names=NULL,
-      num_tries=I(1), sleep_on_error=I(0))
+      task_plan = storm_gif_tasks, task_makefile = '6_storm_gif_tasks.yml',
+      task_names = NULL,
+      num_tries=I(1), sleep_on_error = I(0))
 
   6_outro_gif_tasks.yml:
     command: create_outro_gif_makefile(

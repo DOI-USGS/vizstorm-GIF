@@ -1,0 +1,14 @@
+version: 0.3.0
+name: 1_fetch/out/all_sites.rds.ind
+type: file
+hash: 4af48bc9ccb359dfb8a443fae8d7d49f
+time: 2021-08-23 21:57:08 UTC
+depends:
+  state_cds: 1920509d82d68b933e11999d8688b65d
+  dates: 6e436570e53d2f75c78f6649b965991b
+  stream_params: 089aebea962cdd0eb862e4ccd23302bd
+fixed: 7a8a5e2410f97f8c9bc1ebe4fbc32d84
+code:
+  functions:
+    fetch_sites_from_states: bd1ccd5d3d7aa6ce83c55d6e19f607cf
+

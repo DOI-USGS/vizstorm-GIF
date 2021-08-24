@@ -4,17 +4,17 @@ prep_watermark_fun <- function(watermark_file, x_pos = c('left','right'), y_pos 
   y_pos <- match.arg(y_pos)
 
   plot_fun <- function(){
-    watermark_frac <- 0.2 # fraction of the width of the figure
+    watermark_frac <- 0.1 # fraction of the width of the figure
     watermark_bump_frac <- 0.01
     coord_space <- par()$usr
 
     watermark_alpha <- 0.7
     d <- png::readPNG(watermark_file)
-    
+
     which_image <- d[,,4] != 0 # transparency
     d[which_image] <- watermark_alpha
     logo <- which(d[,,4] != 0 )
-    
+
     d[,,4][logo] <- 1 # make the logo part opaque
     coord_width <- coord_space[2]-coord_space[1]
     coord_height <- coord_space[4]-coord_space[3]

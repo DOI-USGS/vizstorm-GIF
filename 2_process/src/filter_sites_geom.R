@@ -8,8 +8,8 @@
 #' @param proj_str string of projection to transform to
 filter_sites_geom <- function(ind_file, sites_ind, view_polygon, focus_geoms_ind, proj_str) {
 
-  focus_geoms <- readRDS(sc_retrieve(focus_geoms_ind))
-  sites_df <- readRDS(sc_retrieve(sites_ind))
+  focus_geoms <- readRDS(sc_retrieve(focus_geoms_ind, remake_file = getOption("scipiper.remake_file")))
+  sites_df <- readRDS(sc_retrieve(sites_ind, remake_file = getOption("scipiper.remake_file")))
 
   # get sites as sf object
   sites_df <- sites_df %>%

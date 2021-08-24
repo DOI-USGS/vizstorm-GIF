@@ -1,7 +1,7 @@
 # this function contains hard-coded, ~manual removal of specific points that we don't believe
 clean_streamdata <- function(ind_file, normalized_ind_file = '2_process/out/normalized_streamdata.rds.ind') {
 
-  normalized <- readRDS(sc_retrieve(normalized_ind_file))
+  normalized <- readRDS(sc_retrieve(normalized_ind_file, remake_file = getOption("scipiper.remake_file")))
   cleaned <- normalized
   # cleaned <- mutate(
   #   normalized,

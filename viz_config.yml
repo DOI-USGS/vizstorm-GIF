@@ -1,22 +1,24 @@
-storm_name: "Florence"
+storm_name: "Henri"
 # `storm_code` and `stn_event` can be commented out or deleted if there is not a storm track
-storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
+storm_code: al082021 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
 stn_event: 283
 dates:
-  start: '2018-09-12 00:00:00'
-  end: '2018-09-19 13:00:00'
+  start: '2021-08-21 0:00:00'
+  end: '2021-08-23 16:00:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
-frame_step: 3 # hours elapsed between GIF frames
+frame_step: 2 # hours elapsed between GIF frames
 
 # view, dimensions
-bbox: [-83, 30.4, -67, 38.5]
+bbox: [-78, 37, -60, 47]
+#bbox: [-78, 39.5, -60, 45] # zoom option centered around MA
 projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
+#projection: "+proj=utm +zone=19 +datum=WGS84"
 height: 512
 width: 1024
 
 # styling
-precip_cols: ["#FAFBF399", "#F0F8E3CC", "#D4E9CAE6", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
-precip_bin: 4 # inches per bin
+precip_cols: ["#D4E9CAE6", "#BBE0CE",  "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
+precip_bin: 3 # inches per bin
 gage_flood_col: "#175676"
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
@@ -31,8 +33,7 @@ major_river_col: "#1874cd"
 gage_river_col: "#5d9ddc"
 lake_col: "#a2c7eb"
 marsh_col: NA
-ocean_col: "#e7f1fa"
-storm_line_col: "grey70"
+ocean_col: "#EBF6F8"
 legend_text:
   cex: 1.5
   col: "#161616"
@@ -52,7 +53,7 @@ timeline_style:
 storm_line:
   dark_col: "grey10"
   light_col: "grey60"
-  tail_length: 25 # n storm point locations behind the current date time to show the tail
+  tail_length: 45 # n storm point locations behind the current date time to show the tail
   fade_i: 3 # n storm points between the next colored storm points (smaller fade_i = smoother fade)
 
 # introductory animation
@@ -69,12 +70,12 @@ frame_delay_cs: 14 # delay between frames of the gif animation DURING storm fram
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
 component_placement:
   watermark_x_pos: "left"
-  watermark_y_pos: "top"
+  watermark_y_pos: "bottom"
   datetime:
     # above watermark for now
     x1: 0.005
     y1: 0.85
-  legend_x_pos: "left"
+  legend_x_pos: "right"
   legend_y_pos: "bottom"
   sparks:
     xleft: 0.70 # as percentage of figure width
@@ -94,8 +95,8 @@ component_placement:
 
 ocean_name_placement:
   -
-    x1: 0.4
-    y1: 0.3
+    x1: 0.34
+    y1: 0.05
     label: 'Atlantic Ocean'
 
 focus_geoms:
@@ -114,9 +115,9 @@ secondary_geoms:
     xlim: [275, 300]
     ylim: [16, 30]
   -
-    # Mexico
+    # Canada
     database: "mapdata::worldHires"
-    regions: "Mexico"
+    regions: "Canada"
 
 cities:
   # parameters for general coloring of the cities
@@ -137,15 +138,15 @@ cities:
     #-
     #  name: "Richmond VA"
     #  text_angle: 170
-    -
-      name: "Raleigh NC"
-      text_angle: 170
-    -
-      name: "Charlotte NC"
-      text_angle: 170
-    -
-      name: "Columbia SC"
-      text_angle: 170
+    #-
+    #  name: "Raleigh NC"
+    #  text_angle: 170
+    #-
+    #  name: "Charlotte NC"
+    #  text_angle: 170
+    #-
+    #  name: "Columbia SC"
+    #  text_angle: 170
     #-
     #  name: "Savannah GA"
     #  text_angle: 170
@@ -161,25 +162,25 @@ cities:
     #  long: -75.6228
     #  dot_cex: 0.8
     #  text_cex: 0.8
-    -
-      name: "New Bern NC"
-      news: "CBS"
-      dot_cex: 0.8
-      text_cex: 0.8
-      lat: 35.107686
-      long: -77.051366
-    -
-      name: "Wilmington NC"
-      news: "CBS"
-      dot_cex: 0.8
-      text_cex: 0.8
-    -
-      name: "Myrtle Beach SC"
-      news: "CBS"
-      lat: 33.6917
-      long: -78.8875
-      dot_cex: 0.8
-      text_cex: 0.8
+    #-
+    #  name: "New Bern NC"
+    #  news: "CBS"
+    #  dot_cex: 0.8
+    #  text_cex: 0.8
+    #  lat: 35.107686
+    #  long: -77.051366
+    #-
+    #  name: "Wilmington NC"
+    #  news: "CBS"
+    #  dot_cex: 0.8
+    #  text_cex: 0.8
+    #-
+    #  name: "Myrtle Beach SC"
+    #  news: "CBS"
+    #  lat: 33.6917
+    #  long: -78.8875
+    #  dot_cex: 0.8
+    #  text_cex: 0.8
     #-
     #  name: "Charleston SC"
     #  news: "google/crisismap"
@@ -204,8 +205,12 @@ cities:
     - "Oklahoma City OK"
     - "Fort Worth TX"
     - "Dallas TX"
+    - "Detroit MI"
     - "Chicago IL"
     - "Baltimore MD"
+    - "New York NY"
+    - "Philadelphia PA"
+    - "Boston MA"
     - "WASHINGTON DC"
     - "Indianapolis IN"
     - "Nashville TN"

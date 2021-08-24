@@ -1,5 +1,5 @@
 
-fetch_read <- function(ind_file) readRDS(sc_retrieve(ind_file))
+fetch_read <- function(ind_file) readRDS(sc_retrieve(ind_file, remake_file = getOption("scipiper.remake_file")))
 
 get_date_limits <- function(timestep_ind) {
   timesteps_utc <- fetch_read(timestep_ind)
@@ -22,7 +22,7 @@ existing_png_tasks <- function(path='6_visualize/tmp', pattern='a_[[:digit:]]{8}
 
 timesteps_to_build <- function(timestep_ind, frame_step = 1) {
 
-  all_timestep <- readRDS(sc_retrieve(timestep_ind))
+  all_timestep <- readRDS(sc_retrieve(timestep_ind, remake_file = getOption("scipiper.remake_file")))
 
   timestep <- all_timestep[seq(1, by = frame_step, to = length(all_timestep))] %>%
     # ** skip the first frame! it is empty for sparks and causes a nasty blink between intro and storm frames:
