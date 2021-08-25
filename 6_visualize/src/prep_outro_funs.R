@@ -41,7 +41,7 @@ prep_outro_rdgs_fun <- function(rdg_ind="1_fetch/out/rapid_dep_sites.rds.ind", g
     # plot text and legend
     text(x=x_title, y=y_title, labels="RAPID RESPONSE TO FLOODS", adj=c(0, 1),
          cex=2.2, col=legend_text_cfg$col, family = 'Oswald')
-    text_chars <- "During floods, USGS rapidly deploys extra gages\n(orange dots   ) to help protect life and property."
+    text_chars <- "During floods, USGS rapidly deploys extra sensors\n(orange dots   ) to help protect life and property."
     text(x=x_text, y=y_text, labels=text_chars, adj=c(0, 1),
          cex=1.8, col=legend_text_cfg$col, family = 'abel')
     points(x=x_dot, y=y_dot, pch = stn_pch, col = stn_col, cex = stn_cex)
