@@ -1,7 +1,7 @@
 storm_name: "Henri"
 # `storm_code` and `stn_event` can be commented out or deleted if there is not a storm track
 storm_code: al082021 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
-stn_event: 283
+stn_event: 310 # Can find code by looking at REST URLs here: https://stn.wim.usgs.gov/STNDataPortal/#
 dates:
   start: '2021-08-21 00:00:00'
   end: '2021-08-24 16:00:00'
