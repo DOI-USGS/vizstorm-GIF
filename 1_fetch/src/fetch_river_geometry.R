@@ -1,4 +1,4 @@
-fetch_major_river_geoms <- function(ind_file, view_polygon, fetch_streamorder, proj_str) {
+fetch_major_river_geoms <- function(ind_file, view_polygon, fetch_streamorder) {
 
   bbox_sf <- st_as_sfc(st_bbox(view_polygon))
 
@@ -11,7 +11,7 @@ fetch_major_river_geoms <- function(ind_file, view_polygon, fetch_streamorder, p
   gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
 }
 
-fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasqkm, proj_str) {
+fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasqkm) {
 
   bbox_sf <- st_as_sfc(st_bbox(view_polygon))
 
@@ -54,9 +54,12 @@ fetch_gage_river_geoms <- function(ind_file, view_polygon, sites_ind) {
 }
 
 name_adder <- function(x, updn) {
+  browser()
   lapply(seq_along(x), function(y, n, r, updn) {
+    print(y)
     mutate(y[[r]], site_id = n[[r]]) %>%
-    mutate(up_down = updn)},
+    mutate(up_down = updn)
+    },
     n = names(x), y = x, updn = updn)
 }
 
@@ -73,6 +76,5 @@ navigate_nldi <- function(f_id, f_source, mode = "UM",
   if(!is.null(distance)) {
     url <- paste0(url, "?distance=", distance)
   }
-
   return(rawToChar(httr::GET(url)$content))
 }

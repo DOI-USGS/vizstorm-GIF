@@ -1,15 +1,14 @@
 version: 0.3.0
 name: 2_process/out/river_geoms.rds.ind
 type: file
-hash: 9e33623061920e04e5d7238b08692b3f
-time: 2021-08-25 07:10:25 UTC
+hash: c49e2d32ad2868212f79a020fa75cb98
+time: 2021-08-25 15:26:00 UTC
 depends:
   1_fetch/out/major_river_geometry.rds.ind: 4e9fb3f6b6e7f13693f9723413276b24
-  1_fetch/out/gage_river_geometry.rds.ind: 1dffb95ca4e3e4624142fc7b56d5a85a
   1_fetch/out/waterbodies.rds.ind: ceacecb8ed3a435578ac8e821d800d7b
   river_geom_config: 1df4f9645eae56f7a9c6aadcbde6f602
 fixed: d548f0f8fe0d75d923bfc74462f3bae0
 code:
   functions:
-    process_river_geoms: 0c1e757283e6c7a0f66a048c3ea45dfb
+    process_river_geoms: 26803a36647cb914e51df048a6f394ba
 

@@ -132,7 +132,6 @@ targets:
     command: process_river_geoms(
       ind_file=target_name,
       major_river_geoms_ind='1_fetch/out/major_river_geometry.rds.ind',
-      gage_river_geoms_ind='1_fetch/out/gage_river_geometry.rds.ind',
       waterbody_geoms_ind='1_fetch/out/waterbodies.rds.ind',
       river_geom_config)
   2_process/out/river_geoms.rds:

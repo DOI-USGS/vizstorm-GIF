@@ -121,7 +121,7 @@ targets:
   rivers_cfg:
     command: viz_config[I(c('major_river_col','gage_river_col','lake_col','marsh_col'))]
   rivers_fun:
-    command: prep_rivers_fun('2_process/out/river_geoms.rds.ind', rivers_cfg, proj_str)
+    command: prep_rivers_fun('2_process/out/river_geoms.rds.ind', rivers_cfg)
 
   watermark_fun:
     command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png', x_pos = watermark_x_pos, y_pos = watermark_y_pos)

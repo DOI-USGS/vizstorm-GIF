@@ -40,7 +40,7 @@ targets:
       - 1_fetch/out/streamdata.rds.ind
       - 1_fetch/out/precip_data.nc.ind
       - 1_fetch/out/major_river_geometry.rds.ind
-      - 1_fetch/out/gage_river_geometry.rds.ind
+      #- 1_fetch/out/gage_river_geometry.rds.ind
       - 1_fetch/out/waterbodies.rds.ind
       - 1_fetch/out/major_cities.rds.ind
       - 1_fetch/out/rapid_dep_sites.rds.ind
@@ -149,8 +149,7 @@ targets:
   1_fetch/out/major_river_geometry.rds.ind:
     command: fetch_major_river_geoms(ind_file=target_name,
                                view_polygon=view_polygon,
-                               fetch_streamorder=fetch_streamorder,
-      proj_str = proj_str)
+                               fetch_streamorder=fetch_streamorder)
   1_fetch/out/major_river_geometry.rds:
     command: gd_get('1_fetch/out/major_river_geometry.rds.ind')
 
@@ -168,8 +167,7 @@ targets:
   1_fetch/out/waterbodies.rds.ind:
     command: fetch_waterbody_geoms(ind_file=target_name,
                                    view_polygon=view_polygon,
-                                   fetch_waterbody_areasqkm=fetch_waterbody_areasqkm,
-      proj_str = proj_str)
+                                   fetch_waterbody_areasqkm=fetch_waterbody_areasqkm)
   1_fetch/out/waterbodies.rds:
     command: gd_get('1_fetch/out/waterbodies.rds.ind')
 
