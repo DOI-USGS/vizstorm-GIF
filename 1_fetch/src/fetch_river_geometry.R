@@ -1,4 +1,4 @@
-fetch_major_river_geoms <- function(ind_file, view_polygon, fetch_streamorder) {
+fetch_major_river_geoms <- function(ind_file, view_polygon, fetch_streamorder, proj_str) {
 
   bbox_sf <- st_as_sfc(st_bbox(view_polygon))
 
@@ -11,7 +11,7 @@ fetch_major_river_geoms <- function(ind_file, view_polygon, fetch_streamorder) {
   gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
 }
 
-fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasqkm) {
+fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasqkm, proj_str) {
 
   bbox_sf <- st_as_sfc(st_bbox(view_polygon))
 

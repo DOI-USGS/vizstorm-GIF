@@ -149,7 +149,8 @@ targets:
   1_fetch/out/major_river_geometry.rds.ind:
     command: fetch_major_river_geoms(ind_file=target_name,
                                view_polygon=view_polygon,
-                               fetch_streamorder=fetch_streamorder)
+                               fetch_streamorder=fetch_streamorder,
+      proj_str = proj_str)
   1_fetch/out/major_river_geometry.rds:
     command: gd_get('1_fetch/out/major_river_geometry.rds.ind')
 
@@ -167,7 +168,8 @@ targets:
   1_fetch/out/waterbodies.rds.ind:
     command: fetch_waterbody_geoms(ind_file=target_name,
                                    view_polygon=view_polygon,
-                                   fetch_waterbody_areasqkm=fetch_waterbody_areasqkm)
+                                   fetch_waterbody_areasqkm=fetch_waterbody_areasqkm,
+      proj_str = proj_str)
   1_fetch/out/waterbodies.rds:
     command: gd_get('1_fetch/out/waterbodies.rds.ind')
 
