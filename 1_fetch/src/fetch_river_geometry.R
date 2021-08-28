@@ -3,11 +3,8 @@ fetch_major_river_geoms <- function(ind_file, view_polygon, fetch_streamorder) {
   bbox_sf <- st_as_sfc(st_bbox(view_polygon))
 
   sf_major_rivers <- get_nhdplus(AOI = bbox_sf,
-                                 realization = "flowline",
-                                 streamorder = fetch_streamorder$fetch_streamorder) %>%
-    group_by(gnis_id, streamorde) %>%
-    summarize() %>%
-    ms_simplify()
+                           realization = "flowline",
+                           streamorder = fetch_streamorder$fetch_streamorder)
 
   data_file <- as_data_file(ind_file)
   saveRDS(sf_major_rivers, data_file)
@@ -19,7 +16,7 @@ fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasq
   bbox_sf <- st_as_sfc(st_bbox(view_polygon))
 
   sf_waterbodies <- get_waterbodies(AOI = bbox_sf,
-                                    buffer = 0) %>%
+                                 buffer = 0) %>%
     filter(areasqkm > fetch_waterbody_areasqkm$fetch_waterbody_areasqkm) %>%
     ms_simplify()
 
@@ -30,7 +27,7 @@ fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasq
 
 fetch_gage_river_geoms <- function(ind_file, view_polygon, sites_ind) {
 
-  sites <- readRDS(sc_retrieve(sites_ind))
+  sites <- readRDS(sc_retrieve(sites_ind, remake_file = getOption("scipiper.remake_file")))
 
   if(nrow(sites) > 30) {
     set.seed(42)
@@ -57,9 +54,12 @@ fetch_gage_river_geoms <- function(ind_file, view_polygon, sites_ind) {
 }
 
 name_adder <- function(x, updn) {
+  browser()
   lapply(seq_along(x), function(y, n, r, updn) {
+    print(y)
     mutate(y[[r]], site_id = n[[r]]) %>%
-    mutate(up_down = updn)},
+    mutate(up_down = updn)
+    },
     n = names(x), y = x, updn = updn)
 }
 
@@ -76,6 +76,5 @@ navigate_nldi <- function(f_id, f_source, mode = "UM",
   if(!is.null(distance)) {
     url <- paste0(url, "?distance=", distance)
   }
-
   return(rawToChar(httr::GET(url)$content))
 }

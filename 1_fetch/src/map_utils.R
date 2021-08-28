@@ -27,7 +27,7 @@ bbox_to_polygon <- function(bbox, bbox_crs = "+init=epsg:4326", return_crs = NUL
 #' @details if `projection` is missing, it is assumed to be "+init=epsg:4326"
 #' @return an sf polygon that contains the `bbox` specfied at the aspect ratio specified
 as_view_polygon <- function(view_config) {
-  
+
   # the projected polygon specified by the user
   bbox_projected <- bbox_to_polygon(bbox = unlist(view_config$bbox), return_crs = view_config$projection)
   poly_bbox <- as.numeric(sf::st_bbox(bbox_projected))
@@ -41,7 +41,7 @@ as_view_polygon <- function(view_config) {
 
   } else { # taller than it should be
     # new x dimension
-    new_x_diff <- diff(poly_bbox[c(2,4)]) * aspect 
+    new_x_diff <- diff(poly_bbox[c(2,4)]) * aspect
     # new x dimension - existing y dimension
     x_buffer <- new_x_diff - diff(poly_bbox[c(1,3)])
     # subtract half the buffer from min x, add half to max x
@@ -65,7 +65,8 @@ post_view_polygon <- function(ind_file, view_config) {
 
 #' download and read in the view polygon
 get_view_polygon <- function(view_poly_ind) {
-  readRDS(sc_retrieve(view_poly_ind))
+  readRDS(sc_retrieve(view_poly_ind,
+                      remake_file = getOption("scipiper.remake_file")))
 }
 
 
