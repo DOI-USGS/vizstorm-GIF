@@ -193,6 +193,11 @@ process_precip_rasters <- function(ind_file, precip_spatial_ind,
 
   parallel::stopCluster(cl)
 
+  # Name the rasters the same as the timestep they represent
+  #   8.23.2021: this part used to just happen and downstream
+  #   steps depend on the naming to be like this.
+  names(rasters) <- as.character(time$time)
+
   data_file <- as_data_file(ind_file)
   saveRDS(rasters, data_file)
   gd_put(remote_ind=ind_file, local_source=data_file, mock_get='none')
