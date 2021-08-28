@@ -13,8 +13,8 @@ bbox: [-80, 36, -60, 43.7]
 #bbox: [-78, 39.5, -60, 45] # zoom option centered around MA
 projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
 #projection: "+proj=utm +zone=19 +datum=WGS84"
-height: 512
-width: 1024
+height: 600
+width: 1200
 
 # styling
 precip_cols: ["#D4E9CAE6", "#BBE0CE",  "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E",  "#41234D"]
