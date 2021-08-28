@@ -5,7 +5,7 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
   y_pos <- match.arg(y_pos)
 
   if(is.na(DateTime)) {
-    timesteps <- readRDS(sc_retrieve(timesteps_ind))
+    timesteps <- readRDS(sc_retrieve(timesteps_ind), remake_file = getOption("scipiper.remake_file"))
     DateTime <- timesteps[1]
     rm(timesteps)
   }
@@ -48,7 +48,7 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
 
     # plot precip bins and precip label
     precip_txt_y <- ybottom+2*bin_h*0.8
-    text(x_edge, precip_txt_y, labels = 'NOAA total rainfall amount (inches)', pos = txt_pos,
+    text(x_edge, precip_txt_y, labels = 'NOAA total rainfall (inches)', pos = txt_pos,
          cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
     if (x_pos == 'left'){
       bin_j <- 1:nrow(precip_bins)
@@ -68,7 +68,7 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
 
     # plot gage points legend
     gage_caveat_y <- ybottom+5*bin_h*1.02
-    text(x_edge, gage_caveat_y, labels = 'Selected USGS stream gages', pos = txt_pos,
+    text(x_edge, gage_caveat_y, labels = 'Select USGS stream gages', pos = txt_pos,
          cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
     normal_y <- ybottom+4*bin_h
     points(dot_x, normal_y+center_to_txt_y, pch = 21, bg = legend_styles$gage_norm_col, col = NA, cex = 2)

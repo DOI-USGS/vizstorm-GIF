@@ -1,7 +1,7 @@
 
 prep_rivers_fun <- function(river_ind, rivers_cfg){
 
-  sf_rivers <- readRDS(sc_retrieve(river_ind))
+  sf_rivers <- readRDS(sc_retrieve(river_ind), remake_file = getOption("scipiper.remake_file"))
   marsh_fcodes <- c(46600, 44601, 44602)
 
   plot_fun <- function(){

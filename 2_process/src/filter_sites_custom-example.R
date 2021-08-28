@@ -5,7 +5,7 @@
 filter_sites_custom <- function(ind_file, sites_ind) {
 
   # get sites data frame with NWS data
-  sites_df <- readRDS(sc_retrieve(sites_ind))
+  sites_df <- readRDS(sc_retrieve(sites_ind), remake_file = getOption("scipiper.remake_file"))
 
   ### filter sites_df here ###
   sites_info_subset <- sites_df

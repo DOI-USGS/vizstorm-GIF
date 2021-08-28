@@ -1,6 +1,6 @@
 process_precip_spatial <- function(ind_file, precip_data_nc_ind, view_polygon) {
 
-  nc <- ncdf4::nc_open(sc_retrieve(precip_data_nc_ind))
+  nc <- ncdf4::nc_open(sc_retrieve(precip_data_nc_ind, remake_file = getOption("scipiper.remake_file")))
 
   lon <- ncdf4::ncvar_get(nc, "lon")
   lat <- ncdf4::ncvar_get(nc, "lat")
@@ -48,9 +48,9 @@ process_precip_spatial <- function(ind_file, precip_data_nc_ind, view_polygon) {
 process_precip_values <- function(ind_file, precip_data_nc_ind,
                                   precip_spatial_ind, dates, view_polygon) {
 
-  nc <- ncdf4::nc_open(sc_retrieve(precip_data_nc_ind))
+  nc <- ncdf4::nc_open(sc_retrieve(precip_data_nc_ind, remake_file = getOption("scipiper.remake_file")))
 
-  precip_spatial <- readRDS(sc_retrieve(precip_spatial_ind))
+  precip_spatial <- readRDS(sc_retrieve(precip_spatial_ind, remake_file = getOption("scipiper.remake_file")))
 
   t_vals <- get_time_nc(nc$dim$time)
   # Strip out the `dim` attribute to avoid binding issues later,
@@ -137,10 +137,10 @@ process_precip_rasters <- function(ind_file, precip_spatial_ind,
                                    view_polygon,
                                    view_config) {
 
-  precip <- readRDS(sc_retrieve(precip_values_ind))
+  precip <- readRDS(sc_retrieve(precip_values_ind, remake_file = getOption("scipiper.remake_file")))
 
 
-  precip_spatial <- readRDS(sc_retrieve(precip_spatial_ind)) %>%
+  precip_spatial <- readRDS(sc_retrieve(precip_spatial_ind, remake_file = getOption("scipiper.remake_file"))) %>%
     dplyr::select(-x, -y)
 
   time <- dplyr::select(precip, time) %>%
@@ -150,7 +150,8 @@ process_precip_rasters <- function(ind_file, precip_spatial_ind,
 
   in_per_mm <- 0.0393700787
 
-  precip <- left_join(precip, time, by = "time") %>%
+  precip <- precip %>%
+    left_join(time, by = "time") %>%
     dplyr::select(-time) %>%
     group_by(id) %>%
     arrange(time_id, .by_group = TRUE) %>%
@@ -184,7 +185,7 @@ process_precip_rasters <- function(ind_file, precip_spatial_ind,
 
   cl <- parallel::makeCluster(rep("localhost", 4), type = "SOCK")
 
-  rasters <- snow::parSapply(cl, setNames(as.list(time$time_id), time$time),
+  rasters <- snow::parSapply(cl, setNames(as.list(time$time_id), time$date_time),
                              rasterize_precip,
                              precip_spatial = precip_spatial,
                              precip = precip,

@@ -3,13 +3,13 @@
 interpolate_storm_points <- function(ind_file, timesteps_ind, coarse_points_ind) {
 
   # read in the coarse points storm track
-  coarse_points <- readRDS(sc_retrieve(coarse_points_ind))
+  coarse_points <- readRDS(sc_retrieve(coarse_points_ind, remake_file = getOption("scipiper.remake_file")))
 
   if(is.null(coarse_points)) {
     coords_interp_sf <- NULL
   } else {
     # get the vector of timepoints we want to include
-    timesteps <- readRDS(sc_retrieve(timesteps_ind))
+    timesteps <- readRDS(sc_retrieve(timesteps_ind, remake_file = getOption("scipiper.remake_file")))
 
     # interpolate the already-projected points to the timestamps we actually want
     coords_interp <- data_frame(
