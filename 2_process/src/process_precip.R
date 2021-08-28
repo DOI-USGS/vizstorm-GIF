@@ -53,6 +53,9 @@ process_precip_values <- function(ind_file, precip_data_nc_ind,
   precip_spatial <- readRDS(sc_retrieve(precip_spatial_ind))
 
   t_vals <- get_time_nc(nc$dim$time)
+  # Strip out the `dim` attribute to avoid binding issues later,
+  #   see https://github.com/r-lib/vctrs/issues/1329
+  dim(t_vals) <- NULL
 
   start_date <- as.POSIXct(dates$start, tz = 'UTC')
   end_date <- as.POSIXct(dates$end, tz = 'UTC')
