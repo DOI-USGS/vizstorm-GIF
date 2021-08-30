@@ -1,24 +1,24 @@
 storm_name: "Henri"
 # `storm_code` and `stn_event` can be commented out or deleted if there is not a storm track
 storm_code: al082021 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
-stn_event: 283
+stn_event: 310 # Can find code by looking at REST URLs here: https://stn.wim.usgs.gov/STNDataPortal/#
 dates:
-  start: '2021-08-21 0:00:00'
-  end: '2021-08-23 16:00:00'
+  start: '2021-08-21 00:00:00'
+  end: '2021-08-24 16:00:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
-frame_step: 2 # hours elapsed between GIF frames
+frame_step: 1 # hours elapsed between GIF frames
 
 # view, dimensions
-bbox: [-78, 37, -60, 47]
+bbox: [-80, 36, -60, 43.7]
 #bbox: [-78, 39.5, -60, 45] # zoom option centered around MA
 projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
 #projection: "+proj=utm +zone=19 +datum=WGS84"
-height: 512
-width: 1024
+height: 600
+width: 1200
 
 # styling
-precip_cols: ["#D4E9CAE6", "#BBE0CE",  "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
-precip_bin: 3 # inches per bin
+precip_cols: ["#D4E9CAE6", "#BBE0CE",  "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E",  "#41234D"]
+precip_bin: 2 # inches per bin
 gage_flood_col: "#175676"
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
@@ -31,7 +31,7 @@ hurricane_col_names: ["Tropical Storm %s", "Hurricane %s (Cat1)", "Hurricane %s 
 storm_line_col: "grey30"
 major_river_col: "#1874cd"
 gage_river_col: "#5d9ddc"
-lake_col: "#a2c7eb"
+lake_col: "#EBF6F8"
 marsh_col: NA
 ocean_col: "#EBF6F8"
 legend_text:
@@ -47,7 +47,7 @@ timeline_style:
   line_lwd: 0.7
   line_lty: 3
   line_col: "gray45"
-  font_cex: 1
+  font_cex: 1.5
   font_col: "gray30"
 
 storm_line:
@@ -70,20 +70,20 @@ frame_delay_cs: 14 # delay between frames of the gif animation DURING storm fram
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
 component_placement:
   watermark_x_pos: "left"
-  watermark_y_pos: "bottom"
+  watermark_y_pos: "top"
   datetime:
     # above watermark for now
     x1: 0.005
     y1: 0.85
-  legend_x_pos: "right"
-  legend_y_pos: "bottom"
+  legend_x_pos: "left"
+  legend_y_pos: "top"
   sparks:
-    xleft: 0.70 # as percentage of figure width
-    xright: 0.98 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-    ybottom: 0.30 # as percentage of figure height
-    ytop: 0.93 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-    ytimeline: 0.24 # y location of timeline; this will use xright and xleft from sparks
-    ytimeline_text: 0.205 # y location of timeline dates (0.035 below line has worked well)
+    xleft: 0.67 # as percentage of figure width
+    xright: 0.96 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    ybottom: 0.075 # as percentage of figure height
+    ytop: 0.82 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    ytimeline: 0.06 # y location of timeline; this will use xright and xleft from sparks
+    ytimeline_text: 0.025 # y location of timeline dates (0.035 below line has worked well)
   outro:
     # outro text & legend roughly, but not exactly, fit where the sparklines were
     xleft: 0.55
@@ -95,8 +95,8 @@ component_placement:
 
 ocean_name_placement:
   -
-    x1: 0.34
-    y1: 0.05
+    x1: 0.5
+    y1: 0.15
     label: 'Atlantic Ocean'
 
 focus_geoms:
@@ -203,6 +203,7 @@ cities:
     - "Richmond VA"
     - "Memphis TN"
     - "Oklahoma City OK"
+    - "Columbus OH"
     - "Fort Worth TX"
     - "Dallas TX"
     - "Detroit MI"

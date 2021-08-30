@@ -58,7 +58,8 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_track_cfg, storm
         "DateTime = I(NA),",
         "x_pos = legend_x_pos,",
         "y_pos = legend_y_pos,",
-        "legend_text_cfg = legend_text_cfg)"
+        "legend_text_cfg = legend_text_cfg,",
+        "intro = TRUE)"
       )
     }
   )

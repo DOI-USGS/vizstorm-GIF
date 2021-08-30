@@ -54,9 +54,12 @@ fetch_gage_river_geoms <- function(ind_file, view_polygon, sites_ind) {
 }
 
 name_adder <- function(x, updn) {
+
   lapply(seq_along(x), function(y, n, r, updn) {
+    print(y)
     mutate(y[[r]], site_id = n[[r]]) %>%
-    mutate(up_down = updn)},
+    mutate(up_down = updn)
+    },
     n = names(x), y = x, updn = updn)
 }
 
@@ -73,6 +76,5 @@ navigate_nldi <- function(f_id, f_source, mode = "UM",
   if(!is.null(distance)) {
     url <- paste0(url, "?distance=", distance)
   }
-
   return(rawToChar(httr::GET(url)$content))
 }
