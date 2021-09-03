@@ -5,7 +5,7 @@
 fetch_states_from_sf <- function(sf_ind) {
 
   # read the sf object from the shared cache
-  sf_object <- readRDS(sc_retrieve(sf_ind))
+  sf_object <- readRDS(sc_retrieve(sf_ind, remake_file = getOption("scipiper.remake_file")))
 
   state_names <- sf_object$ID[!grepl(",", sf_object$ID)]
 
@@ -71,7 +71,7 @@ fetch_rapid_dep_sites <- function(ind_file, event) {
     rdgs <- data.frame()
   } else {
     # fetch the rapid deployment gages (RDGs) from the STN web services
-    url <- sprintf('https://stn.wim.usgs.gov/STNServices/Instruments/FilteredInstruments.json?Event=%d&EventType=&EventStatus=&States=&County=&CurrentStatus=&CollectionCondition=&SensorType=5&DeploymentType=', event)
+    url <- sprintf('https://stn.wim.usgs.gov/STNServices/Instruments/FilteredInstruments.json?Event=%d&EventType=&EventStatus=&States=&County=&CurrentStatus=&CollectionCondition=&SensorType=1&DeploymentType=1,2', event)
 
     rdgs <- jsonlite::fromJSON(url)
     if(length(rdgs) > 0) {

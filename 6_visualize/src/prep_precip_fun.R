@@ -10,11 +10,13 @@ prep_precip_fun <- function(precip_rasters, precip_bins, timestep){
   colors <- c(paste0(substr(colors[1], 1, 7), "00"), colors)
 
   one_precip_raster <- precip_rasters[[timestep]]
+  #browser()
 
   # clean up the environment to keep the closure small
   rm(precip_rasters, precip_bins, timestep)
 
   plot_fun <- function(){
+    par(mai = c(0,0,0,0))
     plot(one_precip_raster, add = TRUE, breaks = breaks, col = colors, legend = FALSE)
   }
   return(plot_fun)

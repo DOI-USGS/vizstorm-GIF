@@ -1,0 +1,13 @@
+version: 0.3.0
+name: 1_fetch/out/waterbodies.rds.ind
+type: file
+hash: 8a767661a19c33997c84195b5b578dbb
+time: 2021-09-02 23:01:05 UTC
+depends:
+  view_polygon: aef01b9bdd13f8272ec61d57ed2a3516
+  fetch_waterbody_areasqkm: 4334c63269de1c6f7b7e1d70b3f89f2c
+fixed: 0e19ed11fcf2446b824d44a019734de2
+code:
+  functions:
+    fetch_waterbody_geoms: e89e230bd4ab875618fc052e60dd7bac
+

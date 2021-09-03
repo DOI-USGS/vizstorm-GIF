@@ -1,22 +1,28 @@
-storm_name: "Florence"
+storm_name: "Ida"
 # `storm_code` and `stn_event` can be commented out or deleted if there is not a storm track
-storm_code: al062018 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2018
-stn_event: 283
+storm_code: al092021 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2021
+stn_event: 312 # Can find code by looking at REST URLs here: https://stn.wim.usgs.gov/STNDataPortal/#
 dates:
-  start: '2018-09-12 00:00:00'
-  end: '2018-09-19 13:00:00'
+  start: '2021-08-27 22:00:00'
+  end: '2021-09-03 1400:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
-frame_step: 3 # hours elapsed between GIF frames
+frame_step: 4 # hours elapsed between GIF frames
 
 # view, dimensions
-bbox: [-83, 30.4, -67, 38.5]
-projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
-height: 512
-width: 1024
+#bbox: [-96.5, 20, -70, 43] # cuba and NE included
+#bbox: [-96.5, 25, -70, 43] # no cuba
+bbox: [-90, 25, -64, 43] # SE
+projection: "+proj=lcc +lat_1=30.7 +lat_2=29.3 +lat_0=28.5 +lon_0=-91.33333333333333 +x_0=999999.9999898402 +y_0=0 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs"
+height: 675
+width: 1200
 
 # styling
-precip_cols: ["#FAFBF399", "#F0F8E3CC", "#D4E9CAE6", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
-precip_bin: 4 # inches per bin
+#precip_cols: ["#E8E6F9", "#D4D1F5", "#C1BCF1", "#AEA8ED", "#8C94E2", "#5C7FD0", "#396CB4", "#285C94", "#264679", "#282F62", "#2B194C"] # devon
+#precip_cols: ["#E0F7E1", "#87D4BC", "#48C2B4", "#00AFB2", "#009AB4", "#007FA8", "#256494", "#404B7B", "#423460", "#392243"] #Mako
+#precip_cols: ["#FCFFDD", "#EDFCD8", "#D7F4CF", "#BCE9C5", "#9ADCBB", "#6DCEB4", "#18BDB0", "#00AAAE", "#0095AF", "#007EB3", "#005D9E"] #YlGnBu
+precip_cols: ["#F5F8EA", "#E2F4DD", "#BBE9CC", "#7ED6C1", "#00BCBC", "#009ABB", "#006BAA", "#2F327D"] # GnBu
+#precip_cols: ["#FAFBF399", "#F0F8E3CC", "#D4E9CAE6", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"] #wapo
+precip_bin: 2 # inches per bin
 gage_flood_col: "#175676"
 gage_line_col: "#3c829c"
 gage_norm_col: "#4BA3C3"
@@ -29,10 +35,9 @@ hurricane_col_names: ["Tropical Storm %s", "Hurricane %s (Cat1)", "Hurricane %s 
 storm_line_col: "grey30"
 major_river_col: "#1874cd"
 gage_river_col: "#5d9ddc"
-lake_col: "#a2c7eb"
+lake_col: "#F2F2F2"
 marsh_col: NA
-ocean_col: "#e7f1fa"
-storm_line_col: "grey70"
+ocean_col: "#F2F2F2"
 legend_text:
   cex: 1.5
   col: "#161616"
@@ -46,13 +51,13 @@ timeline_style:
   line_lwd: 0.7
   line_lty: 3
   line_col: "gray45"
-  font_cex: 1
+  font_cex: 1.5
   font_col: "gray30"
 
 storm_line:
   dark_col: "grey10"
   light_col: "grey60"
-  tail_length: 25 # n storm point locations behind the current date time to show the tail
+  tail_length: 45 # n storm point locations behind the current date time to show the tail
   fade_i: 3 # n storm points between the next colored storm points (smaller fade_i = smoother fade)
 
 # introductory animation
@@ -69,20 +74,20 @@ frame_delay_cs: 14 # delay between frames of the gif animation DURING storm fram
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
 component_placement:
   watermark_x_pos: "left"
-  watermark_y_pos: "top"
+  watermark_y_pos: "bottom"
   datetime:
     # above watermark for now
-    x1: 0.005
+    x1: 0.05
     y1: 0.85
   legend_x_pos: "left"
-  legend_y_pos: "bottom"
+  legend_y_pos: "top"
   sparks:
-    xleft: 0.70 # as percentage of figure width
-    xright: 0.98 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-    ybottom: 0.30 # as percentage of figure height
-    ytop: 0.93 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
-    ytimeline: 0.24 # y location of timeline; this will use xright and xleft from sparks
-    ytimeline_text: 0.205 # y location of timeline dates (0.035 below line has worked well)
+    xleft: 0.7 # as percentage of figure width
+    xright: 0.95 # don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    ybottom: 0.075 # as percentage of figure height
+    ytop: 0.82 # top of the first sparkline. spark title goes above. don't use 1.0 - it causes an error (invalid value specified for graphics parameter "fig")
+    ytimeline: 0.06 # y location of timeline; this will use xright and xleft from sparks
+    ytimeline_text: 0.025 # y location of timeline dates (0.035 below line has worked well)
   outro:
     # outro text & legend roughly, but not exactly, fit where the sparklines were
     xleft: 0.55
@@ -94,7 +99,7 @@ component_placement:
 
 ocean_name_placement:
   -
-    x1: 0.4
+    x1: 0.52
     y1: 0.3
     label: 'Atlantic Ocean'
 
@@ -117,6 +122,10 @@ secondary_geoms:
     # Mexico
     database: "mapdata::worldHires"
     regions: "Mexico"
+  -
+    # Canada
+    database: "mapdata::worldHires"
+    regions: "Canada"
 
 cities:
   # parameters for general coloring of the cities
@@ -129,86 +138,43 @@ cities:
     col: "gray40"
     font: 1
     cex: 1.1
-    angle: 330 # angle in radians for position of label relative to dot. pos is computed from angle: 225-315=1, 315-45=4, 45-135=3, 135-225=2
-    dist: 0.007 # relative (fraction of window width) distance from dot to label
+    angle: 135 # angle in radians for position of label relative to dot. pos is computed from angle: 225-315=1, 315-45=4, 45-135=3, 135-225=2
+    dist: 0.01 # relative (fraction of window width) distance from dot to label
   pop_min: 500000 # minimum population size of cities to be chosen by default; `custom` will make additions or modifications and `exclude` will make subtractions
   custom:
     # cities to add or modify relative to the maps::us.cities dataset. added cities can use lat/long from us.cities if they are present in us.cities, even if they don't meet the pop_min criterion
-    #-
-    #  name: "Richmond VA"
-    #  text_angle: 170
     -
-      name: "Raleigh NC"
+      name: "New Orleans LA"
       text_angle: 170
     -
-      name: "Charlotte NC"
+      name: "Jackson MS"
       text_angle: 170
     -
-      name: "Columbia SC"
+      name: "Nashville TN"
       text_angle: 170
-    #-
-    #  name: "Savannah GA"
-    #  text_angle: 170
-    #-
-    #  name: "Jacksonville FL"
-    #-
-    #  name: "Virginia Beach VA"
-    #  dot_cex: 0.8
-    #  text_cex: 0.8
-    #-
-    #  name: "Nags Head NC"
-    #  lat: 35.9425
-    #  long: -75.6228
-    #  dot_cex: 0.8
-    #  text_cex: 0.8
     -
-      name: "New Bern NC"
-      news: "CBS"
-      dot_cex: 0.8
-      text_cex: 0.8
-      lat: 35.107686
-      long: -77.051366
+      name: "Atlanta GA"
     -
-      name: "Wilmington NC"
-      news: "CBS"
-      dot_cex: 0.8
-      text_cex: 0.8
-    -
-      name: "Myrtle Beach SC"
-      news: "CBS"
-      lat: 33.6917
-      long: -78.8875
-      dot_cex: 0.8
-      text_cex: 0.8
-    #-
-    #  name: "Charleston SC"
-    #  news: "google/crisismap"
-    #  dot_cex: 0.8
-    #  text_cex: 0.8
-    # UPCOMING ALONG STORM TRACK:
-    #-
-    #  name: "Knoxville TN"
-    #-
-    #  name: "Columbus OH"
-    #-
-    #  name: "Pittsburgh PA"
-    #-
-    #  name: "New York NY"
-    #-
-    #  name: "Boston MA"
+      name: "Miami FL"
+
 
   exclude:
     - "Knoxville TN"
-    - "Richmond VA"
     - "Memphis TN"
     - "Oklahoma City OK"
+    - "Columbus OH"
     - "Fort Worth TX"
     - "Dallas TX"
+    - "Detroit MI"
     - "Chicago IL"
-    - "Baltimore MD"
     - "WASHINGTON DC"
     - "Indianapolis IN"
-    - "Nashville TN"
+    - "Milwaukee WI"
+    - "Denver CO"
+    - "El Paso TX"
+    - "Austin TX"
+    - "San Antonio TX"
+    - "Houston TX"
     - "Jacksonville FL"
 
 # Only streamorders greater than this will be fetched.

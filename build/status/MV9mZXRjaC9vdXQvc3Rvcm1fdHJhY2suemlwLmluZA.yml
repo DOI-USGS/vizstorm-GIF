@@ -1,0 +1,12 @@
+version: 0.3.0
+name: 1_fetch/out/storm_track.zip.ind
+type: file
+hash: 788c29573980790d9985a2e69fb4f97c
+time: 2021-08-28 19:20:50 UTC
+depends:
+  storm_track_cfg: cf8d366abc41edae7231860b5b629240
+fixed: 2f4367832f61e7160a3b28bde436e206
+code:
+  functions:
+    fetch_storm_track: 124351df62ae3d5f8ebfa889007f9eba
+

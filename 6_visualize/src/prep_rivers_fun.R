@@ -1,8 +1,9 @@
 
 prep_rivers_fun <- function(river_ind, rivers_cfg){
 
-  sf_rivers <- readRDS(sc_retrieve(river_ind))
+  sf_rivers <- readRDS(sc_retrieve(river_ind, remake_file = getOption("scipiper.remake_file")))
   marsh_fcodes <- c(46600, 44601, 44602)
+  browser()
 
   plot_fun <- function(){
     plot(st_geometry(sf_rivers$sf_gage_rivers), col = rivers_cfg$gage_river_col, lwd = 0.3, add = TRUE)

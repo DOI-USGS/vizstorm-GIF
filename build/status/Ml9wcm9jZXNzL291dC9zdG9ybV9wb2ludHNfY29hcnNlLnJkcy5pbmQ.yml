@@ -1,0 +1,13 @@
+version: 0.3.0
+name: 2_process/out/storm_points_coarse.rds.ind
+type: file
+hash: 07912632912d8fc9a69a2e373d731d2f
+time: 2021-09-03 20:53:15 UTC
+depends:
+  1_fetch/out/storm_track.zip.ind: 788c29573980790d9985a2e69fb4f97c
+  view_config: 2e1c322c2e7e81432a867bfe10188f67
+fixed: be918950dc993c4e2fe0866e509a92b3
+code:
+  functions:
+    extract_storm_points: 0a88c258e222fe46f3552360900eb2e2
+

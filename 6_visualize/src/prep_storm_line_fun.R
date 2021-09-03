@@ -1,7 +1,8 @@
 prep_storm_line_fun <- function(storm_points_sf, DateTime, storm_line_cfg, timesteps){
   this_DateTime <- as.POSIXct(DateTime, tz = "UTC")
+  #browser()
   colfunc <- colorRampPalette(c(storm_line_cfg$light_col, storm_line_cfg$dark_col))
-  plot_fun <- if(is.null(storm_points_sf)) {
+  plot_fun <- if(nrow(storm_points_sf) == 0) {
     function() {} # storms are optional
   } else {
 
@@ -13,6 +14,7 @@ prep_storm_line_fun <- function(storm_points_sf, DateTime, storm_line_cfg, times
 
     # If we are past the storm dates, just show the line as very faint
     # If it is the very last frame, force the line to be the faint shade at the end
+
     if(this_DateTime > last_storm_pt_date | this_DateTime == tail(timesteps, 1)) {
       tail_lengths <- c()
       cols <- c()

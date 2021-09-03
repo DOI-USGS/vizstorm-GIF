@@ -8,6 +8,7 @@ fetch_major_cities <- function(ind_file, city_config, within = NULL, crs = sf::s
   cities_df <- maps::us.cities %>%
     dplyr::filter(pop >= city_config$pop_min | name %in% custom_cities) %>%
     select(name, pop, lat, long)
+
   cities_df <- cities_df %>%
     # add any cities that weren't listed above
     bind_rows(data_frame(name=setdiff(custom_cities, cities_df$name))) %>%
@@ -30,7 +31,7 @@ fetch_major_cities <- function(ind_file, city_config, within = NULL, crs = sf::s
   # is specified
   custom_df <- bind_rows(lapply(city_config$custom, function(custom_info) {
     info <- cities_df %>% filter(name == custom_info$name)
-    if(nrow(info) != 1) browser()
+    if(nrow(info) != 1)
     for(col in setdiff(colnames(info), 'name')) {
       if(exists(col, custom_info)) info[[col]] <- custom_info[[col]]
     }

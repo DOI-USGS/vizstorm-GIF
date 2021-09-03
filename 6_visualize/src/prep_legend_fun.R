@@ -5,7 +5,7 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
   y_pos <- match.arg(y_pos)
 
   if(is.na(DateTime)) {
-    timesteps <- readRDS(sc_retrieve(timesteps_ind))
+    timesteps <- readRDS(sc_retrieve(timesteps_ind, remake_file = getOption("scipiper.remake_file")))
     DateTime <- timesteps[1]
     rm(timesteps)
   }
@@ -27,8 +27,8 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
 
     # compute position info shared across multiple legend elements
     coord_space <- par()$usr
-    bin_w_perc <- 0.05 # percentage of X domain
-    bin_h_perc <- 0.02 # *also* percentage of X domain
+    bin_w_perc <- 0.02 # percentage of X domain
+    bin_h_perc <- 0.04 # *also* percentage of X domain
     bin_w <- bin_w_perc * diff(coord_space[c(1,2)])
     bin_h <- bin_h_perc * diff(coord_space[c(1,2)])
     if (x_pos == 'left'){
@@ -40,35 +40,37 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
       x_edge <- coord_space[2]
       shift_dir <- -1
     }
-    ybottom <- coord_space[3]
+    ybottom <- coord_space[4]*.7
     dot_x <- x_edge+bin_w/2*shift_dir
     dot_txt_x <- x_edge+bin_w*0.7*shift_dir
     seg_x <- x_edge+bin_w/3*shift_dir
     center_to_txt_y <- strheight("A")/3 # height of character divided by three seems to do the trick
 
     # plot precip bins and precip label
-    precip_txt_y <- ybottom+2*bin_h*0.8
-    text(x_edge, precip_txt_y, labels = 'NOAA total rainfall amount (inches)', pos = txt_pos,
-         cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
+    precip_txt_y <- ybottom+2*bin_h*0.4
+    text(x_edge, precip_txt_y, labels = 'Total rainfall (in)', pos = txt_pos,
+         cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family, font = 3)
+    text(x_edge, precip_txt_y-bin_h*0.4, labels = 'Data: NOAA', pos = txt_pos,
+         cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family, font = 3)
     if (x_pos == 'left'){
       bin_j <- 1:nrow(precip_bins)
-      xright <- x_edge+bin_w
+      xright <- x_edge+bin_w*1.5
     } else if (x_pos == 'right'){
       bin_j <- nrow(precip_bins):1
-      xright <- x_edge
+      xright <- x_edge+(bin_w*0.5)
     }
     for (j in bin_j){
       col <- as.character(precip_bins$col[j])
-      text_col <- ifelse(any(col2rgb(col) < 130), 'white','black')
-      rect(xleft = xright-bin_w, ybottom = ybottom, xright = xright, ytop = ybottom+bin_h, col = col, border = NA)
+      bin_bottom <- ybottom-nrow(precip_bins)*bin_h
+      #text_col <- ifelse(any(col2rgb(col) < 130), 'white','black')
+      rect(xleft = xright-bin_w, ybottom = bin_bottom+(bin_h*(j-1)), xright = xright, ytop = bin_bottom+bin_h*j, col = col, border = NA)
       text_char <- as.character(precip_bins$break_factor[j]) %>% gsub(pattern = ',', replacement = '-') %>% gsub(pattern = '-Inf', replacement = '+') %>% gsub(pattern = "\\(|\\]", replacement = '')
-      text(xright-bin_w/2, ybottom+bin_h/2, text_char, col = text_col, cex = 1.3)
-      xright <- xright+bin_w*shift_dir
+      text(xright+bin_w, bin_bottom+bin_h*(j-0.5), text_char, col = "black", cex = 1.3)
     }
 
     # plot gage points legend
     gage_caveat_y <- ybottom+5*bin_h*1.02
-    text(x_edge, gage_caveat_y, labels = 'Selected USGS stream gages', pos = txt_pos,
+    text(x_edge, gage_caveat_y, labels = 'Select USGS stream gages', pos = txt_pos,
          cex=legend_text_cfg$cex, col=legend_text_cfg$col, family=legend_text_cfg$family)
     normal_y <- ybottom+4*bin_h
     points(dot_x, normal_y+center_to_txt_y, pch = 21, bg = legend_styles$gage_norm_col, col = NA, cex = 2)
