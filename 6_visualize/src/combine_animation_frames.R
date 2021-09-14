@@ -79,24 +79,28 @@ combine_animation_frames_gif <- function(gif_file, animation_cfg, intro_config, 
   outro_delay <- 200
   final_delay <- 700
   freeze_delay <- 150
-  # **trash code for now:
+
   calc_delays <- function(delay, start_frame, end_frame){
     paste(paste(sprintf('-d%s "#', delay), seq(start_frame-1, end_frame-1), sep = '') %>%
             paste('"', sep = ''), collapse = " ")
   }
-  intro_delays <- calc_delays(intro_delay, 1, n_intro)
-  storm_delays <- calc_delays(storm_delay, n_intro+1, total_frames-n_outro-1)
-  # freeze the last storm frame too for as long as we are showing each outro frame:
-  last_storm_delay <- calc_delays(freeze_delay, total_frames-n_outro, total_frames-n_outro)
-  outro_delays <- calc_delays(outro_delay, total_frames-n_outro+1, total_frames-1)
-  final_delay <- calc_delays(final_delay, total_frames, total_frames)
 
-  gifsicle_command <- sprintf('gifsicle -b -O3 %s %s %s %s %s %s --colors 256', gif_file, intro_delays, storm_delays, last_storm_delay, outro_delays, final_delay)
+  intro_delay_str <- calc_delays(intro_delay, 1, n_intro)
+  storm_delay_str <- calc_delays(storm_delay, n_intro+1, total_frames-n_outro-1)
+  # freeze the last storm frame too for as long as we are showing each outro frame:
+  last_storm_delay_str <- calc_delays(freeze_delay, total_frames-n_outro, total_frames-n_outro)
+  outro_delay_str <- calc_delays(outro_delay, total_frames-n_outro+1, total_frames-1)
+  final_delay_str <- calc_delays(final_delay, total_frames, total_frames)
+
+  gifsicle_command <- sprintf('gifsicle -b -O3 %s %s %s %s %s %s --colors 256', gif_file,
+                              intro_delay_str, storm_delay_str, last_storm_delay_str,
+                              outro_delay_str, final_delay_str)
   system(gifsicle_command)
 }
 
 extract_filenames_from_ind <- function(ind_file) {
   filename_hash_list <- readLines(ind_file)
   only_names <- unlist(lapply(strsplit(filename_hash_list, ":"), `[`, 1))
-  return(only_names)
+  only_real_files <- na.omit(only_names) # sometimes there is an empty line at the end of the file that is read and turns into an NA
+  return(only_real_files)
 }
