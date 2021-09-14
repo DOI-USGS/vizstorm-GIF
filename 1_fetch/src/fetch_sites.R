@@ -5,7 +5,7 @@
 fetch_states_from_sf <- function(sf_ind) {
 
   # read the sf object from the shared cache
-  sf_object <- readRDS(sc_retrieve(sf_ind))
+  sf_object <- readRDS(sc_retrieve(sf_ind, remake_file = getOption("scipiper.remake_file")))
 
   state_names <- sf_object$ID[!grepl(",", sf_object$ID)]
 

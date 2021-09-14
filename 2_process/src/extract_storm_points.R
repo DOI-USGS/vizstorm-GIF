@@ -8,7 +8,7 @@
 extract_storm_points <- function(ind_file, storm_shp_ind, cfg){
 
   # get the shp zip file from Drive if we don't already have it
-  storm_shp_file <- sc_retrieve(storm_shp_ind)
+  storm_shp_file <- sc_retrieve(storm_shp_ind, remake_file = getOption("scipiper.remake_file"))
 
   if(file.size(storm_shp_file) == 0) {
     points_proj <- NULL

@@ -1,6 +1,6 @@
 fetch_streamdata <- function(ind_file, sites_ind, dates, stream_params, gd_config) {
 
-  sites <- readRDS(scipiper::sc_retrieve(sites_ind))
+  sites <- readRDS(scipiper::sc_retrieve(sites_ind, remake_file = getOption("scipiper.remake_file")))
 
   message('  starting download of NWIS data at ', Sys.time())
   # pad the date range by 1 day in each direction because our dates parameter
