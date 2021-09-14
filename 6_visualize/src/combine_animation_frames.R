@@ -1,4 +1,50 @@
-combine_animation_frames <- function(gif_file, animation_cfg, frame_ind_intro=NULL, frame_ind_storm=NULL, frame_ind_outro=NULL, intro_config) {
+combine_animation_frames_video <- function(out_file, animation_cfg, frame_ind_intro=NULL, frame_ind_storm=NULL, frame_ind_outro=NULL, intro_config) {
+
+  # Use ffmpeg to build a video
+
+  # Gather appropriate file names (not just whatever is in the directory)
+  png_files_intro <- extract_filenames_from_ind(frame_ind_intro)
+  png_files_storm <- extract_filenames_from_ind(frame_ind_storm)
+  png_files_outro <- extract_filenames_from_ind(frame_ind_outro)
+
+  # Create separate videos for intro, storm, and outro
+  make_video <- function(video_out, png_files, frame_delay) {
+
+    # FFMPEG only works on files numbered sequentially, so rename temporarily
+    file_name_df <- tibble(origName = png_files,
+                           countFormatted = zeroPad(1:length(png_files), padTo = 3),
+                           newName = file.path("6_visualize/tmp", paste0("frame_", countFormatted, ".png")))
+    file.rename(from = file_name_df$origName, to = file_name_df$newName)
+
+    fps <- 100/frame_delay # turn time per frame into frame per second (fps)
+
+    shell_command <- sprintf(
+      "ffmpeg -y -framerate %s -i 6_visualize/tmp/frame_%%03d.png -r %s -pix_fmt yuv420p -vcodec libx264 -crf 27 %s",
+      fps, fps, video_out)
+    system(shell_command)
+
+    file.rename(from = file_name_df$newName, to = file_name_df$origName)
+    return(video_out)
+  }
+
+  video_intro <- make_video("6_visualize/tmp/intro.mp4", png_files_intro, intro_config$frame_delay_cs)
+  video_storm <- make_video("6_visualize/tmp/storm.mp4", png_files_storm, animation_cfg$frame_delay_cs)
+  video_outro <- make_video("6_visualize/tmp/outro.mp4", png_files_outro, 200)
+
+  # Stitch videos together
+  files_to_cat_fn <- "6_visualize/tmp/videos_to_concat.txt"
+  writeLines(sprintf("file '%s'", c(basename(video_intro), basename(video_storm), basename(video_outro))), files_to_cat_fn)
+
+  system(sprintf(
+    'ffmpeg -y -safe 0 -f concat -i %s -c copy %s',
+    files_to_cat_fn,
+    out_file
+  ))
+
+  return(out_file)
+}
+
+combine_animation_frames_gif <- function(gif_file, animation_cfg, frame_ind_intro=NULL, frame_ind_storm=NULL, frame_ind_outro=NULL, intro_config) {
 
   # run imageMagick convert to build a gif
 

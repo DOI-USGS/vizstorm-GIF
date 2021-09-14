@@ -31,6 +31,7 @@ targets:
   6_visualize:
     depends:
       - 6_visualize/out/animation_a.gif
+      - 6_visualize/out/animation_a.mp4
 
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
   # adn storm_line. each of these components doesn't change over time. each
@@ -243,7 +244,7 @@ targets:
   animation_cfg:
     command: viz_config[I('frame_delay_cs')]
   6_visualize/out/animation_a.gif:
-    command: combine_animation_frames(
+    command: combine_animation_frames_gif(
       gif_file=target_name,
       animation_cfg=animation_cfg,
       frame_ind_intro = "6_visualize/log/6_intro_gif_tasks.ind",
@@ -252,3 +253,15 @@ targets:
       intro_config = intro_config)
   6_visualize/out/animation_a.gif.ind:
     command: gd_put(target_name, '6_visualize/out/animation_a.gif')
+
+  # Now combine into a video file
+  6_visualize/out/animation_a.mp4:
+    command: combine_animation_frames_video(
+      out_file=target_name,
+      animation_cfg=animation_cfg,
+      frame_ind_intro = "6_visualize/log/6_intro_gif_tasks.ind",
+      frame_ind_storm = "6_visualize/log/6_storm_gif_tasks.ind",
+      frame_ind_outro = "6_visualize/log/6_outro_gif_tasks.ind",
+      intro_config = intro_config)
+  6_visualize/out/animation.mp4.ind:
+    command: gd_put(target_name, '6_visualize/out/animation.mp4')
