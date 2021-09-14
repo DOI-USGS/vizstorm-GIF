@@ -54,9 +54,8 @@ fetch_gage_river_geoms <- function(ind_file, view_polygon, sites_ind) {
 }
 
 name_adder <- function(x, updn) {
-  browser()
+
   lapply(seq_along(x), function(y, n, r, updn) {
-    print(y)
     mutate(y[[r]], site_id = n[[r]]) %>%
     mutate(up_down = updn)
     },
