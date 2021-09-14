@@ -185,7 +185,7 @@ process_precip_rasters <- function(ind_file, precip_spatial_ind,
 
   cl <- parallel::makeCluster(rep("localhost", 4), type = "SOCK")
 
-  rasters <- snow::parSapply(cl, setNames(as.list(time$time_id), time$date_time),
+  rasters <- snow::parSapply(cl, setNames(as.list(time$time_id), time$time),
                              rasterize_precip,
                              precip_spatial = precip_spatial,
                              precip = precip,
