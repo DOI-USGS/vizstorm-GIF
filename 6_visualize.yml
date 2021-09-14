@@ -247,10 +247,10 @@ targets:
     command: combine_animation_frames_gif(
       gif_file=target_name,
       animation_cfg=animation_cfg,
+      intro_config = intro_config,
       frame_ind_intro = "6_visualize/log/6_intro_gif_tasks.ind",
       frame_ind_storm = "6_visualize/log/6_storm_gif_tasks.ind",
-      frame_ind_outro = "6_visualize/log/6_outro_gif_tasks.ind",
-      intro_config = intro_config)
+      frame_ind_outro = "6_visualize/log/6_outro_gif_tasks.ind")
   6_visualize/out/animation_a.gif.ind:
     command: gd_put(target_name, '6_visualize/out/animation_a.gif')
 
@@ -259,9 +259,9 @@ targets:
     command: combine_animation_frames_video(
       out_file=target_name,
       animation_cfg=animation_cfg,
+      intro_config = intro_config,
       frame_ind_intro = "6_visualize/log/6_intro_gif_tasks.ind",
       frame_ind_storm = "6_visualize/log/6_storm_gif_tasks.ind",
-      frame_ind_outro = "6_visualize/log/6_outro_gif_tasks.ind",
-      intro_config = intro_config)
+      frame_ind_outro = "6_visualize/log/6_outro_gif_tasks.ind")
   6_visualize/out/animation.mp4.ind:
     command: gd_put(target_name, '6_visualize/out/animation.mp4')

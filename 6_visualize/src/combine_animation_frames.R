@@ -1,4 +1,4 @@
-combine_animation_frames_video <- function(out_file, animation_cfg, frame_ind_intro=NULL, frame_ind_storm=NULL, frame_ind_outro=NULL, intro_config) {
+combine_animation_frames_video <- function(out_file, animation_cfg, intro_config, frame_ind_intro=NULL, frame_ind_storm=NULL, frame_ind_outro=NULL) {
 
   # Use ffmpeg to build a video
 
@@ -44,7 +44,7 @@ combine_animation_frames_video <- function(out_file, animation_cfg, frame_ind_in
   return(out_file)
 }
 
-combine_animation_frames_gif <- function(gif_file, animation_cfg, frame_ind_intro=NULL, frame_ind_storm=NULL, frame_ind_outro=NULL, intro_config) {
+combine_animation_frames_gif <- function(gif_file, animation_cfg, intro_config, frame_ind_intro=NULL, frame_ind_storm=NULL, frame_ind_outro=NULL) {
 
   # run imageMagick convert to build a gif
 
