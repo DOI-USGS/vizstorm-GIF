@@ -71,7 +71,7 @@ fetch_rapid_dep_sites <- function(ind_file, event) {
     rdgs <- data.frame()
   } else {
     # fetch the rapid deployment gages (RDGs) from the STN web services
-    url <- sprintf('https://stn.wim.usgs.gov/STNServices/Instruments/FilteredInstruments.json?Event=%d&EventType=&EventStatus=&States=&County=&CurrentStatus=&CollectionCondition=&SensorType=1&DeploymentType=1,2', event)
+    url <- sprintf('https://stn.wim.usgs.gov/STNServices/Instruments/FilteredInstruments.json?Event=%d&EventType=&EventStatus=&States=&County=&CurrentStatus=&CollectionCondition=&SensorType=5&DeploymentType=', event)
 
     rdgs <- jsonlite::fromJSON(url)
     if(length(rdgs) > 0) {
