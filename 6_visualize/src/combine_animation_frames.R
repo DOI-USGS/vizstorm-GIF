@@ -59,13 +59,10 @@ combine_animation_frames_gif <- function(gif_file, animation_cfg, intro_config, 
 
   tmp_dir <- './6_visualize/tmp/magick'
   if(!dir.exists(tmp_dir)) dir.create(tmp_dir)
-  magick_command <- sprintf(
+  sprintf(
     'convert -define registry:temporary-path=%s -limit memory 24GiB -delay %d -loop 0 %s %s',
-    tmp_dir, animation_cfg$frame_delay_cs, png_files_string, gif_file)
-  if(Sys.info()[['sysname']] == "Windows") {
-    magick_command <- sprintf('magick %s', magick_command)
-  }
-  system(magick_command)
+    tmp_dir, animation_cfg$frame_delay_cs, png_files_string, gif_file) %>%
+    run_magick_command()
 
   # simplify the gif with gifsicle - cuts size by about 2/3
 
