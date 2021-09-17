@@ -254,8 +254,7 @@ create_storm_gif_tasks <- function(timestep, storm_track_cfg, folders){
         "gage_sites_fun_%s,"=cur_task$tn,
         "legend_fun_%s,"=cur_task$tn,
         "timeline_fun_%s,"=cur_task$tn,
-        "cities_fun,",
-        "watermark_fun)",
+        "cities_fun)",
         #"streamdata_%s,"= cur_task$tn,
         sep="\n      ")
     }
@@ -278,8 +277,7 @@ create_storm_gif_tasks <- function(timestep, storm_track_cfg, folders){
         if(has_storm_track) c("storm_point_fun_%s,"=cur_task$tn),
         "legend_fun_%s,"=cur_task$tn,
         "bbox_fun,",
-        "cities_fun,",
-        "watermark_fun)",
+        "cities_fun)",
         sep="\n      ")
     }
   )
