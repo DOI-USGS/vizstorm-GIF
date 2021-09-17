@@ -11,3 +11,22 @@ prep_logo_overlay <- function(out_file, in_file, viz_config_dim) {
   return(out_file)
 
 }
+
+apply_logo_to_gif <- function(out_file, in_file, logo_file) {
+
+  logo_prepped_file <- "6_visualize/tmp/usgs_logo.gif"
+  sprintf(
+    'convert %s %s',
+    logo_file,
+    logo_prepped_file
+  ) %>% run_magick_command()
+
+  sprintf(
+    'convert %s -coalesce -gravity NorthWest -geometry +5+5 null: %s -layers composite -layers optimize %s',
+    in_file,
+    logo_prepped_file,
+    out_file
+  ) %>% run_magick_command()
+
+  return(out_file)
+}
