@@ -32,6 +32,7 @@ targets:
     depends:
       - 6_visualize/out/animation.gif
       - 6_visualize/out/animation.mp4
+      - 6_visualize/out/animation_visid.mp4
 
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
   # adn storm_line. each of these components doesn't change over time. each
@@ -273,3 +274,13 @@ targets:
       viz_config_dim = storm_frame_config)
   6_visualize/out/animation.mp4.ind:
     command: gd_put(target_name, '6_visualize/out/animation.mp4')
+
+  # Make a video with the USGS VisID banner on the bottom
+  6_visualize/out/animation_visid.mp4:
+    command: apply_visid_banner(
+      out_file = target_name,
+      in_file = '6_visualize/out/animation_nologo.mp4',
+      viz_config_dim = storm_frame_config,
+      visid_overlay_file = '6_visualize/in/usgs_logo_white.png')
+  6_visualize/out/animation_visid.mp4.ind:
+    command: gd_put(target_name, '6_visualize/out/animation_visid.mp4')
