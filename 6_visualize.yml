@@ -14,7 +14,6 @@ file_extensions:
 sources:
   - 6_visualize/src/create_gif_tasks.R
   - 6_visualize/src/create_gif_makefile.R
-  - 6_visualize/src/prep_watermark_fun.R
   - 6_visualize/src/prep_basemap_fun.R
   - 6_visualize/src/prep_view_fun.R
   - 6_visualize/src/prep_storm_line_fun.R
@@ -64,10 +63,6 @@ targets:
     command: viz_config[[I('component_placement')]]
   datetime_placement:
     command: component_placement[[I('datetime')]]
-  watermark_x_pos:
-    command: component_placement[[I('watermark_x_pos')]]
-  watermark_y_pos:
-    command: component_placement[[I('watermark_y_pos')]]
   legend_x_pos:
     command: component_placement[[I('legend_x_pos')]]
   legend_y_pos:
@@ -122,9 +117,6 @@ targets:
     command: viz_config[I(c('major_river_col','gage_river_col','lake_col','marsh_col'))]
   rivers_fun:
     command: prep_rivers_fun('2_process/out/river_geoms.rds.ind', rivers_cfg)
-
-  watermark_fun:
-    command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png', x_pos = watermark_x_pos, y_pos = watermark_y_pos)
 
   ocean_name_fun:
     command: prep_ocean_name_fun(ocean_name_placement)

@@ -81,8 +81,7 @@ create_intro_gif_tasks <- function(intro_config, folders, storm_track_cfg, storm
         "gage_sites_initial,",
         "gage2spark_fun_%s,"=cur_task$tn,
         "legend_fun_%s,"=cur_task$tn,
-        "cities_fun,",
-        "watermark_fun)"
+        "cities_fun)"
       )
     }
   )
