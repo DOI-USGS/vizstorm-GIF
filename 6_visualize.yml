@@ -24,6 +24,7 @@ sources:
   - 6_visualize/src/prep_ocean_name_fun.R
   - 6_visualize/src/visualize_utils.R
   - 6_visualize/src/combine_animation_frames.R
+  - 6_visualize/src/apply_logos.R
 
 targets:
 
@@ -213,6 +214,10 @@ targets:
       timesteps)
   6_visualize/log/6_outro_gif_tasks.ind:
     command: scmake(I('6_outro_gif_tasks'), '6_outro_gif_tasks.yml')
+
+  # Prep the logo:
+  6_visualize/tmp/logo_ready.png:
+    command: prep_logo_overlay(target_name, '6_visualize/in/usgs_logo_black.png', storm_frame_config)
 
   # Combine the png files into a gif.
   #
