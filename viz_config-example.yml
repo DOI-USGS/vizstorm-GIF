@@ -67,8 +67,7 @@ frame_delay_cs: 14 # delay between frames of the gif animation DURING storm fram
 # Image placement for function calls of USGS watermark, legend, datetime, etc..
 #  These are fraction of the coordinate space, where 0,0 is bottom left of figure (some stuff is right justified though - legend)
 component_placement:
-  watermark_x_pos: "left"
-  watermark_y_pos: "top"
+  # Logo placement not currently configurable here. See 6_visualize/src/apply_logos.R for now
   datetime:
     # above watermark for now
     x1: 0.005

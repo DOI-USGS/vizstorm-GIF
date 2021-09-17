@@ -14,7 +14,6 @@ file_extensions:
 sources:
   - 6_visualize/src/create_gif_tasks.R
   - 6_visualize/src/create_gif_makefile.R
-  - 6_visualize/src/prep_watermark_fun.R
   - 6_visualize/src/prep_basemap_fun.R
   - 6_visualize/src/prep_view_fun.R
   - 6_visualize/src/prep_storm_line_fun.R
@@ -25,13 +24,15 @@ sources:
   - 6_visualize/src/prep_ocean_name_fun.R
   - 6_visualize/src/visualize_utils.R
   - 6_visualize/src/combine_animation_frames.R
+  - 6_visualize/src/apply_logos.R
 
 targets:
 
   6_visualize:
     depends:
-      - 6_visualize/out/animation_a.gif
-      - 6_visualize/out/animation_a.mp4
+      - 6_visualize/out/animation.gif
+      - 6_visualize/out/animation.mp4
+      - 6_visualize/out/animation_visid.mp4
 
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
   # adn storm_line. each of these components doesn't change over time. each
@@ -64,10 +65,6 @@ targets:
     command: viz_config[[I('component_placement')]]
   datetime_placement:
     command: component_placement[[I('datetime')]]
-  watermark_x_pos:
-    command: component_placement[[I('watermark_x_pos')]]
-  watermark_y_pos:
-    command: component_placement[[I('watermark_y_pos')]]
   legend_x_pos:
     command: component_placement[[I('legend_x_pos')]]
   legend_y_pos:
@@ -122,9 +119,6 @@ targets:
     command: viz_config[I(c('major_river_col','gage_river_col','lake_col','marsh_col'))]
   rivers_fun:
     command: prep_rivers_fun('2_process/out/river_geoms.rds.ind', rivers_cfg)
-
-  watermark_fun:
-    command: prep_watermark_fun('6_visualize/in/usgs_logo_black.png', x_pos = watermark_x_pos, y_pos = watermark_y_pos)
 
   ocean_name_fun:
     command: prep_ocean_name_fun(ocean_name_placement)
@@ -222,6 +216,10 @@ targets:
   6_visualize/log/6_outro_gif_tasks.ind:
     command: scmake(I('6_outro_gif_tasks'), '6_outro_gif_tasks.yml')
 
+  # Prep the logo:
+  6_visualize/tmp/logo_ready.png:
+    command: prep_logo_overlay(target_name, '6_visualize/in/usgs_logo_grey.png', storm_frame_config)
+
   # Combine the png files into a gif.
   #
   # For now, call scmake('6_visualize/out/animation_a.gif', force=TRUE)
@@ -243,7 +241,7 @@ targets:
     command: c(I('a_20170825_01'), final_intro_frames, final_storm_frames)
   animation_cfg:
     command: viz_config[I('frame_delay_cs')]
-  6_visualize/out/animation_a.gif:
+  6_visualize/out/animation_nologo.gif:
     command: combine_animation_frames_gif(
       gif_file=target_name,
       animation_cfg=animation_cfg,
@@ -251,11 +249,16 @@ targets:
       frame_ind_intro = "6_visualize/log/6_intro_gif_tasks.ind",
       frame_ind_storm = "6_visualize/log/6_storm_gif_tasks.ind",
       frame_ind_outro = "6_visualize/log/6_outro_gif_tasks.ind")
-  6_visualize/out/animation_a.gif.ind:
-    command: gd_put(target_name, '6_visualize/out/animation_a.gif')
+  6_visualize/out/animation.gif:
+    command: apply_logo_to_gif(
+      out_file = target_name,
+      in_file = '6_visualize/out/animation_nologo.gif',
+      logo_file = '6_visualize/tmp/logo_ready.png')
+  6_visualize/out/animation.gif.ind:
+    command: gd_put(target_name, '6_visualize/out/animation.gif')
 
   # Now combine into a video file
-  6_visualize/out/animation_a.mp4:
+  6_visualize/out/animation_nologo.mp4:
     command: combine_animation_frames_video(
       out_file=target_name,
       animation_cfg=animation_cfg,
@@ -263,5 +266,21 @@ targets:
       frame_ind_intro = "6_visualize/log/6_intro_gif_tasks.ind",
       frame_ind_storm = "6_visualize/log/6_storm_gif_tasks.ind",
       frame_ind_outro = "6_visualize/log/6_outro_gif_tasks.ind")
+  6_visualize/out/animation.mp4:
+    command: apply_logo_to_video(
+      out_file = target_name,
+      in_file = '6_visualize/out/animation_nologo.mp4',
+      logo_file = '6_visualize/tmp/logo_ready.png',
+      viz_config_dim = storm_frame_config)
   6_visualize/out/animation.mp4.ind:
     command: gd_put(target_name, '6_visualize/out/animation.mp4')
+
+  # Make a video with the USGS VisID banner on the bottom
+  6_visualize/out/animation_visid.mp4:
+    command: apply_visid_banner(
+      out_file = target_name,
+      in_file = '6_visualize/out/animation_nologo.mp4',
+      viz_config_dim = storm_frame_config,
+      visid_overlay_file = '6_visualize/in/usgs_logo_white.png')
+  6_visualize/out/animation_visid.mp4.ind:
+    command: gd_put(target_name, '6_visualize/out/animation_visid.mp4')

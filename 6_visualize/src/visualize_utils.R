@@ -29,3 +29,10 @@ timesteps_to_build <- function(timestep_ind, frame_step = 1) {
     tail(-1L)
 
 }
+
+run_magick_command <- function(magick_command) {
+  if(Sys.info()[['sysname']] == "Windows") {
+    magick_command <- sprintf('magick %s', magick_command)
+  }
+  system(magick_command)
+}
