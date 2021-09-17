@@ -30,3 +30,17 @@ apply_logo_to_gif <- function(out_file, in_file, logo_file) {
 
   return(out_file)
 }
+
+apply_logo_to_video <- function(out_file, in_file, logo_file, viz_config_dim) {
+
+  # Overlay the logo onto the video
+  system(sprintf(
+    'ffmpeg -y -i %s -i %s -filter_complex "overlay=%s:%s" -c:v libx264  %s',
+    in_file,
+    logo_file,
+    viz_config_dim$width*0.005, # Place just slightly in from the left
+    viz_config_dim$height*0.005, # Place just slightly down from the top
+    out_file))
+
+  return(out_file)
+}

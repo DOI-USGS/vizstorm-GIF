@@ -30,8 +30,8 @@ targets:
 
   6_visualize:
     depends:
-      - 6_visualize/out/animation_a.mp4
       - 6_visualize/out/animation.gif
+      - 6_visualize/out/animation.mp4
 
   # here we'll generate the components for basemap, focus_geoms, secondary_geoms,
   # adn storm_line. each of these components doesn't change over time. each
@@ -257,7 +257,7 @@ targets:
     command: gd_put(target_name, '6_visualize/out/animation.gif')
 
   # Now combine into a video file
-  6_visualize/out/animation_a.mp4:
+  6_visualize/out/animation_nologo.mp4:
     command: combine_animation_frames_video(
       out_file=target_name,
       animation_cfg=animation_cfg,
@@ -265,5 +265,11 @@ targets:
       frame_ind_intro = "6_visualize/log/6_intro_gif_tasks.ind",
       frame_ind_storm = "6_visualize/log/6_storm_gif_tasks.ind",
       frame_ind_outro = "6_visualize/log/6_outro_gif_tasks.ind")
+  6_visualize/out/animation.mp4:
+    command: apply_logo_to_video(
+      out_file = target_name,
+      in_file = '6_visualize/out/animation_nologo.mp4',
+      logo_file = '6_visualize/tmp/logo_ready.png',
+      viz_config_dim = storm_frame_config)
   6_visualize/out/animation.mp4.ind:
     command: gd_put(target_name, '6_visualize/out/animation.mp4')
