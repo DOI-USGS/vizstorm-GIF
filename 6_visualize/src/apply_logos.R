@@ -1,8 +1,8 @@
 prep_logo_overlay <- function(out_file, in_file, viz_config_dim) {
 
-  # Get rid of logo background, change to grey, then resize and make a gif to overlay
+  # Resize and save as a gif to overlay
   sprintf(
-    'convert %s -transparent white -fill "#808080" -opaque black -adaptive-resize %sx %s',
+    'convert %s -resize %sx %s',
     in_file,
     viz_config_dim$width*0.10, # Make logo 10% of frame width
     out_file

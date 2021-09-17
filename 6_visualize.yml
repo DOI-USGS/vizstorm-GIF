@@ -218,7 +218,7 @@ targets:
 
   # Prep the logo:
   6_visualize/tmp/logo_ready.png:
-    command: prep_logo_overlay(target_name, '6_visualize/in/usgs_logo_black.png', storm_frame_config)
+    command: prep_logo_overlay(target_name, '6_visualize/in/usgs_logo_grey.png', storm_frame_config)
 
   # Combine the png files into a gif.
   #
