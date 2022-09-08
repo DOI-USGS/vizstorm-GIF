@@ -3,7 +3,7 @@
 #' @param times the start and end time of the request
 fetch_precip_data <- function(ind_file, view_polygon, times) {
   fabric <- webdata(
-    url = 'https://cida.usgs.gov/thredds/dodsC/stageiv_combined',
+    url = 'https://labs.waterdata.usgs.gov/thredds/dodsC/stageiv_combined',
     variables = "Total_precipitation_surface_1_Hour_Accumulation",
     times = as.POSIXct(c(times$start,times$end), tz = 'UTC'))
 
