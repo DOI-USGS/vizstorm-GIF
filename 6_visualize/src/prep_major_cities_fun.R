@@ -1,5 +1,5 @@
 prep_major_cities_fun <- function(cities_ind){
-  cities <- readRDS(sc_retrieve(cities_ind))
+  cities <- readRDS(sc_retrieve(cities_ind, remake_file = getOption("scipiper.remake_file")))
 
   if(nrow(cities) > 0) {
     # check for extreme text_angles
@@ -34,7 +34,7 @@ prep_major_cities_fun <- function(cities_ind){
       mutate(
         text_x = dot_x + text_dist * xrange * cos(2*pi*(text_angle/360)),
         text_y = dot_y + text_dist * xrange * sin(2*pi*(text_angle/360)))
-    
+
     # plot the city points
     points(x = cities$dot_x,
            y = cities$dot_y,
@@ -52,7 +52,7 @@ prep_major_cities_fun <- function(cities_ind){
          col = cities$text_col,
          font = cities$text_font,
          offset = 0) # use offset = 2 if adding callout lines
-    
+
     # add callout lines between points and labels
     # segments(x0=cities$text_x, y0=cities$text_y, x1=cities$dot_x, y1=cities$dot_y, col=cities$dot_col)
 
