@@ -32,10 +32,10 @@ prep_outro_rdgs_fun <- function(rdg_ind="1_fetch/out/rapid_dep_sites.rds.ind", g
     line_spacing_vert <- strheight("A", cex=legend_text_cfg$cex, family=legend_text_cfg$family)
     dot_spacing_vert <- line_spacing_vert / 3
 
-    x_title <- user_coords[1] + 0.5 * diff(user_coords[1:2])
-    x_text <- user_coords[1] + 0.5 * diff(user_coords[1:2])
-    y_title <- user_coords[3] + 0.88 * diff(user_coords[3:4])
-    y_text <- user_coords[3] + 0.82 * diff(user_coords[3:4])
+    x_title <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
+    x_text <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
+    y_title <- user_coords[3] + outro_placement$ytop_stn * diff(user_coords[3:4])
+    y_text <- user_coords[3] + (outro_placement$ytop_stn - 0.15) * diff(user_coords[3:4])
     x_dot <- x_text + 0.104 * diff(user_coords[1:2])
     y_dot <- y_text - 0.061 * diff(user_coords[3:4])
     # plot text and legend
@@ -72,10 +72,11 @@ prep_outro_allsites_fun <- function(allsites_ind="2_process/out/gage_sites_geom.
 
     # plan text and legend coordinates
     user_coords <- par()$usr
-    x_title <- user_coords[1] + 0.535 * diff(user_coords[1:2])
-    x_text <- user_coords[1] + 0.535 * diff(user_coords[1:2])
-    y_title <- user_coords[3] + 0.49 * diff(user_coords[3:4])
-    y_text <- user_coords[3] + 0.43 * diff(user_coords[3:4])
+    x_title <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
+    x_text <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
+    y_title <- user_coords[3] + outro_placement$ytop_ltn * diff(user_coords[3:4])
+    y_text <- user_coords[3] + (outro_placement$ytop_ltn - 0.15) * diff(user_coords[3:4])
+
     x_dot <- x_text + 0.1635 * diff(user_coords[1:2])
     y_dot <- y_text - 0.061 * diff(user_coords[3:4])
     # plot text and legend
@@ -100,10 +101,10 @@ prep_outro_readmore_fun <- function(outro_placement, legend_text_cfg, opacity=1)
 
     # plan text coordinates
     user_coords <- par()$usr
-    x_title <- user_coords[1] + 0.52 * diff(user_coords[1:2])
-    x_text <- user_coords[1] + 0.43 * diff(user_coords[1:2])
-    y_title <- user_coords[3] + 0.17 * diff(user_coords[3:4])
-    y_text <- user_coords[3] + 0.11 * diff(user_coords[3:4])
+    x_title <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
+    x_text <- user_coords[1] + outro_placement$xleft * diff(user_coords[1:2])
+    y_title <- user_coords[3] + outro_placement$ytop_more * diff(user_coords[3:4])
+    y_text <- user_coords[3] + (outro_placement$ytop_more - 0.15) * diff(user_coords[3:4])
 
     # plot text and legend
     text(x=x_title, y=y_title, labels="STAY SAFE DURING FLOODS", adj=c(0, 1),
