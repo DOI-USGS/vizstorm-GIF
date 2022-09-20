@@ -4,12 +4,12 @@ storm_code: al072022 # find the right code at https://www.nhc.noaa.gov/gis/archi
 stn_event: NA # Can find code by looking at REST URLs here: https://stn.wim.usgs.gov/STNDataPortal/#
 dates:
   start: '2022-09-16 00:00:00'
-  end: '2022-09-18 16:00:00'
+  end: '2022-09-19 16:00:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 4 # hours elapsed between GIF frames
 
 # view, dimensions
-bbox: [-75, 15, -65, 25]
+bbox: [-68, 17.6, -64, 18.5]
 projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
 height: 512
 width: 1024
@@ -83,26 +83,24 @@ component_placement:
     ytimeline_text: 0.205 # y location of timeline dates (0.035 below line has worked well)
   outro:
     # outro text & legend roughly, but not exactly, fit where the sparklines were
-    xleft: 0.55
-    xright: 0.99
-    ytop_ltn: 0.6 # top y coordinate of the text and legend for the long-term network
+    xleft: 0.30
+    xright: 0.70
+    ytop_ltn: 0.90 # top y coordinate of the text and legend for the long-term network
     ytop_stn: 0.85 # top y coordinate of the text and legend for the short-term network
-    ytop_more: 0.4 # top y coordinate of the text and URL for where to learn more
+    ytop_more: 0.50 # top y coordinate of the text and URL for where to learn more
 
 
 ocean_name_placement:
   -
-    x1: 0.4
-    y1: 0.3
+    x1: 0.2
+    y1: 0.85
     label: 'Atlantic Ocean'
 
 focus_geoms:
   -
-    # U.S. counties
-    database: county
-  -
-    # U.S. states
-    database: state
+    # Puerto Rico
+    database: "mapdata::world2Hires"
+    regions: "Puerto Rico"
 
 secondary_geoms:
   -
@@ -160,24 +158,23 @@ cities:
     #  dot_cex: 0.8
     #  text_cex: 0.8
     -
-      name: "New Bern NC"
-      news: "CBS"
+      name: "San Juan, PR"
       dot_cex: 0.8
       text_cex: 0.8
-      lat: 35.107686
-      long: -77.051366
+      lat: 18.466
+      long: -66.106
     -
-      name: "Wilmington NC"
-      news: "CBS"
+      name: "Bayamón, PR"
       dot_cex: 0.8
       text_cex: 0.8
+      lat: 18.399
+      long: -66.156
     -
-      name: "Myrtle Beach SC"
-      news: "CBS"
-      lat: 33.6917
-      long: -78.8875
+      name: "Ponce, PR"
       dot_cex: 0.8
       text_cex: 0.8
+      lat: 18.01
+      long: -66.624
     #-
     #  name: "Charleston SC"
     #  news: "google/crisismap"

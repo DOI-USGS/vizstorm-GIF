@@ -5,7 +5,7 @@ prep_legend_fun <- function(precip_bins, legend_styles, timesteps_ind, storm_poi
   y_pos <- match.arg(y_pos)
 
   if(is.na(DateTime)) {
-    timesteps <- readRDS(sc_retrieve(timesteps_ind), remake_file = getOption("scipiper.remake_file"))
+    timesteps <- readRDS(sc_retrieve(timesteps_ind, remake_file = getOption("scipiper.remake_file")))
     DateTime <- timesteps[1]
     rm(timesteps)
   }

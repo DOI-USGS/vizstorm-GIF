@@ -1,5 +1,5 @@
 
-fetch_read <- function(ind_file) readRDS(sc_retrieve(ind_file))
+fetch_read <- function(ind_file) readRDS(sc_retrieve(ind_file, remake_file = getOption("scipiper.remake_file")))
 
 get_date_limits <- function(timestep_ind) {
   timesteps_utc <- fetch_read(timestep_ind)

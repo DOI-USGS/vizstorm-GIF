@@ -9,7 +9,7 @@ prep_gage2spark_fun <- function(intro_config, timestep, stage_data, site_data, g
       is_flooding = stage_normalized >= flood_stage_normalized,
       background=gage_color_config$gage_norm_col,
       color=ifelse(is_flooding, gage_color_config$gage_flood_col, NA)) %>%
-      {bind_cols(., as_data_frame(sf::st_coordinates(.)))} %>%
+      {bind_cols(., as_tibble(sf::st_coordinates(.)))} %>%
     select(site_no, X, Y, background, color)
   n_sites <- nrow(sites)
 
