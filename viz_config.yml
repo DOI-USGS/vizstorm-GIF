@@ -9,7 +9,7 @@ date_display_tz: "America/New_York" # UTC is assumed for all input and intermedi
 frame_step: 4 # hours elapsed between GIF frames
 
 # view, dimensions
-bbox: [-75, 15, -65, 25]
+bbox: [-68, 17.6, -64, 18.5]
 projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
 height: 512
 width: 1024
@@ -72,7 +72,7 @@ component_placement:
     # above watermark for now
     x1: 0.005
     y1: 0.85
-  legend_x_pos: "left"
+  legend_x_pos: "right"
   legend_y_pos: "bottom"
   sparks:
     xleft: 0.70 # as percentage of figure width
@@ -98,11 +98,9 @@ ocean_name_placement:
 
 focus_geoms:
   -
-    # U.S. counties
-    database: county
-  -
-    # U.S. states
-    database: state
+    # Puerto Rico
+    database: "mapdata::world2Hires"
+    regions: "Puerto Rico"
 
 secondary_geoms:
   -
