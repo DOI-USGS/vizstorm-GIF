@@ -9,7 +9,7 @@ prep_spark_funs_data <- function(stage_data, site_data, timestep_ind, spark_conf
 
   # Choose order of sparklines
   sites <- site_data %>%
-    bind_cols(., as_data_frame(sf::st_coordinates(.))) %>%
+    bind_cols(., as_tibble(sf::st_coordinates(.))) %>%
     sf::st_set_geometry(NULL) %>%
     arrange(desc(Y)) %>%
     pull(site_no)
