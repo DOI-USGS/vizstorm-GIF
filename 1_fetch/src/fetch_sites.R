@@ -27,17 +27,20 @@ fetch_states_from_sf <- function(sf_ind) {
 #' @param stream_params pcodes to use from NWIS
 fetch_sites_from_states <- function(ind_file, state_cds, dates, stream_params, require_flood_stage=TRUE) {
 
-  # Cast wide net for all NWIS sites with stage data that fall within that bbox
-  sites_df <- bind_rows(lapply(state_cds, function(cd) {
-    dataRetrieval::whatNWISdata(stateCd = cd, parameterCd = stream_params$stage, service = "uv") %>%
-      dplyr::select(site_no, station_nm, dec_lat_va, dec_long_va, site_tp_cd, end_date, begin_date)
-  }))
+  state_list <- state_cds
 
-  # Get and join NWS flood stage table
+  # Get NWS flood stage table
   nws_flood_stage_list <- jsonlite::fromJSON("https://waterwatch.usgs.gov/webservices/floodstage?format=json")
   nws_flood_stage_table <- nws_flood_stage_list[["sites"]]
-  sites_df <- sites_df %>%
+
+  # Use states to find all sites with stage data
+  sites_df <- purrr::map(state_list, function(state) {
+    dataRetrieval::whatNWISdata(stateCd = state, parameterCd = stream_params$stage, service = "iv") |>
+      mutate(state = state)
+  }) |>
+    bind_rows() |>
     left_join(nws_flood_stage_table, by='site_no')
+
 
   # Optionally filter out any sites that don't have flood stage data from NWS
   if(require_flood_stage) {

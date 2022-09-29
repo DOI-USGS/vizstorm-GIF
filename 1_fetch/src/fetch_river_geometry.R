@@ -15,9 +15,8 @@ fetch_waterbody_geoms <- function(ind_file, view_polygon, fetch_waterbody_areasq
 
   bbox_sf <- st_as_sfc(st_bbox(view_polygon))
 
-  sf_waterbodies <- get_waterbodies(AOI = bbox_sf,
-                                 buffer = 0) %>%
-    filter(areasqkm > fetch_waterbody_areasqkm$fetch_waterbody_areasqkm) %>%
+  sf_waterbodies <- get_waterbodies(AOI = bbox_sf, buffer = 0) |>
+    #filter(areasqkm > 1000) |>
     ms_simplify()
 
   data_file <- as_data_file(ind_file)

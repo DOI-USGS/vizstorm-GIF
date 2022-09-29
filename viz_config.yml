@@ -1,21 +1,21 @@
-storm_name: "Fiona"
+storm_name: "Ian"
 # `storm_code` and `stn_event` can be commented out or deleted if there is not a storm track
-storm_code: al072022 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2022
-stn_event: NA # Can find code by looking at REST URLs here: https://stn.wim.usgs.gov/STNDataPortal/#
+storm_code: al092022 # find the right code at https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=2022
+stn_event: 325 # Can find code by looking at REST URLs here: https://stn.wim.usgs.gov/STNDataPortal/#
 dates:
-  start: '2022-09-16 00:00:00'
-  end: '2022-09-19 16:00:00'
+  start: '2022-09-25 00:00:00'
+  end: '2022-09-29 00:00:00'
 date_display_tz: "America/New_York" # UTC is assumed for all input and intermediate data; this is the TZ to display on the GIF
 frame_step: 4 # hours elapsed between GIF frames
 
 # view, dimensions
-bbox: [-68, 17.6, -64, 18.5]
-projection: "+proj=lcc +lat_1=34.83333333333334 +lat_2=32.5 +lat_0=31.83333333333333 +lon_0=-81 +x_0=609600 +y_0=0 +ellps=GRS80 +units=m +no_defs "
-height: 512
+bbox: [-88, 38, -70, 23]
+projection: "+proj=lcc +lat_1=30.7 +lat_2=29.3 +lat_0=28.5 +lon_0=-91.33333333333333 +x_0=999999.9999898402 +y_0=0 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs"
+height: 675
 width: 1024
 
 # styling
-precip_cols: ["#FAFBF399", "#F0F8E3CC", "#D4E9CAE6", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
+precip_cols: ["#D9D6F6", "#B7B0F0", "#788BDA", "#3367AC", "#274376", "#2B194C"]  #["#FAFBF399", "#F0F8E3CC", "#D4E9CAE6", "#BBE0CE", "#B7DAD0", "#B0CCD7", "#A9B8D7", "#A297C2", "#8F6F9E", "#684A77", "#41234D"]
 precip_bin: 4 # inches per bin
 gage_flood_col: "#175676"
 gage_line_col: "#3c829c"
@@ -27,11 +27,11 @@ hurricane_col: "orange"
 hurricane_cols: ["#71c633", "#FBC195", "#FB8147", "#EF5F2C", "#C63526", "#6E1B14"]
 hurricane_col_names: ["Tropical Storm %s", "Hurricane %s (Cat1)", "Hurricane %s (Cat2)", "Hurricane %s (Cat3)", "Hurricane %s (Cat4)", "Hurricane %s (Cat5)"] # If these change, legend layout may break
 storm_line_col: "grey30"
-major_river_col: "#1874cd"
-gage_river_col: "#5d9ddc"
-lake_col: "#a2c7eb"
+major_river_col: "grey95"
+gage_river_col: "grey95"
+lake_col: "grey95"
 marsh_col: NA
-ocean_col: "#e7f1fa"
+ocean_col: "#ffffff"
 legend_text:
   cex: 1.5
   col: "#161616"
@@ -92,15 +92,17 @@ component_placement:
 
 ocean_name_placement:
   -
-    x1: 0.2
-    y1: 0.85
-    label: 'Atlantic Ocean'
+    x1: 0.5
+    y1: 0.4
+    label: 'Atlantic nOcean'
 
 focus_geoms:
   -
-    # Puerto Rico
-    database: "mapdata::world2Hires"
-    regions: "Puerto Rico"
+    # U.S. counties
+    database: county
+  -
+    # U.S. states
+    database: state
 
 secondary_geoms:
   -
